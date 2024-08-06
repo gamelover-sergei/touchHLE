@@ -271,6 +271,9 @@ fn CGLayerCreateWithContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32
 fn CGLayerGetContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn NSFullUserName(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn UIApplicationDidReceiveMemoryWarningNotification(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -658,6 +661,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGImageCreateWithImageInRect(_, _)),
     export_c_func!(CGLayerCreateWithContext(_, _)),
     export_c_func!(CGLayerGetContext(_, _)),
+    export_c_func!(NSFullUserName(_, _)),
     export_c_func!(UIApplicationDidReceiveMemoryWarningNotification(_, _)),
     export_c_func!(glDrawTexiOES(_, _)),
     export_c_func!(glBindFramebuffer(_, _)),
