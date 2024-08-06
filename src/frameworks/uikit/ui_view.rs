@@ -111,6 +111,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [UIView beginAnimations:{:?} {:?} context:{:?}]", to_rust_string(env, animationID), animationID, context);
 }
 
++ (())setAnimationCurve:(id)curve {
+    log!("WARNING: Ignoring setAnimationCurve:");
+}
+
 + (())setAnimationDuration:(id)duration {
     log!("WARNING: Ignoring setAnimationDuration:");
 }
