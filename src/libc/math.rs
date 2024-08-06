@@ -235,6 +235,9 @@ fn fmin(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn fminf(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn gethostname(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn AudioQueueAllocateBufferWithPacketDescriptions(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -263,6 +266,9 @@ fn CGImageCreateWithImageInRect(_env: &mut Environment, arg1: f32, arg2: f32) ->
     arg1.min(arg2)
 }
 fn CGLayerCreateWithContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn CGLayerGetContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn UIApplicationDidReceiveMemoryWarningNotification(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
@@ -334,6 +340,9 @@ fn glPointSizePointerOES(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn abort(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn abs(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn gzopen(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -380,6 +389,9 @@ fn inet_addr(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
 fn inet_ntoa(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
+fn inet_pton(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
 fn listen(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
@@ -634,6 +646,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(fmaxf(_, _)),
     export_c_func!(fmin(_, _)),
     export_c_func!(fminf(_, _)),
+    export_c_func!(gethostname(_, _)),
     export_c_func!(AudioQueueAllocateBufferWithPacketDescriptions(_, _)),
     export_c_func!(AudioSessionGetPropertySize(_, _)),
     export_c_func!(CACurrentMediaTime(_, _)),
@@ -644,6 +657,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGImageCreateWithJPEGDataProvider(_, _)),
     export_c_func!(CGImageCreateWithImageInRect(_, _)),
     export_c_func!(CGLayerCreateWithContext(_, _)),
+    export_c_func!(CGLayerGetContext(_, _)),
     export_c_func!(UIApplicationDidReceiveMemoryWarningNotification(_, _)),
     export_c_func!(glDrawTexiOES(_, _)),
     export_c_func!(glBindFramebuffer(_, _)),
@@ -667,6 +681,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(glReadPixels(_, _)),
     export_c_func!(glPointSizePointerOES(_, _)),
     export_c_func!(abort(_, _)),
+    export_c_func!(abs(_, _)),
     export_c_func!(gzopen(_, _)),
     export_c_func!(gzread(_, _)),
     export_c_func!(gzclose(_, _)),
@@ -683,6 +698,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(ioctl(_, _)),
     export_c_func!(inet_addr(_, _)),
     export_c_func!(inet_ntoa(_, _)),
+    export_c_func!(inet_pton(_, _)),
     export_c_func!(listen(_, _)),
     export_c_func!(kqueue(_, _)),
     export_c_func!(uncompress(_, _)),
