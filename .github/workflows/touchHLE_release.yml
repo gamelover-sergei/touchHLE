@@ -12,7 +12,8 @@ env:
 jobs:
   build-osx:
 
-    runs-on: macos-latest
+    # TODO: Use macos-latest once AArch64 cross-compile for x86_64 works
+    runs-on: macos-12
 
     steps:
     - uses: actions/checkout@v3
@@ -105,6 +106,9 @@ jobs:
     # (would have to run on Android 😰).
     - name: Build for Android
       run: cd android && ../gradle/gradle-7.3/bin/gradle assembleRelease && mv app/build/outputs/apk/release/app-release.apk ../touchHLE.apk
+      env:
+        # The version should match the ndkVersion defined in `android\app\build.gradle`
+        ANDROID_NDK_ROOT: '/usr/local/lib/android/sdk/ndk/25.2.9519653'
     - uses: actions/upload-artifact@v3
       with:
         name: touchHLE_Android_AArch64
