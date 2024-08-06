@@ -573,6 +573,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation UINavigationBar : UIView
 @end
 
+@implementation ManView : UIView
+- (())setAnimationRepeatCount:(bool)count {
+    log!("TODO: setAnimationRepeatCount:{}", count);
+}
+
+@end
+
 @implementation UINavigationItem : NSObject
 - (id)initWithCoder:(id)coder {
     nil
