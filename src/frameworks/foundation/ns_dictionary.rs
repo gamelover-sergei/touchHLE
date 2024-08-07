@@ -453,6 +453,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CLLocationManager: NSMutableDictionary
+@end
+
 // Our private subclass that is the single implementation of
 // NSMutableDictionary for the time being.
 @implementation _touchHLE_NSMutableDictionary: NSMutableDictionary
