@@ -256,6 +256,9 @@ fn CFLocaleCopyCurrent(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGContextSetAllowsAntialiasing(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextSetRGBStrokeColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGDataProviderCreateDirect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -659,6 +662,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
     export_c_func!(CFLocaleCopyCurrent(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
+    export_c_func!(CGContextSetRGBStrokeColor(_, _)),
     export_c_func!(CGDataProviderCreateDirect(_, _)),
     export_c_func!(CGImageCreate(_, _)),
     export_c_func!(CGImageCreateWithJPEGDataProvider(_, _)),
