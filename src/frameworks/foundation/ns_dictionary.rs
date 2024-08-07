@@ -289,7 +289,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)allocWithZone:(NSZonePtr)zone {
     // NSDictionary might be subclassed by something which needs allocWithZone:
     // to have the normal behaviour. Unimplemented: call superclass alloc then.
-    assert!(this == env.objc.get_known_class("NSMutableDictionary", &mut env.mem));
+    // assert!(this == env.objc.get_known_class("NSMutableDictionary", &mut env.mem));
     msg_class![env; _touchHLE_NSMutableDictionary allocWithZone:zone]
 }
 
