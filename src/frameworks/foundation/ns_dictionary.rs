@@ -556,7 +556,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; val integerValue]
 }
 
-- (())registerDefaults:(id)dict {
+- (())registerDefaults:(id)defaults {
     let mut host_obj: DictionaryHostObject = std::mem::take(env.objc.borrow_mut(dict));
     for (_, key_value) in host_obj.map {
         let key = key_value[0].0;
