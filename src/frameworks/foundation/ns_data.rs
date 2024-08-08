@@ -82,6 +82,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (bool)initWithBytesNoCopy:length:freeWhenDone:(id)defaultName {
+    let val: id = msg![env; this objectForKey:defaultName];
+    msg![env; val boolValue]
+}
+
 - (id)initWithBytesNoCopy:(MutVoidPtr)bytes
                    length:(NSUInteger)length {
     let host_object = env.objc.borrow_mut::<NSDataHostObject>(this);
