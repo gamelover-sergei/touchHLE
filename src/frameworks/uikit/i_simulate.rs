@@ -1,4 +1,4 @@
-use crate::objc::{msg, objc_classes, ClassExports};
+use crate::objc::{id, msg, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
