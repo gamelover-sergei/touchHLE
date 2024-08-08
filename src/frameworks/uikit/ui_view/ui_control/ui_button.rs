@@ -332,11 +332,4 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation UIRoundedRectButton: UIButton
 @end
 
-@implementation TargetView: UIButton
-- (())setTag:(bool)tag {
-    log!("TODO: setTag:{}", tag);
-}
-
-@end
-
 };
