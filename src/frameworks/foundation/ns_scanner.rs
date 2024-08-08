@@ -66,6 +66,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)isAtEnd {
+    nil
+}
+
 - (bool) scanUpToCharactersFromSet:(id)cset intoString:(MutPtr<id>)str {
     let NSScannerHostObject { string, len, mut pos } = env.objc.borrow::<NSScannerHostObject>(this).clone();
     if pos >= len {
