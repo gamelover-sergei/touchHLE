@@ -400,6 +400,9 @@ fn inflateEnd(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn mprotect(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn pipe(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn ptrace(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -746,6 +749,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(inflateInit2_(_, _)),
     export_c_func!(inflateEnd(_, _)),
     export_c_func!(mprotect(_, _)),
+    export_c_func!(pipe(_, _)),
     export_c_func!(ptrace(_, _)),
     export_c_func!(rename(_, _)),
     export_c_func!(setsockopt(_, _)),
