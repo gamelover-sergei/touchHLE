@@ -198,6 +198,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 @end
 
+@implementation NSURLCache: NSObject
+@end
+
 };
 
 /// Shortcut for host code, provides a view of a URL as a path.
