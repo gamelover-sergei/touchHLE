@@ -121,6 +121,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setNetworkActivityIndicatorVisible:(bool)visible {
+    log!("TODO: setNetworkActivityIndicatorVisible:{}", visible);
+}
+
 - (())setStatusBarStyle:(bool)status {
     log!("TODO: setStatusBarStyle:{}", status);
 }
