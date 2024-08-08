@@ -33,6 +33,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())sizeThatFits:(bool)fits {
     log!("TODO: sizeThatFits:{}", fits);
 }
+- (())sizeToFit:(bool)fit {
+    log!("TODO: sizeToFit:{}", fit);
+}
 - (())startAnimating {
     log!("TODO: [(UIActivityIndicatorView*){:?} startAnimating", this);
 }
