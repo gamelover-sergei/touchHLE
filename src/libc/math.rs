@@ -367,6 +367,9 @@ fn abort(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn abs(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn asctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn gzopen(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -720,6 +723,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(glPointSizePointerOES(_, _)),
     export_c_func!(abort(_, _)),
     export_c_func!(abs(_, _)),
+    export_c_func!(asctime(_, _)),
     export_c_func!(gzopen(_, _)),
     export_c_func!(gzread(_, _)),
     export_c_func!(gzclose(_, _)),
