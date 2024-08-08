@@ -256,6 +256,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     update(env, this);
 }
 
+- (id)tag {
+    nil
+}
+
 - (id)currentBackgroundImage {
     let state: UIControlState = msg![env; this state];
     msg![env; this backgroundImageForState:state]
