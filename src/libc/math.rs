@@ -259,6 +259,9 @@ fn CFBundleGetInfoDictionary(_env: &mut Environment, arg1: f32, arg2: f32) -> f3
 fn CFLocaleCopyCurrent(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFRunLoopRun(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextSetAllowsAntialiasing(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -675,6 +678,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
     export_c_func!(CFBundleGetInfoDictionary(_, _)),
     export_c_func!(CFLocaleCopyCurrent(_, _)),
+    export_c_func!(CFRunLoopRun(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetRGBStrokeColor(_, _)),
     export_c_func!(CGDataProviderCreateDirect(_, _)),
