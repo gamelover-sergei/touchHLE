@@ -584,9 +584,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; val boolValue]
 }
 
-- (bool)boolValue:(id)defaultName {
-    let val: id = msg![env; this objectForKey:defaultName];
-    msg![env; val boolValue]
+- (id)boolValue {
+     nil
 }
 
 - (bool)dictionaryForKey:(id)defaultName {
