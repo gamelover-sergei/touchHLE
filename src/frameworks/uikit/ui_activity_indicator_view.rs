@@ -6,7 +6,7 @@
 //! `UIActivityIndicatorView`.
 
 use crate::frameworks::foundation::NSInteger;
-use crate::objc::{id, msg, ClassExports};
+use crate::objc::{id, msg, nil, ClassExports};
 use crate::objc_classes;
 
 type UIActivityIndicatorViewStyle = NSInteger;
