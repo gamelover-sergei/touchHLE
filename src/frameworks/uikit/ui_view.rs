@@ -554,6 +554,12 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation TargetView: UIView
+- (())setTag:(bool)tag {
+    log!("TODO: setTag:{}", tag);
+}
+@end
+
 @implementation UIToolbar: UIView
 - (())setBarStyle:(bool)bar {
     log!("TODO: setBarStyle:{}", bar);
@@ -563,24 +569,23 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 @end
 
-@implementation UIPickerView : UIView
+@implementation UIPickerView: UIView
 - (())setDataSource:(id)dataSource {
 }
 - (())setDelegate:(id)delegate {
 }
 @end
 
-@implementation UINavigationBar : UIView
+@implementation UINavigationBar: UIView
 @end
 
-@implementation ManView : UIView
+@implementation ManView: UIView
 - (())setAnimationRepeatCount:(bool)count {
     log!("TODO: setAnimationRepeatCount:{}", count);
 }
-
 @end
 
-@implementation UINavigationItem : NSObject
+@implementation UINavigationItem: NSObject
 - (id)initWithCoder:(id)coder {
     nil
 }
