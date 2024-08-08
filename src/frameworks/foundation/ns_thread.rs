@@ -197,6 +197,10 @@ object:(id)object {
     true
 }
 
+- (())setName:(bool)name {
+    log!("TODO: setName:{}", name);
+}
+
 - (())dealloc {
     log_dbg!("[(NSThread*){:?} dealloc]", this);
     State::get(env).ns_threads.remove(&this);
