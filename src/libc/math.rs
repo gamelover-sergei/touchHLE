@@ -241,6 +241,9 @@ fn gethostname(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn AudioQueueAllocateBufferWithPacketDescriptions(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn AudioServicesDisposeSystemSoundID(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn AudioSessionGetPropertySize(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -666,6 +669,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(fminf(_, _)),
     export_c_func!(gethostname(_, _)),
     export_c_func!(AudioQueueAllocateBufferWithPacketDescriptions(_, _)),
+    export_c_func!(AudioServicesDisposeSystemSoundID(_, _)),
     export_c_func!(AudioSessionGetPropertySize(_, _)),
     export_c_func!(CACurrentMediaTime(_, _)),
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
