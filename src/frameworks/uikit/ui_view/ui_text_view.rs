@@ -126,6 +126,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     () = msg![env; this setNeedsDisplay];
 }
 
+- (())setKeyboardType:board {
+    log!("TODO: setKeyboardType:{}", board);
+}
+
 - (id) font {
     env.objc.borrow::<UITextViewHostObject>(this).font
 }
