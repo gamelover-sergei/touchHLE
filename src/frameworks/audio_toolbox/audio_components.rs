@@ -118,7 +118,7 @@ fn AudioComponentFindNext(
     let audio_comp_descr = env.mem.read(in_desc);
     assert!(audio_comp_descr.component_type == kAudioUnitType_Output);
     assert!(audio_comp_descr.component_sub_type == kAudioUnitSubType_RemoteIO);
-    assert!(audio_comp_descr.component_manufacturer == kAudioUnitManufacturer_Apple);
+    // assert!(audio_comp_descr.component_manufacturer == kAudioUnitManufacturer_Apple);
 
     let out_component = nil.cast();
     log!(
