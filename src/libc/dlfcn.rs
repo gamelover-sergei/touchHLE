@@ -41,7 +41,7 @@ fn dlsym(env: &mut Environment, handle: MutVoidPtr, symbol: ConstPtr<u8>) -> Mut
 }
 
 fn dlclose(env: &mut Environment, handle: MutVoidPtr) -> i32 {
-    assert!(ALLOWED_LIBRARIES.contains(&env.mem.cstr_at_utf8(handle.cast())));
+    // assert!(ALLOWED_LIBRARIES.contains(&env.mem.cstr_at_utf8(handle.cast())));
     0 // success
 }
 
