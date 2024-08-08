@@ -88,7 +88,7 @@ fn AudioUnitSetProperty(
     let result;
     match in_id {
         kAudioUnitProperty_SetRenderCallback => {
-            assert!(in_scope == kAudioUnitScope_Global);
+            // assert!(in_scope == kAudioUnitScope_Global);
             assert!(in_data_size == size_of::<AURenderCallbackStruct>().try_into().unwrap());
             let render_callback = env.mem.read(in_data.cast::<AURenderCallbackStruct>());
             host_object.render_callback = Some(render_callback);
