@@ -250,6 +250,9 @@ fn CACurrentMediaTime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CFBundleCopyResourceURLForLocalization(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFBundleGetInfoDictionary(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFLocaleCopyCurrent(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -666,6 +669,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(AudioSessionGetPropertySize(_, _)),
     export_c_func!(CACurrentMediaTime(_, _)),
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
+    export_c_func!(CFBundleGetInfoDictionary(_, _)),
     export_c_func!(CFLocaleCopyCurrent(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetRGBStrokeColor(_, _)),
