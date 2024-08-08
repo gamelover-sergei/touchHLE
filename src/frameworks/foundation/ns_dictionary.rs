@@ -545,6 +545,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     *env.objc.borrow_mut(this) = host_obj;
 }
 
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 - (())setValue:(id)value
         forKey:(id)key { // NSString*
     assert!(!key.is_null());
