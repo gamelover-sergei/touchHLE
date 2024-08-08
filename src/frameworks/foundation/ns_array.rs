@@ -518,6 +518,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation NSIndexPath: NSObject
 @end
 
+@implementation NSXMLParser: NSObject
+@end
+
 };
 
 /// Shortcut for host code, roughly equivalent to
