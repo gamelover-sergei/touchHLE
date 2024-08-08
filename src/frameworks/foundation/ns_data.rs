@@ -37,6 +37,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_object(this, host_object, &mut env.mem)
 }
 
++ (id)data {
+    nil
+}
+
 + (id)dataWithBytesNoCopy:(MutVoidPtr)bytes
                    length:(NSUInteger)length {
     let new: id = msg![env; this alloc];
