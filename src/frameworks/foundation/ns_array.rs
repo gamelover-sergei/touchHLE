@@ -523,6 +523,12 @@ pub const CLASSES: ClassExports = objc_classes! {
     let val: id = msg![env; this objectForKey:defaultName];
     msg![env; val boolValue]
 }
+- (id)objectForKey:(id)key {
+    let host_obj: DictionaryHostObject = std::mem::take(env.objc.borrow_mut(this));
+    let res = host_obj.lookup(env, key);
+    *env.objc.borrow_mut(this) = host_obj;
+    res
+}
 @end
 
 };
