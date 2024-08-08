@@ -56,6 +56,17 @@ pub const CLASSES: ClassExports = objc_classes! {
     res
 }
 
+- (())registerDefaults:(id)dict {
+    let mut host_obj: DictionaryHostObject = std::mem::take(env.objc.borrow_mut(dict));
+    for (_, key_value) in host_obj.map {
+        let key = key_value[0].0;
+        let value = key_value[0].1;
+        let mut host_obj: DictionaryHostObject = std::mem::take(env.objc.borrow_mut(this));
+        host_obj.insert(env, key, value, false);
+        *env.objc.borrow_mut(this) = host_obj;
+    }
+}
+
 // TODO: plist methods etc
 
 @end
