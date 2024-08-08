@@ -30,6 +30,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setActivityIndicatorViewStyle:{}", activity);
 }
 
+- (())sizeThatFits:(bool)fits {
+    log!("TODO: sizeThatFits:{}", fits);
+}
 - (())startAnimating {
     log!("TODO: [(UIActivityIndicatorView*){:?} startAnimating", this);
 }
