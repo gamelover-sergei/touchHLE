@@ -105,6 +105,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)stretchableImageWithLeftCapWidth:(id)topCapHeight {
+    nil
+}
+
 // TODO: more init methods
 // TODO: more accessors
 
