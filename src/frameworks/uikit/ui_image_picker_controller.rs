@@ -41,6 +41,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)initWithBarButtonSystemItem:(NSInteger)item target:(id)target action:(SEL)action {
     nil
 }
+- (id)initWithCoder:(id)coder {
+    nil
+}
 - (id)initWithCustomView:(id)view {
     nil
 }
