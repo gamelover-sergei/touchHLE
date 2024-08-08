@@ -174,6 +174,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (id)localeIdentifier {
+    nil
+}
+
 @end
 
 };
