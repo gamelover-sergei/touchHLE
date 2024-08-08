@@ -162,7 +162,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
     // TODO: If value is nil, the target ivar/method argument type must be
     // checked. If it's non-object type, invoke setNilValueForKey:
-    assert!(value != nil);
+    // assert!(value != nil);
 
     // TODO: If value is a NSNumber or NSValue, it must be unwrapped
     let value_class = msg![env; value class];
