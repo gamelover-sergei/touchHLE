@@ -519,6 +519,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation NSIndexPath: NSObject
 @end
 
+@implementation NSNetService: NSObject
+@end
+
 @implementation NSXMLParser: NSObject
 - (bool)initWithContentsOfURL:(id)defaultName {
     let val: id = msg![env; this objectForKey:defaultName];
