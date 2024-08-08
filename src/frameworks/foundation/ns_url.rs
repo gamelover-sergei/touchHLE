@@ -199,6 +199,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSURLCache: NSObject
++ (id)sharedURLCache {
+    nil
+}
+
 @end
 
 };
