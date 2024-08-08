@@ -45,6 +45,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)dateWithTimeIntervalSinceNow {
+    nil
+}
+
 + (id)distantFuture {
     let time_interval = SystemTime::now()
         .duration_since(apple_epoch())
