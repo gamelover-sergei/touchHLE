@@ -34,6 +34,7 @@ pub mod ui_screen;
 pub mod ui_switch;
 pub mod ui_tab_bar;
 pub mod ui_tab_bar_controller;
+pub mod ui_tab_bar_item;
 pub mod ui_touch;
 pub mod ui_view;
 pub mod ui_view_controller;
