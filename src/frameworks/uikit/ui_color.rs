@@ -95,6 +95,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)lightGrayColor {
     get_standard_color(env, _cmd, 2.0/3.0, 2.0/3.0, 2.0/3.0, 1.0)
 }
++ (id)lightTextColor {
+    nil
+}
 + (id)blueColor     { get_standard_color(env, _cmd, 0.0, 0.0, 1.0, 1.0) }
 + (id)brownColor    { get_standard_color(env, _cmd, 0.6, 0.4, 0.2, 1.0) }
 + (id)cyanColor     { get_standard_color(env, _cmd, 0.0, 1.0, 1.0, 1.0) }
