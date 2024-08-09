@@ -16,7 +16,7 @@ use crate::frameworks::core_foundation::cf_run_loop::{
     kCFRunLoopCommonModes, kCFRunLoopDefaultMode, CFRunLoopRef,
 };
 use crate::frameworks::{core_animation, media_player, uikit};
-use crate::objc::{id, msg, nil, objc_classes, release, retain, ClassExports, HostObject};
+use crate::objc::{id, msg, objc_classes, release, retain, ClassExports, HostObject};
 use crate::{Environment, msg_class};
 use std::time::{Duration, Instant};
 
@@ -126,7 +126,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (())runUntilDate {
-    nil
+
 }
 
 - (())runMode:(NSRunLoopMode)mode
