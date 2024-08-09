@@ -160,7 +160,7 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                     res.extend_from_slice(int_with_precision.as_bytes());
                 }
             }
-            b'f' => {
+            b'f' | b'X' => {
                 // TODO: support length modifier
                 assert!(length_modifier.is_none());
                 let float: f64 = args.next(env);
@@ -276,7 +276,7 @@ fn vsnprintf(
 }
 
 fn vsprintf(env: &mut Environment, dest: MutPtr<u8>, format: ConstPtr<u8>, arg: VaList) -> i32 {
-    log_dbg!(
+    log!(
         "vsprintf({:?}, {:?} ({:?}), ...)",
         dest,
         format,
