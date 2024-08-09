@@ -145,4 +145,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSHost: NSObject
++ (id)currentHost {
+    nil
+}
+
+@end
+
 };
