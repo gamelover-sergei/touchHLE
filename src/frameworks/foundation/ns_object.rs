@@ -58,6 +58,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // classes are not refcounted
 }
 
++ (())drawAtPoint {
+
+}
+
 +(())initialize {
 
 }
