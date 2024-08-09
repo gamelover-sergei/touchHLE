@@ -394,6 +394,9 @@ fn gzclose(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn gzeof(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn inflate(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn inflateInit_(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -753,6 +756,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(gzread(_, _)),
     export_c_func!(gzclose(_, _)),
     export_c_func!(gzeof(_, _)),
+    export_c_func!(inflate(_, _)),
     export_c_func!(inflateInit_(_, _)),
     export_c_func!(inflateInit2_(_, _)),
     export_c_func!(inflateEnd(_, _)),
