@@ -188,7 +188,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let ext = ns_string::to_rust_string(env, extension);
     // let dir = ns_string::to_rust_string(env, directory);
     //log!("ext {}", ext);
-    assert_eq!("xml", ext);
+    // assert_eq!("xml", ext);
     let name = ns_string::from_rust_string(env, "worlds_list.xml".to_owned());
     let path = msg![env; this pathForResource:name ofType:extension];
     ns_array::from_vec(env, vec![path])
