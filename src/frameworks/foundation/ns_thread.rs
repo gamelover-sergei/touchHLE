@@ -98,7 +98,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 + (())isMultiThreaded {
-    nil
+
 }
 
 + (())setStackSize {
