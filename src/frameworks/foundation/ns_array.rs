@@ -515,7 +515,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (())reverseObjectEnumerator {
-    nil
+
 }
 
 @end
