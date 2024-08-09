@@ -591,4 +591,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 @end
 
+@implementation UITableViewCell: UIView
+@end
+
 };
