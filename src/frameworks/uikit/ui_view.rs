@@ -589,6 +589,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)initWithCoder:(id)coder {
     nil
 }
+- (id)initWithTitle:(id)title {
+    nil
+}
 @end
 
 @implementation UITableViewCell: UIView
