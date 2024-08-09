@@ -6,10 +6,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UISwitch: UIControl
 
-- (())setOn:animated {
-
-}
-
 @end
 
 };
