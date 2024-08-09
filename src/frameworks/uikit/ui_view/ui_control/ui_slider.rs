@@ -13,6 +13,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UISlider: UIButton
 
+- (())setContinuous:(bool)continuous {
+    log!("TODO: setContinuous:{}", continuous);
+}
+
 - (())setMinimumValue:(bool)minimum {
     log!("TODO: setMinimumValue:{}", minimum);
 }
