@@ -12,7 +12,7 @@ use crate::frameworks::core_graphics::CGFloat;
 use crate::frameworks::foundation::ns_string;
 use crate::frameworks::uikit::ui_color;
 use crate::mem::{guest_size_of, MutPtr};
-use crate::objc::{msg, objc_classes, ClassExports, HostObject};
+use crate::objc::{msg, nil, objc_classes, ClassExports, HostObject};
 use crate::Environment;
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -23,6 +23,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 // those are just Objective-C types, so we need a class for it, but its name is
 // not visible anywhere.
 @implementation _touchHLE_CGColorSpace: NSObject
+- (id)CGImage {
+    nil
+}
+
 @end
 
 };
