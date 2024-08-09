@@ -755,7 +755,7 @@ impl Environment {
     }
 
     pub fn switch_thread(&mut self, new_thread: ThreadId) {
-        assert!(new_thread != self.current_thread);
+        // assert!(new_thread != self.current_thread);
 
         log_dbg!(
             "Switching thread: {} => {}",
