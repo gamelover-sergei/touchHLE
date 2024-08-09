@@ -305,6 +305,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     res
 }
 
+- (id)preferredLocalizations {
+    nil
+}
+
 - (id)infoDictionary {
     let &NSBundleHostObject {
         bundle_path,
