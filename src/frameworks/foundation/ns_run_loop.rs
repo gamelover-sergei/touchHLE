@@ -125,7 +125,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     run_run_loop(env, this, /* single_iteration: */ false);
 }
 
-- (())runUntilDate:(NSRunLoopMode)date
+- (())runUntilDate:(NSRunLoopUntilDate)date
    beforeDate:(id)limit_date { // NSDate *
     let default_mode = ns_string::get_static_str(env, NSDefaultRunLoopMode);
     let distant_future: id = msg_class![env; NSDate distantFuture];
