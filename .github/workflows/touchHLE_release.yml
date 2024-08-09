@@ -12,7 +12,7 @@ env:
 jobs:
   build-osx:
 
-    # TODO: Use macos-latest once AArch64 cross-compile for x86_64 works
+    # TODO: Use macos-latest oncebub AArch64 cross-compile for x86_64 works
     runs-on: macos-12
 
     steps:
