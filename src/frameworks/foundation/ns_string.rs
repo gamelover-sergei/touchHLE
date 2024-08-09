@@ -1171,10 +1171,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWithCharacters:(id)characters:(id)length {
-    nil
-}
-
 - (id)initWithString:(id)string { // NSString *
     // TODO: optimize for more common cases (or maybe just call copy?)
     let mut code_units = Vec::new();
