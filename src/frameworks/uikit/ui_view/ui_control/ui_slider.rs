@@ -5,7 +5,7 @@
  */
 //! `UISlider`.
 
-use crate::objc::{objc_classes, ClassExports};
+use crate::objc::{id, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -33,6 +33,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setThumbImage:{}", forState);
 }
 
+- (id)value {
+    nil
+}
 // TODO: all of it
 
 @end
