@@ -61,6 +61,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 +(())initialize {
 
 }
+
++ (())size {
+
+}
     
 + (bool)instancesRespondToSelector:(SEL)selector {
     env.objc.class_has_method(this, selector)
