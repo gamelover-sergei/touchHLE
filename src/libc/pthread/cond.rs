@@ -79,6 +79,10 @@ fn pthread_cond_wait(env: &mut Environment, cond: MutPtr<pthread_cond_t>, mutex:
     0 // success
 }
 
+fn pthread_cond_timedwait(_env: &mut Environment) {
+    log!("TODO: pthread_cond_timedwait()");
+}
+
 fn pthread_cond_signal(env: &mut Environment, cond: MutPtr<pthread_cond_t>) -> i32 {
     let cond_var = env.mem.read(cond);
     log_dbg!(
@@ -105,6 +109,7 @@ fn pthread_cond_broadcast(env: &mut Environment, cond: MutPtr<pthread_cond_t>) -
 pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(pthread_cond_init(_, _)),
     export_c_func!(pthread_cond_wait(_, _)),
+    export_c_func!(pthread_cond_timedwait()),
     export_c_func!(pthread_cond_signal(_)),
     export_c_func!(pthread_cond_destroy(_)),
     export_c_func!(pthread_cond_broadcast(_)),
