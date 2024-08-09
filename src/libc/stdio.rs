@@ -34,39 +34,17 @@ unsafe impl SafeRead for FILE {}
 type fpos_t = off_t;
 
 fn fopen(env: &mut Environment, filename: ConstPtr<u8>, mode: ConstPtr<u8>) -> MutPtr<FILE> {
-    // Some testing on macOS suggests Apple's implementation will just ignore
-    // flags it doesn't know about, and unfortunately real-world apps seem to
-    // rely on this, e.g. using "wt" to mean open for writing in text mode,
-    // even though that's not a real flag. The one thing that is required is for
-    // a known basic mode (r/w/a) to come first.
-
-    let mode = env.mem.cstr_at(mode);
-    let [basic_mode @ (b'r' | b'w' | b'a'), flags @ ..] = mode else {
-        panic!(
-            "Unexpected or missing fopen() mode first character: {:?}",
-            mode.first()
-        );
-    };
-    let mut plus = false;
-    for &flag in flags {
-        match flag {
-            // binary flag does nothing on UNIX
-            b'b' => (),
-            b'+' => plus = true,
-            other => {
-                log!("Tolerating unrecognized fopen() mode flag: {:?}", other);
-            }
-        }
-    }
-
-    let flags = match (basic_mode, plus) {
-        (b'r', false) => O_RDONLY,
-        (b'r', true) => O_RDWR | O_APPEND,
-        (b'w', false) => O_WRONLY | O_CREAT | O_TRUNC,
-        (b'w', true) => O_RDWR | O_CREAT | O_TRUNC,
-        (b'a', false) => O_WRONLY | O_APPEND | O_CREAT,
-        (b'a', true) => O_RDWR | O_APPEND | O_CREAT,
-        _ => unreachable!(),
+    // all valid modes are UTF-8
+    let flags = match env.mem.cstr_at_utf8(mode).unwrap() {
+        "r" | "rb" => O_RDONLY,
+        "r+" | "rb+" | "r+b" => O_RDWR | O_APPEND,
+        "w" | "wb" | "wt" => O_WRONLY | O_CREAT | O_TRUNC,
+        "w+" | "wb+" | "w+b" => O_RDWR | O_CREAT | O_TRUNC,
+        "a" | "ab" => O_WRONLY | O_APPEND | O_CREAT,
+        "a+" | "ab+" | "a+b" => O_RDWR | O_APPEND | O_CREAT,
+        // Modern C adds 'x' but that's not in the documentation so presumably
+        // iPhone OS did not have it.
+        other => panic!("Unexpected fopen() mode {:?}", other),
     };
 
     match posix_io::open_direct(env, filename, flags) {
@@ -83,9 +61,8 @@ fn fread(
     file_ptr: MutPtr<FILE>,
 ) -> GuestUSize {
     if item_size == 0 {
-        return 0;
+        return 0
     }
-
     let FILE { fd } = env.mem.read(file_ptr);
 
     // Yes, the item_size/n_items split doesn't mean anything. The C standard
@@ -159,10 +136,6 @@ fn fwrite(
     n_items: GuestUSize,
     file_ptr: MutPtr<FILE>,
 ) -> GuestUSize {
-    if item_size == 0 {
-        return 0;
-    }
-
     let FILE { fd } = env.mem.read(file_ptr);
 
     let total_size = item_size.checked_mul(n_items).unwrap();
@@ -184,8 +157,7 @@ fn fwrite(
             }
         }
         _ => {
-            // The comment about the item_size/n_items split in fread() applies
-            // here too.
+            // The comment about the item_size/n_items split in fread() applies here too
             match posix_io::write(env, fd, buffer, total_size) {
                 // TODO: ferror() support.
                 -1 => 0,
