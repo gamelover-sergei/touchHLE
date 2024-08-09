@@ -12,7 +12,7 @@ use crate::frameworks::core_graphics::CGFloat;
 use crate::frameworks::foundation::ns_string;
 use crate::frameworks::uikit::ui_color;
 use crate::mem::{guest_size_of, MutPtr};
-use crate::objc::{msg, nil, objc_classes, ClassExports, HostObject};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports, HostObject};
 use crate::Environment;
 
 pub const CLASSES: ClassExports = objc_classes! {
