@@ -514,6 +514,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
 }
 
+- (())reverseObjectEnumerator {
+    nil
+}
+
 @end
 
 @implementation NSIndexPath: NSObject
