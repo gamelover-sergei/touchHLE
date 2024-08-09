@@ -1220,6 +1220,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)stringByExpandingTildeInPath {
+    nil
+}
+
 - (bool)isAbsolutePath {
     // TODO: avoid copy?
     let path = to_rust_string(env, this);
