@@ -18,6 +18,7 @@ use super::ns_dictionary::dict_from_keys_and_objects;
 use super::ns_run_loop::NSDefaultRunLoopMode;
 use super::ns_string::{from_rust_string, get_static_str, to_rust_string};
 use super::NSUInteger;
+use crate::frameworks::core_graphics::{CGSize, CGPoint};
 use crate::mem::{ConstVoidPtr, MutVoidPtr};
 use crate::objc::{
     autorelease, class_conformsToProtocol, id, msg, msg_class, msg_send, nil, objc_classes, retain, Class, ClassExports,
@@ -58,8 +59,15 @@ pub const CLASSES: ClassExports = objc_classes! {
     // classes are not refcounted
 }
 
-+ (())drawAtPoint {
++ (())drawAtPoint:(CGPoint)point {
+    msg![env; this drawAtPoint:point blendMode:0 alpha:1.0f32]
+}
 
++ (())drawAtPoint:(CGPoint)point
+        blendMode:(i32)blend_mode // CGBlendMode
+            alpha:(CGFloat)alpha {
+    log!("drawAtPoint p {} bm {} al {}", point, blend_mode, alpha);
+    // assert_eq!(alpha, 0.0);
 }
 
 +(())initialize {
