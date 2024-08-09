@@ -25,6 +25,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setMaximumValue:{}", maximum);
 }
 
+- (())setValue:(bool)value {
+    log!("TODO: setValue:{}", value);
+}
+
 - (())setThumbImage:(bool)forState {
     log!("TODO: setThumbImage:{}", forState);
 }
