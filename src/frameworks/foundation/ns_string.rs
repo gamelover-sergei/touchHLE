@@ -1171,7 +1171,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWithCharacters:(id)length {
+- (id)initWithCharacters:(id)characters:(id)length {
     nil
 }
 
@@ -1389,6 +1389,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     for_each_code_unit(env, string, |_, c| code_units.push(c));
     *env.objc.borrow_mut(this) = StringHostObject::Utf16(code_units);
     this
+}
+
+- (id)initWithCapacity {
+    nil
 }
 
 @end
