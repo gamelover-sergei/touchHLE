@@ -168,6 +168,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_super![env; this setBackgroundColor:color]
 }
 
+- (())setAdjustsFontSizeToFitWidth:(bool)width {
+    log!("TODO: setAdjustsFontSizeToFitWidth:{}", width);
+}
+
 - (())setShadowColor:(bool)shadow {
     log!("TODO: setShadowColor:{}", shadow);
 }
