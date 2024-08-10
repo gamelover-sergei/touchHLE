@@ -85,6 +85,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSCountedSet: NSSet
+@end
+
 // Our private subclass that is the single implementation of NSSet for the
 // time being.
 @implementation _touchHLE_NSSet: NSSet
