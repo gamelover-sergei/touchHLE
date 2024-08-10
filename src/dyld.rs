@@ -626,7 +626,7 @@ impl Dyld {
                     .linked_host_functions
                     .get((svc - Self::SVC_LINKED_FUNCTIONS_BASE) as usize);
                 let Some(&(symbol, f)) = f else {
-                    panic!("Unexpected SVC #{} at {:#x}", svc, svc_pc);
+                    log!("Unexpected SVC #{} at {:#x}", svc, svc_pc);
                 };
                 log_dbg!("Call to host function, already linked: {}", symbol);
                 Some(f)
