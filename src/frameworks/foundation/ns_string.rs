@@ -4,16 +4,12 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 //! The `NSString` class cluster, including `NSMutableString`.
-//!
-//! Resources:
-//! - Apple's [String Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Strings/introStrings.html)
 
 mod path_algorithms;
 
 use super::ns_array;
 use super::{
-    NSComparisonResult, NSNotFound, NSOrderedAscending, NSOrderedDescending, NSOrderedSame,
-    NSRange, NSUInteger,
+    NSComparisonResult, NSOrderedAscending, NSOrderedDescending, NSOrderedSame, NSUInteger,
 };
 use crate::abi::VaList;
 use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect, CGSize};
@@ -42,6 +38,7 @@ pub const NSUTF16BigEndianStringEncoding: NSUInteger = 0x90000100;
 pub const NSUTF16LittleEndianStringEncoding: NSUInteger = 0x94000100;
 
 pub type NSStringCompareOptions = NSUInteger;
+pub const NSCaseInsensitiveSearch: NSUInteger = 1;
 pub const NSLiteralSearch: NSUInteger = 2;
 pub const NSNumericSearch: NSUInteger = 64;
 
@@ -333,46 +330,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     utf16[index as usize]
 }
 
-- (())getCharacters:(MutPtr<u16>)buffer
-              range:(NSRange)range {
-    let mut buffer = buffer;
-    for i in range.location..(range.location + range.length) {
-        let c = msg![env; this characterAtIndex:i];
-        env.mem.write(buffer, c);
-        buffer += 1;
-    }
-}
-
-- (NSRange)rangeOfString:(id)search_string
-                 options:(NSStringCompareOptions)options { // NSString *
-    // TODO: search options
-    log_dbg!("rangeOfString:options: {}", options);
-    let len: NSUInteger = msg![env; this length];
-    let len_search: NSUInteger = msg![env; search_string length];
-    if len_search == 0 {
-        return NSRange { location: NSNotFound as NSUInteger, length: 0 };
-    }
-    for i in 0..len {
-        let mut match_found = true;
-        for j in 0..len_search {
-            if (i + j) >= len {
-                match_found = false;
-                break;
-            }
-            let a_c: u16 = msg![env; this characterAtIndex:(i + j)];
-            let b_c: u16 = msg![env; search_string characterAtIndex:j];
-            if a_c != b_c {
-                match_found = false;
-                break;
-            }
-        }
-        if match_found {
-            return NSRange { location: i, length: len_search }
-        }
-    }
-    NSRange { location: NSNotFound as NSUInteger, length: 0 }
-}
-
 - (id)description {
     this
 }
@@ -422,6 +379,25 @@ pub const CLASSES: ClassExports = objc_classes! {
     let mut b_iter = env.objc.borrow::<StringHostObject>(other).iter_code_units().peekable();
     // TODO: OR'ing of compare options
     match mask {
+        NSCaseInsensitiveSearch => {
+            loop {
+                let a_next = a_iter.next();
+                let b_next = b_iter.next();
+                let (Some(a_unit), Some(b_unit)) = (a_next, b_next) else {
+                    return from_rust_ordering(a_next.cmp(&b_next));
+                };
+                let (Some(a_c), Some(b_c)) = (char::from_u32(a_unit as u32), char::from_u32(b_unit as u32)) else {
+                    panic!("Invalid chars in the strings!");
+                };
+
+                let a = a_c.to_lowercase();
+                let b = b_c.to_lowercase();
+                let char_order = a.cmp(b);
+                if char_order != std::cmp::Ordering::Equal {
+                    return from_rust_ordering(char_order);
+                }
+            }
+        },
         NSLiteralSearch => {
             from_rust_ordering(a_iter.cmp(b_iter))
         },
@@ -546,10 +522,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this UTF8String]
 }
 
-- (ConstPtr<u8>)cString {
-    msg![env; this UTF8String]
-}
-
 - (ConstPtr<u8>)UTF8String {
     // TODO: avoid copying
     let string = to_rust_string(env, this);
@@ -587,21 +559,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     let res = msg_class![env; _touchHLE_NSString alloc];
     *env.objc.borrow_mut(res) = StringHostObject::Utf16(res_utf16);
     autorelease(env, res)
-}
-
-- (id)dataUsingEncoding:(NSStringEncoding)encoding {
-    msg![env; this dataUsingEncoding:encoding allowLossyConversion:false]
-}
-
-- (id)dataUsingEncoding:(NSStringEncoding)encoding
-   allowLossyConversion:(bool)_lossy {
-    assert!(encoding == NSUTF8StringEncoding || encoding == NSASCIIStringEncoding);
-    let string = to_rust_string(env, this);
-    let size = string.len() as NSUInteger;
-    let alloc = env.mem.alloc(size);
-    let slice = env.mem.bytes_at_mut(alloc.cast(), size);
-    slice.copy_from_slice(string.as_bytes());
-    msg_class![env; NSData dataWithBytesNoCopy:alloc length:size]
 }
 
 - (id)stringByTrimmingCharactersInSet:(id)set { // NSCharacterSet*
@@ -689,18 +646,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, result_ns_string)
 }
 
-- (id)stringByAppendingFormat:(id)format, // NSString*
-                               ...args {
-    let res = with_format(env, format, args.start());
-    let res = from_rust_string(env, res);
-    let res = autorelease(env, res);
-    msg![env; this stringByAppendingString:res]
-}
-
-- (id)stringByAddingPercentEscapesUsingEncoding:(NSStringEncoding)encoding {
-    this
-}
-
 - (id)stringByAppendingString:(id)other { // NSString*
     assert!(other != nil); // TODO: raise exception
 
@@ -773,12 +718,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)stringByAppendingPathExtension:(id)extension { // NSString*
     // FIXME: handle edge cases like trailing '/' (may differ from Rust!)
     let mut combined = to_rust_string(env, this).into_owned();
+    combined.push('.');
     // TODO: avoid copying
-    let extension_string = to_rust_string(env, extension);
-    if extension_string.len() > 0 {
-        combined.push('.');
-        combined.push_str(&extension_string);
-    }
+    combined.push_str(&to_rust_string(env, extension));
 
     let new_string = from_rust_string(env, combined);
     autorelease(env, new_string)
@@ -786,11 +728,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)stringByStandardizingPath {
     let path = to_rust_string(env, this); // TODO: avoid copying
-    // TODO: Expanding an initial tilde expression using
-    //       stringByExpandingTildeInPath
+    // TODO: Expanding an initial tilde expression using stringByExpandingTildeInPath
     assert!(!path.contains('~'));
-    // TODO: Removing an initial component of "/private/var/automount",
-    //       "/var/automount”, or "/private” from the path
+    // TODO: Removing an initial component of "/private/var/automount", "/var/automount”, or "/private” from the path
     assert!(!path.starts_with("/private"));
     assert!(!path.starts_with("/var/automount"));
     // TODO: Reducing empty components and references to the current directory
@@ -798,8 +738,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     assert!(!path.contains("/./"));
     // Removing a trailing slash from the last component.
     let path = path_algorithms::trim_trailing_slashes(&path);
-    // TODO: For absolute paths only, resolving references to the parent
-    //       directory
+    // TODO: For absolute paths only, resolving references to the parent directory
     if path.starts_with('/') {
         assert!(!path.contains(".."));
     }
@@ -889,38 +828,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     success
 }
 
-- (i32)intValue {
-    let str = to_rust_string(env, this);
-    let mut cutoff = str.len();
-    for (i, c) in str.char_indices() {
-        if !c.is_ascii_digit() {
-            cutoff = i;
-            break;
-        }
-    }
-    str[..cutoff].parse().unwrap_or(0)
-}
-
-- (f32)floatValue {
-    let str = to_rust_string(env, this);
-    let mut cutoff = str.len();
-    for (i, c) in str.char_indices() {
-        if !c.is_ascii_digit() && c != '.' && c != '+' && c != '-' {
-            cutoff = i;
-            break;
-        }
-    }
-    str[..cutoff].parse().unwrap_or(0.0)
-}
-
-- (bool)boolValue {
-    let str = to_rust_string(env, this).to_string();
-    match str.as_str() {
-        "F" => false,
-        _x => unimplemented!("{}", _x)
-    }
-}
-
 @end
 
 // Our private subclass that is the single implementation of NSString for the
@@ -1007,31 +914,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (bool)isAbsolutePath {
     // TODO: avoid copy?
     let path = to_rust_string(env, this);
-    path.starts_with('/') || path.starts_with('~')
-}
-
-// FIXME: this should be a NSMutableString method
--(())setString:(id)aString { // NSString*
-    let str = to_rust_string(env, aString);
-    let host_object = StringHostObject::Utf8(str);
-    *env.objc.borrow_mut(this) = host_object;
-}
-
-@end
-
-@implementation NSMutableString: _touchHLE_NSString
-
-+ (id)stringWithCapacity:(NSUInteger)cap {
-    let new_str: id = msg![env; this alloc];
-    msg![env; new_str init]
-}
-
-- (())appendFormat:(id)format, // NSString*
-                     ...args {
-    let res = with_format(env, format, args.start());
-    let res = from_rust_string(env, res);
-    let new_str: id = msg![env; this stringByAppendingString:res];
-    msg![env; this setString:new_str]
+    path.starts_with('/')
 }
 
 @end
@@ -1172,4 +1055,4 @@ where
             f(idx, c);
             idx += 1;
         });
-}
+    }
