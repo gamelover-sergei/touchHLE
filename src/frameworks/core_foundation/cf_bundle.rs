@@ -23,6 +23,11 @@ fn CFBundleGetMainBundle(env: &mut Environment) -> CFBundleRef {
     msg_class![env; NSBundle mainBundle]
 }
 
+fn CFBundleCopyBundleURL(env: &mut Environment, bundle: CFBundleRef) -> CFURLRef {
+    let url: id = msg![env; bundle bundleURL];
+    msg![env; url copy]
+}
+
 fn CFBundleGetVersionNumber(env: &mut Environment, bundle: CFBundleRef) -> u32 {
     let dict: id = msg![env; bundle infoDictionary];
     let version_key: id = ns_string::get_static_str(env, "CFBundleVersion");
@@ -135,6 +140,7 @@ pub fn CFBundleCopyPreferredLocalizationsFromArray(
 
 pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFBundleGetMainBundle()),
+    export_c_func!(CFBundleCopyBundleURL(_)),
     export_c_func!(CFBundleGetVersionNumber(_)),
     export_c_func!(CFBundleCopyResourcesDirectoryURL(_)),
     export_c_func!(CFBundleCopyResourceURL(_, _, _, _)),
