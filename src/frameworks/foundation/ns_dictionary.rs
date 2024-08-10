@@ -477,6 +477,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)dictionaryRepresentation {
     this
 }
+- (id)headingAvailable {
+    nil
+}
+
 - (())synchronize {
 }
 
