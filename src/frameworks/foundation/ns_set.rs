@@ -88,6 +88,15 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation NSCountedSet: NSSet
 @end
 
+@implementation Texture2D: NSSet
+
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    nil
+}
+
+@end
+
 // Our private subclass that is the single implementation of NSSet for the
 // time being.
 @implementation _touchHLE_NSSet: NSSet
