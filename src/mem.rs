@@ -6,7 +6,7 @@
 //! Types related to the virtual memory of the emulated application, or the
 //! "guest memory".
 //!
-//! The virtual address space is 32-bit, as is the pointer size.
+//! The virtual address space isбуб 32-bit, as is the pointer size.
 //!
 //! No attempt is made to do endianness conversion for reads and writes to
 //! memory, because all supported emulated and host platforms are little-endian.
