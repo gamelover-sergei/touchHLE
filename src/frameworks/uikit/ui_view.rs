@@ -15,15 +15,14 @@ pub mod ui_label;
 pub mod ui_window;
 
 use super::ui_graphics::{UIGraphicsPopContext, UIGraphicsPushContext};
-use crate::frameworks::core_graphics::cg_affine_transform::CGAffineTransform;
+use crate::frameworks::core_graphics::cg_affine_transform::{CGAffineTransform, CGAffineTransformIdentity};
 use crate::frameworks::core_graphics::cg_context::{CGContextClearRect, CGContextRef};
 use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect};
 use crate::frameworks::foundation::ns_string::get_static_str;
 use crate::frameworks::foundation::{ns_array, NSInteger, NSUInteger};
-use crate::mem::MutVoidPtr;
 use crate::objc::{
     autorelease, id, msg, nil, objc_classes, release, retain, Class, ClassExports, HostObject,
-    NSZonePtr, SEL,
+    NSZonePtr,
 };
 use crate::Environment;
 
@@ -95,20 +94,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (Class)layerClass {
     env.objc.get_known_class("CALayer", &mut env.mem)
-}
-
-+ (())beginAnimations:(id)animId
-              context:(MutVoidPtr)context {
-    log!("WARNING: Ignoring beginAnimations:context:");
-}
-+ (())setAnimationDelegate:(id)delegate {
-    log!("WARNING: Ignoring setAnimationDelegate:");
-}
-+ (())setAnimationDidStopSelector:(SEL)selector {
-    log!("WARNING: Ignoring setAnimationDidStopSelector:");
-}
-+ (())commitAnimations {
-    log!("WARNING: Ignoring commitAnimations");
 }
 
 // TODO: accessors etc
@@ -195,6 +180,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 - (())setMultipleTouchEnabled:(bool)enabled {
     env.objc.borrow_mut::<UIViewHostObject>(this).multiple_touch_enabled = enabled;
+}
+
+- (())setExclusiveTouch:(bool)enabled {
+
 }
 
 - (())layoutSubviews {
@@ -466,6 +455,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let this_layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     let other_layer = env.objc.borrow::<UIViewHostObject>(other).layer;
     msg![env; this_layer convertPoint:point toLayer:other_layer]
+}
+
+- (CGAffineTransform)transform {
+    CGAffineTransformIdentity
 }
 
 @end
