@@ -15,25 +15,13 @@ use crate::frameworks::core_foundation::time::{CFAbsoluteTime, CFTimeInterval};
 use crate::frameworks::core_foundation::CFIndex;
 use crate::mem::{MutPtr, MutVoidPtr};
 use crate::objc::{id, msg, msg_class, nil, Class};
-use crate::{Environment, msg};
-use crate::frameworks::core_foundation::time::CFTimeInterval;
-use crate::{Environment, msg};
-use crate::frameworks::core_foundation::time::CFTimeInterval;
+use crate::Environment;
+
 pub type CFRunLoopRef = super::CFTypeRef;
 pub type CFRunLoopMode = super::cf_string::CFStringRef;
 
 pub type CFRunLoopTimerRef = super::CFTypeRef;
 pub type CFOptionFlags = u32;
-
-fn CFRunLoopRunInMode(env: &mut Environment, mode: CFRunLoopMode, seconds: CFTimeInterval, returnSomething: bool) -> i32 {
-    //let loop_ = CFRunLoopGetCurrent(env);
-    //() = msg![env; loop_ run];
-    1
-}
-
-fn sched_yield(env: &mut Environment) -> i32 {
-    0
-}
 
 fn CFRunLoopGetCurrent(env: &mut Environment) -> CFRunLoopRef {
     msg_class![env; NSRunLoop currentRunLoop]
@@ -130,8 +118,6 @@ pub const CONSTANTS: ConstantExports = &[
 pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFRunLoopGetCurrent()),
     export_c_func!(CFRunLoopGetMain()),
-    export_c_func!(CFRunLoopRunInMode(_, _, _)),
-    export_c_func!(sched_yield()),
     export_c_func!(CFRunLoopTimerCreate(_, _, _, _, _, _, _)),
     export_c_func!(CFRunLoopAddTimer(_, _, _)),
     export_c_func!(CFRunLoopTimerInvalidate(_)),
