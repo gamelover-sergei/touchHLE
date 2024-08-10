@@ -60,6 +60,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setKeyboardType:(UIKeyboardType)_type {
     // TODO
 }
+- (())setBorderStyle:(NSInteger)_style {
+    // TODO
+}
+- (())setFont:(id)new_font { // UIFont*
+}
 
 @end
 
