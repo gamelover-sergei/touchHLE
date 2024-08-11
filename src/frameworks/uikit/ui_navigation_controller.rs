@@ -73,6 +73,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow::<UINavigationControllerHostObject>(this).stack.last().cloned().unwrap_or(nil)
 }
 
+- (id)navigationBar {
+    nil
+}
+
 - (())dealloc {
     let mut stack = std::mem::take(&mut env.objc.borrow_mut::<UINavigationControllerHostObject>(this).stack);
     for controller in stack.drain(..) {
