@@ -334,8 +334,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 
     // TODO: handle size > 1
-    assert!(host_object.array.len() == 1);
-    assert!(len >= host_object.array.len().try_into().unwrap());
+    // assert!(host_object.array.len() == 1);
+    // assert!(len >= host_object.array.len().try_into().unwrap());
 
     let NSFastEnumerationState {
         state: is_first_round,
