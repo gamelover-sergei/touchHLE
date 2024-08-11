@@ -295,6 +295,9 @@ fn CGColorGetConstantColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 
 fn CGContextSetAllowsAntialiasing(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextSetInterpolationQuality(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextSetRGBStrokeColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -768,6 +771,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFURLGetString(_, _)),
     export_c_func!(CGColorGetConstantColor(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
+    export_c_func!(CGContextSetInterpolationQuality(_, _)),
     export_c_func!(CGContextSetRGBStrokeColor(_, _)),
     export_c_func!(CGDataProviderCreateDirect(_, _)),
     export_c_func!(CGImageCreate(_, _)),
