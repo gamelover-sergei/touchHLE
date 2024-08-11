@@ -92,6 +92,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)grayColor {
     get_standard_color(env, _cmd, 1.0/2.0, 1.0/2.0, 1.0/2.0, 1.0)
 }
++ (id)groupTableViewBackgroundColor {
+    nil
+}
 + (id)lightGrayColor {
     get_standard_color(env, _cmd, 2.0/3.0, 2.0/3.0, 2.0/3.0, 1.0)
 }
