@@ -6,7 +6,7 @@
 
 use crate::frameworks::uikit::ui_view_controller::UIViewControllerHostObject;
 use crate::objc::{id, msg, nil, objc_classes, release, retain, ClassExports, NSZonePtr};
-use crate::{impl_HostObject_with_superclass, msg_super};
+use crate::{impl_HostObject_with_superclass, msg_super, nil};
 use crate::frameworks::foundation::NSUInteger;
 
 #[derive(Default)]
