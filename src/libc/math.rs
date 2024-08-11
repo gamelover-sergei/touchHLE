@@ -322,6 +322,9 @@ fn CGLayerGetContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGPathAddLines(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGPathAddRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGPathCloseSubpath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -795,6 +798,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGLayerCreateWithContext(_, _)),
     export_c_func!(CGLayerGetContext(_, _)),
     export_c_func!(CGPathAddLines(_, _)),
+    export_c_func!(CGPathAddRect(_, _)),
     export_c_func!(CGPathCloseSubpath(_, _)),
     export_c_func!(CGPathCreateCopy(_, _)),
     export_c_func!(CGPathCreateMutable(_, _)),
