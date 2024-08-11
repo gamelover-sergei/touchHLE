@@ -325,6 +325,9 @@ fn CGPathAddLines(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGPathCloseSubpath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGPathCreateCopy(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGPathCreateMutable(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -790,6 +793,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGLayerGetContext(_, _)),
     export_c_func!(CGPathAddLines(_, _)),
     export_c_func!(CGPathCloseSubpath(_, _)),
+    export_c_func!(CGPathCreateCopy(_, _)),
     export_c_func!(CGPathCreateMutable(_, _)),
     export_c_func!(MFMailComposeErrorDomain(_, _)),
     export_c_func!(NSFullUserName(_, _)),
