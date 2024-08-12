@@ -644,7 +644,7 @@ impl MachO {
                                 }
                             }
                             BindOpCode::Done => (),
-                            _ => panic!("Unhandled DyldInfo bind opcode: {:?}", op),
+                            _ => log!("Unhandled DyldInfo bind opcode: {:?}", op),
                         }
                     }
                 }
