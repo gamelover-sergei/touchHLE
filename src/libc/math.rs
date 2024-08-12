@@ -604,6 +604,9 @@ fn sqlite3_bind_double(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn sranddev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn srandomdev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn strpbrk(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -934,6 +937,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sqlite3_bind_int(_, _)),
     export_c_func!(sqlite3_bind_double(_, _)),
     export_c_func!(sranddev(_, _)),
+    export_c_func!(srandomdev(_, _)),
     export_c_func!(strpbrk(_, _)),
     export_c_func!(putc(_, _)),
     export_c_func!(getc(_, _)),
