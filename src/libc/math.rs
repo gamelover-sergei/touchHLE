@@ -622,6 +622,9 @@ fn fgetwc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn fscanf(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn localeconv(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn writev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -937,6 +940,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(ungetc(_, _)),
     export_c_func!(fgetwc(_, _)),
     export_c_func!(fscanf(_, _)),
+    export_c_func!(localeconv(_, _))
     export_c_func!(writev(_, _)),
     export_c_func!(hypot(_, _)),
     export_c_func!(lrint(_)),
