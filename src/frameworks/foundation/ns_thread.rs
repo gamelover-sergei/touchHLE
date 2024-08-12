@@ -62,6 +62,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; current_thread threadPriority]
 }
 
++ (bool)isCancelled {
+    false
+}
+
 + (bool)setThreadPriority:(f64)priority {
     let current_thread = msg_class![env; NSThread currentThread];
     msg![env; current_thread setThreadPriority:priority]
