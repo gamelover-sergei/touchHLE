@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UIWebView: UIView
 
+- (())setScalesPageToFit:(bool)fit {
+    log!("TODO: setScalesPageToFit:{}", fit);
+}
+
 @end
 
 };
