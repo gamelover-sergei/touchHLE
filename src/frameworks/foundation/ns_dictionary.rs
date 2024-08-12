@@ -456,6 +456,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation CLLocationManager: NSMutableDictionary
 @end
 
+@implementation NSCondition: NSMutableDictionary
+@end
+
 @implementation NSNetServiceBrowser: NSMutableDictionary
 @end
 
