@@ -13,6 +13,7 @@ use crate::{msg, Environment};
 use std::time::Instant;
 
 pub mod cl_heading;
+pub mod denizen_view_controller;
 pub mod i_simulate;
 pub mod tap_flies_view_controller;
 pub mod ui_accelerometer;
