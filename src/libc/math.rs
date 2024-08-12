@@ -292,6 +292,9 @@ fn CFURLGetString(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGColorGetConstantColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextClipToRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextSetAllowsAntialiasing(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -302,6 +305,9 @@ fn CGContextSetRGBStrokeColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f
     arg1.min(arg2)
 }
 fn CGDataProviderCreateDirect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn CGDataProviderCreateSequential(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn CGImageCreate(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
@@ -797,10 +803,12 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_, _)),
     export_c_func!(CFURLGetString(_, _)),
     export_c_func!(CGColorGetConstantColor(_, _)),
+    export_c_func!(CGContextClipToRect(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetInterpolationQuality(_, _)),
     export_c_func!(CGContextSetRGBStrokeColor(_, _)),
     export_c_func!(CGDataProviderCreateDirect(_, _)),
+    export_c_func!(CGDataProviderCreateSequential(_, _)),
     export_c_func!(CGImageCreate(_, _)),
     export_c_func!(CGImageCreateWithJPEGDataProvider(_, _)),
     export_c_func!(CGImageCreateWithImageInRect(_, _)),
