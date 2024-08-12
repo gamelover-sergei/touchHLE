@@ -433,6 +433,9 @@ fn glReadPixels(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn glPointSizePointerOES(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn glIsBuffer(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn abort(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -850,6 +853,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(glGetTexParameteriv(_, _)),
     export_c_func!(glReadPixels(_, _)),
     export_c_func!(glPointSizePointerOES(_, _)),
+    export_c_func!(glIsBuffer(_, _)),
     export_c_func!(abort(_, _)),
     export_c_func!(abs(_, _)),
     export_c_func!(asctime(_, _)),
