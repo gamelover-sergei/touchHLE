@@ -73,6 +73,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow::<UINavigationControllerHostObject>(this).stack.last().cloned().unwrap_or(nil)
 }
 
+- (id)visibleViewController {
+    nil
+}
+
 - (id)navigationBar {
     nil
 }
