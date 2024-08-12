@@ -7,7 +7,7 @@
 
 use super::{ns_string, NSComparisonResult, NSTimeInterval};
 use crate::frameworks::core_foundation::time::apple_epoch;
-use crate::objc::{autorelease, id, msg, msg_class, nil, objc_classes, ClassExports, HostObject};
+use crate::objc::{autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr};
 
 use std::ops::Add;
 use std::time::{Duration, SystemTime};
@@ -91,6 +91,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     let result =  host_object.time_interval-another_date_host_object.time_interval;
     log_dbg!("[(NSDate*){:?} ({:?}s) timeIntervalSinceDate:{:?} ({:?}s)] => {}", this, host_object.time_interval, anotherDate, another_date_host_object.time_interval, result);
     result
+}
+
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
 }
 
 - (id)addTimeInterval:(NSTimeInterval)seconds {
