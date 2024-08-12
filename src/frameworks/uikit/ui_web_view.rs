@@ -13,6 +13,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
 }
+
+- (())setDetectsPhoneNumbers:(bool)numbers {
+    log!("TODO: setDetectsPhoneNumbers:{}", numbers);
+}
+
 @end
 
 };
