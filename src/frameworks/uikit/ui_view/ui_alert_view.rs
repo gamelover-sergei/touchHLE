@@ -6,7 +6,7 @@
 //! `UIAlertView`.
 
 use crate::frameworks::foundation::ns_string;
-use crate::objc::{id, msg_super, objc_classes, ClassExports};
+use crate::objc::{id, msg_super, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -27,6 +27,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 
     msg_super![env; this init]
 }
+
+- (id)addButtonWithTitle {
+    nil
+}
+
 - (())show {
     log!("TODO: [(UIAlertView*){:?} show]", this);
 }
