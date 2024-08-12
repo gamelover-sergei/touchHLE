@@ -244,6 +244,47 @@ forUndefinedKey:(id)key { // NSString*
         env.objc.debug_all_class_ivars_as_strings(class).join(", "));
 }
 
+- (id)valueForKey:(id)forKey {
+
+    if forKey.is_null() {
+        return id::null();
+    }
+
+    let key = to_rust_string(env, forKey); // TODO: avoid copy?
+    assert!(key.is_ascii()); // TODO: do we have to handle non-ASCII keys?
+    let class = msg![env; this class];
+
+    if let Some(sel) = env.objc.lookup_selector(&format!(
+        "get{}{}:",
+        key.as_bytes()[0].to_ascii_uppercase() as char,
+        &key[1..],
+    )) {
+
+        if env.objc.class_has_method(class, sel) {
+            return msg_send(env, (this, sel));
+        }
+    }
+
+    if let Some(sel) = env.objc.lookup_selector(&format!(
+        "_get{}{}:",
+        key.as_bytes()[0].to_ascii_uppercase() as char,
+        &key[1..],
+    )) {
+            if env.objc.class_has_method(class, sel) || env.objc.class_has_ivar(class, sel).is_some() {
+            return msg_send(env, (this, sel));
+        }
+    }
+
+    /*FIXME: Property
+    if let Some(sel) = env.objc.lookup_selector(key.as_ref()) {
+        if env.objc.class_has_property(class, sel) {
+            unimplemented!();
+        }
+    }*/
+
+    id::null()
+}
+
 - (bool)respondsToSelector:(SEL)selector {
     let class = msg![env; this class];
     env.objc.class_has_method(class, selector)
