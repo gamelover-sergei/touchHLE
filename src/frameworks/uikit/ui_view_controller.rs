@@ -116,4 +116,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation GKPeerPickerController: UIViewController
+@end
+
 };
