@@ -69,6 +69,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     opengles::eagl::CLASSES,
     store_kit::sk_product::CLASSES,
     uikit::cl_heading::CLASSES,
+    uikit::denizen_view_controller::CLASSES,
     uikit::i_simulate::CLASSES,
     uikit::tap_flies_view_controller::CLASSES,
     uikit::ui_accelerometer::CLASSES,
