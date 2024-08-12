@@ -7,7 +7,7 @@
 
 use crate::frameworks::foundation::{ns_string, NSInteger};
 use crate::objc::{autorelease, id, nil, release, retain, ClassExports, HostObject, NSZonePtr};
-use crate::{msg, nil, objc_classes};
+use crate::{msg, objc_classes};
 
 struct NSTimeZoneHostObject {
     // NSString*
