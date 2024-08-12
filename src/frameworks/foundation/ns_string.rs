@@ -683,7 +683,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let null_size: GuestUSize = match encoding {
         NSUTF8StringEncoding | NSASCIIStringEncoding | NSMacOSRomanStringEncoding => 1,
         NSUTF16LittleEndianStringEncoding => 2,
-        _ => // 0 unimplemented!()
+        _ => unimplemented!()
     };
     let bytes_size = bytes.len() as GuestUSize;
     let total_size: GuestUSize = bytes_size + null_size;
