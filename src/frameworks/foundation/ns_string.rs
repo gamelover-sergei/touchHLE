@@ -1220,6 +1220,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)size {
+    nil
+}
+
 - (id)stringByExpandingTildeInPath {
     nil
 }
