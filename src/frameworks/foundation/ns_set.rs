@@ -204,6 +204,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     ns_array::from_vec(env, objects)
 }
 
+- (id)size {
+    nil
+}
+
 - (id)objectEnumerator { // NSEnumerator*
     let iterator = env.objc.borrow_mut::<SetHostObject>(this).dict.iter_keys().collect::<Vec<id>>().into_iter();
     let host_object = Box::new(ObjectEnumeratorHostObject { iterator });
