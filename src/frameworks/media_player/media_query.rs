@@ -18,8 +18,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-- (())songsQuery:(bool)query {
-    log!("TODO: songsQuery:{}", query);
++ (id)songsQuery {
+    log!("TODO: [MPMediaQuery songsQuery] (not implemented yet)");
+    nil
 }
 
 @end
