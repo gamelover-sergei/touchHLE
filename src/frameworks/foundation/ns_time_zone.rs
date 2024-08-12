@@ -7,7 +7,7 @@
 
 use crate::frameworks::foundation::{ns_string, NSInteger};
 use crate::objc::{autorelease, id, nil, release, retain, ClassExports, HostObject, NSZonePtr};
-use crate::{msg, objc_classes};
+use crate::{msg, nil, objc_classes};
 
 struct NSTimeZoneHostObject {
     // NSString*
@@ -44,6 +44,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let tz_name = env.objc.borrow_mut::<NSTimeZoneHostObject>(this).time_zone;
     release(env, tz_name);
     env.objc.dealloc_object(this, &mut env.mem)
+}
+
+- (id)name {
+    nil
 }
 
 - (id)initWithName:(id)tz_name { // NSString *
