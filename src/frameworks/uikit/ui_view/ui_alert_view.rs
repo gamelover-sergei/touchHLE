@@ -33,6 +33,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
 }
+- (())setMessage:(bool)message {
+    log!("TODO: setMessage:{}", message);
+}
 - (())setTitle :(bool)title {
     log!("TODO: setTitle:{}", title);
 }
