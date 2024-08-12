@@ -156,6 +156,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setIndicatorStyle:{}", style);
 }
 
+- (())setReturnKeyType:(bool)type_ {
+    log!("TODO: setReturnKeyType:{}", type_);
+}
 - (())drawRect:(CGRect)_rect {
     let bounds: CGRect = msg![env; this bounds];
     let context = UIGraphicsGetCurrentContext(env);
