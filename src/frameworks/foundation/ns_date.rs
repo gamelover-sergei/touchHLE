@@ -147,4 +147,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation ReachabilityQuery: NSDate
+
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
+}
+
+@end
+
 };
