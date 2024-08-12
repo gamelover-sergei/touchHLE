@@ -239,6 +239,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation NSMutableData: NSData
 
++ (id)dataWithCapacity:(NSUInteger)_capacity {
+    msg![env; this init]
+}
+
 - (id)initWithCapacity:(NSUInteger)_capacity {
     msg![env; this init]
 }
