@@ -30,6 +30,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())show {
     log!("TODO: [(UIAlertView*){:?} show]", this);
 }
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
 - (())setTitle :(bool)title {
     log!("TODO: setTitle:{}", title);
 }
