@@ -62,10 +62,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; current_thread threadPriority]
 }
 
-+ (bool)isCancelled {
-    false
-}
-
 + (bool)setThreadPriority:(f64)priority {
     let current_thread = msg_class![env; NSThread currentThread];
     msg![env; current_thread setThreadPriority:priority]
@@ -91,10 +87,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (())sleepForTimeInterval:(NSTimeInterval)ti {
     log_dbg!("[NSThread sleepForTimeInterval:{:?}]", ti);
     env.sleep(Duration::from_secs_f64(ti), /* tail_call: */ true);
-}
-
-+ (bool)isCancelled {
-    false
 }
 
 + (())exit {
@@ -171,6 +163,10 @@ object:(id)object {
     host_object.thread_dictionary = nil;
 
     log_dbg!("[(NSThread*){:?} start] Started new thread with pthread {:?} and ThreadId {:?}", this, thread, _get_thread_id(env, thread));
+}
+
+- (id)isCancelled {
+    nil
 }
 
 - (id)threadDictionary {
