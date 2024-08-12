@@ -10,6 +10,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setScalesPageToFit:{}", fit);
 }
 
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
 @end
 
 };
