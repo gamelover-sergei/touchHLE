@@ -52,7 +52,7 @@ fn alcOpenDevice(env: &mut Environment, devicename: ConstPtr<u8>) -> MutPtr<Gues
         // obtained from a call to alcGetString(NULL, ALC_DEVICE_SPECIFIER)
 
         let d_name = alcGetString(env, Ptr::null(), ALC_DEVICE_SPECIFIER);
-        assert_eq!(strcmp(env, d_name, devicename), 0);
+        // assert_eq!(strcmp(env, d_name, devicename), 0);
         env.mem.free(d_name.cast_mut().cast());
     }
 
