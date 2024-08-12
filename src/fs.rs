@@ -394,7 +394,7 @@ impl Read for GuestFile {
             GuestFile::File(file) => file.read(buf),
             GuestFile::IpaBundleFile(file) => file.read(buf),
             GuestFile::ResourceFile(file) => file.get().read(buf),
-            GuestFile::Directory => log!("Attempt to read from a directory as a guest file"),
+            GuestFile::Directory => panic!("Attempt to read from a directory as a guest file"),
         }
     }
 }
