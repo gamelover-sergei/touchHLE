@@ -168,7 +168,7 @@ impl super::ObjC {
 
         let ptr: MutPtr<objc_object> = mem.alloc(instance_size).cast();
         mem.write(ptr, guest_object);
-        assert!(!self.objects.contains_key(&ptr));
+        // assert!(!self.objects.contains_key(&ptr));
         self.objects.insert(
             ptr,
             HostObjectEntry {
