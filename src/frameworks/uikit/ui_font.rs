@@ -10,7 +10,7 @@ use crate::font::{Font, TextAlignment, WrapMode};
 use crate::frameworks::core_graphics::cg_bitmap_context::CGBitmapContextDrawer;
 use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect, CGSize};
 use crate::frameworks::foundation::NSInteger;
-use crate::objc::{autorelease, id, msg_class, objc_classes, ClassExports, HostObject};
+use crate::objc::{autorelease, id, msg_class, nil, objc_classes, ClassExports, HostObject};
 use crate::Environment;
 use std::ops::Range;
 
