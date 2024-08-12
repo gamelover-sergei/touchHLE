@@ -463,6 +463,9 @@ fn abs(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn asctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn class_getInstanceSize(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn dladdr(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -890,6 +893,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(abort(_, _)),
     export_c_func!(abs(_, _)),
     export_c_func!(asctime(_, _)),
+    export_c_func!(class_getInstanceSize(_, _)),
     export_c_func!(dladdr(_, _)),
     export_c_func!(fts_open(_, _)),
     export_c_func!(fts_read(_, _)),
