@@ -97,6 +97,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(AVAudioPlayer*){:?} setDelegate:{:?}]", this, delegate);
 }
 
+- (())setMeteringEnabled:(bool)enabled {
+    log!("TODO: setMeteringEnabled:{}", enabled);
+}
 - (())setVolume:(f32)volume {
     let host_object = env.objc.borrow_mut::<AVAudioPlayerHostObject>(this);
     host_object.volume = volume;
