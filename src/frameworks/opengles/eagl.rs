@@ -338,6 +338,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation EAGLView: NSObject
+- (id)sendSubviewToBack {
+    nil
+}
+
+@end
+
 };
 
 /// Implement framerate limiting.
