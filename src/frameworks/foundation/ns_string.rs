@@ -1224,6 +1224,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)propertyListFromStringsFileFormat {
+    nil
+}
+
 - (id)size {
     nil
 }
