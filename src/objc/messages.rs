@@ -162,7 +162,7 @@ Type mismatch when sending message {} to {:?}!
             env.cpu.regs_mut()[0..2].fill(0);
             return;
         } else {
-            log!(
+            panic!(
                 "Item {:?} in superclass chain of object {:?}'s class {:?} has an unexpected host object type.",
                 class, receiver, orig_class
             );
