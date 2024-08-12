@@ -140,6 +140,17 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow::<UIFontHostObject>(this).size
 }
 
+- (())drawAtPoint:(CGPoint)point {
+    msg![env; this drawAtPoint:point blendMode:0 alpha:1.0f32]
+}
+
+- (())drawAtPoint:(CGPoint)point
+        blendMode:(i32)blend_mode // CGBlendMode
+            alpha:(CGFloat)alpha {
+    log!("drawAtPoint p {} bm {} al {}", point, blend_mode, alpha);
+    // assert_eq!(alpha, 0.0);
+}
+
 @end
 
 };
