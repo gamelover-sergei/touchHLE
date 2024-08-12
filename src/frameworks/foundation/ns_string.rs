@@ -1262,6 +1262,10 @@ pub const CLASSES: ClassExports = objc_classes! {
      nil
 }
 
+- (id)integerValue {
+     nil
+}
+
 - (id)dataUsingEncoding:(NSStringEncoding)encoding
    allowLossyConversion:(bool)_lossy {
     msg![env; this dataUsingEncoding:encoding]
