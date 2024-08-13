@@ -475,7 +475,7 @@ pub fn close(env: &mut Environment, fd: FileDescriptor) -> i32 {
                     // TODO: set errno
                     log!("Warning: close({:?}) failed, returning -1", fd);
                     -1
-                },
+                }
                 None => {
                     log_dbg!("close({:?}) => 0, references remaining", fd);
                     0
