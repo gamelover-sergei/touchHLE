@@ -11,7 +11,7 @@ use super::{
 use crate::frameworks::foundation::ns_string::from_rust_string;
 use crate::mem::ConstPtr;
 use crate::objc::{
-    autorelease, id, msg, msg_class, nil, objc_classes, retain, Class, ClassExports, HostObject,
+    autorelease, id, msg, msg_class, objc_classes, retain, Class, ClassExports, HostObject,
     NSZonePtr,
 };
 use std::cmp::Ordering;
@@ -168,10 +168,10 @@ pub const CLASSES: ClassExports = objc_classes! {
         return false;
     }
     let &NSNumberHostObject::Bool(a) = env.objc.borrow(this) else {
-        nil
+        todo!();
     };
     let &NSNumberHostObject::Bool(b) = env.objc.borrow(other) else {
-        nil
+        todo!();
     };
     a == b
 }
