@@ -218,6 +218,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     d as i32
 }
 
+- (i32)integerValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
+}
+
 -(ConstPtr<u8>)objCType {
     let ty = match env.objc.borrow::<NSNumberHostObject>(this) {
         NSNumberHostObject::Bool(_) => "B",
