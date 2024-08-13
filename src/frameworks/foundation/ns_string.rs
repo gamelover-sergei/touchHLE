@@ -29,13 +29,11 @@ use crate::objc::{
     NSZonePtr, ObjC,
 };
 use crate::Environment;
-use plist::Value::String;
-use std::string::String;
 use std::borrow::Cow;
 use std::collections::HashMap;
 use std::io::Write;
 use std::iter::Peekable;
-use std::string::FromUtf16Error;
+use std::string::{FromUtf16Error, String};
 
 pub type NSStringEncoding = NSUInteger;
 pub const NSASCIIStringEncoding: NSUInteger = 1;
