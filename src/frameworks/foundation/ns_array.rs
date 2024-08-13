@@ -425,6 +425,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow::<ArrayHostObject>(this).array[index as usize]
 }
 
+- (id)ascender {
+    nil
+}
+
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
