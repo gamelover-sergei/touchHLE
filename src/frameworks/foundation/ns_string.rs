@@ -34,7 +34,7 @@ use std::borrow::Cow;
 use std::collections::HashMap;
 use std::io::Write;
 use std::iter::Peekable;
-use std::string::{FromUtf16Error, String};
+use std::string::{FromUtf16Error, String as OtherString};
 
 pub type NSStringEncoding = NSUInteger;
 pub const NSASCIIStringEncoding: NSUInteger = 1;
