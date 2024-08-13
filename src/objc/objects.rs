@@ -264,7 +264,7 @@ impl super::ObjC {
             {
                 return res;
             } else if let Some(next) = host_object.as_superclass_mut() {
-                host_object = next;
+                let host_object = next;
             } else {
                 panic!();
             }
