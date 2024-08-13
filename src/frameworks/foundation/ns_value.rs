@@ -283,4 +283,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSNumberFormatter: NSValue
+@end
+
 };
