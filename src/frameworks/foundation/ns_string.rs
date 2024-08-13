@@ -29,12 +29,11 @@ use crate::objc::{
     NSZonePtr, ObjC,
 };
 use crate::Environment;
-use plist::Value::String;
 use std::borrow::Cow;
 use std::collections::HashMap;
 use std::io::Write;
 use std::iter::Peekable;
-use std::string::{FromUtf16Error, String as OtherString};
+use std::string::FromUtf16Error;
 
 pub type NSStringEncoding = NSUInteger;
 pub const NSASCIIStringEncoding: NSUInteger = 1;
@@ -234,7 +233,7 @@ pub fn with_format(env: &mut Environment, format: id, args: VaList) -> String {
         args,
     );
     // TODO: what if it's not valid UTF-8?
-    String
+    String::from_utf8(res).unwrap()
 }
 
 pub fn from_rust_ordering(ordering: std::cmp::Ordering) -> NSComparisonResult {
