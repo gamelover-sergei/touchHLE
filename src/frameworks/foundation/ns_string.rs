@@ -29,6 +29,7 @@ use crate::objc::{
     NSZonePtr, ObjC,
 };
 use crate::Environment;
+use plist::Value::String;
 use std::borrow::Cow;
 use std::collections::HashMap;
 use std::io::Write;
