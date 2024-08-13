@@ -59,6 +59,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // classes are not refcounted
 }
 
++ (())cancelPreviousPerformRequestsWithTarget {
+    nil
+}
+
 + (())drawAtPoint:(CGPoint)point {
     msg![env; this drawAtPoint:point blendMode:0 alpha:1.0f32]
 }
