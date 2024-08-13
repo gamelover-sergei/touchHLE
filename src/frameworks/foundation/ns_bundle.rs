@@ -110,15 +110,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)bundleForClass {
-    if let Some(url) = env.objc.borrow::<NSBundleHostObject>(this).bundle_url {
-        url
-    } else {
-        let bundle_path: id = msg![env; this bundlePath];
-        let new: id = msg_class![env; NSURL alloc];
-        let new: id = msg![env; new initFileURLWithPath:bundle_path];
-        env.objc.borrow_mut::<NSBundleHostObject>(this).bundle_url = Some(new);
-        new
-    }
+     nil
 }
 
 - (id)bundlePath {
