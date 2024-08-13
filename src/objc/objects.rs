@@ -258,12 +258,12 @@ impl super::ObjC {
         type Aho = dyn AnyHostObject + 'static;
         let Some(entry) = self.objects.get_mut(&object);
         loop {
-            if let Some(res) = unsafe { &mut *(host_object as *mut Aho) }
+            if let Some(res) = unsafe { &mut *(let host_object as *mut Aho) }
                 .as_any_mut()
                 .downcast_mut()
             {
                 return res;
-            } else if let Some(next) = host_object.as_superclass_mut() {
+            } else if let Some(next) = let host_object.as_superclass_mut() {
                 let host_object = next;
             } else {
                 panic!();
