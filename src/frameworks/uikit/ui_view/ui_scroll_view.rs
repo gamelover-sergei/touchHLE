@@ -155,6 +155,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setSeparatorStyle:(bool)style {
+    log!("TODO: setSeparatorStyle:{}", style);
+}
 
 @end
 
