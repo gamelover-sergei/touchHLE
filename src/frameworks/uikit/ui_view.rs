@@ -577,6 +577,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UINavigationBar: UIView
+- (())setBarStyle:(bool)style {
+    log!("TODO: setBarStyle:{}", style);
+}
+
 @end
 
 @implementation ManView: UIView
