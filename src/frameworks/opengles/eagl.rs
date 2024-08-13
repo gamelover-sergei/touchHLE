@@ -154,6 +154,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)API {
+    nil
+}
+
 - (id)sharegroup {
     this
 }
