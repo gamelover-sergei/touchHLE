@@ -256,7 +256,7 @@ impl super::ObjC {
         // through a data structure with a mutable borrow. The unsafe code is
         // used to bypass the borrow checker.
         type Aho = dyn AnyHostObject + 'static;
-        let Some(entry) = self.objects.get_mut(&object)
+        let Some(entry) = self.objects.get_mut(&object);
         loop {
             if let Some(res) = unsafe { &mut *(host_object as *mut Aho) }
                 .as_any_mut()
