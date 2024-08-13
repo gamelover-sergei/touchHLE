@@ -256,7 +256,7 @@ impl super::ObjC {
         // through a data structure with a mutable borrow. The unsafe code is
         // used to bypass the borrow checker.
         type Aho = dyn AnyHostObject + 'static;
-        let mut Some(entry) = self.objects.get_mut(&object)
+        let Some(entry) = self.objects.get_mut(&object)
         loop {
             if let Some(res) = unsafe { &mut *(host_object as *mut Aho) }
                 .as_any_mut()
@@ -275,7 +275,7 @@ impl super::ObjC {
     /// directly unless you're implementing `release` on `NSObject`. That method
     /// may be overridden.
     pub fn increment_refcount(&mut self, object: id) {
-        let mut Some(entry) = self.objects.get_mut(&object) else {
+        let Some(entry) = self.objects.get_mut(&object) else {
             panic!(
                 "No entry found for object {:?}, it may have already been deallocated",
                 object
@@ -302,7 +302,7 @@ impl super::ObjC {
     }
 
     pub fn get_refcount(&mut self, object: id) -> u32 {
-        let mut Some(entry) = self.objects.get(&object) else {
+        let Some(entry) = self.objects.get(&object) else {
             panic!(
                 "No entry found for object {:?}, it may have already been deallocated",
                 object
@@ -319,7 +319,7 @@ impl super::ObjC {
     /// it the `dealloc` message.
     #[must_use]
     pub fn decrement_refcount(&mut self, object: id) -> bool {
-        let mut Some(entry) = self.objects.get_mut(&object) else {
+        let Some(entry) = self.objects.get_mut(&object) else {
             panic!(
                 "No entry found for object {:?}, it may have already been deallocated",
                 object
