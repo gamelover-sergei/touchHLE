@@ -357,6 +357,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<UIViewHostObject>(this).layer
 }
 
+- (id)window {
+    nil
+}
+
 - (bool)isHidden {
     let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     msg![env; layer isHidden]
