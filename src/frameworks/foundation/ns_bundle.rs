@@ -83,6 +83,10 @@ pub const CLASSES: ClassExports = objc_classes! {
    }
 }
 
++ (id)bundleForClass {
+     nil
+}
+
 + (id)preferredLocalizations:(id)localizations {
     let preferredLocalizations = CFBundleCopyBundleLocalizations(env, localizations);
     autorelease(env, preferredLocalizations)
@@ -107,10 +111,6 @@ pub const CLASSES: ClassExports = objc_classes! {
         release(env, info_dictionary);
     }
     env.objc.dealloc_object(this, &mut env.mem)
-}
-
-- (id)bundleForClass {
-     nil
 }
 
 - (id)bundlePath {
