@@ -257,7 +257,7 @@ impl super::ObjC {
         // used to bypass the borrow checker.
         type Aho = dyn AnyHostObject + 'static;
         let mut Some(entry) = self.objects.get_mut(&object) else {
-        loop {
+        loop }
             if let Some(res) = unsafe { &mut *(host_object as *mut Aho) }
                 .as_any_mut()
                 .downcast_mut()
