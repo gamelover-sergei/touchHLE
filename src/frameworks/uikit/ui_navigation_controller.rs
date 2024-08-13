@@ -69,6 +69,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     host.nav_bar_hidden = hidden;
 }
 
+- (())setBarStyle:(bool)style {
+    log!("TODO: setBarStyle:{}", style);
+}
+
 - (id)topViewController {
     env.objc.borrow::<UINavigationControllerHostObject>(this).stack.last().cloned().unwrap_or(nil)
 }
