@@ -30,6 +30,7 @@ use crate::objc::{
 };
 use crate::Environment;
 use plist::Value::String;
+use std::string::String;
 use std::borrow::Cow;
 use std::collections::HashMap;
 use std::io::Write;
