@@ -60,7 +60,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 + (())cancelPreviousPerformRequestsWithTarget {
-    nil
+    this
 }
 
 + (())drawAtPoint:(CGPoint)point {
