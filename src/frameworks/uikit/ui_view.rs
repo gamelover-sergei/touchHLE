@@ -581,6 +581,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setBarStyle:{}", style);
 }
 
+- (())setTintColor:(bool)color {
+    log!("TODO: setTintColor:{}", color);
+}
+
 @end
 
 @implementation ManView: UIView
