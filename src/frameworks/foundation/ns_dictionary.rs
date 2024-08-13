@@ -612,6 +612,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this objectForKey:defaultName]
 }
 
+- (id)valueForKeyPath {
+     nil
+}
+
 @end
 
 };
