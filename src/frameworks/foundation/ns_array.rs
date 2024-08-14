@@ -543,8 +543,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     let val: id = msg![env; this objectForKey:defaultName];
     msg![env; val boolValue]
 }
-- (id)initWithData {
-    nil
+- (id)initWithData:(NSUInteger)_data {
+    msg![env; this init]
 }
 
 - (id)objectForKey:(id)key {
