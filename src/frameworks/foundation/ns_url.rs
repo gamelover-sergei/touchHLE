@@ -151,6 +151,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)StringUsingEncoding {
+    nil
+}
+
 - (id)UTF8String {
     nil
 }
