@@ -564,6 +564,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CADisplayLink: NSObject
+@end
+
 };
 
 /// Shortcut for host code, roughly equivalent to
