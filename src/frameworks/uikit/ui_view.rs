@@ -581,6 +581,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())sizeThatFits:(bool)fits {
     log!("TODO: sizeThatFits:{}", fits);
 }
+- (())setShowsSelectionIndicator:(bool)indicator {
+    log!("TODO: setShowsSelectionIndicator:{}", indicator);
+}
 
 @end
 
