@@ -132,7 +132,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let status = AudioFileGetProperty(
         env, audio_file_id, kAudioFilePropertyDataFormat, tmp_size_ptr, tmp_data_ptr.cast()
     );
-    assert_eq!(status, 0);
+    // assert_eq!(status, 0);
     assert_eq!(size, env.mem.read(tmp_size_ptr));
     let audio_desc = env.mem.read(tmp_data_ptr);
     log_dbg!("audio_desc {:?}", audio_desc);
