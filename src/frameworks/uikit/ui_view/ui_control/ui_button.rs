@@ -218,6 +218,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     update(env, this);
 }
 
+- (())setAdjustsImageWhenHighlighted:(bool)highlighted {
+    log!("TODO: setAdjustsImageWhenHighlighted:{}", highlighted);
+}
+
 - (())setContentVerticalAlignment:(bool)vertical {
     log!("TODO: setContentVerticalAlignment:{}", vertical);
 }
