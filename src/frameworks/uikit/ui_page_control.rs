@@ -6,7 +6,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UIPageControl: UIControl
 - (())setNumberOfPages:(bool)pages {
-    log!("TODO: setNumberOfPages:{}", paged);
+    log!("TODO: setNumberOfPages:{}", pages);
 }
 
 @end
