@@ -20,6 +20,7 @@ pub mod ui_accelerometer;
 pub mod ui_activity_indicator_view;
 pub mod ui_application;
 pub mod ui_color;
+pub mod ui_date_picker;
 pub mod ui_device;
 pub mod ui_event;
 pub mod ui_font;
