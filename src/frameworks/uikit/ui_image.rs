@@ -105,7 +105,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)stretchableImageWithLeftCapWidth:(id)topCapHeight {
+- (id)stretchableImageWithLeftCapWidth:(id)width:(id)topCapHeight:(id)height {
     nil
 }
 
