@@ -429,6 +429,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)drain {
+    nil
+}
+
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
