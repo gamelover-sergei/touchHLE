@@ -636,7 +636,7 @@ fn alGetString(_env: &mut Environment, _param: ALenum) -> ConstPtr<u8> {
     todo!();
 }
 fn alIsExtensionPresent(_env: &mut Environment, _extName: ConstPtr<u8>) -> ALboolean {
-
+    todo!();
 }
 fn alIsEnabled(_env: &mut Environment, _capability: ALenum) -> ALboolean {
     todo!();
