@@ -69,7 +69,7 @@ fn __assert_rtn(env: &mut Environment, s1: ConstPtr<u8>, s2: ConstPtr<u8>, i: i3
     let ss2 = env.mem.cstr_at_utf8(s2).unwrap();
     let ss3 = env.mem.cstr_at_utf8(s3).unwrap();
     log!("ASSERTION FAILED: {}, {}, {}, {}", ss1, ss2, i, ss3);
-    todo!()
+    // todo!()
 }
 
 fn ferror(env: &mut Environment, file_ptr: MutPtr<FILE>) -> i32 {
