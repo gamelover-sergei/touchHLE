@@ -77,6 +77,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setScrollsToTop:(bool)scrolls {
     log!("TODO: setScrollsToTop:{}", scrolls);
 }
+
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 - (CGPoint)contentOffset {
     env.objc.borrow::<UIScrollViewHostObject>(this).content_offset
 }
