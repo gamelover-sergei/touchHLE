@@ -172,6 +172,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setSeparatorStyle:{}", style);
 }
 
+- (())setSectionIndexMinimumDisplayRowCount:(bool)count {
+    log!("TODO: setSectionIndexMinimumDisplayRowCount:{}", count);
+}
 @end
 
 @implementation UITableViewController: UIScrollView
