@@ -222,6 +222,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAdjustsImageWhenHighlighted:{}", highlighted);
 }
 
+- (())setAdjustsImageWhenDisabled:(bool)disabled {
+    log!("TODO: setAdjustsImageWhenDisabled:{}", disabled);
+}
 - (())setContentVerticalAlignment:(bool)vertical {
     log!("TODO: setContentVerticalAlignment:{}", vertical);
 }
