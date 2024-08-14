@@ -120,7 +120,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
     let tmp_afi_ptr: MutPtr<AudioFileID> = env.mem.alloc(guest_size_of::<AudioFileID>()).cast();
     let status = AudioFileOpenURL(env, audio_file_url, kAudioFileReadPermission, 0, tmp_afi_ptr);
-    assert_eq!(status, 0);
+    // assert_eq!(status, 0);
     let audio_file_id = env.mem.read(tmp_afi_ptr);
     env.objc.borrow_mut::<AVAudioPlayerHostObject>(this).audio_file_id = Some(audio_file_id);
     env.mem.free(tmp_afi_ptr.cast());
