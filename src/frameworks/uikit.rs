@@ -29,6 +29,7 @@ pub mod ui_image;
 pub mod ui_image_picker_controller;
 pub mod ui_navigation_controller;
 pub mod ui_nib;
+pub mod ui_page_control;
 pub mod ui_paste_board;
 pub mod ui_progress_view;
 pub mod ui_responder;
