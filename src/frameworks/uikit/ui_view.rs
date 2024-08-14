@@ -578,6 +578,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 - (())setDelegate:(id)delegate {
 }
+- (())sizeThatFits:(bool)fits {
+    log!("TODO: sizeThatFits:{}", fits);
+}
+
 @end
 
 @implementation UINavigationBar: UIView
