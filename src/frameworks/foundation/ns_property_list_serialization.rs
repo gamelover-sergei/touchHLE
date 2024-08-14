@@ -198,7 +198,7 @@ pub const CLASSES: ClassExports = objc_classes! {
           mutabilityOption:(NSUInteger)opt
                     format:(MutPtr<NSPropertyListFormat>)format
           errorDescription:(MutPtr<id>)err {
-    assert_eq!(opt, 2);
+    // assert_eq!(opt, 2);
     if !err.is_null() {
         env.mem.write(err, nil);
     }
