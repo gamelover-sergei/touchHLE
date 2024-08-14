@@ -1222,11 +1222,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     *env.objc.borrow_mut(this) = host_object;
 
     this
-}
-
-- (id)hasSuffix {
-    nil
-}
+                       }
 
 - (id)propertyListFromStringsFileFormat {
     nil
@@ -1250,6 +1246,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("drawAtPoint p {} bm {} al {}", point, blend_mode, alpha);
     // assert_eq!(alpha, 0.0);
 }
+
+- (())hasSuffix:(bool)suffix {
+    log!("TODO: hasSuffix:{}", suffix);
+}
+
 
 - (bool)isAbsolutePath {
     // TODO: avoid copy?
