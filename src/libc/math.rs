@@ -646,6 +646,9 @@ fn localeconv(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn writev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn hypotf(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn hypot(env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     sqrt(env, arg1*arg1 + arg2*arg2)
 }
@@ -966,6 +969,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(fscanf(_, _)),
     export_c_func!(localeconv(_, _)),
     export_c_func!(writev(_, _)),
+    export_c_func!(hypotf(_, _)),
     export_c_func!(hypot(_, _)),
     export_c_func!(lrint(_)),
     export_c_func!(lrintf(_)),
