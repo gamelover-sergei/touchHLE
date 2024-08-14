@@ -630,7 +630,6 @@ fn alGetIntegerv(_env: &mut Environment, _param: ALenum, _values: MutPtr<ALint>)
 fn alGetProcAddress(env: &mut Environment, funcName: ConstPtr<u8>) -> MutVoidPtr {
     let fname = env.mem.cstr_at_utf8(funcName).unwrap();
     log!("alGetProcAddress {}", fname);
-    Ptr::null()
 }
 fn alGetString(_env: &mut Environment, _param: ALenum) -> ConstPtr<u8> {
     todo!();
