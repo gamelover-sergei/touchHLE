@@ -1,4 +1,4 @@
-use crate::objc::{id, objc_classes, ClassExports, nil};
+use crate::objc::{id, nil, objc_classes, ClassExports, nil};
 use crate::mem::MutPtr;
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -9,6 +9,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())addOperation:(id)op { // NSOperation*
     log!("WARNING NSOperationQueue ignoring addOperation: {:?}", op);
+}
+
+- (id)operations {
+    nil
 }
 
 @end
