@@ -76,6 +76,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     uikit::ui_activity_indicator_view::CLASSES,
     uikit::ui_application::CLASSES,
     uikit::ui_color::CLASSES,
+    uikit::ui_date_picker::CLASSES,
     uikit::ui_device::CLASSES,
     uikit::ui_event::CLASSES,
     uikit::ui_font::CLASSES,
