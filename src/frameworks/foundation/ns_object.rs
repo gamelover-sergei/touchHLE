@@ -44,6 +44,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; new_object init]
 }
 
++ (id)drain {
+    nil
+}
+
 + (Class)class {
     this
 }
