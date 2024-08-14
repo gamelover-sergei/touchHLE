@@ -168,7 +168,7 @@ pub const CLASSES: ClassExports = objc_classes! {
         return false;
     }
     let &NSNumberHostObject::Bool(a) = env.objc.borrow(this) else {
-
+        todo!();
     };
     let &NSNumberHostObject::Bool(b) = env.objc.borrow(other) else {
         todo!();
