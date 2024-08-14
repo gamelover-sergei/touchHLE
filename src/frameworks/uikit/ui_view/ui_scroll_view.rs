@@ -8,7 +8,7 @@
 use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect, CGSize};
 use crate::frameworks::uikit::ui_view::NSInteger;
 use crate::objc::{
-    id, impl_HostObject_with_superclass, msg, objc_classes, ClassExports, NSZonePtr,
+    id, impl_HostObject_with_superclass, msg, nil, objc_classes, ClassExports, NSZonePtr,
 };
 
 pub struct UIScrollViewHostObject {
@@ -147,6 +147,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)initWithFrame:(CGRect)frame style:(NSInteger)_style {
     // TODO: proper init
     msg![env; this init]
+}
+
+- (id)reloadData {
+    nil
 }
 
 - (())setRowHeight:(CGFloat)_height {
