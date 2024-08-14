@@ -556,6 +556,9 @@ fn regcomp(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn kqueue(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn memset_pattern16(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn uncompress(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -939,6 +942,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(lroundf(_, _)),
     export_c_func!(regcomp(_, _)),
     export_c_func!(kqueue(_, _)),
+    export_c_func!(memset_pattern16(_, _)),
     export_c_func!(uncompress(_, _)),
     export_c_func!(wcstok(_, _)),
     export_c_func!(wcstod(_, _)),
