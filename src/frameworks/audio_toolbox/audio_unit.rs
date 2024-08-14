@@ -78,7 +78,7 @@ fn AudioUnitSetProperty(
     in_data: ConstVoidPtr,
     in_data_size: u32,
 ) -> OSStatus {
-    assert!(in_element == 0);
+    // assert!(in_element == 0);
 
     let host_object = audio_components::State::get(&mut env.framework_state)
         .audio_component_instances
