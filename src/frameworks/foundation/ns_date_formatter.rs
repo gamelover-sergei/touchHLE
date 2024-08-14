@@ -36,6 +36,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<NSDateFormatterHostObject>(this).date_format = Some(date_format);
 }
 
+- (id)dateFromString:(id)string {
+    nil
+}
+
 - (id)stringFromDate:(id)date {
     let &NSDateFormatterHostObject {
         date_format
