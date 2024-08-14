@@ -120,6 +120,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)familyNames {
+    nil
+}
+
 - (id)size {
     nil
 }
