@@ -9,6 +9,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setNumberOfPages:{}", pages);
 }
 
+- (())setCurrentPage:(bool)page {
+    log!("TODO: setCurrentPage:{}", page);
+}
+
 @end
 
 };
