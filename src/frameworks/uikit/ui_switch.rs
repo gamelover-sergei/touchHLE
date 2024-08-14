@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UISwitch: UIControl
 
+- (())setOn:(bool)on {
+    log!("TODO: setOn:{}", on);
+}
+
 @end
 
 };
