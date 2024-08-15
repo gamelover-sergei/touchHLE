@@ -516,6 +516,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation CATransition: NSObject
++ (id)animation {
+    nil
+}
 @end
 
 };
