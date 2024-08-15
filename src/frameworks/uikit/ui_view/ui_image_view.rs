@@ -86,6 +86,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAnimationRepeatCount:{}", count);
 }
 
+- (())startAnimating {
+    log!("TODO: [(UIImageView*){:?} startAnimating", this);
+}
+
+- (())stopAnimating {
+    log!("TODO: [(UIImageView*){:?} stopAnimating", this);
+}
+
 - (())setImage:(id)new_image { // UIImage*
     let host_obj = env.objc.borrow_mut::<UIImageViewHostObject>(this);
     let old_image = std::mem::replace(&mut host_obj.image, new_image);
