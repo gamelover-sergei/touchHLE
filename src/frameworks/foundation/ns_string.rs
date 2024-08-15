@@ -1080,6 +1080,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_class![env; _touchHLE_NSMutableString allocWithZone:zone]
 }
 
++ (id)string {
+    nil
+}
+
 + (id)stringWithCapacity:(NSUInteger)_capacity {
     msg_class![env; NSMutableString new]
 }
