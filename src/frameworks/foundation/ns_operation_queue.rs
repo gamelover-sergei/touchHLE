@@ -1,4 +1,4 @@
-use crate::objc::{id, nil, objc_classes, ClassExports, nil};
+use crate::objc::{id, nil, objc_classes, ClassExports};
 use crate::mem::MutPtr;
 
 pub const CLASSES: ClassExports = objc_classes! {
