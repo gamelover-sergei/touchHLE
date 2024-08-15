@@ -243,6 +243,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)dataWithLength:(NSUInteger)_length {
+    msg![env; this init]
+}
+
 - (id)initWithCapacity:(NSUInteger)_capacity {
     msg![env; this init]
 }
