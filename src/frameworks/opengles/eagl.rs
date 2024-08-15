@@ -347,6 +347,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (())setContentScaleFactor :(bool)factor {
+    log!("TODO: setContentScaleFactor:{}", factor);
+}
+
 @end
 
 };
