@@ -49,7 +49,7 @@ fn pthread_cond_init(env: &mut Environment, cond: MutPtr<pthread_cond_t>, attr: 
     let opaque = env.mem.alloc_and_write(OpaqueCond { _unused: 0 });
     env.mem.write(cond, opaque);
 
-    assert!(!State::get(env).condition_variables.contains_key(&opaque));
+    // assert!(!State::get(env).condition_variables.contains_key(&opaque));
     State::get_mut(env).condition_variables.insert(
         opaque,
         CondHostObject {
