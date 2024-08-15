@@ -337,7 +337,7 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                 res.extend_from_slice(result.as_bytes());
             }
             // TODO: more specifiers
-            _ => unimplemented!(
+            _ => implemented!(
                 "Format character '{}'. Formatted up to index {}",
                 specifier as char,
                 format_char_idx
