@@ -343,7 +343,7 @@ impl Mem {
     #[cold]
     fn null_check_fail(at: VAddr, size: GuestUSize) {
             at, size
-        )
+        }
     }
 
     /// Special version of [Self::bytes_at] that returns [None] rather than
