@@ -522,12 +522,16 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<ArrayHostObject>(this).array.push(object);
 }
 
+- (())componentsJoinedByString:(bool)string {
+    log!("TODO: componentsJoinedByString:{}", string);
+}
+
 - (())removeObjectAtIndex:(NSUInteger)index {
     env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
 }
 
-- (())reverseObjectEnumerator {
-
+- (())reverseObjectEnumerator:(bool)enumerator {
+    log!("TODO: reverseObjectEnumerator:{}", enumerator);
 }
 
 @end
