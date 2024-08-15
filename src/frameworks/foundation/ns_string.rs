@@ -1236,9 +1236,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-- (id)stringByAddingPercentEscapesUsingEncoding {
-    nil
-}
 
 - (id)stringByExpandingTildeInPath {
     nil
@@ -1259,6 +1256,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: hasSuffix:{}", suffix);
 }
 
+- (())stringByAddingPercentEscapesUsingEncoding:(bool)encoding {
+    log!("TODO: stringByAddingPercentEscapesUsingEncoding:{}", encoding);
+}
 
 - (bool)isAbsolutePath {
     // TODO: avoid copy?
@@ -1405,6 +1405,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let cfstringStruct { bytes, .. } = env.mem.read(this.cast());
 
     bytes
+}
+
+- (())stringByAddingPercentEscapesUsingEncoding:(bool)encoding {
+    log!("TODO: stringByAddingPercentEscapesUsingEncoding:{}", encoding);
 }
 
 @end
