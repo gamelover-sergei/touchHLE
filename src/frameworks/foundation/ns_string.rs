@@ -1236,6 +1236,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)stringByAddingPercentEscapesUsingEncoding {
+    nil
+}
+
 - (id)stringByExpandingTildeInPath {
     nil
 }
