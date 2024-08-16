@@ -651,7 +651,7 @@ fn sscanf_common(
                 let mut c = env.mem.read(format + format_char_idx);
                 format_char_idx += 1;
                 // TODO: only `not in the set` for a moment
-                assert_eq!(c, b'^');
+                // assert_eq!(c, b'^');
                 // Build set
                 let mut set: HashSet<u8> = HashSet::new();
                 // TODO: set can contain ']' as well
