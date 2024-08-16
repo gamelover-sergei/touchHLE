@@ -1210,6 +1210,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this initWithBytes:c_string length:len encoding:encoding]
 }
 
+- (id)initWithContentsOfFile:(NSUInteger)_file {
+    msg![env; this init]
+}
+
 - (id)initWithContentsOfFile:(id)path // NSString*
                     encoding:(NSStringEncoding)encoding
                        error:(MutPtr<id>)error { // NSError**
