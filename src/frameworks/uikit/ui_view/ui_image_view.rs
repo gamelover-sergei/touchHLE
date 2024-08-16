@@ -8,7 +8,7 @@
 use crate::frameworks::core_graphics::cg_image::CGImageRef;
 use crate::frameworks::core_graphics::{CGPoint, CGRect, CGSize};
 use crate::objc::{
-    id, impl_HostObject_with_superclass, msg, msg_super, objc_classes, release, retain,
+    id, impl_HostObject_with_superclass, msg, msg_super, nil, objc_classes, release, retain,
     ClassExports, NSZonePtr,
 };
 
