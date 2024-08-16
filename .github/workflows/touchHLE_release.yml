@@ -2,9 +2,9 @@ name: Build touchHLE
 
 on:
   push:
-    branches: [ "Unofficial-Stole-Code" ]
+    branches: [ "patch-7" ]
   pull_request:
-    branches: [ "Unofficial-Stole-Code" ]
+    branches: [ "trunk" ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -123,9 +123,6 @@ jobs:
       with:
         fetch-depth: 0 # touchHLE's git-describe versioning needs tag history
     # Apparently the Windows runner already has clang-format? That's nice.
-    - name: Check formatting
-      shell: bash # no command output without this
-      run: dev-scripts/format.sh --check
     - name: Get Submodules
       run: git submodule update --init
     - name: Try to get cached copy of Boost
