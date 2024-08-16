@@ -145,5 +145,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let inv_cset: id = msg![env; cset invertedSet];
     msg![env; this scanUpToCharactersFromSet:inv_cset intoString:str]
 }
+
+- (())setCharactersToBeSkipped:(bool)skipped {
+    log!("TODO: setCharactersToBeSkipped:{}", skipped);
+}
+
 @end
 };
