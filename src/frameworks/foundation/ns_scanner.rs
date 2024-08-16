@@ -146,6 +146,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this scanUpToCharactersFromSet:inv_cset intoString:str]
 }
 
+- (id)scanInt {
+    nil
+}
+
 - (())setCharactersToBeSkipped:(bool)skipped {
     log!("TODO: setCharactersToBeSkipped:{}", skipped);
 }
