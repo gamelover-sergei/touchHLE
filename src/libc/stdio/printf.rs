@@ -96,7 +96,12 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             if get_format_char(&env.mem, format_char_idx) == b'l' {
                 format_char_idx += 1;
             }
-            Some(b'l')
+            if get_format_char(&env.mem, format_char_idx) == b'l' {
+                format_char_idx += 1;
+                Some("ll")
+            } else {
+                Some("l")
+            }
         } else {
             None
         };
@@ -149,9 +154,20 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             }
             b'd' | b'i' | b'u' => {
                 // Note: on 32-bit system int and long are i32,
-                // so length_modifier is ignored
+                // so single length_modifier is ignored (but not double one!)
                 let int: i64 = if specifier == b'u' {
-                    let uint: u32 = args.next(env);
+                    if length_modifier == Some("ll") {
+                        let uint: u64 = args.next(env);
+                        uint.try_into().unwrap()
+                    } else {
+                        let uint: u32 = args.next(env);
+                        uint.into()
+                    }
+                } else if length_modifier == Some("ll") {
+                    args.next(env)
+                }
+                } else if length_modifier == Some("ll") {
+                    args.next(env)
                     uint.into()
                 } else {
                     let int: i32 = args.next(env);
