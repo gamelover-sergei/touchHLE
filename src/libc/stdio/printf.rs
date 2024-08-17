@@ -155,6 +155,7 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             b'd' | b'i' | b'u' => {
                 // Note: on 32-bit system int and long are i32,
                 // so single length_modifier is ignored (but not double one!)
+                let int: i64 = if specifier == b'u' {
                     if length_modifier == Some("ll") {
                         let uint: u64 = args.next(env);
                         uint.try_into().unwrap()
