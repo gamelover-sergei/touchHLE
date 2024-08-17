@@ -495,6 +495,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)isGyroAvailable {
+    nil
+}
+
 - (id)locationServicesEnabled {
     nil
 }
