@@ -165,9 +165,6 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                     }
                 } else if length_modifier == Some("ll") {
                     args.next(env)
-                }
-                } else if length_modifier == Some("ll") {
-                    args.next(env)
                     uint.into()
                 } else {
                     let int: i32 = args.next(env);
