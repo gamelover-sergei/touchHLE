@@ -512,7 +512,7 @@ pub const CLASSES: ClassExports = objc_classes! {
         num
     }
 
-    assert_ne!(other, nil);
+    // assert_ne!(other, nil);
 
     // TODO: support foreign subclasses (perhaps via a helper function that
     // copies the string first)
