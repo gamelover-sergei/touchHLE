@@ -123,6 +123,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("WARNING: Ignoring setAnimationDelegate:");
 }
 
++ (())setAnimationDeley:(id)deley {
+    log!("WARNING: Ignoring setAnimationDeley:");
+}
+
 + (())setAnimationsEnabled:(id)enabled {
     log!("WARNING: Ignoring setAnimationsEnabled:");
 }
