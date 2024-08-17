@@ -256,6 +256,9 @@ fn pthread_condattr_init(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn pthread_yield_np(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn AudioConverterNew(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn AudioQueueAllocateBufferWithPacketDescriptions(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
