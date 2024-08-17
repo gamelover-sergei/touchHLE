@@ -8,7 +8,7 @@
 use crate::dyld::{ConstantExports, HostConstant};
 use crate::frameworks::foundation::{ns_string, ns_url, NSInteger};
 use crate::frameworks::uikit::ui_device::UIDeviceOrientation;
-use crate::objc::{id, msg, msg_class, objc_classes, release, retain, ClassExports};
+use crate::objc::{id, msg, msg_class, nil, objc_classes, release, retain, ClassExports};
 use crate::Environment;
 use std::collections::VecDeque;
 
@@ -103,6 +103,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     );
 
     this
+}
+
+- (id)view {
+    nil
 }
 
 - (())setScalingMode:(MPMovieScalingMode)_mode {
