@@ -172,6 +172,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setAllowsSelection:(bool)selection {
+    log!("TODO: setAllowsSelection:{}", selection);
+}
+
 - (())setSeparatorColor:(bool)color {
     log!("TODO: setSeparatorColor:{}", color);
 }
