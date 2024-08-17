@@ -300,6 +300,7 @@ fn strtol(env: &mut Environment, str: ConstPtr<u8>, endptr: MutPtr<MutPtr<u8>>, 
             if !endptr.is_null() {
                 env.mem.write(endptr, (str + len).cast_mut());
             }
+            res
         }
         Err(_) => {
             if !endptr.is_null() {
