@@ -443,6 +443,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setImgRef:{}", img);
 }
 
+- (())setIsUncontrolled:(bool)uncontrolled {
+    log!("TODO: setIsUncontrolled:{}", uncontrolled);
+}
+
 - (bool)clearsContextBeforeDrawing {
     env.objc.borrow::<UIViewHostObject>(this).clears_context_before_drawing
 }
