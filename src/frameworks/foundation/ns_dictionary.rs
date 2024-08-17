@@ -576,6 +576,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDictionary:{}", dictionary);
 }
 
+- (())setDistanceFilter:(bool)filter {
+    log!("TODO: setDistanceFilter:{}", filter);
+}
+
 - (())setValue:(id)value
         forKey:(id)key { // NSString*
     assert!(!key.is_null());
