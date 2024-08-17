@@ -1395,8 +1395,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_static_object(this, host_object, &mut env.mem)
 }
 
-- (id)canBeConvertedToEncoding:(bool)encoding {
-    log!("TODO: canBeConvertedToEncoding:{}", encoding);
+- (id)canBeConvertedToEncoding:(id)encoding {
+    nil
 }
 
 - (id) retain { this }
