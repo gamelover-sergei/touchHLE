@@ -342,7 +342,7 @@ impl Mem {
     // seems like a good idea to help the compiler optimise for the fast path
     #[cold]
     fn null_check_fail(at: VAddr, size: GuestUSize) {
-        log_dbg!(
+        log!(
             "Attempted null-page access at {:#x} ({:#x} bytes)",
             at, size
         )
