@@ -566,6 +566,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDelegate:{}", delegate);
 }
 
+- (())setShouldResolveExternalEntities:(bool)entities {
+    log!("TODO: ShouldResolveExternalEntities:{}", entities);
+}
+
 @end
 
 @implementation CADisplayLink: NSObject
