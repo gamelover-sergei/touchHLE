@@ -535,7 +535,7 @@ impl MachO {
                         __cpsr: 0,
                     } = state
                     else {
-                        panic!("Unexpected initial thread state in {:?}: {:?}", name, state);
+                        log!("Unexpected initial thread state in {:?}: {:?}", name, state);
                     };
                     // There should only be a single initial thread state.
                     assert!(entry_point_pc.is_none());
