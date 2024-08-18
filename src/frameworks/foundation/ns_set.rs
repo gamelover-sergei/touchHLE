@@ -78,6 +78,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setWithArray:{}", array);
 }
 
++ (id)setWithCapacity:(NSUInteger)_capacity {
+    msg![env; this init]
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     todo!(); // TODO: this should produce an immutable copy
