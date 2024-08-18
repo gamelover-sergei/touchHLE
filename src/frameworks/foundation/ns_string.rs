@@ -1490,7 +1490,7 @@ pub fn register_constant_strings(bin: &MachO, mem: &mut Mem, objc: &mut ObjC) {
                 "_touchHLE_NSString_CFConstantString_UTF16",
             )
         } else {
-            panic!("Bad CFTypeID for constant string: {:#x}", flags);
+            log!("Bad CFTypeID for constant string: {:#x}", flags);
         };
 
         objc.register_static_object(cfstr_ptr.cast().cast_mut(), Box::new(host_object));
