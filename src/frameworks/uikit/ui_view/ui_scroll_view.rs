@@ -192,4 +192,12 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation UITableViewController: UIScrollView
 @end
 
+@implementation MainScrollView: UIScrollView
+
+- (())setDirectionalLockEnabled:(bool)enabled {
+    log!("TODO: setDirectionalLockEnabled:{}", enabled);
+}
+
+@end
+
 };
