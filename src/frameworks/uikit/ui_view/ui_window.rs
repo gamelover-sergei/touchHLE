@@ -68,6 +68,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_super![env; this dealloc]
 }
 
+- (())setRootViewController:(bool)controller {
+    log!("TODO: setRootViewController:{}", controller);
+}
+
 - (())setTag:(bool)tag {
     log!("TODO: setTag:{}", tag);
 }
