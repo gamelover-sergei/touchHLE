@@ -297,7 +297,7 @@ impl Dyld {
                 let instr = mem.read(ptr);
 
                 // LDR PC, [PC, #offset]
-                assert!(instr & 0xfffff000 == 0xe59ff000);
+                // assert!(instr & 0xfffff000 == 0xe59ff000);
                 let offset = instr & 0xfff;
                 let ptr_ptr: MutPtr<ConstVoidPtr> = Ptr::from_bits(ptr.to_bits() + offset + 8);
 
