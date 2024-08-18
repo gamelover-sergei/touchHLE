@@ -12,23 +12,17 @@ pub mod ui_alert_view;
 pub mod ui_control;
 pub mod ui_image_view;
 pub mod ui_label;
-pub mod ui_scroll_view;
-pub mod ui_text_view;
 pub mod ui_window;
 
 use super::ui_graphics::{UIGraphicsPopContext, UIGraphicsPushContext};
-use crate::frameworks::core_graphics::cg_affine_transform::{
-    CGAffineTransform, CGAffineTransformIdentity,
-};
-use crate::frameworks::core_graphics::cg_color::CGColorRef;
+use crate::frameworks::core_graphics::cg_affine_transform::{CGAffineTransform, CGAffineTransformIdentity};
 use crate::frameworks::core_graphics::cg_context::{CGContextClearRect, CGContextRef};
 use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect};
-use crate::frameworks::foundation::ns_string::{get_static_str, to_rust_string};
+use crate::frameworks::foundation::ns_string::get_static_str;
 use crate::frameworks::foundation::{ns_array, NSInteger, NSUInteger};
-use crate::mem::ConstVoidPtr;
 use crate::objc::{
-    autorelease, id, msg, msg_class, nil, objc_classes, release, retain, Class, ClassExports,
-    HostObject, NSZonePtr, SEL,
+    autorelease, id, msg, nil, objc_classes, release, retain, Class, ClassExports, HostObject,
+    NSZonePtr,
 };
 use crate::Environment;
 
@@ -49,8 +43,6 @@ pub(super) struct UIViewHostObject {
     clears_context_before_drawing: bool,
     user_interaction_enabled: bool,
     multiple_touch_enabled: bool,
-    clips_to_bounds: bool,        // TODO: Handle this property
-    transform: CGAffineTransform, // TODO: Handle this property
 }
 impl HostObject for UIViewHostObject {}
 impl Default for UIViewHostObject {
@@ -64,8 +56,6 @@ impl Default for UIViewHostObject {
             clears_context_before_drawing: true,
             user_interaction_enabled: true,
             multiple_touch_enabled: false,
-            clips_to_bounds: false,
-            transform: CGAffineTransformIdentity,
         }
     }
 }
@@ -104,39 +94,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (Class)layerClass {
     env.objc.get_known_class("CALayer", &mut env.mem)
-}
-
-+ (())beginAnimations:(id)animationID // NSString*
-              context:(ConstVoidPtr)context {
-    log!("TODO: [UIView beginAnimations:{:?} {:?} context:{:?}]", to_rust_string(env, animationID), animationID, context);
-}
-
-+ (())setAnimationCurve:(id)curve {
-    log!("WARNING: Ignoring setAnimationCurve:");
-}
-
-+ (())setAnimationDuration:(id)duration {
-    log!("WARNING: Ignoring setAnimationDuration:");
-}
-
-+ (())setAnimationDelegate:(id)delegate {
-    log!("WARNING: Ignoring setAnimationDelegate:");
-}
-
-+ (())setAnimationDelay:(id)delay {
-    log!("WARNING: Ignoring setAnimationDelay:");
-}
-
-+ (())setAnimationsEnabled:(id)enabled {
-    log!("WARNING: Ignoring setAnimationsEnabled:");
-}
-
-+ (())setAnimationDidStopSelector:(SEL)selector {
-    log!("WARNING: Ignoring setAnimationDidStopSelector:");
-}
-
-+ (())commitAnimations {
-    log!("TODO: [UIView commitAnimations]");
 }
 
 // TODO: accessors etc
@@ -217,12 +174,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setUserInteractionEnabled:(bool)enabled {
     env.objc.borrow_mut::<UIViewHostObject>(this).user_interaction_enabled = enabled;
 }
-- (bool)isClipsToBounds {
-    env.objc.borrow::<UIViewHostObject>(this).clips_to_bounds
-}
-- (())setClipsToBounds:(bool)clips_to_bounds {
-    env.objc.borrow_mut::<UIViewHostObject>(this).clips_to_bounds = clips_to_bounds;
-}
 
 - (bool)isMultipleTouchEnabled {
     env.objc.borrow::<UIViewHostObject>(this).multiple_touch_enabled
@@ -233,15 +184,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setExclusiveTouch:(bool)enabled {
 
-}
-
-- (CGAffineTransform)transform {
-    let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
-    msg![env; layer affineTransform]
-}
-- (())setTransform:(CGAffineTransform)transform {
-    let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
-    msg![env; layer setAffineTransform: transform]
 }
 
 - (())layoutSubviews {
@@ -299,10 +241,7 @@ pub const CLASSES: ClassExports = objc_classes! {
         ..
     } = env.objc.borrow_mut(this);
 
-    let Some(idx) = subviews.iter().position(|&subview2| subview2 == subview) else {
-        log_dbg!("Warning: Unable to find the subview {:?} in subviews of {:?}", subview, this);
-        return;
-    };
+    let idx = subviews.iter().position(|&subview2| subview2 == subview).unwrap();
     let subview2 = subviews.remove(idx);
     assert!(subview2 == subview);
     subviews.push(subview);
@@ -339,8 +278,6 @@ pub const CLASSES: ClassExports = objc_classes! {
         clears_context_before_drawing: _,
         user_interaction_enabled: _,
         multiple_touch_enabled: _,
-        clips_to_bounds: _,
-        transform: _,
     } = std::mem::take(env.objc.borrow_mut(this));
 
     release(env, layer);
@@ -361,10 +298,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<UIViewHostObject>(this).layer
 }
 
-- (id)window {
-    nil
-}
-
 - (bool)isHidden {
     let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     msg![env; layer isHidden]
@@ -372,10 +305,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setHidden:(bool)hidden {
     let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     msg![env; layer setHidden:hidden]
-}
-
-- (())setClipsToBounds:(bool)clips {
-    log!("TODO: [{:?} setClipsToBounds:{}]", this, clips);
 }
 
 - (bool)isOpaque {
@@ -396,13 +325,15 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; layer setOpacity:alpha]
 }
 
+// FIXME: CALayer's backgroundColor should be a CGColorRef, which is supposedly
+// a separate type from UIColor. For now we have not implemented it and treat
+// them as the same type (and it seems like UIKit itself maybe did this once),
+// but eventually we'll have to do this properly.
 - (id)backgroundColor {
     let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
-    let cg_color: CGColorRef = msg![env; layer backgroundColor];
-    msg_class![env; UIColor colorWithCGColor:cg_color]
+    msg![env; layer backgroundColor]
 }
 - (())setBackgroundColor:(id)color { // UIColor*
-    let color: CGColorRef = msg![env; color CGColor];
     let layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     msg![env; layer setBackgroundColor:color]
 }
@@ -439,16 +370,12 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; layer setFrame:frame]
 }
 
+- (())setTransform:(CGAffineTransform)transform {
+    log!("TODO: [{:?} setTransform:{:?}]", this, transform);
+}
+
 - (())setContentMode:(NSInteger)content_mode { // should be UIViewContentMode
     log!("TODO: [UIView {:?} setContentMode:{:?}] => ()", this, content_mode);
-}
-
-- (())setImgRef:(bool)img {
-    log!("TODO: setImgRef:{}", img);
-}
-
-- (())setIsUncontrolled:(bool)uncontrolled {
-    log!("TODO: setIsUncontrolled:{}", uncontrolled);
 }
 
 - (bool)clearsContextBeforeDrawing {
@@ -456,13 +383,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 - (())setClearsContextBeforeDrawing:(bool)v {
     env.objc.borrow_mut::<UIViewHostObject>(this).clears_context_before_drawing = v;
-}
-
-- (CGAffineTransform)transform {
-    env.objc.borrow::<UIViewHostObject>(this).transform
-}
-- (())setTransform:(CGAffineTransform)transform {
-    env.objc.borrow_mut::<UIViewHostObject>(this).transform = transform;
 }
 
 // Drawing stuff that views should override
@@ -519,31 +439,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-// Ending a view-editing session
-
-- (bool)endEditing:(bool)force {
-    assert!(force);
-    let responder: id = env.framework_state.uikit.ui_responder.first_responder;
-    let class = msg![env; responder class];
-    let ui_text_field_class = env.objc.get_known_class("UITextField", &mut env.mem);
-    if responder != nil && env.objc.class_is_subclass_of(class, ui_text_field_class) {
-        // we need to check if text field is in the current view hierarchy
-        let mut to_find = responder;
-        while to_find != nil {
-            if to_find == this {
-                return msg![env; responder resignFirstResponder];
-            }
-            to_find = msg![env; to_find superview];
-        }
-    }
-    false
-}
-
 // Co-ordinate space conversion
 
 - (CGPoint)convertPoint:(CGPoint)point
                fromView:(id)other { // UIView*
-    // assert!(other != nil); // TODO
+    assert!(other != nil); // TODO
     let this_layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     let other_layer = env.objc.borrow::<UIViewHostObject>(other).layer;
     msg![env; this_layer convertPoint:point fromLayer:other_layer]
@@ -551,77 +451,16 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (CGPoint)convertPoint:(CGPoint)point
                  toView:(id)other { // UIView*
-    // assert!(other != nil); // TODO
+    assert!(other != nil); // TODO
     let this_layer = env.objc.borrow::<UIViewHostObject>(this).layer;
     let other_layer = env.objc.borrow::<UIViewHostObject>(other).layer;
     msg![env; this_layer convertPoint:point toLayer:other_layer]
 }
 
-- (())setAutoresizingMask:(NSUInteger)mask {
-    log!("TODO: [(UIView*){:?} setAutoresizingMask:{}]", this, mask);
-}
-- (())setAutoresizesSubviews:(bool)enabled {
-    log!("TODO: [(UIView*){:?} setAutoresizesSubviews:{}]", this, enabled);
+- (CGAffineTransform)transform {
+    CGAffineTransformIdentity
 }
 
-@end
-
-@implementation TargetView: UIView
-- (())setTag:(bool)tag {
-    log!("TODO: setTag:{}", tag);
-}
-@end
-
-@implementation UIToolbar: UIView
-- (())setBarStyle:(bool)bar {
-    log!("TODO: setBarStyle:{}", bar);
-}
-
-- (())setItems:(id)items {
-}
-@end
-
-@implementation UIPickerView: UIView
-- (())setDataSource:(id)dataSource {
-}
-- (())setDelegate:(id)delegate {
-}
-- (())sizeThatFits:(bool)fits {
-    log!("TODO: sizeThatFits:{}", fits);
-}
-- (())setShowsSelectionIndicator:(bool)indicator {
-    log!("TODO: setShowsSelectionIndicator:{}", indicator);
-}
-
-@end
-
-@implementation UINavigationBar: UIView
-- (())setBarStyle:(bool)style {
-    log!("TODO: setBarStyle:{}", style);
-}
-
-- (())setTintColor:(bool)color {
-    log!("TODO: setTintColor:{}", color);
-}
-
-@end
-
-@implementation ManView: UIView
-- (())setAnimationRepeatCount:(bool)count {
-    log!("TODO: setAnimationRepeatCount:{}", count);
-}
-@end
-
-@implementation UINavigationItem: NSObject
-- (id)initWithCoder:(id)coder {
-    nil
-}
-- (id)initWithTitle:(id)title {
-    nil
-}
-@end
-
-@implementation UITableViewCell: UIView
 @end
 
 };
