@@ -361,10 +361,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<UIViewHostObject>(this).layer
 }
 
-- (id)updateSpaceshipWithX:Y:Z {
-    nil
-}
-
 - (id)window {
     nil
 }
