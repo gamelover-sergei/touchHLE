@@ -3,14 +3,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
+//! `CFLocale`
 
-use crate::{Environment, export_c_func, msg, msg_class};
-use crate::dyld::FunctionExports;
-use crate::frameworks::foundation::{ns_string, NSUInteger};
-use crate::objc::id;
 use super::cf_allocator::CFAllocatorRef;
 use super::cf_array::CFArrayRef;
 use super::cf_string::CFStringRef;
+use crate::dyld::FunctionExports;
+use crate::frameworks::foundation::NSUInteger;
+use crate::objc::id;
+use crate::{export_c_func, msg, msg_class, Environment};
 
 type CFLocaleIdentifier = CFStringRef;
 
@@ -22,13 +23,14 @@ fn CFLocaleCopyPreferredLanguages(env: &mut Environment) -> CFArrayRef {
 fn CFLocaleCreateCanonicalLocaleIdentifierFromString(
     env: &mut Environment,
     allocator: CFAllocatorRef,
-    localeIdentifier: CFStringRef
+    locale_identifier: CFStringRef,
 ) -> CFLocaleIdentifier {
     assert!(allocator.is_null());
-    let len: NSUInteger = msg![env; localeIdentifier length];
+    let len: NSUInteger = msg![env; locale_identifier length];
+    // TODO: support arbitrary locale identification strings
     assert_eq!(len, 2);
     let ns_string: id = msg_class![env; NSString alloc];
-    msg![env; ns_string initWithString:localeIdentifier]
+    msg![env; ns_string initWithString:locale_identifier]
 }
 
 pub const FUNCTIONS: FunctionExports = &[
