@@ -49,6 +49,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)dateWithTimeIntervalSince1970:(NSUInteger)_since1970 {
+    msg![env; this init]
+}
+
 + (id)distantFuture {
     let time_interval = SystemTime::now()
         .duration_since(apple_epoch())
