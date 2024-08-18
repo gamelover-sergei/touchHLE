@@ -295,6 +295,9 @@ fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(_env: &mut Environment, arg1: f32
 fn CFAllocatorGetDefault(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFBooleanGetValue(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFBundleCopyResourceURLForLocalization(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -882,6 +885,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CC_MD5_Update(_, _)),
     export_c_func!(CFAbsoluteTimeGetDifferenceAsGregorianUnits(_, _)),
     export_c_func!(CFAllocatorGetDefault(_, _)),
+    export_c_func!(CFBooleanGetValue(_, _)),
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
     export_c_func!(CFBundleGetInfoDictionary(_, _)),
     export_c_func!(CFLocaleCopyCurrent(_, _)),
