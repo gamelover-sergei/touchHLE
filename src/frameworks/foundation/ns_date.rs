@@ -7,7 +7,8 @@
 
 use super::{ns_string, NSComparisonResult, NSTimeInterval};
 use crate::frameworks::core_foundation::time::apple_epoch;
-use crate::objc::{autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSUInteger, NSZonePtr};
+use crate::frameworks::foundation::NSUInteger;
+use crate::objc::{autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr};
 
 use std::ops::Add;
 use std::time::{Duration, SystemTime};
