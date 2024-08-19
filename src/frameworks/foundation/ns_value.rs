@@ -45,6 +45,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     retain(env, this)
 }
 
+- (id)initWithUnsignedLongLong:(u64)value {
+    *env.objc.borrow_mut(this) = NSNumberHostObject::UnsignedLongLong(value);
+    this
+}
+
 @end
 
 // NSNumber is not an abstract class.
@@ -112,14 +117,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 + (id)numberWithUnsignedInt:(u64)value {
-    // TODO: for greater efficiency we could return a static-lifetime value
-
-    let new: id = msg![env; this alloc];
-    let new: id = msg![env; new initWithUnsignedLongLong:value];
-    autorelease(env, new)
-}
-
-+ (id)valueWithPointer:(u64)value {
     // TODO: for greater efficiency we could return a static-lifetime value
 
     let new: id = msg![env; this alloc];
