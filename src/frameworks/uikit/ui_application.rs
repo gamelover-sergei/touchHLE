@@ -125,6 +125,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setNetworkActivityIndicatorVisible:{}", visible);
 }
 
+- (())setApplicationIconBadgeNumber:(bool)number {
+    log!("TODO: setApplicationIconBadgeNumber:{}", number);
+}
 - (())setApplicationSupportsShakeToEdit:(bool)edit {
     log!("TODO: setApplicationSupportsShakeToEdit:{}", edit);
 }
