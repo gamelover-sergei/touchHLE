@@ -111,6 +111,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)valueWithPointer:(NSUInteger)_pointer {
+    msg![env; this init]
+}
+
 // TODO: types other than booleans and long longs
 
 - (id)initWithBool:(bool)value {
