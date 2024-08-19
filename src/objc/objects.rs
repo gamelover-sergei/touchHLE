@@ -268,7 +268,6 @@ impl super::ObjC {
             } else {
                 log!();
             }
-        res
         }
     }
 
