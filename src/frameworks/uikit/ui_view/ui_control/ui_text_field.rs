@@ -143,6 +143,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setEnablesReturnKeyAutomatically:{}", enables);
 }
 
+- (())setPosition:(bool)position {
+    log!("TODO: setPosition:{}", position);
+}
+
 - (())setTextAlignment:(bool)text {
     log!("TODO: setTextAlignment:{}", text);
 }
