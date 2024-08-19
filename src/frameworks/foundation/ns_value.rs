@@ -32,6 +32,14 @@ pub const CLASSES: ClassExports = objc_classes! {
 // implemented here yet (TODO).
 @implementation NSValue: NSObject
 
++ (id)valueWithPointer:(u64)value {
+    // TODO: for greater efficiency we could return a static-lifetime value
+
+    let new: id = msg![env; this alloc];
+    let new: id = msg![env; new initWithUnsignedLongLong:value];
+    autorelease(env, new)
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     retain(env, this)
