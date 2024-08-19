@@ -266,8 +266,9 @@ impl super::ObjC {
             } else if let Some(next) = host_object.as_superclass_mut() {
                 host_object = next;
             } else {
-                panic!();
+                log!();
             }
+        res
         }
     }
 
