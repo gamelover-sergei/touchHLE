@@ -50,6 +50,9 @@ com.atodab.actane: --landscape-left --button-to-touch=A,430,300 --button-to-touc
 # Wolfenstein 3D
 com.idsoftware.wolf3d: --landscape-right
 
+# Spore Origins
+com.ea.spore.naj.efigsj: --landscape-left --y-tilt-offset=35
+
 # KataDama (I Love Katamari)
 com.namconetworks.katamari: --landscape-left --stabilize-virtual-cursor=0.1,10 --y-tilt-offset=24 --button-to-touch=Start,240,15
 
@@ -84,6 +87,21 @@ jp.co.capcom.res4: --landscape-left --stabilize-virtual-cursor=0.1,10 --button-t
 # Earthworm Jim
 # Up/Down/Left/Right = Move, A = Jump, B = Whip, X = Fire
 com.gameloft.Earthworm: --landscape-left --button-to-touch=DPadUp,72,194 --button-to-touch=DPadDown,72,278 --button-to-touch=DPadLeft,30,238 --button-to-touch=DPadRight,110,238 --button-to-touch=A,442,284 --button-to-touch=X,378,248 --button-to-touch=B,442,212 --button-to-touch=Start,448,32
+
+# TV Show King
+com.gameloft.TVSK: --landscape-right
+
+# CSI: Miami
+com.gameloft.csimiami: --landscape-left
+
+# MLB World Series 2009
+com.mlb.mlb2009: --landscape-left
+
+# Wave Blazer
+com.polarbit.waveblazer: --landscape-left
+
+# Command & Conquer: Red Alert
+com.ea.candcra.row: --landscape-left
 
 # Star Frog / Gero Blaster
 amaya.starfrog: --preferred-languages=ja --landscape-right --button-to-touch=DPadLeft,60,290 --button-to-touch=DPadRight,170,290 --button-to-touch=A,450,290 --button-to-touch=B,380,290
