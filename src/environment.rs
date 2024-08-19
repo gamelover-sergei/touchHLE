@@ -791,7 +791,7 @@ impl Environment {
         }
 
         if self.gdb_server.is_none() {
-            panic!("Error during CPU execution: {:?}", error);
+            log!("Error during CPU execution: {:?}", error);
         }
 
         echo!("Debuggable error during CPU execution: {:?}.", error);
