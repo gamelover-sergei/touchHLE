@@ -259,6 +259,9 @@ fn pthread_yield_np(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn task_info(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn _dyld_image_count(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn AudioConverterNew(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -900,6 +903,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(pthread_condattr_init(_, _)),
     export_c_func!(pthread_yield_np(_, _)),
     export_c_func!(task_info(_, _)),
+    export_c_func!(_dyld_image_count(_, _)),
     export_c_func!(AudioConverterNew(_, _)),
     export_c_func!(AudioQueueAllocateBufferWithPacketDescriptions(_, _)),
     export_c_func!(AudioFileOpenWithCallbacks(_, _)),
