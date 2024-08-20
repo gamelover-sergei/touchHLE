@@ -433,6 +433,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)sortUsingSelector {
+    nil
+}
+
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
@@ -486,6 +490,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (())reverseObjectEnumerator:(bool)enumerator {
+    log!("TODO: reverseObjectEnumerator:{}", enumerator);
+}
+
 - (())sortUsingDescriptors:(id)descs {
     let mut v = mem::take(&mut env.objc.borrow_mut::<ArrayHostObject>(this).array);
     v.sort_by(|&a, &b| {
@@ -527,14 +535,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (())removeObjectAtIndex:(NSUInteger)index {
-    env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
-}
-
-- (())reverseObjectEnumerator:(bool)enumerator {
-    log!("TODO: reverseObjectEnumerator:{}", enumerator);
-}
-
-- (())sortUsingSelector:(NSUInteger)selector {
     env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
 }
 
