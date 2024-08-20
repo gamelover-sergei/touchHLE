@@ -276,6 +276,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
++ (id)componentsSeparatedByCharactersInSet {
+    nil
+}
+
 + (id)defaultCStringEncoding {
     nil
 }
