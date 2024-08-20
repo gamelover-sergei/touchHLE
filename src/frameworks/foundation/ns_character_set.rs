@@ -6,6 +6,7 @@
 //! The `NSCharacterSet` class cluster, including `NSMutableCharacterSet`.
 
 use super::{ns_string, unichar};
+use crate::frameworks::foundation::NSUInteger;
 use crate::objc::{
     autorelease, id, msg, msg_class, objc_classes, retain, ClassExports, HostObject, NSZonePtr,
 };
