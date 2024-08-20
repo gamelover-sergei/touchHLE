@@ -36,6 +36,7 @@ pub mod ui_paste_board;
 pub mod ui_progress_view;
 pub mod ui_responder;
 pub mod ui_screen;
+pub mod ui_search_bar;
 pub mod ui_switch;
 pub mod ui_tab_bar;
 pub mod ui_tab_bar_controller;
