@@ -1109,7 +1109,7 @@ impl Environment {
                     // This should hopefully not happen, but if a thread is
                     // blocked on another thread waiting for a deferred return,
                     // it could.
-                    panic!("No active threads, program has deadlocked!");
+                    log!("No active threads, program has deadlocked!");
                 }
             }
         }
