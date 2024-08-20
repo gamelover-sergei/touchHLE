@@ -49,6 +49,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     new
 }
 
++ (id)newlineCharacterSet:(NSUInteger)_set {
+    msg![env; this init]
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     // TODO: override this once we have NSMutableCharacterSet!
