@@ -6,9 +6,8 @@
 //! The `NSCharacterSet` class cluster, including `NSMutableCharacterSet`.
 
 use super::{ns_string, unichar};
-use crate::frameworks::foundation::NSUInteger;
 use crate::objc::{
-    autorelease, id, msg, msg_class, objc_classes, retain, ClassExports, HostObject, NSZonePtr,
+    autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr,
 };
 use std::collections::HashSet;
 
@@ -50,8 +49,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     new
 }
 
-+ (id)newlineCharacterSet:(NSUInteger)_set {
-    msg![env; this init]
++ (id)newlineCharacterSet {
+    nil
 }
 
 // NSCopying implementation
