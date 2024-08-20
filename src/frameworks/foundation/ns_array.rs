@@ -534,6 +534,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: reverseObjectEnumerator:{}", enumerator);
 }
 
+- (())sortUsingSelector:(NSUInteger)selector {
+    env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
+}
+
 @end
 
 @implementation NSIndexPath: NSObject
