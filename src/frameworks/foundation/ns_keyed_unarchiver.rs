@@ -212,6 +212,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     false
 }
 
+- (id)initForWritingWithMutableData:(NSUInteger)_data {
+    msg![env; this init]
+}
+
 @end
 
 };
