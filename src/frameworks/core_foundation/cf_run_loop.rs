@@ -50,7 +50,7 @@ fn CFRunLoopTimerCreate(
     callout: GuestFunction,
     context: MutVoidPtr,
 ) -> CFRunLoopTimerRef {
-    // assert_eq!(flags, 0);
+    assert_eq!(flags, 0);
     assert_eq!(order, 0);
     // assert!(context.is_null());
 
