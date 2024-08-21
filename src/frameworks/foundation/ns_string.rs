@@ -13,7 +13,7 @@ mod path_algorithms;
 use super::ns_array;
 use super::{
     NSComparisonResult, NSNotFound, NSOrderedAscending, NSOrderedDescending, NSOrderedSame,
-    NSRange, NSUInteger,
+    NSRange, NSInteger, NSUInteger,
 };
 use crate::abi::VaList;
 use crate::frameworks::core_foundation::CFRange;
