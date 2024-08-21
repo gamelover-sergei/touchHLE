@@ -216,7 +216,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-- (())encodeObject:(NSInteger)object forKey(bool)_key {
+- (())encodeObject:(NSInteger)object forKey:(bool)_key {
     // TODO
 }
 
