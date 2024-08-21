@@ -197,7 +197,7 @@ pub const CLASSES: ClassExports = objc_classes! {
             if extension == nil { std::borrow::Cow::from("(null)") } else { ns_string::to_rust_string(env, extension) },
             if directory == nil { std::borrow::Cow::from("(null)") } else { ns_string::to_rust_string(env, directory) }
     );
-    assert!(name != nil); // TODO
+    // assert!(name != nil); // TODO
 
     // TODO: cache result of lookups
 
