@@ -205,6 +205,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setSublayerTransform:(bool)sub {
     log!("TODO: setSublayerTransform:{}", sub);
 }
+
+- (())setContentsRect:(bool)rect {
+    log!("TODO: setContentsRect:{}", rect);
+}
+
 - (CGRect)frame {
     let &CALayerHostObject {
         bounds,
