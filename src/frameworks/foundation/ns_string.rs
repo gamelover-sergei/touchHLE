@@ -13,7 +13,7 @@ mod path_algorithms;
 use super::ns_array;
 use super::{
     NSComparisonResult, NSNotFound, NSOrderedAscending, NSOrderedDescending, NSOrderedSame,
-    NSRange, NSInteger, NSUInteger,
+    NSRange, NSUInteger,
 };
 use crate::abi::VaList;
 use crate::frameworks::core_foundation::CFRange;
@@ -1240,7 +1240,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (())initWithCharacters:(NSInteger)characters length:(bool)_length {
+- (())initWithCharacters:(NSUInteger)characters length:(bool)_length {
     // TODO
 }
 
