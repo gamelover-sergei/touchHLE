@@ -516,6 +516,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<ArrayHostObject>(this).array = v;
 }
 
+- (())writeToFile:(NSInteger)file atomically:(bool)_atomically {
+    // TODO
+}
+
 @end
 
 // Special variant for use by CFArray with NULL callbacks: objects aren't
