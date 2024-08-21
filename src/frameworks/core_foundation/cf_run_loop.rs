@@ -91,10 +91,10 @@ fn CFRunLoopAddTimer(
 fn CFRunLoopTimerInvalidate(env: &mut Environment, timer: CFRunLoopTimerRef) {
     let timer_class: Class = msg![env; timer class];
     // assert_eq!
-
+        (
         timer_class,
-        (env.objc.get_known_class)("NSTimer", &mut env.mem)
-    };
+        env.objc.get_known_class("NSTimer", &mut env.mem)
+    );
 
     () = msg![env; timer invalidate];
 }
