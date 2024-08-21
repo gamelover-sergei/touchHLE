@@ -453,6 +453,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CAMediaTimingFunction: NSMutableDictionary
+@end
+
 @implementation CLLocationManager: NSMutableDictionary
 @end
 
