@@ -676,6 +676,9 @@ fn sqlite3_free_table(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn sqlite3_exec(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn sqlite3_column_int(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn sranddev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1042,6 +1045,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sqlite3_get_table(_, _)),
     export_c_func!(sqlite3_free_table(_, _)),
     export_c_func!(sqlite3_exec(_, _)),
+    export_c_func!(sqlite3_column_int(_, _)),
     export_c_func!(sranddev(_, _)),
     export_c_func!(srandomdev(_, _)),
     export_c_func!(strpbrk(_, _)),
