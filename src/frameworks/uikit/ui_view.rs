@@ -451,6 +451,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setIsUncontrolled:{}", uncontrolled);
 }
 
+- (())setTag:(bool)tag {
+    log!("TODO: setTag:{}", tag);
+}
+
 - (bool)clearsContextBeforeDrawing {
     env.objc.borrow::<UIViewHostObject>(this).clears_context_before_drawing
 }
