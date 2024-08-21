@@ -1240,7 +1240,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWithCharacters:(NSInteger)characters length:(bool)_length {
+- (())initWithCharacters:(NSInteger)characters length:(bool)_length {
     // TODO
 }
 
