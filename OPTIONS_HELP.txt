@@ -144,6 +144,13 @@ Debugging options:
         The host and port should be separated by a colon. The host can be a
         host name or an IP address. IPv6 addresses should be enclosed in square
         brackets, e.g. --gdb=[::1]:9001 for IPv6 loopback device port 9001.
+    --dump-classes
+        Dump all known classes on app startup.
+    --dump-lazy-symbols
+        Dumps all lazy-linked symbols (all functions that aren't used as 
+        function pointers) on app startup.
+    --dump-selectors
+        Dumps all selectors on app startup.
 
 Other options:
     --preferred-languages=...
