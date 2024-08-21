@@ -8,7 +8,7 @@
 use super::{NSTimeInterval, NSUInteger};
 use crate::frameworks::foundation::ns_string::to_rust_string;
 use crate::msg;
-use crate::objc::{id, msg, nil, objc_classes, ClassExports};
+use crate::objc::{id, nil, objc_classes, ClassExports};
 
 type NSURLRequestCachePolicy = NSUInteger;
 
