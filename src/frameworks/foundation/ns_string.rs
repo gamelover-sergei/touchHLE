@@ -1238,7 +1238,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     *env.objc.borrow_mut(this) = host_object;
 
     this
-                       }
+}
+
+- (id)initWithCharacters:(NSInteger)characters length:(bool)_length {
+    // TODO
+}
 
 - (id)propertyListFromStringsFileFormat {
     nil
