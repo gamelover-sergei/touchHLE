@@ -34,6 +34,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setMinimumValueImage:{}", image);
 }
 
+- (())setMaximumValueImage:(bool)image {
+    log!("TODO: setMaximumValueImage:{}", image);
+}
+
 - (())setThumbImage:(NSInteger)image forState:(bool)_state {
     // TODO
 }
