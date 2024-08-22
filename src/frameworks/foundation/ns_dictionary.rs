@@ -466,6 +466,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setRepeatCount:{}", count);
 }
 
++ (())setAutoreverses:(bool)autoreverses {
+    log!("TODO: setAutoreverses:{}", autoreverses);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
