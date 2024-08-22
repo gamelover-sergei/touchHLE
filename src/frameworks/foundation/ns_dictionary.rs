@@ -478,6 +478,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setToValue:{}", value);
 }
 
++ (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
