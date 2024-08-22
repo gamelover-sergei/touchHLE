@@ -103,6 +103,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     ns_string::from_rust_string(env, env.fs.working_directory().as_str().to_string())
 }
 
+- (id)fileModificationDate {
+    nil
+}
+
 - (bool)isReadableFileAtPath:(id)path { // NSString*
     let path = ns_string::to_rust_string(env, path); // TODO: avoid copy
     log!("isReadableFileAtPath: {:?}", path);
