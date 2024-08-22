@@ -525,6 +525,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (())countByEnumeratingWithState:(NSInteger)state objects:(bool)_objects count:(bool)_count {
+    // TODO
+}
+
 - (())synchronize {
 }
 
