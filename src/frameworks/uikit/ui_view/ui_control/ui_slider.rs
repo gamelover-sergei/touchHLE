@@ -38,6 +38,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setMaximumTrackImage:(NSInteger)image forState:(bool)_state {
+    // TODO
+}
+
 - (id)value {
     nil
 }
