@@ -29,8 +29,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setValue:{}", value);
 }
 
-- (())setThumbImage:(bool)forState {
-    log!("TODO: setThumbImage:{}", forState);
+- (())setThumbImage:(NSInteger)image forState:(bool)_state {
+    // TODO
 }
 
 - (id)value {
