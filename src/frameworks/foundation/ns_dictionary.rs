@@ -462,6 +462,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDuration:{}", duration);
 }
 
++ (())setRepeatCount:(bool)count {
+    log!("TODO: setRepeatCount:{}", count);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
