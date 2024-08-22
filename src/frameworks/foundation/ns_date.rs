@@ -7,7 +7,7 @@
 
 use super::{ns_string, NSComparisonResult, NSTimeInterval};
 use crate::frameworks::core_foundation::time::apple_epoch;
-use crate::frameworks::foundation::NSUInteger;
+use crate::frameworks::foundation::{NSInteger, NSUInteger};
 use crate::objc::{autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr};
 
 use std::ops::Add;
@@ -148,6 +148,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let date = msg_class![env; NSDate date];
     env.objc.borrow_mut::<NSDateHostObject>(date).time_interval = interval;
     date
+}
+
+- (())descriptionWithCalendarFormat:(NSInteger)format timeZone:(bool)_zone locale:(bool)_locale {
+    // TODO
 }
 
 @end
