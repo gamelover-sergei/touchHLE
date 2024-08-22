@@ -458,6 +458,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (())setDuration:(bool)duration {
+    log!("TODO: setDuration:{}", duration);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
