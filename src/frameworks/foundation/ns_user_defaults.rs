@@ -11,7 +11,7 @@
 use super::ns_dictionary::dict_from_keys_and_objects;
 use super::ns_string;
 use crate::frameworks::foundation::ns_dictionary::DictionaryHostObject;
-use crate::objc::{id, msg, msg_class, objc_classes, ClassExports};
+use crate::objc::{id, msg, msg_class, nil, objc_classes, ClassExports};
 use crate::Environment;
 
 #[derive(Default)]
@@ -42,6 +42,10 @@ pub const CLASSES: ClassExports = objc_classes! {
         State::get(env).standard_defaults = Some(new);
         new
     }
+}
+
++ (id)resetStandardUserDefaults {
+    nil
 }
 
 - (bool)boolForKey:(id)defaultName {
