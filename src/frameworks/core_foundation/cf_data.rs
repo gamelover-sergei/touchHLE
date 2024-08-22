@@ -34,7 +34,7 @@ pub fn CFDataCreate(
 
 fn CFDataGetLength(env: &mut Environment, data: CFDataRef) -> CFIndex {
     let len: NSUInteger = msg![env; data length];
-    len.try_into().unwrap()
+    len.try_into()
 }
 
 fn CFDataGetBytePtr(env: &mut Environment, data: CFDataRef) -> ConstPtr<u8> {
