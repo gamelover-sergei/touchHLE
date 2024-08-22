@@ -154,6 +154,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())UTF8String:(NSInteger)string {
+    nil
+}
+
 @end
 
 @implementation ReachabilityQuery: NSDate
