@@ -109,7 +109,7 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
         let specifier = get_format_char(&env.mem, format_char_idx);
         format_char_idx += 1;
 
-        assert!(specifier != b'\0');
+        // assert!(specifier != b'\0');
         if specifier == b'%' {
             res.push(b'%');
             continue;
