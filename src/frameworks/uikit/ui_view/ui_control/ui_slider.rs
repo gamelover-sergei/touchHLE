@@ -30,6 +30,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setValue:{}", value);
 }
 
+- (())setMinimumValueImage:(bool)image {
+    log!("TODO: setMinimumValueImage:{}", image);
+}
+
 - (())setThumbImage:(NSInteger)image forState:(bool)_state {
     // TODO
 }
