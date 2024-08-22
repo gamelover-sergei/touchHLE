@@ -453,6 +453,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CABasicAnimation: NSMutableDictionary
+@end
+
 @implementation CAMediaTimingFunction: NSMutableDictionary
 + (id)functionWithName:(NSUInteger)_name {
     msg![env; this init]
