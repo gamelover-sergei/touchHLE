@@ -470,6 +470,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAutoreverses:{}", autoreverses);
 }
 
++ (())setFromValue:(bool)value {
+    log!("TODO: setFromValue:{}", value);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
