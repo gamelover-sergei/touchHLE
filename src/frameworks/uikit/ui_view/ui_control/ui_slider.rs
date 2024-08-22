@@ -5,6 +5,7 @@
  */
 //! `UISlider`.
 
+use crate::frameworks::uikit::ui_view::NSInteger;
 use crate::objc::{id, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
