@@ -146,6 +146,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this initWithContentsOfFile:path]
 }
 
+- (())initWithBytesNoCopy:(NSInteger)copy length:(bool)_length freeWhenDone:(bool)_done {
+    // TODO
+}
+
 - (bool)writeToFile:(id)path // NSString*
             options:(NSUInteger)_options_mask
               error:(MutPtr<id>)error { // NSError**
