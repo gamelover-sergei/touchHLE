@@ -423,6 +423,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(CALayer*){:?} setMinificationFilter: {}]", this, ns_string::to_rust_string(env, filter)); // TODO
 }
 
+- (())addAnimation:(NSInteger)animation forKey:(bool)_key {
+    // TODO
+}
+
 - (bool)containsPoint:(CGPoint)point {
     let bounds: CGRect = msg![env; this bounds];
     let x_range = bounds.origin.x..(bounds.origin.x + bounds.size.width);
