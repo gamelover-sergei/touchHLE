@@ -437,6 +437,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)subarrayWithRange:(NSInteger)_range {
+    msg![env; this init]
+}
+
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
