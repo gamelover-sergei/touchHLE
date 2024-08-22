@@ -1244,6 +1244,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())initWithData:(NSInteger)data encoding:(bool)_encoding {
+    // TODO
+}
+
 - (id)propertyListFromStringsFileFormat {
     nil
 }
