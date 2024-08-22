@@ -34,6 +34,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setMinimumTrackImage:(NSInteger)image forState:(bool)_state {
+    // TODO
+}
+
 - (id)value {
     nil
 }
