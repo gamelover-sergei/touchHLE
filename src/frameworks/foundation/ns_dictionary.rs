@@ -474,6 +474,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setFromValue:{}", value);
 }
 
++ (())setToValue:(bool)value {
+    log!("TODO: setToValue:{}", value);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
