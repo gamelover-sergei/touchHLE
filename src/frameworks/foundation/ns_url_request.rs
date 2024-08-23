@@ -49,7 +49,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
     let url_str: id = msg![env; url path];
     log!(
-        "TODO: [NSURLRequest requestWithURL:{} cachePolicy:{} timeoutInterval:{}]",
+        "TODO: [NSMutableURLRequest requestWithURL:{} cachePolicy:{} timeoutInterval:{}]",
         to_rust_string(env, url_str),
         cache_policy,
         timeout_interval,
