@@ -154,7 +154,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
-- (())UTF8String:(NSInteger)string {
+- (())UTF8String {
 
 }
 
