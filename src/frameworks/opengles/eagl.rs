@@ -343,6 +343,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation EAGLView: NSObject
+- (id)nextResponder:(NSUInteger)_responder {
+    msg![env; this init]
+}
+
 - (id)sendSubviewToBack {
     nil
 }
