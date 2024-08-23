@@ -588,6 +588,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     init_with_objects_and_keys(env, this, first_object, dots.start())
 }
 
+- (())initWithLatitude:(NSInteger)latitude longitude:(bool)_longitude {
+    // TODO
+}
+
 - (id)init {
     *env.objc.borrow_mut(this) = <DictionaryHostObject as Default>::default();
     this
