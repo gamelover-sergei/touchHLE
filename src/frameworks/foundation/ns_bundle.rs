@@ -83,8 +83,8 @@ pub const CLASSES: ClassExports = objc_classes! {
    }
 }
 
-+ (id)bundleForClass {
-     nil
++ (id)bundleForClass:(NSUInteger)_class {
+    msg![env; this init]
 }
 
 + (id)preferredLocalizations:(id)localizations {
