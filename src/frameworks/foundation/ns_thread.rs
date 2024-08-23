@@ -84,6 +84,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     })
 }
 
++ (id)mainThread {
+    nil
+}
+
 + (())sleepForTimeInterval:(NSTimeInterval)ti {
     log_dbg!("[NSThread sleepForTimeInterval:{:?}]", ti);
     env.sleep(Duration::from_secs_f64(ti), /* tail_call: */ true);
