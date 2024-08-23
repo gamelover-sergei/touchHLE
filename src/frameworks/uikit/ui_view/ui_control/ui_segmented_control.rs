@@ -26,6 +26,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setSegmentedControlStyle:{}", style);
 }
 
+- (())setTintColor:(bool)color {
+    log!("TODO: setTintColor:{}", color);
+}
+
 // TODO: all of it
 
 @end
