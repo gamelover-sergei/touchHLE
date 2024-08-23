@@ -191,6 +191,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setSectionIndexMinimumDisplayRowCount:(bool)count {
     log!("TODO: setSectionIndexMinimumDisplayRowCount:{}", count);
 }
+
+- (())setEditing:(bool)editing {
+    log!("TODO: setEditing:{}", editing);
+}
+
 @end
 
 @implementation UITableViewController: UIScrollView
