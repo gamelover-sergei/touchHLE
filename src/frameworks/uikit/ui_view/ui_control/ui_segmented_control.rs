@@ -19,7 +19,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (())setSelectedSegmentIndex:(bool)index {
-    log!("TODO: setMaximumValue:{}", index);
+    log!("TODO: setSelectedSegmentIndex:{}", index);
+}
+
+- (())setSegmentedControlStyle:(bool)style {
+    log!("TODO: setSegmentedControlStyle:{}", style);
 }
 
 // TODO: all of it
