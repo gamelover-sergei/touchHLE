@@ -73,6 +73,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     uikit::cl_heading::CLASSES,
     uikit::denizen_view_controller::CLASSES,
     uikit::i_simulate::CLASSES,
+    uikit::main_view_controller::CLASSES,
     uikit::mp_volume_view::CLASSES,
     uikit::tap_flies_view_controller::CLASSES,
     uikit::ui_accelerometer::CLASSES,
