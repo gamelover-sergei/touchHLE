@@ -5,13 +5,17 @@
  */
 //! `UISegmentedControl`.
 
-use crate::objc::{objc_classes, ClassExports};
+use crate::objc::{id, msg, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
 (env, this, _cmd);
 
 @implementation UISegmentedControl: UIControl
+
+- (id)initWithItems:(NSUInteger)_items {
+    msg![env; this init]
+}
 
 // TODO: all of it
 
