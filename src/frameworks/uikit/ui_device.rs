@@ -8,7 +8,7 @@
 use crate::dyld::ConstantExports;
 use crate::dyld::HostConstant;
 use crate::frameworks::foundation::ns_string;
-use crate::frameworks::foundation::{NSInteger, NSUInteger, NSTimeInterval};
+use crate::frameworks::foundation::{NSInteger, NSUInteger};
 use crate::mem::MutPtr;
 use crate::objc::{id, nil, objc_classes, ClassExports, TrivialHostObject};
 use crate::window::DeviceOrientation;
@@ -111,17 +111,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
-@end
-
-@implementation NSMutableURLRequest: NSObject
-+ (id)requestWithURL:(id)url {
-    nil
-}
-+ (id)requestWithURL:(id)url
-         cachePolicy:(NSUInteger)policy
-     timeoutInterval:(NSTimeInterval)timeoutInterval {
-    nil
-}
 @end
 
 @implementation NSURLConnection: NSObject
