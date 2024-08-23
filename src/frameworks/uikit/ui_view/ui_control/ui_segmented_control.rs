@@ -18,6 +18,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (())setSelectedSegmentIndex:(bool)index {
+    log!("TODO: setMaximumValue:{}", index);
+}
+
 // TODO: all of it
 
 @end
