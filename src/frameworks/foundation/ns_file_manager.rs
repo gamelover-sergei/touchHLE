@@ -107,6 +107,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)fileSize {
+    nil
+}
+
 - (bool)isReadableFileAtPath:(id)path { // NSString*
     let path = ns_string::to_rust_string(env, path); // TODO: avoid copy
     log!("isReadableFileAtPath: {:?}", path);
