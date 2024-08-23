@@ -308,7 +308,7 @@ impl Allocator {
         };
 
         let Some(alloc) = self.unused_chunks.allocate(size) else {
-            log!(
+            panic!(
                 "Could not find large enough chunk to allocate {:#x} bytes",
                 size
             );
