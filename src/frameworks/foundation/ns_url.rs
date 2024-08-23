@@ -187,14 +187,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
-@implementation NSURLRequest: NSObject
-+ (id)requestWithURL:(id)URL // NSURL *
-                   cachePolicy:(NSUInteger)cachePolicy
-               timeoutInterval:(NSTimeInterval)timeoutInterval {
-    nil
-}
-@end
-
 @implementation NSURLConnection: NSObject
 + (id)sendSynchronousRequest:(id)request
            returningResponse:(MutPtr<id>)response
