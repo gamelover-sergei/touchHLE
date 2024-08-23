@@ -82,6 +82,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDelegate:{}", delegate);
 }
 
+- (())setIndicatorStyle:(bool)style {
+    log!("TODO: setIndicatorStyle:{}", style);
+}
+
 - (CGPoint)contentOffset {
     env.objc.borrow::<UIScrollViewHostObject>(this).content_offset
 }
