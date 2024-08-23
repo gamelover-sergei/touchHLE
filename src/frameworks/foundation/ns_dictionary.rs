@@ -495,6 +495,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CLLocation: NSMutableDictionary
+@end
+
 @implementation CLLocationManager: NSMutableDictionary
 @end
 
