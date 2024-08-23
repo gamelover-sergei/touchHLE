@@ -581,6 +581,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setBarStyle:{}", bar);
 }
 
+- (())setItems:(NSInteger)items animated:(bool)_animated {
+    // TODO
+}
+
 - (())setItems:(id)items {
 }
 
