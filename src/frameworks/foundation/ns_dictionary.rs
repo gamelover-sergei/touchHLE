@@ -185,6 +185,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
++ (())dictionaryWithObjects:(NSInteger)objects forKeys:(bool)_keys {
+    // TODO
+}
+
 - (id)init {
     todo!("TODO: Implement [dictionary init] for custom subclasses")
 }
