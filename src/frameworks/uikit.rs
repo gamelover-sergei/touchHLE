@@ -15,6 +15,7 @@ use std::time::Instant;
 pub mod cl_heading;
 pub mod denizen_view_controller;
 pub mod i_simulate;
+pub mod main_view_controller;
 pub mod mp_volume_view;
 pub mod tap_flies_view_controller;
 pub mod ui_accelerometer;
