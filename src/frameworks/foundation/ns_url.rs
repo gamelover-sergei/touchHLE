@@ -151,19 +151,16 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)cStringUsingEncoding {
+    nil
+}
+
 - (id)StringUsingEncoding {
     nil
 }
 
 - (id)UTF8String {
     nil
-}
-
-- (())cStringUsingEncoding {
-    // FIXME: don't assume URL is already absolute
-    let &NSURLHostObject::OtherURL { .. } = env.objc.borrow(this) else {
-        unimplemented!(); // TODO
-    };
 }
 
 - (())host {
