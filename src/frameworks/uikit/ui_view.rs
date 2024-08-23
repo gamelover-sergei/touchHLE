@@ -583,6 +583,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setItems:(id)items {
 }
+
+- (id)sizeToFit {
+    nil
+}
+
 @end
 
 @implementation UIPickerView: UIView
