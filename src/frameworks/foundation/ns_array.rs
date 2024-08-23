@@ -305,8 +305,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.dealloc_object(this, &mut env.mem)
 }
 
-- (id)arrayByAddingObject {
-    nil
+- (id)arrayByAddingObject:(NSUInteger)_object {
+    msg![env; this init]
 }
 
 // NSFastEnumeration implementation
