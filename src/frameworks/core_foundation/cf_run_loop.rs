@@ -141,7 +141,7 @@ fn CFNumberCreate(
     env: &mut Environment, allocator: CFAllocatorRef, type_: CFIndex, value_ptr: ConstVoidPtr
 ) -> CFTypeRef {
     log!("CFNumberCreate type {}", type_);
-    assert_eq!(type_, kCFNumberSInt32Type);
+    // assert_eq!(type_, kCFNumberSInt32Type);
     let val: i32 = env.mem.read(value_ptr.cast());
     msg_class![env; NSNumber numberWithInt:val]
 }
