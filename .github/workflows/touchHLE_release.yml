@@ -10,7 +10,8 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-     ios-build
+  build-ios:
+  
     runs-on: ubuntu-latest
 
     steps:
