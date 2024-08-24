@@ -1,3 +1,4 @@
+use crate::frameworks::foundation::NSUInteger;
 use crate::objc::{id, msg, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
