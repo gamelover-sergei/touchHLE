@@ -463,6 +463,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTag:{}", tag);
 }
 
+- (())startAnimating {
+    log!("TODO: [(UIView*){:?} startAnimating", this);
+}
+
+- (())stopAnimating {
+    log!("TODO: [(UIView*){:?} stopAnimating", this);
+}
+
 - (bool)clearsContextBeforeDrawing {
     env.objc.borrow::<UIViewHostObject>(this).clears_context_before_drawing
 }
