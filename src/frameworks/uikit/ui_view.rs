@@ -443,6 +443,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [UIView {:?} setContentMode:{:?}] => ()", this, content_mode);
 }
 
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 - (())setImgRef:(bool)img {
     log!("TODO: setImgRef:{}", img);
 }
