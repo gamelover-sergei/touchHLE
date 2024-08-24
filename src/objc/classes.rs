@@ -447,6 +447,7 @@ fn substitute_classes(
     if !(name.starts_with("AdMob")
         || name.starts_with("AltAds")
         || name.starts_with("Mobclix")
+        || name.starts_with("FB")) 
         || name == "UserRegViewController"
         || name == "GMGChocolateBarViewController")
     {
