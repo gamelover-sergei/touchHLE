@@ -5,8 +5,8 @@
  */
 //! `UIAlertView`.
 
-use crate::frameworks::foundation::ns_string;
-use crate::objc::{id, msg_super, nil, objc_classes, ClassExports};
+use crate::frameworks::foundation::{ns_string, NSUInteger};
+use crate::objc::{id, msg, msg_super, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -28,8 +28,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_super![env; this init]
 }
 
-- (id)addButtonWithTitle {
-    nil
+- (id)addButtonWithTitle:(NSUInteger)_title {
+    msg![env; this init]
 }
 
 - (())show {
