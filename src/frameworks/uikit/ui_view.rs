@@ -443,6 +443,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [UIView {:?} setContentMode:{:?}] => ()", this, content_mode);
 }
 
+- (())setAnimationInterval:(bool)interval {
+    log!("TODO: setAnimationInterval:{}", interval);
+}
+
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
 }
