@@ -42,7 +42,7 @@ int sscanf(const char *, const char *, ...);
 int printf(const char *, ...);
 int vsnprintf(char *, size_t, const char *, va_list);
 int swprintf(wchar_t *, size_t, const wchar_t *, ...);
-int fwrite(const void *, size_t, size_t, FILE *);
+size_t fwrite(const void *, size_t, size_t, FILE *);
 
 // <stdlib.h>
 #define EXIT_SUCCESS 0
@@ -54,6 +54,7 @@ void qsort(void *, size_t, size_t, int (*)(const void *, const void *));
 void *realloc(void *, size_t);
 double atof(const char *);
 float strtof(const char *, char **);
+long strtol(const char *, char **, int);
 unsigned long strtoul(const char *, char **, int);
 char *realpath(const char *, char *);
 size_t mbstowcs(wchar_t *, const char *, size_t);
@@ -261,6 +262,9 @@ int test_vsnprintf() {
   str = str_format("%x", 2042);
   res += !!strcmp(str, "7fa");
   free(str);
+  str = str_format("0x%08x", 184638698);
+  res += !!strcmp(str, "0x0b015cea");
+  free(str);
   // Test %d
   str = str_format("%d|%8d|%08d|%.d|%8.d|%.3d|%8.3d|%08.3d|%*d|%0*d", 5, 5, 5,
                    5, 5, 5, 5, 5, 8, 5, 8, 5);
@@ -345,6 +349,11 @@ int test_vsnprintf() {
   res += !!strcmp(str, "-10.1235|-10.1235|-10.1235|-1e+01|  -1e+01|-10.1|   "
                        "-10.1|-00010.1|-10.1235|-10.1235");
   free(str);
+  // Test length modifiers
+  str = str_format("%d %ld %lld %u %lu %llu", 10, 100, 4294967296, 10, 100,
+                   4294967296);
+  res += !!strcmp(str, "10 100 4294967296 10 100 4294967296");
+  free(str);
 
   return res;
 }
@@ -367,7 +376,7 @@ int test_sscanf() {
   if (!(matched == 2 && strcmp(str, "abc") == 0 && b == 8))
     return -4;
   matched = sscanf("9,10", "%hi,%i", &c, &a);
-  if (!(c == 9 && a == 10))
+  if (!(matched == 2 && c == 9 && a == 10))
     return -5;
   matched = sscanf("DUMMY", "%d", &a);
   if (matched != 0)
@@ -393,6 +402,12 @@ int test_sscanf() {
   matched = sscanf("MAX\t\t\t48.0\r\n", "%s %f", str, &f);
   if (!(matched == 2 && strcmp(str, "MAX") == 0 && f == 48.0))
     return -14;
+  matched = sscanf("011", "%i", &a);
+  if (!(matched == 1 && a == 9))
+    return -15;
+  matched = sscanf("09", "%i", &a);
+  if (!(matched == 1 && a == 0))
+    return -16;
   return 0;
 }
 
@@ -670,6 +685,57 @@ int test_strtoul() {
   char *endptr;
   if (strtoul(text, &endptr, 16) != 3435973836 || endptr != text + 10) {
     return -1;
+  }
+  return 0;
+}
+
+#ifdef DEFINE_ME_WHEN_BUILDING_ON_MACOS
+#define MAX_LONG 9223372036854775807
+#else
+#define MAX_LONG 2147483647
+#endif
+
+int test_strtol() {
+  const char *p = "10 200000000000000000000000000000  30   -40    junk";
+  long res[] = {10, MAX_LONG, 30, -40, 0};
+  int count = sizeof(res) / sizeof(long);
+  for (int i = 0; i < count; i++) {
+    char *endp = NULL;
+    long l = strtol(p, &endp, 10);
+    if (p == endp)
+      break;
+    p = endp;
+    if (res[i] != l) {
+      return -(i + 1);
+    }
+  }
+  p = "-";
+  long l = strtol(p, NULL, 0);
+  if (l != 0) {
+    return -count;
+  }
+  p = "+";
+  l = strtol(p, NULL, 0);
+  if (l != 0) {
+    return -(count + 1);
+  }
+  p = "+-+";
+  l = strtol(p, NULL, 0);
+  if (l != 0) {
+    return -(count + 2);
+  }
+  p = "0x123 +0x123 -0x123";
+  long res2[] = {291, 291, -291};
+  int count2 = sizeof(res2) / sizeof(long);
+  for (int i = 0; i < count2; i++) {
+    char *endp = NULL;
+    l = strtol(p, &endp, 16);
+    if (p == endp)
+      break;
+    p = endp;
+    if (res2[i] != l) {
+      return -(count + 2 + i + 1);
+    }
   }
   return 0;
 }
@@ -1139,7 +1205,7 @@ int test_CFMutableString() {
 
 int test_fwrite() {
   FILE *some_file = fopen("TestApp", "r");
-  int res = fwrite(NULL, 1, 1, some_file);
+  size_t res = fwrite(NULL, 1, 1, some_file);
   fclose(some_file);
   if (res != 0) {
     return -1;
@@ -1200,6 +1266,7 @@ struct {
     FUNC_DEF(test_strlcpy),
     FUNC_DEF(test_setlocale),
     FUNC_DEF(test_strtoul),
+    FUNC_DEF(test_strtol),
     FUNC_DEF(test_dirent),
     FUNC_DEF(test_strchr),
     FUNC_DEF(test_swprintf),

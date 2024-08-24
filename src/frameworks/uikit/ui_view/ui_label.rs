@@ -175,6 +175,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setBaselineAdjustment:(bool)adjustment {
     log!("TODO: setBaselineAdjustment:{}", adjustment);
 }
+- (())setMinimumFontSize:(bool)size {
+    log!("TODO: setMinimumFontSize:{}", size);
+}
 - (())setShadowColor:(bool)shadow {
     log!("TODO: setShadowColor:{}", shadow);
 }

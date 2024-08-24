@@ -90,6 +90,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAnimationRepeatCount:{}", count);
 }
 
+- (())setTag:(bool)tag {
+    log!("TODO: setTag:{}", tag);
+}
+
 - (())startAnimating {
     log!("TODO: [(UIImageView*){:?} startAnimating", this);
 }

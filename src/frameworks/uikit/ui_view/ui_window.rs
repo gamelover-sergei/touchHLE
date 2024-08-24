@@ -7,6 +7,7 @@
 
 use crate::frameworks::core_graphics::CGRect;
 use crate::frameworks::uikit::ui_view::CGFloat;
+use crate::msg_class;
 use crate::objc::{id, msg, msg_super, objc_classes, ClassExports};
 
 #[derive(Default)]
@@ -68,6 +69,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_super![env; this dealloc]
 }
 
+- (())setRootViewController:(bool)controller {
+    log!("TODO: setRootViewController:{}", controller);
+}
+
 - (())setTag:(bool)tag {
     log!("TODO: setTag:{}", tag);
 }
@@ -107,6 +112,13 @@ pub const CLASSES: ClassExports = objc_classes! {
     // send any non-touch events to windows, so there's no meaning in it yet.
 
     msg![env; this setHidden:false]
+}
+
+// UIResponder implementation
+// From the Apple UIView docs regarding [UIResponder nextResponder]:
+// "UIWindow returns the application object."
+- (id)nextResponder {
+    msg_class![env; UIApplication sharedApplication]
 }
 
 -(())setWindowLevel:(CGFloat)_level {

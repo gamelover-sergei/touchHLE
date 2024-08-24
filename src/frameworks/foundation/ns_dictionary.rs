@@ -185,6 +185,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
++ (())dictionaryWithObjects:(NSInteger)objects forKeys:(bool)_keys {
+    // TODO
+}
+
 - (id)init {
     todo!("TODO: Implement [dictionary init] for custom subclasses")
 }
@@ -453,7 +457,51 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CABasicAnimation: NSMutableDictionary
++ (id)animationWithKeyPath:(NSUInteger)_path {
+    msg![env; this init]
+}
+
++ (())setDuration:(bool)duration {
+    log!("TODO: setDuration:{}", duration);
+}
+
++ (())setRepeatCount:(bool)count {
+    log!("TODO: setRepeatCount:{}", count);
+}
+
++ (())setAutoreverses:(bool)autoreverses {
+    log!("TODO: setAutoreverses:{}", autoreverses);
+}
+
++ (())setFromValue:(bool)value {
+    log!("TODO: setFromValue:{}", value);
+}
+
++ (())setToValue:(bool)value {
+    log!("TODO: setToValue:{}", value);
+}
+
++ (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
+@end
+
+@implementation CAMediaTimingFunction: NSMutableDictionary
++ (id)functionWithName:(NSUInteger)_name {
+    msg![env; this init]
+}
+
+@end
+
+@implementation CLLocation: NSMutableDictionary
+@end
+
 @implementation CLLocationManager: NSMutableDictionary
+@end
+
+@implementation CMMotionManager: NSMutableDictionary
 @end
 
 @implementation NSCondition: NSMutableDictionary
@@ -492,12 +540,20 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)isGyroAvailable {
+    nil
+}
+
 - (id)locationServicesEnabled {
     nil
 }
 
 - (id)objectEnumerator {
     nil
+}
+
+- (())countByEnumeratingWithState:(NSInteger)state objects:(bool)_objects count:(bool)_count {
+    // TODO
 }
 
 - (())synchronize {
@@ -518,6 +574,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; val boolValue]
 }
 
+- (bool)doubleForKey:(id)defaultName {
+    let val: id = msg![env; this objectForKey:defaultName];
+    msg![env; val boolValue]
+}
+
 - (id)initWithCapacity:(NSUInteger)cap {
     env.objc.borrow_mut::<DictionaryHostObject>(this).map.reserve(cap as usize);
     this
@@ -525,6 +586,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)initWithObjectsAndKeys:(id)first_object, ...dots {
     init_with_objects_and_keys(env, this, first_object, dots.start())
+}
+
+- (())initWithLatitude:(NSInteger)latitude longitude:(bool)_longitude {
+    // TODO
 }
 
 - (id)init {
@@ -574,6 +639,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setDictionary:(bool)dictionary {
     log!("TODO: setDictionary:{}", dictionary);
+}
+
+- (())setDistanceFilter:(bool)filter {
+    log!("TODO: setDistanceFilter:{}", filter);
 }
 
 - (())setValue:(id)value

@@ -5,7 +5,7 @@
  */
 //! `NSNull`.
 
-use crate::objc::{id, objc_classes, ClassExports, TrivialHostObject};
+use crate::objc::{id, objc_classes, retain, ClassExports, NSZonePtr, TrivialHostObject};
 
 #[derive(Default)]
 pub struct State {
@@ -32,6 +32,11 @@ pub const CLASSES: ClassExports = objc_classes! {
         env.framework_state.foundation.ns_null.null = Some(new);
         new
    }
+}
+
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
 }
 
 - (id)retain { this }

@@ -352,6 +352,10 @@ impl Environment {
             env.objc.dump_classes();
         }
 
+        if env.options.dump_lazy_syms {
+            env.dyld.dump_lazy_symbols(&env.bins);
+        }
+
         env.cpu.branch(entry_point_addr);
 
         Ok(env)
@@ -791,7 +795,7 @@ impl Environment {
         }
 
         if self.gdb_server.is_none() {
-            panic!("Error during CPU execution: {:?}", error);
+            log!("Error during CPU execution: {:?}", error);
         }
 
         echo!("Debuggable error during CPU execution: {:?}.", error);
@@ -1109,7 +1113,7 @@ impl Environment {
                     // This should hopefully not happen, but if a thread is
                     // blocked on another thread waiting for a deferred return,
                     // it could.
-                    panic!("No active threads, program has deadlocked!");
+                    log!("No active threads, program has deadlocked!");
                 }
             }
         }

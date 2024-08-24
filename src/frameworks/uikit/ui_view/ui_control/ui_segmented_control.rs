@@ -5,13 +5,30 @@
  */
 //! `UISegmentedControl`.
 
-use crate::objc::{objc_classes, ClassExports};
+use crate::frameworks::uikit::ui_view::NSUInteger;
+use crate::objc::{id, msg, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
 (env, this, _cmd);
 
 @implementation UISegmentedControl: UIControl
+
+- (id)initWithItems:(NSUInteger)_items {
+    msg![env; this init]
+}
+
+- (())setSelectedSegmentIndex:(bool)index {
+    log!("TODO: setSelectedSegmentIndex:{}", index);
+}
+
+- (())setSegmentedControlStyle:(bool)style {
+    log!("TODO: setSegmentedControlStyle:{}", style);
+}
+
+- (())setTintColor:(bool)color {
+    log!("TODO: setTintColor:{}", color);
+}
 
 // TODO: all of it
 

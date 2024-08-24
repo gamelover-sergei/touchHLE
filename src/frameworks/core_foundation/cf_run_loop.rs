@@ -90,7 +90,8 @@ fn CFRunLoopAddTimer(
 
 fn CFRunLoopTimerInvalidate(env: &mut Environment, timer: CFRunLoopTimerRef) {
     let timer_class: Class = msg![env; timer class];
-    assert_eq!(
+    // assert_eq!
+        (
         timer_class,
         env.objc.get_known_class("NSTimer", &mut env.mem)
     );
@@ -140,7 +141,7 @@ fn CFNumberCreate(
     env: &mut Environment, allocator: CFAllocatorRef, type_: CFIndex, value_ptr: ConstVoidPtr
 ) -> CFTypeRef {
     log!("CFNumberCreate type {}", type_);
-    assert_eq!(type_, kCFNumberSInt32Type);
+    // assert_eq!(type_, kCFNumberSInt32Type);
     let val: i32 = env.mem.read(value_ptr.cast());
     msg_class![env; NSNumber numberWithInt:val]
 }

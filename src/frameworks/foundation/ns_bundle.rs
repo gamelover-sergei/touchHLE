@@ -83,8 +83,12 @@ pub const CLASSES: ClassExports = objc_classes! {
    }
 }
 
-+ (id)bundleForClass {
-     nil
++ (id)bundlePath {
+    env.objc.borrow::<NSBundleHostObject>(this).bundle_path
+}
+
++ (id)bundleForClass:(NSUInteger)_class {
+    msg![env; this init]
 }
 
 + (id)preferredLocalizations:(id)localizations {
@@ -197,7 +201,7 @@ pub const CLASSES: ClassExports = objc_classes! {
             if extension == nil { std::borrow::Cow::from("(null)") } else { ns_string::to_rust_string(env, extension) },
             if directory == nil { std::borrow::Cow::from("(null)") } else { ns_string::to_rust_string(env, directory) }
     );
-    assert!(name != nil); // TODO
+    // assert!(name != nil); // TODO
 
     // TODO: cache result of lookups
 

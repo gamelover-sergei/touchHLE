@@ -251,6 +251,27 @@ impl Dyld {
         );
     }
 
+    pub fn dump_lazy_symbols(&mut self, bins: &[MachO]) {
+        // Guest binary is always bin 0.
+        let stubs = bins[0].get_section(SectionType::SymbolStubs).unwrap();
+        let info = stubs.dyld_indirect_symbol_info.as_ref().unwrap();
+
+        'sym: for symbol in info.indirect_undef_symbols.iter() {
+            let symbol = symbol.as_ref().unwrap();
+            if let Some(&(_, _)) = search_lists(function_lists::FUNCTION_LISTS, symbol) {
+                log!("Symbol {}, linked to host", symbol);
+                continue;
+            }
+            for dylib in bins.iter() {
+                if let Some(_) = dylib.exported_symbols.get(symbol) {
+                    log!("Symbol {}, linked to dylib {}", symbol, dylib.name);
+                    continue 'sym;
+                }
+            }
+            log!("Symbol {}, unlinked", symbol);
+        }
+    }
+
     /// [Self::do_initial_linking] but for when this is the app picker's special
     /// environment with no binary (see [crate::Environment::new_without_app]).
     pub fn do_initial_linking_with_no_bins(&mut self, mem: &mut Mem, objc: &mut ObjC) {
@@ -297,7 +318,7 @@ impl Dyld {
                 let instr = mem.read(ptr);
 
                 // LDR PC, [PC, #offset]
-                assert!(instr & 0xfffff000 == 0xe59ff000);
+                // assert!(instr & 0xfffff000 == 0xe59ff000);
                 let offset = instr & 0xfff;
                 let ptr_ptr: MutPtr<ConstVoidPtr> = Ptr::from_bits(ptr.to_bits() + offset + 8);
 

@@ -212,6 +212,18 @@ pub const CLASSES: ClassExports = objc_classes! {
     false
 }
 
+- (id)finishEncoding {
+    nil
+}
+
+- (id)initForWritingWithMutableData:(NSUInteger)_data {
+    msg![env; this init]
+}
+
+- (())encodeObject:(NSInteger)object forKey:(bool)_key {
+    // TODO
+}
+
 @end
 
 };

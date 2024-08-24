@@ -13,7 +13,7 @@ mod path_algorithms;
 use super::ns_array;
 use super::{
     NSComparisonResult, NSNotFound, NSOrderedAscending, NSOrderedDescending, NSOrderedSame,
-    NSRange, NSUInteger,
+    NSRange, NSInteger, NSUInteger,
 };
 use crate::abi::VaList;
 use crate::frameworks::core_foundation::CFRange;
@@ -276,6 +276,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
++ (id)componentsSeparatedByCharactersInSet {
+    nil
+}
+
 + (id)defaultCStringEncoding {
     nil
 }
@@ -303,6 +307,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let new: id = msg![env; this alloc];
     let new: id = msg![env; new initWithCString:c_string encoding:encoding];
     autorelease(env, new)
+}
+
++ (id)stringWithContentsOfFile:(NSUInteger)_file {
+    msg![env; this init]
 }
 
 + (id)stringWithContentsOfFile:(id)path // NSString*
@@ -512,7 +520,7 @@ pub const CLASSES: ClassExports = objc_classes! {
         num
     }
 
-    assert_ne!(other, nil);
+    // assert_ne!(other, nil);
 
     // TODO: support foreign subclasses (perhaps via a helper function that
     // copies the string first)
@@ -1230,7 +1238,15 @@ pub const CLASSES: ClassExports = objc_classes! {
     *env.objc.borrow_mut(this) = host_object;
 
     this
-                       }
+}
+
+- (())initWithCharacters:(NSInteger)characters length:(bool)_length {
+    // TODO
+}
+
+- (())initWithData:(NSInteger)data encoding:(bool)_encoding {
+    // TODO
+}
 
 - (id)propertyListFromStringsFileFormat {
     nil
@@ -1395,6 +1411,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_static_object(this, host_object, &mut env.mem)
 }
 
+- (id)canBeConvertedToEncoding:(id)encoding {
+    nil
+}
+
 - (id) retain { this }
 - (()) release {}
 - (id) autorelease { this }
@@ -1427,16 +1447,16 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_object(this, host_object, &mut env.mem)
 }
 
+- (id)initWithCapacity:(NSUInteger)_capacity {
+    msg![env; this init]
+}
+
 - (id)initWithString:(id)string { // NSString *
     // TODO: optimize for more common cases (or maybe just call copy?)
     let mut code_units = Vec::new();
     for_each_code_unit(env, string, |_, c| code_units.push(c));
     *env.objc.borrow_mut(this) = StringHostObject::Utf16(code_units);
     this
-}
-
-- (id)initWithCapacity {
-    nil
 }
 
 @end

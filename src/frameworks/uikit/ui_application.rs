@@ -125,6 +125,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setNetworkActivityIndicatorVisible:{}", visible);
 }
 
+- (())setApplicationIconBadgeNumber:(bool)number {
+    log!("TODO: setApplicationIconBadgeNumber:{}", number);
+}
 - (())setApplicationSupportsShakeToEdit:(bool)edit {
     log!("TODO: setApplicationSupportsShakeToEdit:{}", edit);
 }
@@ -198,6 +201,16 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)statusBarFrame {
+    nil
+}
+
+// UIResponder implementation
+// From the Apple UIView docs regarding [UIResponder nextResponder]:
+// "The shared UIApplication object normally returns nil, but it returns its
+//  app delegate if that object is a subclass of UIResponder and hasn’t
+//  already been called to handle the event."
+// TODO: The latter part
+- (id)nextResponder {
     nil
 }
 

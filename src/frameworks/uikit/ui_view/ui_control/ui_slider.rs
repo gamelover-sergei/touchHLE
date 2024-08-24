@@ -5,6 +5,7 @@
  */
 //! `UISlider`.
 
+use crate::frameworks::uikit::ui_view::NSInteger;
 use crate::objc::{id, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -29,8 +30,24 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setValue:{}", value);
 }
 
-- (())setThumbImage:(bool)forState {
-    log!("TODO: setThumbImage:{}", forState);
+- (())setMinimumValueImage:(bool)image {
+    log!("TODO: setMinimumValueImage:{}", image);
+}
+
+- (())setMaximumValueImage:(bool)image {
+    log!("TODO: setMaximumValueImage:{}", image);
+}
+
+- (())setThumbImage:(NSInteger)image forState:(bool)_state {
+    // TODO
+}
+
+- (())setMinimumTrackImage:(NSInteger)image forState:(bool)_state {
+    // TODO
+}
+
+- (())setMaximumTrackImage:(NSInteger)image forState:(bool)_state {
+    // TODO
 }
 
 - (id)value {

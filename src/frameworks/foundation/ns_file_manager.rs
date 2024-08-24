@@ -7,7 +7,7 @@
 
 use std::io::{Seek, SeekFrom};
 
-use super::{ns_array, ns_string, NSUInteger};
+use super::{ns_array, ns_string, NSInteger, NSUInteger};
 use crate::dyld::{export_c_func, FunctionExports};
 use crate::frameworks::foundation::ns_dictionary::dict_from_keys_and_objects;
 use crate::fs::{GuestPath, GuestPathBuf};
@@ -101,6 +101,14 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)currentDirectoryPath {
     ns_string::from_rust_string(env, env.fs.working_directory().as_str().to_string())
+}
+
+- (id)fileModificationDate {
+    nil
+}
+
+- (id)fileSize {
+    nil
 }
 
 - (bool)isReadableFileAtPath:(id)path { // NSString*
@@ -241,6 +249,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (())createDirectoryAtPath:(NSInteger)path attributes:(bool)_attributes {
+    // TODO
+}
+
+    
 - (id)enumeratorAtPath:(id)path { // NSString*
     let path = ns_string::to_rust_string(env, path); // TODO: avoid copy
     let Ok(paths) = env.fs.enumerate_recursive(GuestPath::new(&path)) else {
@@ -300,6 +313,10 @@ pub const CLASSES: ClassExports = objc_classes! {
         todo!();
     }
     true
+}
+
+- (())fileAttributesAtPath:(NSInteger)path traverseLink:(bool)_link {
+    // TODO
 }
 
 - (id)attributesOfItemAtPath:(id)path // NSString*

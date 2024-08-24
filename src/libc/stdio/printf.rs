@@ -11,7 +11,7 @@ use crate::frameworks::foundation::{ns_string, unichar};
 use crate::libc::clocale::{setlocale, LC_CTYPE};
 use crate::libc::posix_io::{STDERR_FILENO, STDOUT_FILENO};
 use crate::libc::stdio::{FILE, fwrite};
-use crate::libc::stdlib::{atof_inner, atoi_inner, strtoul};
+use crate::libc::stdlib::{atof_inner, strtol_inner, strtoul};
 use crate::libc::string::strlen;
 use crate::libc::wchar::wchar_t;
 use crate::mem::{ConstPtr, guest_size_of, GuestUSize, Mem, MutPtr, MutVoidPtr, Ptr};
@@ -96,7 +96,12 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             if get_format_char(&env.mem, format_char_idx) == b'l' {
                 format_char_idx += 1;
             }
-            Some(b'l')
+            if get_format_char(&env.mem, format_char_idx) == b'l' {
+                format_char_idx += 1;
+                Some("ll")
+            } else {
+                Some("l")
+            }
         } else {
             None
         };
@@ -104,7 +109,7 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
         let specifier = get_format_char(&env.mem, format_char_idx);
         format_char_idx += 1;
 
-        assert!(specifier != b'\0');
+        // assert!(specifier != b'\0');
         if specifier == b'%' {
             res.push(b'%');
             continue;
@@ -149,10 +154,17 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             }
             b'd' | b'i' | b'u' => {
                 // Note: on 32-bit system int and long are i32,
-                // so length_modifier is ignored
+                // so single length_modifier is ignored (but not double one!)
                 let int: i64 = if specifier == b'u' {
-                    let uint: u32 = args.next(env);
-                    uint.into()
+                    if length_modifier == Some("ll") {
+                        let uint: u64 = args.next(env);
+                        uint.try_into().unwrap()
+                    } else {
+                        let uint: u32 = args.next(env);
+                        uint.into()
+                    }
+                } else if length_modifier == Some("ll") {
+                    args.next(env)
                 } else {
                     let int: i32 = args.next(env);
                     int.into()
@@ -190,16 +202,36 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                 }
             }
             b'x' => {
+                assert!(precision.is_none());
                 // Note: on 32-bit system unsigned int and unsigned long
                 // are u32, so length_modifier is ignored
                 let uint: u32 = args.next(env);
-                res.extend_from_slice(format!("{:x}", uint).as_bytes());
+                if pad_width > 0 {
+                    let pad_width = pad_width as usize;
+                    if pad_char == '0' && precision.is_none() {
+                        write!(&mut res, "{:0>1$X}", uint, pad_width).unwrap();
+                    } else {
+                        write!(&mut res, "{:>1$X}", uint, pad_width).unwrap();
+                    }
+                } else {
+                    res.extend_from_slice(format!("{:X}", uint).as_bytes());
+                }
             }
             b'X' => {
+                assert!(precision.is_none());
                 // Note: on 32-bit system unsigned int and unsigned long
                 // are u32, so length_modifier is ignored
                 let uint: u32 = args.next(env);
-                res.extend_from_slice(format!("{:X}", uint).as_bytes());
+                if pad_width > 0 {
+                    let pad_width = pad_width as usize;
+                    if pad_char == '0' && precision.is_none() {
+                        write!(&mut res, "{:0>1$x}", uint, pad_width).unwrap();
+                    } else {
+                        write!(&mut res, "{:>1$x}", uint, pad_width).unwrap();
+                    }
+                } else {
+                    res.extend_from_slice(format!("{:x}", uint).as_bytes());
+                }
             }
             b'p' => {
                 assert!(length_modifier.is_none());
@@ -534,12 +566,6 @@ fn sscanf_common(
     format: ConstPtr<u8>,
     mut args: VaList,
 ) -> i32 {
-    fn isspace(env: &mut Environment, src: ConstPtr<u8>) -> bool {
-        let c = env.mem.read(src);
-        // Rust's definition of whitespace excludes vertical tab, unlike C's
-        c.is_ascii_whitespace() || c == b'\x0b'
-    }
-
     let mut src_ptr = src.cast_mut();
     let mut format_char_idx = 0;
 
@@ -585,17 +611,19 @@ fn sscanf_common(
 
         match specifier {
             b'd' | b'i' => {
-                if specifier == b'i' {
-                    // TODO: hexs and octals
-                    assert_ne!(env.mem.read(src_ptr), b'0');
-                }
+                let base: u32 = if specifier == b'd' {
+                    10
+                } else {
+                    // automatic base detection in strtol
+                    0
+                };
 
                 match length_modifier {
                     Some(lm) => {
                         match lm {
                             b'h' => {
                                 // signed short* or unsigned short*
-                                match atoi_inner(env, src_ptr.cast_const()) {
+                                match strtol_inner(env, src_ptr.cast_const(), base) {
                                     Ok((val, len)) => {
                                         if max_width > 0 {
                                             assert_eq!(max_width, len as i32);
@@ -611,7 +639,7 @@ fn sscanf_common(
                             _ => unimplemented!(),
                         }
                     }
-                    _ => match atoi_inner(env, src_ptr.cast_const()) {
+                    _ => match strtol_inner(env, src_ptr.cast_const(), base) {
                         Ok((val, len)) => {
                             src_ptr += len;
                             let c_int_ptr: ConstPtr<i32> = args.next(env);
@@ -832,3 +860,11 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(vfprintf(_, _, _)),
     export_c_func!(vswprintf(_, _, _)),
 ];
+
+// Helper function, not a part of printf family
+// TODO: write proper libc's isspace()
+pub fn isspace(env: &mut Environment, src: ConstPtr<u8>) -> bool {
+    let c = env.mem.read(src);
+    // Rust's definition of whitespace excludes vertical tab, unlike C's
+    c.is_ascii_whitespace() || c == b'\x0b'
+}

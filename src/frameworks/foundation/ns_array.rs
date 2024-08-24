@@ -7,7 +7,7 @@
 
 use super::ns_enumerator::{fast_enumeration_helper, NSFastEnumerationState};
 use super::ns_property_list_serialization::deserialize_plist_from_file;
-use super::{ns_keyed_unarchiver, ns_string, ns_url, NSNotFound, NSOrderedAscending, NSOrderedDescending, NSOrderedSame, NSUInteger};
+use super::{ns_keyed_unarchiver, ns_string, ns_url, NSNotFound, NSOrderedAscending, NSOrderedDescending, NSOrderedSame, NSInteger, NSUInteger};
 use crate::abi::DotDotDot;
 use crate::frameworks::foundation::ns_dictionary::DictionaryHostObject;
 use crate::fs::GuestPath;
@@ -305,8 +305,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.dealloc_object(this, &mut env.mem)
 }
 
-- (id)arrayByAddingObject {
-    nil
+- (id)arrayByAddingObject:(NSUInteger)_object {
+    msg![env; this init]
 }
 
 // NSFastEnumeration implementation
@@ -433,6 +433,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)sortUsingSelector {
+    nil
+}
+
+- (id)subarrayWithRange:(NSInteger)_range {
+    msg![env; this init]
+}
+
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
@@ -486,6 +494,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (())reverseObjectEnumerator:(bool)enumerator {
+    log!("TODO: reverseObjectEnumerator:{}", enumerator);
+}
+
 - (())sortUsingDescriptors:(id)descs {
     let mut v = mem::take(&mut env.objc.borrow_mut::<ArrayHostObject>(this).array);
     v.sort_by(|&a, &b| {
@@ -508,6 +520,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<ArrayHostObject>(this).array = v;
 }
 
+- (())writeToFile:(NSInteger)file atomically:(bool)_atomically {
+    // TODO
+}
+
 @end
 
 // Special variant for use by CFArray with NULL callbacks: objects aren't
@@ -528,10 +544,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())removeObjectAtIndex:(NSUInteger)index {
     env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
-}
-
-- (())reverseObjectEnumerator:(bool)enumerator {
-    log!("TODO: reverseObjectEnumerator:{}", enumerator);
 }
 
 @end
@@ -564,6 +576,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
+}
+
+- (())setShouldResolveExternalEntities:(bool)entities {
+    log!("TODO: ShouldResolveExternalEntities:{}", entities);
 }
 
 @end

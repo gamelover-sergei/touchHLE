@@ -82,6 +82,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDelegate:{}", delegate);
 }
 
+- (())setIndicatorStyle:(bool)style {
+    log!("TODO: setIndicatorStyle:{}", style);
+}
+
 - (CGPoint)contentOffset {
     env.objc.borrow::<UIScrollViewHostObject>(this).content_offset
 }
@@ -172,6 +176,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setAllowsSelection:(bool)selection {
+    log!("TODO: setAllowsSelection:{}", selection);
+}
+
+- (())setSeparatorColor:(bool)color {
+    log!("TODO: setSeparatorColor:{}", color);
+}
+
 - (())setSeparatorStyle:(bool)style {
     log!("TODO: setSeparatorStyle:{}", style);
 }
@@ -179,9 +191,22 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setSectionIndexMinimumDisplayRowCount:(bool)count {
     log!("TODO: setSectionIndexMinimumDisplayRowCount:{}", count);
 }
+
+- (())setEditing:(bool)editing {
+    log!("TODO: setEditing:{}", editing);
+}
+
 @end
 
 @implementation UITableViewController: UIScrollView
+@end
+
+@implementation MainScrollView: UIScrollView
+
+- (())setDirectionalLockEnabled:(bool)enabled {
+    log!("TODO: setDirectionalLockEnabled:{}", enabled);
+}
+
 @end
 
 };

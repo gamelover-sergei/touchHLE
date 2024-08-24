@@ -6,7 +6,7 @@
 //! `UIScreen`.
 
 use crate::frameworks::core_graphics::{CGPoint, CGRect, CGSize};
-use crate::objc::{id, msg, objc_classes, ClassExports, TrivialHostObject};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports, TrivialHostObject};
 
 #[derive(Default)]
 pub struct State {
@@ -58,6 +58,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     bounds
 }
 
+- (id)scale {
+    nil
+}
+    
 @end
 
 };

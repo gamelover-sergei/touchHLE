@@ -256,6 +256,15 @@ fn pthread_condattr_init(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn pthread_yield_np(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn task_info(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn _dyld_image_count(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn AudioConverterNew(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn AudioQueueAllocateBufferWithPacketDescriptions(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -286,10 +295,16 @@ fn CC_MD5_Init(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CC_MD5_Update(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CC_SHA1(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn CFAllocatorGetDefault(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn CFBooleanGetValue(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn CFBundleCopyResourceURLForLocalization(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
@@ -304,9 +319,16 @@ fn CFLocaleCopyCurrent(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CFRunLoopRun(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFSetCreateMutable(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFStringCreateWithFileSystemRepresentation(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFStringGetCharacterAtIndex(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+
 fn CFStringGetSystemEncoding(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -314,6 +336,12 @@ fn CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_env: &mut Environmen
     arg1.min(arg2)
 }
 fn CFURLGetString(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn CFURLCreateDataAndPropertiesFromResource(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn CFURLCreateWithString(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn CGColorEqualToColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
@@ -329,6 +357,9 @@ fn CGContextSetAllowsAntialiasing(_env: &mut Environment, arg1: f32, arg2: f32) 
     arg1.min(arg2)
 }
 fn CGContextSetInterpolationQuality(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn CGContextSetLineWidth(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn CGContextSetRGBStrokeColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
@@ -403,6 +434,9 @@ fn UIGraphicsEndImageContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f3
 fn UIGraphicsGetImageFromCurrentImageContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn _NSSetLogCStringFunction(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn glDrawTexiOES(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -472,6 +506,12 @@ fn glPointSizePointerOES(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn glIsBuffer(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn glGetRenderbufferParameteriv(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn glRenderbufferStorageMultisampleAPPLE(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn abort(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -482,6 +522,9 @@ fn asctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn class_getInstanceSize(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
+fn ctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
 fn dladdr(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
@@ -542,6 +585,9 @@ fn strcasestr(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
 fn task_get_exception_ports(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
+fn valloc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
 fn getsockname(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
@@ -640,6 +686,18 @@ fn sqlite3_bind_double(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn sqlite3_bind_parameter_count(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn sqlite3_get_table(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
+fn sqlite3_free_table(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
+fn sqlite3_exec(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
+fn sqlite3_column_int(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn sranddev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -647,6 +705,9 @@ fn srandomdev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
 fn strpbrk(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
+fn __strncpy_chk(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
 fn putc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
@@ -863,6 +924,9 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(host_get_clock_service(_, _)),
     export_c_func!(pthread_condattr_init(_, _)),
     export_c_func!(pthread_yield_np(_, _)),
+    export_c_func!(task_info(_, _)),
+    export_c_func!(_dyld_image_count(_, _)),
+    export_c_func!(AudioConverterNew(_, _)),
     export_c_func!(AudioQueueAllocateBufferWithPacketDescriptions(_, _)),
     export_c_func!(AudioFileOpenWithCallbacks(_, _)),
     export_c_func!(AudioServicesAddSystemSoundCompletion(_, _)),
@@ -873,21 +937,28 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CC_MD5_Final(_, _)),
     export_c_func!(CC_MD5_Init(_, _)),
     export_c_func!(CC_MD5_Update(_, _)),
+    export_c_func!(CC_SHA1(_, _)),
     export_c_func!(CFAbsoluteTimeGetDifferenceAsGregorianUnits(_, _)),
     export_c_func!(CFAllocatorGetDefault(_, _)),
+    export_c_func!(CFBooleanGetValue(_, _)),
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
     export_c_func!(CFBundleGetInfoDictionary(_, _)),
     export_c_func!(CFLocaleCopyCurrent(_, _)),
     export_c_func!(CFRunLoopRun(_, _)),
+    export_c_func!(CFSetCreateMutable(_, _)),
     export_c_func!(CFStringCreateWithFileSystemRepresentation(_, _)),
+    export_c_func!(CFStringGetCharacterAtIndex(_, _)),
     export_c_func!(CFStringGetSystemEncoding(_, _)),
     export_c_func!(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_, _)),
     export_c_func!(CFURLGetString(_, _)),
+    export_c_func!(CFURLCreateDataAndPropertiesFromResource(_, _)),
+    export_c_func!(CFURLCreateWithString(_, _)),
     export_c_func!(CGColorEqualToColor(_, _)),
     export_c_func!(CGColorGetConstantColor(_, _)),
     export_c_func!(CGContextClipToRect(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetInterpolationQuality(_, _)),
+    export_c_func!(CGContextSetLineWidth(_, _)),
     export_c_func!(CGContextSetRGBStrokeColor(_, _)),
     export_c_func!(CGContextSetShouldAntialias(_, _)),
     export_c_func!(CGDataProviderCreateDirect(_, _)),
@@ -912,6 +983,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(UIApplicationDidReceiveMemoryWarningNotification(_, _)),
     export_c_func!(UIGraphicsEndImageContext(_, _)),
     export_c_func!(UIGraphicsGetImageFromCurrentImageContext(_, _)),
+    export_c_func!(_NSSetLogCStringFunction(_, _)),
     export_c_func!(glDrawTexiOES(_, _)),
     export_c_func!(glBindFramebuffer(_, _)),
     export_c_func!(glBlendEquationOES(_, _)),
@@ -935,10 +1007,13 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(glReadPixels(_, _)),
     export_c_func!(glPointSizePointerOES(_, _)),
     export_c_func!(glIsBuffer(_, _)),
+    export_c_func!(glGetRenderbufferParameteriv(_, _)),
+    export_c_func!(glRenderbufferStorageMultisampleAPPLE(_, _)),
     export_c_func!(abort(_, _)),
     export_c_func!(abs(_, _)),
     export_c_func!(asctime(_, _)),
     export_c_func!(class_getInstanceSize(_, _)),
+    export_c_func!(ctime(_, _)),
     export_c_func!(dladdr(_, _)),
     export_c_func!(fts_open(_, _)),
     export_c_func!(fts_read(_, _)),
@@ -959,6 +1034,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(setsockopt(_, _)),
     export_c_func!(strcasestr(_, _)),
     export_c_func!(task_get_exception_ports(_, _)),
+    export_c_func!(valloc(_, _)),
     export_c_func!(getsockname(_, _)),
     export_c_func!(socket(_, _)),
     export_c_func!(ioctl(_, _)),
@@ -991,9 +1067,14 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sqlite3_bind_int(_, _)),
     export_c_func!(sqlite3_bind_double(_, _)),
     export_c_func!(sqlite3_bind_parameter_count(_, _)),
+    export_c_func!(sqlite3_get_table(_, _)),
+    export_c_func!(sqlite3_free_table(_, _)),
+    export_c_func!(sqlite3_exec(_, _)),
+    export_c_func!(sqlite3_column_int(_, _)),
     export_c_func!(sranddev(_, _)),
     export_c_func!(srandomdev(_, _)),
     export_c_func!(strpbrk(_, _)),
+    export_c_func!(__strncpy_chk(_, _)),
     export_c_func!(putc(_, _)),
     export_c_func!(getc(_, _)),
     export_c_func!(ungetc(_, _)),

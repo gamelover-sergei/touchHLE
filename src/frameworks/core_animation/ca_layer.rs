@@ -21,7 +21,7 @@ use crate::frameworks::core_graphics::cg_image::{
     kCGImageAlphaPremultipliedLast, kCGImageByteOrder32Big,
 };
 use crate::frameworks::core_graphics::{CGPoint, CGRect, CGSize};
-use crate::frameworks::foundation::ns_string;
+use crate::frameworks::foundation::{ns_string, NSInteger};
 use crate::mem::{GuestUSize, Ptr};
 use crate::objc::{id, msg, nil, objc_classes, release, retain, ClassExports, HostObject, ObjC};
 use std::collections::HashMap;
@@ -205,6 +205,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setSublayerTransform:(bool)sub {
     log!("TODO: setSublayerTransform:{}", sub);
 }
+
+- (())setContentsRect:(bool)rect {
+    log!("TODO: setContentsRect:{}", rect);
+}
+
 - (CGRect)frame {
     let &CALayerHostObject {
         bounds,
@@ -416,6 +421,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setMinificationFilter:(id)filter {
     log!("TODO: [(CALayer*){:?} setMinificationFilter: {}]", this, ns_string::to_rust_string(env, filter)); // TODO
+}
+
+- (())addAnimation:(NSInteger)animation forKey:(bool)_key {
+    // TODO
 }
 
 - (bool)containsPoint:(CGPoint)point {

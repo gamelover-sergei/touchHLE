@@ -123,6 +123,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("WARNING: Ignoring setAnimationDelegate:");
 }
 
++ (())setAnimationDelay:(id)delay {
+    log!("WARNING: Ignoring setAnimationDelay:");
+}
+
 + (())setAnimationsEnabled:(id)enabled {
     log!("WARNING: Ignoring setAnimationsEnabled:");
 }
@@ -340,7 +344,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     } = std::mem::take(env.objc.borrow_mut(this));
 
     release(env, layer);
-    assert!(superview == nil);
+    // assert!(superview == nil);
     for subview in subviews {
         env.objc.borrow_mut::<UIViewHostObject>(subview).superview = nil;
         release(env, subview);
@@ -443,6 +447,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setImgRef:{}", img);
 }
 
+- (())setIsUncontrolled:(bool)uncontrolled {
+    log!("TODO: setIsUncontrolled:{}", uncontrolled);
+}
+
+- (())setTag:(bool)tag {
+    log!("TODO: setTag:{}", tag);
+}
+
 - (bool)clearsContextBeforeDrawing {
     env.objc.borrow::<UIViewHostObject>(this).clears_context_before_drawing
 }
@@ -493,7 +505,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     for subview in subviews.into_iter().rev() { // later views are on top
         let hidden: bool = msg![env; subview isHidden];
         let alpha: CGFloat = msg![env; subview alpha];
-        let interactible: bool = msg![env; this isUserInteractionEnabled];
+        let interactible: bool = msg![env; subview isUserInteractionEnabled];
         if hidden || alpha < 0.01 || !interactible {
            continue;
         }
@@ -529,6 +541,15 @@ pub const CLASSES: ClassExports = objc_classes! {
         }
     }
     false
+}
+
+// UIResponder implementation
+// From the Apple UIView docs regarding [UIResponder nextResponder]:
+// "UIView implements this method and returns the UIViewController object that
+//  manages it (if it has one) or its superview (if it doesn’t)."
+// TODO: Obtain its UIViewController, if it has one
+- (id)nextResponder {
+    msg![env; this superview]
 }
 
 // Co-ordinate space conversion
@@ -569,8 +590,17 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setBarStyle:{}", bar);
 }
 
+- (())setItems:(NSInteger)items animated:(bool)_animated {
+    // TODO
+}
+
 - (())setItems:(id)items {
 }
+
+- (id)sizeToFit {
+    nil
+}
+
 @end
 
 @implementation UIPickerView: UIView

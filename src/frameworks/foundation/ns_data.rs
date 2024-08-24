@@ -6,7 +6,7 @@
 //! `NSData` and `NSMutableData`.
 
 use super::ns_string::to_rust_string;
-use super::{NSRange, NSUInteger};
+use super::{NSRange, NSInteger, NSUInteger};
 use crate::fs::GuestPath;
 use crate::mem::{ConstPtr, ConstVoidPtr, MutPtr, MutVoidPtr, Ptr};
 use crate::objc::{
@@ -72,6 +72,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     let new: id = msg![env; this alloc];
     let new: id = msg![env; new initWithContentsOfURL:url];
     autorelease(env, new)
+}
+
++ (())dataWithBytesNoCopy:(NSInteger)copy length:(bool)_length freeWhenDone:(bool)_done {
+    // TODO
 }
 
 // Calling the standard `init` is also allowed, in which case we just get data
@@ -140,6 +144,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)initWithContentsOfMappedFile:(id)path {
     // IMM?: This is ok, right?
     msg![env; this initWithContentsOfFile:path]
+}
+
+- (())initWithBytesNoCopy:(NSInteger)copy length:(bool)_length freeWhenDone:(bool)_done {
+    // TODO
 }
 
 - (bool)writeToFile:(id)path // NSString*
@@ -239,7 +247,15 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation NSMutableData: NSData
 
++ (id)appendBytes:(NSUInteger)_length {
+    msg![env; this init]
+}
+
 + (id)dataWithCapacity:(NSUInteger)_capacity {
+    msg![env; this init]
+}
+
++ (id)dataWithData:(NSUInteger)_data {
     msg![env; this init]
 }
 
@@ -248,6 +264,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)initWithCapacity:(NSUInteger)_capacity {
+    msg![env; this init]
+}
+
+- (id)initWithLength:(NSUInteger)_length {
     msg![env; this init]
 }
 
