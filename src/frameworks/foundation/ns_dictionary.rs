@@ -645,7 +645,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDistanceFilter:{}", filter);
 }
 
-- (())isetPersistentDomain:(NSInteger)domain forName:(bool)_name {
+- (())setPersistentDomain:(NSInteger)domain forName:(bool)_name {
     // TODO
 }
 
