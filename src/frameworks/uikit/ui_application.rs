@@ -135,6 +135,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setStatusBarStyle:(bool)status {
     log!("TODO: setStatusBarStyle:{}", status);
 }
+
+- (())setProximitySensingEnabled:(bool)enabled {
+    log!("TODO: setProximitySensingEnabled:{}", enabled);
+}
+
 - (NSTimeInterval)statusBarOrientationAnimationDuration {
     0.0
 }
