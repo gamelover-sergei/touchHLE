@@ -188,6 +188,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setSeparatorStyle:{}", style);
 }
 
+- (())setSectionHeaderHeight:(bool)height {
+    log!("TODO: setSectionHeaderHeight:{}", height);
+}
+
 - (())setSectionIndexMinimumDisplayRowCount:(bool)count {
     log!("TODO: setSectionIndexMinimumDisplayRowCount:{}", count);
 }
