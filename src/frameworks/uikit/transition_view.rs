@@ -7,7 +7,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation TransitionView: UIView
 
-- (())insertSubview:(NSInteger)subview atIndex:(bool)_index {
+- (())insertSubview:(NSInteger)sub atIndex:(bool)_index {
     // TODO
 }
 
