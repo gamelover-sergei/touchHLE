@@ -9,6 +9,7 @@ use super::ui_graphics::UIGraphicsGetCurrentContext;
 use crate::frameworks::core_graphics::cg_color::{CGColorRef, CGColorRelease, CGColorRetain};
 use crate::frameworks::core_graphics::cg_context::CGContextSetRGBFillColor;
 use crate::frameworks::core_graphics::{cg_color, CGFloat};
+use crate::frameworks::foundation::NSUInteger;
 use crate::mem::MutPtr;
 use crate::objc::{
     autorelease, id, msg, msg_class, nil, objc_classes, ClassExports, HostObject, NSZonePtr, ObjC,
@@ -95,8 +96,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)groupTableViewBackgroundColor {
     nil
 }
-+ (id)colorWithPatternImage {
-    nil
+
++ (id)colorWithPatternImage:(NSUInteger)_image {
+    msg![env; this init]
 }
 
 + (id)lightGrayColor {
