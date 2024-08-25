@@ -63,6 +63,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_object(this, host_object, &mut env.mem)
 }
 
++ (id)CGColor {
+    nil
+}
+
 + (id)colorWithCGColor:(CGColorRef)cg_color {
     let new: id = msg![env; this alloc];
     let new: id = msg![env; new initWithCGColor:cg_color];
