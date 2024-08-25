@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UILoadSaveTableView: UITableView
 
+- (())setSectionHeaderHeight:(bool)height {
+    log!("TODO: setSectionHeaderHeight:{}", height);
+}
+
 @end
 
 };
