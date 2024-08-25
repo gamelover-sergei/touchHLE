@@ -79,7 +79,7 @@ jobs:
       name: Extract Boost
       run: 7z -ovendor x boost_1_81_0.7z && mv vendor/boost_1_81_0 vendor/boost
     - name: Install AArch64 Android Rust toolchain
-      run: rustup target add aarch64-linux-android
+      run: rustu target add aarch64-linux-android
     - name: Install cargo-ndk
       run: cargo install cargo-ndk
     # Gradle version compatibility is a nightmare and we refuse to use gradlew.
