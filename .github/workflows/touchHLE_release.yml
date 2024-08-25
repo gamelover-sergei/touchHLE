@@ -97,26 +97,6 @@ jobs:
       name: Extract Gradle
       run: 7z -ogradle x gradle-7.3-bin.zip
     # We need to install the correct version of Android NDK manually
-    - name: Try to get a cached copy of Android NDK
-      id: cache-android-ndk
-      uses: actions/cache@v3
-      with:
-        path: android-ndk
-        key: android-ndk-r25c
-    - if: ${{ steps.cache-android-ndk.outputs.cache-hit != 'true' }}
-      name: Download Android NDK
-      run: curl -L -o android-ndk-r25c-linux.zip "https://dl.google.com/android/repository/android-ndk-r25c-linux.zip"
-    - if: ${{ steps.cache-android-ndk.outputs.cache-hit != 'true' }}
-      name: Extract Android NDK
-      run: 7z -oandroid-ndk x android-ndk-r25c-linux.zip
-    - name: Link Android NDK
-      run: ln -s $PWD'/android-ndk/android-ndk-r25c' $ANDROID_SDK_ROOT'/ndk/25.2.9519653'
-    # Why isn't there a command for this?
-    - name: Generate local.properties file
-      run: echo 'sdk.dir='$ANDROID_SDK_ROOT > android/local.properties
-    # Let's not even bother with linting (would need to build for host, not just
-    # Android, which makes things more complicated) or trying to run tests
-    # (would have to run on Android 😰).
     - name: Build for Android
       run: cd android && ../gradle/gradle-7.3/bin/gradle assembleRelease && mv app/build/outputs/apk/release/app-release.apk ../touchHLE.apk
       env:
