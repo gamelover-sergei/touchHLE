@@ -18,6 +18,7 @@ pub mod i_simulate;
 pub mod main_view_controller;
 pub mod mp_volume_view;
 pub mod tap_flies_view_controller;
+pub mod transition_view;
 pub mod ui_accelerometer;
 pub mod ui_activity_indicator_view;
 pub mod ui_application;
