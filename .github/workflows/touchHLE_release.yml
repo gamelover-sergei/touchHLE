@@ -12,8 +12,7 @@ env:
 jobs:
   build-osx:
 
-    # TODO: Use macos-latest once AArch64 cross-compile for x86_64 works
-    runs-on: macos-12
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -96,12 +95,14 @@ jobs:
     - if: ${{ steps.cache-gradle.outputs.cache-hit != 'true' }}
       name: Extract Gradle
       run: 7z -ogradle x gradle-7.3-bin.zip
-    # We need to install the correct version of Android NDK manually
+    # Why isn't there a command for this?
+    - name: Generate local.properties file
+      run: echo 'sdk.dir='$ANDROID_SDK_ROOT > android/local.properties
+    # Let's not even bother with linting (would need to build for host, not just
+    # Android, which makes things more complicated) or trying to run tests
+    # (would have to run on Android 😰).
     - name: Build for Android
       run: cd android && ../gradle/gradle-7.3/bin/gradle assembleRelease && mv app/build/outputs/apk/release/app-release.apk ../touchHLE.apk
-      env:
-        # The version should match the ndkVersion defined in `android\app\build.gradle`
-        ANDROID_NDK_ROOT: '/usr/local/lib/android/sdk/ndk/25.2.9519653'
     - uses: actions/upload-artifact@v3
       with:
         name: touchHLE_Android_AArch64
