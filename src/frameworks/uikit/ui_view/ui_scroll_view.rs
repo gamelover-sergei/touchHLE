@@ -180,6 +180,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAllowsSelection:{}", selection);
 }
 
+- (())setAllowsSelectionDuringEditing:(bool)editing {
+    log!("TODO: setAllowsSelectionDuringEditing:{}", editing);
+}
+
 - (())setSeparatorColor:(bool)color {
     log!("TODO: setSeparatorColor:{}", color);
 }
