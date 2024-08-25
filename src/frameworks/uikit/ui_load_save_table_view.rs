@@ -10,6 +10,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setSectionHeaderHeight:{}", height);
 }
 
+- (())setSectionFooterHeight:(bool)height {
+    log!("TODO: setSectionFooterHeight:{}", height);
+}
+
 @end
 
 };
