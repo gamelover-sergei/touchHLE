@@ -133,7 +133,6 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
         .last()
     else {
         log!("No visible window, touch events ignored");
-        release(env, pool);
         return;
     };
 
@@ -225,7 +224,6 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
                 location,
                 top_window,
             );
-            release(env, pool);
             continue;
         } else {
             log_dbg!(
