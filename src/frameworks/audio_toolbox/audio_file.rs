@@ -400,7 +400,7 @@ fn ExtAudioFileRead(
                     .mem
                     .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, decode_ima4.len() as GuestUSize);
                 unsafe {
-                    slice::from_raw_parts_mut(target, decode_ima4.len()).copy_from_slice{decode_ima4};
+                    slice::from_raw_parts_mut(target, decode_ima4.len()).copy_from_slice(decode_ima4);
                 }
                 packets_consumed += 1;
                 break;
