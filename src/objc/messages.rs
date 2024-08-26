@@ -84,7 +84,7 @@ fn objc_msgSend_inner(env: &mut Environment, receiver: id, selector: SEL, super2
             );
         }
 
-        let host_object = env.objc.get_host_object(class).unwrap();
+        let host_object = env.objc.get_host_object(class).wrap();
 
         if let Some(&super::ClassHostObject {
             superclass,
