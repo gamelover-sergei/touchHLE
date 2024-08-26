@@ -395,12 +395,12 @@ fn ExtAudioFileRead(
         let pcm = decode_ima4;
         loop {
             let buf = env.mem.read(buf_ptr + buf_no);
-            if ((buf_offset + pcm.len() as GuestUSize) * 2) < buf.data_byte_size {
+            if ((buf_offset + pcm(/* &[u8; 34] */).len() as GuestUSize) * 2) < buf.data_byte_size {
                 let target = env
                     .mem
-                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, pcm.len() as GuestUSize);
+                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, pcm(/* &[u8; 34] */).len() as GuestUSize);
                 unsafe {
-                    slice::from_raw_parts_mut(target, pcm.len()).copy_from_slice(&pcm);
+                    slice::from_raw_parts_mut(target, pcm(/* &[u8; 34] */).len()).copy_from_slice(&pcm);
                 }
                 packets_consumed += 1;
                 break;
