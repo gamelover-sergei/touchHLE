@@ -557,6 +557,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)open {
+    nil
+}
+
 @end
 
 @implementation NSNetService: NSObject
