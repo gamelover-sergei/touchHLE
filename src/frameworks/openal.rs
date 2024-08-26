@@ -512,7 +512,7 @@ fn alBufferData(
     samplerate: ALsizei,
 ) {
     let size_usize = env.mem.bytes_at(data.cast(), size_usize);
-    let data_slice = env.mem.bytes_at(data.cast(), size_usize);
+    let data_slice = env.mem.(data.cast(), data_slice);
     unsafe {
         al::alBufferData(
             buffer,
