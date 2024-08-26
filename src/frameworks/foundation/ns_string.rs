@@ -1100,6 +1100,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)substringWithRange:(NSUInteger)_range {
+    msg![env; this init]
+}
+
 + (())stringWithCharacters:(NSInteger)characters length:(bool)_length {
     // TODO
 }
