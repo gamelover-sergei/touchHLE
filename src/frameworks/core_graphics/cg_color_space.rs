@@ -8,7 +8,7 @@
 use crate::dyld::{export_c_func, ConstantExports, FunctionExports, HostConstant};
 use crate::frameworks::core_foundation::cf_string::CFStringRef;
 use crate::frameworks::core_foundation::{CFRelease, CFRetain, CFTypeRef};
-use crate::frameworks::core_graphics::CGFloat;
+use crate::frameworks::core_graphics::{CGFloat, CGRect};
 use crate::frameworks::foundation::ns_string;
 use crate::frameworks::uikit::ui_color;
 use crate::mem::{guest_size_of, MutPtr};
@@ -23,6 +23,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 // those are just Objective-C types, so we need a class for it, but its name is
 // not visible anywhere.
 @implementation _touchHLE_CGColorSpace: NSObject
+
++ (())drawInRect:(CGRect)rect {
+    let context = UIGraphicsGetCurrentContext(env);
+    let image = env.objc.borrow::<CGColorSpaceHostObject>(this).cg_image;
+    CGContextDrawImage(env, context, rect, image);
+}
+
 - (id)CGImage {
     nil
 }
