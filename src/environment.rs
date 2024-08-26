@@ -819,7 +819,6 @@ impl Environment {
         self.stack_trace();
         self.gdb_server
             .as_mut()
-            .unwrap()
             .wait_for_debugger(reason, &mut self.cpu, &mut self.mem)
     }
 
