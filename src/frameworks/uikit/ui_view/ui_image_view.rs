@@ -72,6 +72,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)tag {
+    nil
+}
+
 - (())animationImages:(id)new_image { // UIImage*
     let host_obj = env.objc.borrow_mut::<UIImageViewHostObject>(this);
     let old_image = std::mem::replace(&mut host_obj.image, new_image);
