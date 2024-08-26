@@ -1,4 +1,5 @@
-use crate::objc::{id, nil, objc_classes, ClassExports};
+use crate::frameworks::foundation::NSUInteger;
+use crate::objc::{id, msg, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -6,8 +7,8 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UIWebView: UIView
 
-- (id)loadRequest {
-    nil
+- (id)loadRequest:(NSUInteger)request {
+    msg![env; this init]
 }
 
 - (())setScalesPageToFit:(bool)fit {
