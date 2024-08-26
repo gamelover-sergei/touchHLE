@@ -8,9 +8,11 @@
 use crate::dyld::{export_c_func, ConstantExports, FunctionExports, HostConstant};
 use crate::frameworks::core_foundation::cf_string::CFStringRef;
 use crate::frameworks::core_foundation::{CFRelease, CFRetain, CFTypeRef};
+use crate::frameworks::core_graphics::cg_context::CGContextDrawImage;
 use crate::frameworks::core_graphics::{CGFloat, CGRect};
 use crate::frameworks::foundation::ns_string;
 use crate::frameworks::uikit::ui_color;
+use crate::frameworks::uikit::ui_graphics::UIGraphicsGetCurrentContext;
 use crate::mem::{guest_size_of, MutPtr};
 use crate::objc::{id, msg, nil, objc_classes, ClassExports, HostObject};
 use crate::Environment;
@@ -26,7 +28,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (())drawInRect:(CGRect)rect {
     let context = UIGraphicsGetCurrentContext(env);
-    let image = env.objc.borrow::<CGColorSpaceHostObject>(this).cg_image;
+    let image = env.objc.borrow::<CGColorSpaceHostObject>(this).name;
     CGContextDrawImage(env, context, rect, image);
 }
 
