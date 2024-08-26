@@ -209,6 +209,10 @@ object:(id)object {
     log!("TODO: setName:{}", name);
 }
 
+- (())setStackSize:(bool)stack {
+    log!("TODO: setStackSize:{}", stack);
+}
+
 - (())dealloc {
     log_dbg!("[(NSThread*){:?} dealloc]", this);
     State::get(env).ns_threads.remove(&this);

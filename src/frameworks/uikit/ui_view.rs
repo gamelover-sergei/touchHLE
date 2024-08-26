@@ -443,6 +443,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [UIView {:?} setContentMode:{:?}] => ()", this, content_mode);
 }
 
+- (())setAnimationInterval:(bool)interval {
+    log!("TODO: setAnimationInterval:{}", interval);
+}
+
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 - (())setImgRef:(bool)img {
     log!("TODO: setImgRef:{}", img);
 }
@@ -453,6 +461,14 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setTag:(bool)tag {
     log!("TODO: setTag:{}", tag);
+}
+
+- (())startAnimating {
+    log!("TODO: [(UIView*){:?} startAnimating", this);
+}
+
+- (())stopAnimating {
+    log!("TODO: [(UIView*){:?} stopAnimating", this);
 }
 
 - (bool)clearsContextBeforeDrawing {

@@ -1161,6 +1161,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
+- (())getCharacters:(NSInteger)characters range:(bool)_range {
+    // TODO
+}
+
 - (id)initWithFormat:(id)format, // NSString*
                      ...args {
     let res = with_format(env, format, args.start());

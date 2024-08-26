@@ -271,6 +271,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (())setLength:(bool)length {
+    log!("TODO: setLength:{}", length);
+}
+
 - (id)copyWithZone:(NSZonePtr)_zone {
     let bytes: ConstVoidPtr = msg![env; this bytes];
     let length: NSUInteger = msg![env; this length];

@@ -180,12 +180,24 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAllowsSelection:{}", selection);
 }
 
+- (())setAllowsSelectionDuringEditing:(bool)editing {
+    log!("TODO: setAllowsSelectionDuringEditing:{}", editing);
+}
+
 - (())setSeparatorColor:(bool)color {
     log!("TODO: setSeparatorColor:{}", color);
 }
 
 - (())setSeparatorStyle:(bool)style {
     log!("TODO: setSeparatorStyle:{}", style);
+}
+
+- (())setSectionHeaderHeight:(bool)height {
+    log!("TODO: setSectionHeaderHeight:{}", height);
+}
+
+- (())setSectionFooterHeight:(bool)height {
+    log!("TODO: setSectionFooterHeight:{}", height);
 }
 
 - (())setSectionIndexMinimumDisplayRowCount:(bool)count {
