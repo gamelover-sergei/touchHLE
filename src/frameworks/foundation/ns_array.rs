@@ -551,6 +551,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation NSIndexPath: NSObject
 @end
 
+@implementation NSInputStream: NSObject
+@end
+
 @implementation NSNetService: NSObject
 @end
 
