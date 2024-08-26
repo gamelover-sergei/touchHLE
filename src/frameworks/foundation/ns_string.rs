@@ -1095,7 +1095,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)stringWithCapacity:(NSUInteger)_capacity {
     msg_class![env; NSMutableString new]
 }
-    
+
++ (())stringWithCharacters:(NSInteger)characters length:(bool)_length {
+    // TODO
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     todo!(); // TODO: this should produce an immutable copy
