@@ -646,6 +646,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (id)sizeToFit {
+    nil
+}
+
 @end
 
 @implementation ManView: UIView
