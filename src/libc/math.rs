@@ -419,6 +419,9 @@ fn CGRectGetHeight(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGRectInset(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn ExtAudioFileRead(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn MFMailComposeErrorDomain(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -984,6 +987,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGPathRelease(_, _)),
     export_c_func!(CGRectGetHeight(_, _)),
     export_c_func!(CGRectInset(_, _)),
+    export_c_func!(ExtAudioFileRead(_, _)),
     export_c_func!(MFMailComposeErrorDomain(_, _)),
     export_c_func!(NSFullUserName(_, _)),
     export_c_func!(SCNetworkReachabilitySetCallback(_, _)),
