@@ -392,15 +392,15 @@ fn ExtAudioFileRead(
     let mut buf_no = 0;
     let mut buf_offset = 0;
     'outer: for packet in data[..actually_read].chunks(packet_size as usize) {
-        let pcm = decode_ima4;
+        let decode_ima4;
         loop {
             let buf = env.mem.read(buf_ptr + buf_no);
-            if ((buf_offset + decode_ima4(/* &[u8; 34] */).len() as GuestUSize) * 2) < buf.data_byte_size {
+            if ((buf_offset + decode_ima4;.len() as GuestUSize) * 2) < buf.data_byte_size {
                 let target = env
                     .mem
-                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, decode_ima4(/* &[u8; 34] */).len() as GuestUSize,
+                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, decode_ima4;.len() as GuestUSize);
                 unsafe {
-                    slice::from_raw_parts_mut(target, decode_ima4(/* &[u8; 34] */).len()).copy_from_slice(&pcm);
+                    slice::from_raw_parts_mut(target, decode_ima4;.len()).copy_from_slice{decode_ima4};
                 }
                 packets_consumed += 1;
                 break;
