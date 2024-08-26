@@ -216,7 +216,7 @@ fn get_value_to_decode_for_key(env: &mut Environment, unarchiver: id, key: id) -
         Some(current_uid) => {
             &host_obj.plist["$objects"].as_array().unwrap()[current_uid.get() as usize]
         }
-        None => &host_obj.plist["$top"],
+        res
     }
     .as_dictionary()
     .unwrap();
