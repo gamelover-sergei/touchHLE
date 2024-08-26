@@ -1096,6 +1096,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_class![env; NSMutableString new]
 }
 
++ (id)rangeOfCharacterFromSet:(NSUInteger)_set {
+    msg![env; this init]
+}
+
 + (())stringWithCharacters:(NSInteger)characters length:(bool)_length {
     // TODO
 }
