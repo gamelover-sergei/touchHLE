@@ -50,11 +50,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (i32)unsignedIntegerValue {
-    let d: i64 = msg![env; this longLongValue];
-    d as i32
-}
-
 @end
 
 // NSNumber is not an abstract class.
@@ -241,6 +236,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (i32)integerValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
+}
+
+- (i32)unsignedIntegerValue {
     let d: i64 = msg![env; this longLongValue];
     d as i32
 }
