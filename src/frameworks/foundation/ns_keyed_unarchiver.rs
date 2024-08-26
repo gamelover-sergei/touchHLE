@@ -90,9 +90,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     assert!(host_obj.already_unarchived.is_empty());
     assert!(host_obj.current_key.is_none());
     assert!(host_obj.plist.is_empty());
-
-    let plist = Value::from_reader(Cursor::new(slice)).unwrap();
-    let plist = plist.into_dictionary().unwrap();
     assert!(plist["$version"].as_unsigned_integer() == Some(100000));
     assert!(plist["$archiver"].as_string() == Some("NSKeyedArchiver"));
 
