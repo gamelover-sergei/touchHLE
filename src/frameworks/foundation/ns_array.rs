@@ -552,6 +552,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSInputStream: NSObject
+
++ (id)inputStreamWithFileAtPath:(NSUInteger)_path {
+    msg![env; this init]
+}
+
 @end
 
 @implementation NSNetService: NSObject
