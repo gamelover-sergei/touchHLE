@@ -561,6 +561,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (())read:(NSInteger)read maxLength:(bool)_length {
+    // TODO
+}
+
 @end
 
 @implementation NSNetService: NSObject
