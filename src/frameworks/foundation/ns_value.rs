@@ -100,6 +100,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)numberWithLong:(NSUInteger)_long {
+    msg![env; this init]
+}
+
 + (id)numberWithLongLong:(i64)value {
     // TODO: for greater efficiency we could return a static-lifetime value
 
