@@ -212,7 +212,7 @@ fn borrow_host_obj(env: &mut Environment, unarchiver: id) -> &mut NSKeyedUnarchi
 fn get_value_to_decode_for_key(env: &mut Environment, unarchiver: id, key: id) -> Option<&Value> {
     let key = to_rust_string(env, key); // TODO: avoid copying string
     let host_obj = borrow_host_obj(env, unarchiver);
-    let scope = match host_obj.current_key {
+    let scope = match {
         Some(current_uid) => {
             &host_obj.plist["$objects"].as_array().unwrap()[current_uid.get() as usize]
         }
