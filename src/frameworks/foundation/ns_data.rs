@@ -189,6 +189,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     retain(env, this)
 }
 
+- (id)alloc {
+    nil
+}
+
 - (id)mutableCopyWithZone:(NSZonePtr)_zone {
     let bytes: ConstVoidPtr = msg![env; this bytes];
     let length: NSUInteger = msg![env; this length];
