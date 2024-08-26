@@ -1088,6 +1088,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_class![env; _touchHLE_NSMutableString allocWithZone:zone]
 }
 
++ (id)intValue {
+    nil
+}
+
 + (id)string {
     nil
 }
