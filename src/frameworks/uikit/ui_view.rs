@@ -642,6 +642,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTintColor:{}", color);
 }
 
+- (())pushNavigationItem:(NSInteger)item animated:(bool)_animated {
+    // TODO
+}
+
 @end
 
 @implementation ManView: UIView
