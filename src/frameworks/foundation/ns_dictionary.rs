@@ -504,6 +504,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation CMMotionManager: NSMutableDictionary
 @end
 
+@implementation GamePlay: NSMutableDictionary
+- (id)tag {
+    nil
+}
+
+@end
+
 @implementation NSCondition: NSMutableDictionary
 @end
 
