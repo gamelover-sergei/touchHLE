@@ -365,58 +365,6 @@ pub fn AudioFileReadPackets(
     res
 }
 
-fn ExtAudioFileRead(
-    env: &mut Environment,
-    in_audio_file: AudioFileID,
-    io_num_frames: MutPtr<u32>,
-    io_data: MutVoidPtr,
-) -> OSStatus {
-    let host_object = State::get(&mut env.framework_state)
-        .audio_files
-        .get_mut(&in_audio_file)
-        .unwrap();
-
-    let packet_size = host_object.audio_file.packet_size_fixed();
-    let frames_to_read = env.mem.read(io_num_frames);
-    let packets_to_read = frames_to_read / 64;
-    let mut data = vec![0; (packets_to_read * packet_size) as usize];
-    let actually_read = host_object
-        .audio_file
-        .read_bytes(host_object.position * packet_size as u64, &mut data)
-        .unwrap();
-
-    let mut packets_consumed = 0;
-    let buf_count_ptr = io_data.cast::<u32>();
-    let buf_count = env.mem.read(buf_count_ptr);
-    let buf_ptr = (buf_count_ptr + 1).cast::<AudioBuffer>();
-    let mut buf_no = 0;
-    let mut buf_offset = 0;
-    'outer: for packet in data[..actually_read].chunks(packet_size as usize) {
-        let decode_ima4; /* Type */;
-        loop {
-            let buf = env.mem.read(buf_ptr + buf_no);
-            if ((buf_offset + decode_ima4.len() as GuestUSize) * 2) < buf.data_byte_size {
-                let target = env
-                    .mem
-                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, decode_ima4.len() as GuestUSize);
-                unsafe {
-                    slice::from_raw_parts_mut(target, decode_ima4.len()).copy_from_slice(decode_ima4);
-                }
-                packets_consumed += 1;
-                break;
-            }
-            buf_no += 1;
-            buf_offset = 0;
-            if buf_no >= buf_count {
-                break 'outer;
-            }
-        }
-    }
-    host_object.position += packets_consumed as u64;
-    env.mem.write(io_num_frames, packets_consumed * 64);
-    0
-}
-
 fn ExtAudioFileDispose(env: &mut Environment, in_audio_file: AudioFileID) -> OSStatus {
     AudioFileClose(env, in_audio_file)
 }
@@ -448,6 +396,5 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(ExtAudioFileWrapAudioFileID(_, _)),
     export_c_func!(ExtAudioFileGetProperty(_, _, _, _)),
     export_c_func!(ExtAudioFileSetProperty(_, _, _, _)),
-    export_c_func!(ExtAudioFileRead(_, _, _)),
     export_c_func!(ExtAudioFileDispose(_)),
 ];
