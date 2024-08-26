@@ -298,6 +298,9 @@ fn CC_MD5_Update(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CC_SHA1(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CC_SHA1_Init(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFAbsoluteTimeGetDifferenceAsGregorianUnits(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -947,6 +950,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CC_MD5_Init(_, _)),
     export_c_func!(CC_MD5_Update(_, _)),
     export_c_func!(CC_SHA1(_, _)),
+    export_c_func!(CC_SHA1_Init(_, _)),
     export_c_func!(CFAbsoluteTimeGetDifferenceAsGregorianUnits(_, _)),
     export_c_func!(CFAllocatorGetDefault(_, _)),
     export_c_func!(CFBooleanGetValue(_, _)),
