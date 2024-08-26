@@ -77,8 +77,31 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 // TODO: other init methods.
 
-- (id)initForReadingWithData:(NSUInteger)_data {
-    msg![env; this init]
+- (id)initForReadingWithData:(id)data { // NSData *
+    if data == nil {
+        return nil;
+    }
+
+    let length: NSUInteger = msg![env; data length];
+    let bytes: ConstVoidPtr = msg![env; data bytes];
+    let slice = env.mem.bytes_at(bytes.cast(), length);
+
+    let host_obj = env.objc.borrow_mut::<NSKeyedUnarchiverHostObject>(this);
+    assert!(host_obj.already_unarchived.is_empty());
+    assert!(host_obj.current_key.is_none());
+    assert!(host_obj.plist.is_empty());
+
+    let plist = Value::from_reader(Cursor::new(slice)).unwrap();
+    let plist = plist.into_dictionary().unwrap();
+    assert!(plist["$version"].as_unsigned_integer() == Some(100000));
+    assert!(plist["$archiver"].as_string() == Some("NSKeyedArchiver"));
+
+    let key_count = plist["$objects"].as_array().unwrap().len();
+
+    host_obj.already_unarchived = vec![None; key_count];
+    host_obj.plist = plist;
+
+    this
 }
 
 - (())dealloc {
