@@ -398,7 +398,7 @@ fn ExtAudioFileRead(
             if ((buf_offset + decode_ima4.len() as GuestUSize) * 2) < buf.data_byte_size {
                 let target = env
                     .mem
-                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, decode_ima4;.len() as GuestUSize);
+                    .ptr_at_mut(buf.data.cast::<i16>() + buf_offset, decode_ima4.len() as GuestUSize);
                 unsafe {
                     slice::from_raw_parts_mut(target, decode_ima4.len()).copy_from_slice{decode_ima4};
                 }
