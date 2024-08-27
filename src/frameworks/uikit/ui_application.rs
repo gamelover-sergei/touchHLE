@@ -87,6 +87,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (())applicationIconBadgeNumber:(NSInteger)number {
+    // TODO
+}
+
 - (())setStatusBarHidden:(bool)hidden {
     env.framework_state.uikit.ui_application.status_bar_hidden = hidden;
 }
