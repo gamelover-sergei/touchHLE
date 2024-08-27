@@ -14,6 +14,7 @@ use std::time::Instant;
 
 pub mod cl_heading;
 pub mod denizen_view_controller;
+pub mod gk_session;
 pub mod i_simulate;
 pub mod main_view_controller;
 pub mod mp_volume_view;
