@@ -188,11 +188,12 @@ pub const CLASSES: ClassExports = objc_classes! {
     if !msg![env; other isKindOfClass:class] {
         return false;
     }
-    let &NSNumberHostObject::Bool(a) = env.objc.borrow(this) else { (
-    ) };
-    let &NSNumberHostObject::Bool(b) = env.objc.borrow(other) else (
-    );
-    a == b
+    match env.objc.borrow::<NSNumberHostObject>(this) {
+        NSNumberHostObject::Bool(b) => *b,
+        NSNumberHostObject::UnsignedLongLong(u) => *u != 0,
+        NSNumberHostObject::LongLong(l) => *l != 0,
+        NSNumberHostObject::Double(d) => *d != 0.0,
+    }
 }
 
 - (bool)boolValue {
