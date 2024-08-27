@@ -52,6 +52,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)setWithObjects:(NSUInteger)_objects {
+    msg![env; this init]
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     retain(env, this)
@@ -80,10 +84,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (id)setWithCapacity:(NSUInteger)_capacity {
     msg![env; this init]
-}
-
-+ (id)setWithObjects:(bool)objects {
-    log!("TODO: setWithObjects::{}", objects);
 }
 
 // NSCopying implementation
