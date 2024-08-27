@@ -244,7 +244,9 @@ impl super::ObjC {
             } else if let Some(next) = host_object.as_superclass() {
                 host_object = next;
             } else {
-            log_dbg!("{}", <eof>);
+            log!
+                "App is over-releasing {:?} (or tried to resurrect it previously)",
+                object
             }
         }
     }
