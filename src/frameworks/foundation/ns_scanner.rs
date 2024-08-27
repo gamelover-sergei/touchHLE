@@ -154,5 +154,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setCharactersToBeSkipped:{}", skipped);
 }
 
+- (())setCaseSensitive:(bool)case {
+    log!("TODO: setCaseSensitive:{}", case);
+}
+
 @end
 };
