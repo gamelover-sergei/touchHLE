@@ -105,10 +105,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (())setImage:(NSInteger)image forStates:(bool)_states {
-    // TODO
-}
-
 - (())stretchableImageWithLeftCapWidth:(NSInteger)width topCapHeight:(bool)_height {
     // TODO
 }
