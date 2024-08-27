@@ -283,7 +283,6 @@ forUndefinedKey:(id)key { // NSString*
     let isa = ObjC::read_isa(this, &env.mem);
     match ObjC::lookup_method_imp(env, isa, selector) {
         IMP::Guest(g) => ConstVoidPtr::from_bits(g.addr_with_thumb_bit()),
-        _ => todo!()
     }
 }
     
