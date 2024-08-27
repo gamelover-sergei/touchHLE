@@ -82,8 +82,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-+ (id)setWithObjects:(NSUInteger)_objects {
-    msg![env; this init]
++ (id)setWithObjects:(bool)objects {
+    log!("TODO: setWithObjects::{}", objects);
 }
 
 // NSCopying implementation
