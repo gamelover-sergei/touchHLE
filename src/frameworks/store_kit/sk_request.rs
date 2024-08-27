@@ -7,7 +7,7 @@
 use crate::objc::{ClassExports, HostObject, id, NSZonePtr, nil, release, retain, autorelease};
 use crate::{msg_class, objc_classes, msg};
 use crate::frameworks::foundation::ns_array::to_vec;
-use crate::frameworks::foundation::NSInteger;
+use crate::frameworks::foundation::{NSInteger, NSInteger};
 
 struct ProductsRequestHostObject {
     product_identifiers: id,
@@ -56,6 +56,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     retain(env, prod_ids);
     env.objc.borrow_mut::<ProductsRequestHostObject>(this).product_identifiers = prod_ids;
     this
+}
+
+- (id)initWithProductIdentifiers:(NSUInteger)_identifiers {
+    msg![env; this init]
 }
 
 - (())setDelegate:(id)delegate {
