@@ -7,7 +7,7 @@
 use crate::objc::{ClassExports, HostObject, id, NSZonePtr, nil, release, retain, autorelease};
 use crate::{msg_class, objc_classes, msg};
 use crate::frameworks::foundation::ns_array::to_vec;
-use crate::frameworks::foundation::{NSInteger, NSInteger};
+use crate::frameworks::foundation::{NSInteger, NSUInteger};
 
 struct ProductsRequestHostObject {
     product_identifiers: id,
