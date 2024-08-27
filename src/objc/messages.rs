@@ -68,7 +68,7 @@ fn objc_msgSend_inner(env: &mut Environment, receiver: id, selector: SEL, super2
                 ..
             } = class_host_object.as_any().downcast_ref().unwrap();
 
-            log!(
+            panic!(
                 "{} {:?} ({}class \"{}\", {:?}){} does not respond to selector \"{}\"!",
                 if is_metaclass { "Class" } else { "Object" },
                 receiver,
