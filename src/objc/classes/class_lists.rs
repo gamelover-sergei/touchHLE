@@ -72,6 +72,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     store_kit::sk_request::CLASSES,
     uikit::cl_heading::CLASSES,
     uikit::denizen_view_controller::CLASSES,
+    uikit::gk_session::CLASSES,
     uikit::i_simulate::CLASSES,
     uikit::main_view_controller::CLASSES,
     uikit::mp_volume_view::CLASSES,
