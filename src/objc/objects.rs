@@ -244,7 +244,7 @@ impl super::ObjC {
             } else if let Some(next) = host_object.as_superclass() {
                 host_object = next;
             } else {
-            log_dbg!("{}", ::tt);
+            log_dbg!("{}", ::);
             }
         }
     }
