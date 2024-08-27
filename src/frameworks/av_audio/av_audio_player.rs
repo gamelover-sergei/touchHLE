@@ -93,6 +93,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (())initWithData:(NSInteger)data error:(bool)_error {
+    // TODO
+}
+
 - (())setDelegate:(id)delegate {
     log!("TODO: [(AVAudioPlayer*){:?} setDelegate:{:?}]", this, delegate);
 }
