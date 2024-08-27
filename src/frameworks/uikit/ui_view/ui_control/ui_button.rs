@@ -237,6 +237,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTag:{}", tag);
 }
 
+- (())setImage:(NSInteger)image forStates:(bool)_states {
+    // TODO
+}
+
 - (())setFont:(id)_font {
 }
 - (())setShowsTouchWhenHighlighted:(bool)shows {
