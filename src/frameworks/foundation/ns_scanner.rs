@@ -150,8 +150,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-- (id)scanInteger {
-    nil
+- (id)scanInteger:(NSUInteger)_integer {
+    msg![env; this init]
 }
 
 - (())scanString:(NSInteger)string intoString:(bool)_string {
