@@ -319,6 +319,9 @@ fn CFBundleCopyResourceURLForLocalization(_env: &mut Environment, arg1: f32, arg
 fn CFBundleGetInfoDictionary(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFBundleCopyBundleURL(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFLocaleCopyCurrent(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -334,7 +337,6 @@ fn CFStringCreateWithFileSystemRepresentation(_env: &mut Environment, arg1: f32,
 fn CFStringGetCharacterAtIndex(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
-
 fn CFStringGetSystemEncoding(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -960,6 +962,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFBooleanGetValue(_, _)),
     export_c_func!(CFBundleCopyResourceURLForLocalization(_, _)),
     export_c_func!(CFBundleGetInfoDictionary(_, _)),
+    export_c_func!(CFBundleCopyBundleURL(_, _)),
     export_c_func!(CFLocaleCopyCurrent(_, _)),
     export_c_func!(CFRunLoopRun(_, _)),
     export_c_func!(CFSetCreateMutable(_, _)),
