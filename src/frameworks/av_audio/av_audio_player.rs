@@ -273,6 +273,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let host_object = env.objc.borrow_mut::<AVAudioPlayerHostObject>(this);
     host_object.set_current_time = currentTime;
     if let (Some(audio_desc), Some(audio_file_id)) = (host_object.audio_desc, host_object.audio_file_id) {
+        let total_packets = audio_file::State::get(&mut env.framework_state).audio_files.get(&audio_file_id).audio_file.packet_count();
         let total_frames = total_packets * audio_desc.frames_per_packet as u64;
         let new_current_frame = audio_desc.sample_rate * currentTime;
         if new_current_frame < 0.0 || new_current_frame > total_frames as f64 {
