@@ -12,7 +12,7 @@ use crate::objc::{autorelease, id, nil, objc_classes, ClassExports, HostObject, 
 use crate::{msg, msg_class};
 
 use super::ns_string::to_rust_string;
-use super::NSUInteger;
+use super::{NSInteger, NSUInteger};
 
 // TODO: Speed up by optimizing for internal subclasses
 #[derive(Default, Clone)]
@@ -148,6 +148,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)scanInt {
     nil
+}
+
+- (())scanString:(NSInteger)string intoString:(bool)_string {
+    // TODO
 }
 
 - (())setCharactersToBeSkipped:(bool)skipped {
