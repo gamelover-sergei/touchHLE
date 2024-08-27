@@ -150,7 +150,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-- (id)scanInteger:(NSUInteger)_integer {
+- (())scanInteger:(NSUInteger)_integer {
     msg![env; this init]
 }
 
