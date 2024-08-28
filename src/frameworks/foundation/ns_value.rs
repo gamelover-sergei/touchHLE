@@ -309,6 +309,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSNumberFormatter: NSValue
++ (())setDefaultFormatterBehavior:(bool)behavior {
+    log!("TODO: setDefaultFormatterBehavior:{}", behavior);
+}
+
 @end
 
 };
