@@ -32,4 +32,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation MFMailComposeViewController: NSObject
+@end
+
 };
