@@ -102,6 +102,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(UIViewController*){:?} setEditing:{}]", this, editing); // TODO
 }
 
+- (())setWantsFullScreenLayout:(bool)screen {
+    log!("TODO: setWantsFullScreenLayout:{}", screen);
+}
+
 - (())dismissModalViewControllerAnimated:(bool)animated {
     log!("TODO: [(UIViewController*){:?} dismissModalViewControllerAnimated:{}]", this, animated); // TODO
 }
@@ -117,6 +121,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation GKPeerPickerController: UIViewController
+@end
+
+@implementation Test3DViewController: UIViewController
+- (())setWantsFullScreenLayout:(bool)screen {
+    log!("TODO: setWantsFullScreenLayout:{}", screen);
+}
+
 @end
 
 };
