@@ -52,6 +52,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setTitle:(bool)title {
+    log!("TODO: setTitle:{}", title);
+}
+
 @end
 
 };
