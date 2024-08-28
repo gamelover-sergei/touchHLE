@@ -24,4 +24,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation MPMediaPickerController: NSObject
+@end
+
 };
