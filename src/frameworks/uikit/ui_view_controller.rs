@@ -39,7 +39,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
     // assert!(msg![env; path isAbsolutePath]);
     let ns_data: id = msg_class![env; NSData dataWithContentsOfFile:path];
-    assert!(ns_data != nil);
+    // assert!(ns_data != nil);
 
     let unarchiver = msg_class![env; NSKeyedUnarchiver alloc];
     let unarchiver = msg![env; unarchiver initForReadingWithData:ns_data];
