@@ -47,6 +47,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)initWithCustomView:(id)view {
     nil
 }
+
+- (())initWithImage:(NSInteger)image style:(bool)_style target:(bool)_target action:(bool)_action {
+    // TODO
+}
+
 @end
 
 };
