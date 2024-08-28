@@ -601,6 +601,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation CADisplayLink: NSObject
++ (id)invalidate {
+    nil
+}
+
 + (())displayLinkWithTarget:(NSInteger)target selector:(bool)_selector {
     // TODO
 }
