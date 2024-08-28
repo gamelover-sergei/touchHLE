@@ -34,9 +34,17 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDelegate:{}", delegate);
 }
 
+- (())setAllowsPickingMultipleItems:(bool)items {
+    log!("TODO: setAllowsPickingMultipleItems:{}", items);
+}
+
 @end
 
 @implementation MFMailComposeViewController: NSObject
+- (())setMailComposeDelegate:(bool)delegate {
+    log!("TODO: setMailComposeDelegate:{}", delegate);
+}
+
 @end
 
 };
