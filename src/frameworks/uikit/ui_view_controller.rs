@@ -37,7 +37,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let type_: id = get_static_str(env, "nib");
     let path: id = msg![env; bundle pathForResource:nibNameOrNil ofType:type_];
 
-    assert!(msg![env; path isAbsolutePath]);
+    // assert!(msg![env; path isAbsolutePath]);
     let ns_data: id = msg_class![env; NSData dataWithContentsOfFile:path];
     assert!(ns_data != nil);
 
