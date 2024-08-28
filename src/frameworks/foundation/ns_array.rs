@@ -601,6 +601,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation CADisplayLink: NSObject
++ (())displayLinkWithTarget:(NSInteger)target selector:(bool)_selector {
+    // TODO
+}
+
 @end
 
 @implementation SKProductsRequest: NSObject
