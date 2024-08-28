@@ -84,7 +84,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
-+ (id)numberWithInteger:(NSUInteger)value {
++ (id)numberWithInteger:(i32)value {
     // TODO: for greater efficiency we could return a static-lifetime value
 
     let new: id = msg![env; this alloc];
