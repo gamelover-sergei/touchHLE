@@ -93,6 +93,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     ns_string::get_static_str(env, "2.0")
 }
 
+- (id)userInterfaceIdiom {
+    nil
+}
+
 - (id)uniqueIdentifier {
     // Aspen Simulator returns (null) here
     // TODO: what should be a correct value?
