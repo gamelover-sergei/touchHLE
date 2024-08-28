@@ -609,6 +609,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setFrameInterval:{}", frame);
 }
 
++ (())addToRunLoop:(NSInteger)_loop forMode:(bool)_mode {
+    // TODO
+}
+
 @end
 
 @implementation SKProductsRequest: NSObject
