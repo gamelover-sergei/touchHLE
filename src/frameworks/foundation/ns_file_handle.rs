@@ -106,6 +106,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (id)availableData {
+    nil
+}
+
 - (())writeData:(id)data { // NSData *
     let fd = env.objc.borrow::<NSFileHandleHostObject>(this).fd;
     let bytes: ConstVoidPtr = msg![env; data bytes];
