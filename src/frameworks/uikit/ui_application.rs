@@ -213,6 +213,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)terminate {
+    nil
+}
+
 // UIResponder implementation
 // From the Apple UIView docs regarding [UIResponder nextResponder]:
 // "The shared UIApplication object normally returns nil, but it returns its
