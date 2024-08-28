@@ -52,11 +52,6 @@ jobs:
       name: Extract Gradle
       run: 7z -ogradle x gradle-7.3-bin.zip
     # Why isn't there a command for this?
-    - name: Generate local.properties file
-      run: echo 'sdk.dir='$iOS_SDK_ROOT > iOS/local.properties
-    # Let's not even bother with linting (would need to build for host, not just
-    # iOS, which makes things more complicated) or trying to run tests
-    # (would have to run on iOS 😰).
     - name: Build for iOS
       run: cd iOS && ../gradle/gradle-7.3/bin/gradle assembleRelease && mv app/build/outputs/ipa/release/app-release.ipa ../touchHLE.ipa
     - uses: actions/upload-artifact@v3
