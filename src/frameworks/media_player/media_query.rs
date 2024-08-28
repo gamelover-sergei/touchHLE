@@ -45,6 +45,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setMailComposeDelegate:{}", delegate);
 }
 
+- (())setSubject:(bool)subject {
+    log!("TODO: setSubject:{}", subject);
+}
+
 @end
 
 };
