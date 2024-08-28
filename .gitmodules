@@ -21,3 +21,6 @@
 [submodule "vendor/openal-soft"]
 	path = vendor/openal-soft
 	url = https://github.com/kcat/openal-soft.git
+[submodule "vendor/stb"]
+	path = vendor/stb
+	url = https://github.com/nothings/stb.git
