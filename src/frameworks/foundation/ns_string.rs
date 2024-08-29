@@ -1451,6 +1451,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     bytes
 }
 
+- (())stringByPaddingToLength:(NSInteger)length withString:(bool)_string startingAtIndex:(bool)_index {
+    // TODO
+}
+
 - (())stringByAddingPercentEscapesUsingEncoding:(bool)encoding {
     log!("TODO: stringByAddingPercentEscapesUsingEncoding:{}", encoding);
 }
