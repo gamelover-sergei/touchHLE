@@ -593,6 +593,17 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(UIView*){:?} setAutoresizesSubviews:{}]", this, enabled);
 }
 
+- (())insertSubview:(NSInteger)subview atIndex:(bool)_index {
+    // TODO
+}
+
+@end
+
+@implementation KDiceView: UIView
+- (())insertSubview:(NSInteger)subview atIndex:(bool)_index {
+    // TODO
+}
+
 @end
 
 @implementation TargetView: UIView
