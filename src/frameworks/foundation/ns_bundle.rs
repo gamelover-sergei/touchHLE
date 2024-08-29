@@ -95,6 +95,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)classNamed:(NSUInteger)_named {
+    msg![env; this init]
+}
+
 + (id)preferredLocalizations:(id)localizations {
     let preferredLocalizations = CFBundleCopyBundleLocalizations(env, localizations);
     autorelease(env, preferredLocalizations)
