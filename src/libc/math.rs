@@ -739,6 +739,9 @@ fn getc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn ungetc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn wcsrtombs(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn fgetwc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1105,6 +1108,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(putc(_, _)),
     export_c_func!(getc(_, _)),
     export_c_func!(ungetc(_, _)),
+    export_c_func!(wcsrtombs(_, _)),
     export_c_func!(fgetwc(_, _)),
     export_c_func!(fscanf(_, _)),
     export_c_func!(localeconv(_, _)),
