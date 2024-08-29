@@ -249,11 +249,6 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                 let ptr: MutVoidPtr = args.next(env);
                 res.extend_from_slice(format!("{:?}", ptr).as_bytes());
             }
-            b'l' => {
-                // assert!(length_modifier.is_none());
-                let ptr: MutVoidPtr = args.next(env);
-                res.extend_from_slice(format!("{:?}", ptr).as_bytes());
-            }
             b'f' => {
                 let float: f64 = args.next(env);
                 let pad_width = pad_width as usize;
@@ -665,6 +660,18 @@ fn sscanf_common(
                 }
             }
             b'f' => {
+                assert_eq!(max_width, 0);
+                assert!(length_modifier.is_none());
+                match atof_inner(env, src_ptr.cast_const()) {
+                    Ok((val, len)) => {
+                        src_ptr += len;
+                        let c_int_ptr: ConstPtr<f32> = args.next(env);
+                        env.mem.write(c_int_ptr.cast_mut(), val as f32);
+                    }
+                    Err(_) => break,
+                }
+            }
+            b'l' => {
                 assert_eq!(max_width, 0);
                 assert!(length_modifier.is_none());
                 match atof_inner(env, src_ptr.cast_const()) {
