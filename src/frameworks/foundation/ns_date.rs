@@ -150,6 +150,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     date
 }
 
+- (id)isEqualToDate:(NSUInteger)_date {
+    msg![env; this init]
+}
+
 - (())descriptionWithCalendarFormat:(NSInteger)format timeZone:(bool)_zone locale:(bool)_locale {
     // TODO
 }
