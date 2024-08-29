@@ -87,6 +87,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow::<NSBundleHostObject>(this).bundle_path
 }
 
++ (id)bundleWithPath:(NSUInteger)_path {
+    msg![env; this init]
+}
+
 + (id)bundleForClass:(NSUInteger)_class {
     msg![env; this init]
 }
