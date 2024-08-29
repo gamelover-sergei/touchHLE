@@ -216,6 +216,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     ns_array::from_vec(env, objects)
 }
 
+- (id)CGImage {
+    nil
+}
+
 - (id)size {
     nil
 }
