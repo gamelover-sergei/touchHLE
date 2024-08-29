@@ -184,6 +184,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setShadowOffset:(bool)offset {
     log!("TODO: setShadowOffset:{}", offset);
 }
+
+- (())setHighlightedTextColor:(bool)color {
+    log!("TODO: setHighlightedTextColor:{}", color);
+}
+
 - (())setOpaque:(bool)_opaque {
     // Built-in views don't have user-controlled opaqueness.
 }
