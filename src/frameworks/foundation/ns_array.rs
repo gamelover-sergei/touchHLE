@@ -309,6 +309,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)boolValue {
+    nil
+}
+
 // NSFastEnumeration implementation
 - (NSUInteger)countByEnumeratingWithState:(MutPtr<NSFastEnumerationState>)state
                                   objects:(MutPtr<id>)stackbuf
@@ -426,10 +430,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)ascender {
-    nil
-}
-
-- (id)boolValue {
     nil
 }
 
