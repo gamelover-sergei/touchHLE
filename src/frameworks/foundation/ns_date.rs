@@ -164,6 +164,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSDateComponents: NSDate
+@end
+
 @implementation ReachabilityQuery: NSDate
 
 // NSCopying implementation
