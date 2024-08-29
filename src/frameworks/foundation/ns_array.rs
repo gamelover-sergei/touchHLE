@@ -429,6 +429,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)boolValue {
+    nil
+}
+
 - (id)drain {
     nil
 }
