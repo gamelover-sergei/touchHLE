@@ -50,6 +50,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setValue:(NSInteger)value animated:(bool)_animated {
+    // TODO
+}
+
 - (id)value {
     nil
 }
