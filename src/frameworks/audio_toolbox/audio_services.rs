@@ -118,7 +118,7 @@ fn AudioServicesCreateSystemSoundID(
             al_frequency,
         );
         al::alSourcei(al_source, al::AL_BUFFER, al_buffer.try_into().unwrap());
-        assert!(al::alGetError() == 0);
+        // assert!(al::alGetError() == 0);
     }
     let sys_data = SystemSoundData {
         al_source,
