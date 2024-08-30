@@ -367,6 +367,9 @@ fn CGContextClipToRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGContextDrawPath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextSelectFont(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextSetAllowsAntialiasing(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -996,6 +999,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGContextAddRect(_, _)),
     export_c_func!(CGContextClipToRect(_, _)),
     export_c_func!(CGContextDrawPath(_, _)),
+    export_c_func!(CGContextSelectFont(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetFont(_, _)),
     export_c_func!(CGContextSetInterpolationQuality(_, _)),
