@@ -241,6 +241,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setTitleShadowColor:(NSInteger)color forStates:(bool)_states {
+    // TODO
+}
+
 - (())setFont:(id)_font {
 }
 - (())setShowsTouchWhenHighlighted:(bool)shows {
