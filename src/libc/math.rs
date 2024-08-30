@@ -358,6 +358,9 @@ fn CGColorEqualToColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGColorGetConstantColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextAddRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextClipToRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -987,6 +990,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFURLCreateWithString(_, _)),
     export_c_func!(CGColorEqualToColor(_, _)),
     export_c_func!(CGColorGetConstantColor(_, _)),
+    export_c_func!(CGContextAddRect(_, _)),
     export_c_func!(CGContextClipToRect(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetFont(_, _)),
