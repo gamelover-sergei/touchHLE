@@ -1,4 +1,4 @@
-use crate::frameworks::foundation::NSUInteger;
+use crate::frameworks::foundation::NSInteger;
 use crate::objc::{objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
