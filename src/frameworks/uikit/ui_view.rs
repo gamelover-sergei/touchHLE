@@ -613,6 +613,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UIToolbar: UIView
+- (id)items {
+    nil
+}
+
 - (())setBarStyle:(bool)bar {
     log!("TODO: setBarStyle:{}", bar);
 }
