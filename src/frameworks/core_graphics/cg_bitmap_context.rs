@@ -115,15 +115,6 @@ pub fn CGBitmapContextCreateImage(env: &mut Environment, context: CGContextRef) 
     // support any bitmap format.
     let host_obj = env.objc.borrow::<CGContextHostObject>(context);
     let CGContextSubclass::CGBitmapContext(bitmap_data) = host_obj.subclass;
-    assert!(
-        bitmap_data.bits_per_component == 8
-            && bitmap_data.bytes_per_row == bitmap_data.width * 4
-            && bitmap_data.color_space == kCGColorSpaceGenericRGB
-            && matches!(
-                bitmap_data.alpha_info,
-                kCGImageAlphaNoneSkipLast | kCGImageAlphaPremultipliedLast
-            )
-    );
     let pixels = env
         .mem
         .bytes_at(
