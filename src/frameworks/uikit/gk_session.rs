@@ -1,11 +1,15 @@
 use crate::frameworks::foundation::NSInteger;
-use crate::objc::{objc_classes, ClassExports};
+use crate::objc::{id, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
 (env, this, _cmd);
 
 @implementation GKSession: NSObject
+- (id)peerID {
+    nil
+}
+
 - (())initWithSessionID:(NSInteger)session displayName:(bool)_name sessionMode:(bool)mode {
     // TODO
 }
