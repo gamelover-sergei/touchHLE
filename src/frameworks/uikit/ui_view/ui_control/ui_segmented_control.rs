@@ -6,7 +6,7 @@
 //! `UISegmentedControl`.
 
 use crate::frameworks::uikit::ui_view::NSUInteger;
-use crate::objc::{id, msg, objc_classes, ClassExports};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -16,6 +16,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)initWithItems:(NSUInteger)_items {
     msg![env; this init]
+}
+
+- (id)sizeToFit {
+    nil
 }
 
 - (())setSelectedSegmentIndex:(bool)index {
