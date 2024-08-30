@@ -14,6 +14,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDelegate:{}", delegate);
 }
 
+- (())setDataReceiveHandler:(NSInteger)handler withContext:(bool)_context {
+    // TODO
+}
+
 @end
 
 };
