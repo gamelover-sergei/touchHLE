@@ -10,6 +10,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setAvailable:(bool)available {
+    log!("TODO: setAvailable:{}", available);
+}
+
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
 }
