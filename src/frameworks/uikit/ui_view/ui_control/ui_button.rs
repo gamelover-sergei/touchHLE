@@ -237,6 +237,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTag:{}", tag);
 }
 
+- (())setTitleShadowOffset:(bool)shadow {
+    log!("TODO: setTitleShadowOffset:{}", shadow);
+}
+
 - (())setImage:(NSInteger)image forStates:(bool)_states {
     // TODO
 }
