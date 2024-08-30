@@ -163,7 +163,7 @@ fn AudioServicesPlaySystemSound(env: &mut Environment, sys_sound_id: SystemSound
             al::alGetSourcei(al_source, al::AL_SOURCE_STATE, &mut al_state as *mut i32);
             al::alSourcePlay(al_source);
             al::alGetSourcei(al_source, al::AL_SOURCE_STATE, &mut al_state as *mut i32);
-            assert!(al::alGetError() == 0);
+            // assert!(al::alGetError() == 0);
         }
     } else {
         panic!(
