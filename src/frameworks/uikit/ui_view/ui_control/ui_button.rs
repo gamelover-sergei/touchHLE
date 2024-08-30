@@ -241,7 +241,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
-- (())setTitleShadowColor:(NSInteger)color forStates:(bool)_states {
+- (())setTitleShadowColor:(NSInteger)color forState:(bool)_state {
     // TODO
 }
 
