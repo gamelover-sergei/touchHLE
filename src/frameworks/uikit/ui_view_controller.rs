@@ -61,6 +61,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)navigationItem {
+    nil
+}
+
 - (())dealloc {
     let &UIViewControllerHostObject { view } = env.objc.borrow(this);
 
@@ -126,6 +130,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation Test3DViewController: UIViewController
 - (())setWantsFullScreenLayout:(bool)screen {
     log!("TODO: setWantsFullScreenLayout:{}", screen);
+}
+
+@end
+
+@implementation GameViewController: UIViewController
+- (id)navigationItem {
+    nil
 }
 
 @end
