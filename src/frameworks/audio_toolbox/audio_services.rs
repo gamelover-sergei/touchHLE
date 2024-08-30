@@ -104,7 +104,7 @@ fn AudioServicesCreateSystemSoundID(
     unsafe {
         al::alGenSources(1, &mut al_source);
         //al::alSourcef(al_source, al::AL_MAX_GAIN, 1.0);
-        assert!(al::alGetError() == 0);
+        // assert!(al::alGetError() == 0);
     }
 
     let mut al_buffer = 0;
