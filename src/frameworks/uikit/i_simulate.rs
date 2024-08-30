@@ -5,7 +5,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 (env, this, _cmd);
 
-@implementation iSimulate: UIView
+@implementation iSimulate: NSObject
 + (id)disableTouchesOverlay:(NSUInteger)overlay {
     msg![env; this init]
 }
