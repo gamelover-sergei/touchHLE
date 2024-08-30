@@ -128,6 +128,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)pointSize {
+    nil
+}
+
 - (CGFloat)ascender {
     1.5 * env.objc.borrow::<UIFontHostObject>(this).size
 }
