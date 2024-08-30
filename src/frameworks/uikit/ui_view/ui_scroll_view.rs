@@ -86,6 +86,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setIndicatorStyle:{}", style);
 }
 
+- (())scrollRectToVisible:(NSInteger)visible animated:(bool)_animated {
+    // TODO
+}
+
 - (CGPoint)contentOffset {
     env.objc.borrow::<UIScrollViewHostObject>(this).content_offset
 }
