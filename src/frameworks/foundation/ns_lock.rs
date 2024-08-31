@@ -43,6 +43,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<NSLockHostObject>(this).locked_by = Some(env.current_thread);
 }
 
+- (id)tryLock {
+    nil
+}
+
 - (())unlock {
     log_dbg!("[(NSLock*){:?} unlock]", this);
     let host_object = env.objc.borrow::<NSLockHostObject>(this);
