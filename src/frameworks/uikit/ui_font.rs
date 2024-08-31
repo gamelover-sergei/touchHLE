@@ -70,17 +70,9 @@ pub const CLASSES: ClassExports = objc_classes! {
               size:(CGFloat)size {
     msg_class![env; UIFont systemFontOfSize:size]
 }
-+ (id)systemFontSize:(CGFloat)size {
-    // Cache for later use
-    if env.framework_state.uikit.ui_font.regular.is_none() {
-        env.framework_state.uikit.ui_font.regular = Some(Font::sans_regular());
-    }
-    let host_object = UIFontHostObject {
-        size,
-        kind: FontKind::Regular,
-    };
-    let new = env.objc.alloc_object(this, Box::new(host_object), &mut env.mem);
-    autorelease(env, new)
+
++ (id)systemFontSize {
+    nil
 }
 
 + (id)systemFontOfSize:(CGFloat)size {
