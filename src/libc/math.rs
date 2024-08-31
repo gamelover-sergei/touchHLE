@@ -370,6 +370,9 @@ fn CGContextDrawPath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGContextFillEllipseInRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextMoveToPoint(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextSelectFont(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1006,6 +1009,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGContextClipToRect(_, _)),
     export_c_func!(CGContextDrawPath(_, _)),
     export_c_func!(CGContextFillEllipseInRect(_, _)),
+    export_c_func!(CGContextMoveToPoint(_, _)),
     export_c_func!(CGContextSelectFont(_, _)),
     export_c_func!(CGContextSetAllowsAntialiasing(_, _)),
     export_c_func!(CGContextSetFont(_, _)),
