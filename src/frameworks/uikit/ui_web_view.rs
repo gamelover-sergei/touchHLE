@@ -1,5 +1,5 @@
 use crate::frameworks::foundation::NSUInteger;
-use crate::objc::{id, msg, objc_classes, ClassExports};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -9,6 +9,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)loadRequest:(NSUInteger)request {
     msg![env; this init]
+}
+
+- (id)request {
+    nil
 }
 
 - (())setScalesPageToFit:(bool)fit {
