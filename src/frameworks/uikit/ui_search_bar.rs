@@ -10,6 +10,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setShowsCancelButton:{}", button);
 }
 
+- (())setAutocorrectionType:(bool)_type {
+    log!("TODO: setAutocorrectionType:{}", _type);
+}
+
 @end
 
 };
