@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UIProgressView: UIView
 
+- (())setProgressViewStyle:(bool)style {
+    log!("TODO: setProgressViewStyle:{}", style);
+}
+
 @end
 
 };
