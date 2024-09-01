@@ -528,7 +528,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
-- (())exchangeObjectAtIndex:(NSInteger)_index withObjectAtIndex:(bool)_index {
+- (())exchangeObjectAtIndex:(NSInteger)_index withObjectAtIndex:(bool)_object {
     // TODO
 }
 
