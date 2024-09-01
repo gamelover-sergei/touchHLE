@@ -10,6 +10,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setProgressViewStyle:{}", style);
 }
 
+- (())setProgress:(bool)progress {
+    log!("TODO: setProgress:{}", progress);
+}
+
 @end
 
 };
