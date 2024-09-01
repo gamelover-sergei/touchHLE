@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UISearchBar: UIView
 
+- (())setShowsCancelButton:(bool)button {
+    log!("TODO: setShowsCancelButton:{}", button);
+}
+
 @end
 
 };
