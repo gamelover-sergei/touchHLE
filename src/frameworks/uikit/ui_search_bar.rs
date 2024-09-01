@@ -26,6 +26,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setBarStyle:{}", style);
 }
 
+- (())setPlaceholder:(bool)place {
+    log!("TODO: setPlaceholder:{}", place);
+}
+
 @end
 
 };
