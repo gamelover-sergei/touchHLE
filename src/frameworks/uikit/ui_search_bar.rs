@@ -30,6 +30,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setPlaceholder:{}", place);
 }
 
+- (())setShowsBookmarkButton:(bool)button {
+    log!("TODO: setShowsBookmarkButton:{}", button);
+}
+
 @end
 
 };
