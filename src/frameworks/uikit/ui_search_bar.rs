@@ -22,6 +22,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setKeyboardType:{}", _type);
 }
 
+- (())setBarStyle:(bool)style {
+    log!("TODO: setBarStyle:{}", style);
+}
+
 @end
 
 };
