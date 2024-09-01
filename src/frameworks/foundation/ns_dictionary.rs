@@ -345,7 +345,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this setObject: value forKey: key]
 }
 
--(())removeAllObjects {
+- (())removeAllObjects {
     let mut objects = std::mem::take(env.objc.borrow_mut::<DictionaryHostObject>(this));
     objects.release(env);
 }
@@ -561,6 +561,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)objectEnumerator {
     nil
+}
+
+- (())removeAllObjects {
+    let mut objects = std::mem::take(env.objc.borrow_mut::<DictionaryHostObject>(this));
+    objects.release(env);
 }
 
 - (())countByEnumeratingWithState:(NSInteger)state objects:(bool)_objects count:(bool)_count {
