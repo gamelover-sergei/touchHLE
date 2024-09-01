@@ -6,7 +6,7 @@
 //! `NSBundle`.
 
 use super::ns_array;
-use super::{ns_string, NSUInteger};
+use super::{ns_string, NSInteger, NSUInteger};
 use crate::bundle::Bundle;
 use crate::frameworks::core_foundation::cf_bundle::{
     CFBundleCopyBundleLocalizations, CFBundleCopyPreferredLocalizationsFromArray,
@@ -107,6 +107,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)preferredLocalizationsFromArray:(id)localizations_array { // NSArray<NSString *> *
     let preferredLocalizations = CFBundleCopyPreferredLocalizationsFromArray(env, localizations_array);
     autorelease(env, preferredLocalizations)
+}
+
++ (())pathForResource:(NSInteger)resource ofType:(bool)_type {
+    // TODO
 }
 
 - (())dealloc {
