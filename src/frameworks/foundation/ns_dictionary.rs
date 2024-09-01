@@ -540,6 +540,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)allValues {
+    nil
+}
+
 - (id)dictionaryRepresentation {
     this
 }
