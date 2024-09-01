@@ -594,6 +594,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)parserError {
+    nil
+}
+
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
 }
