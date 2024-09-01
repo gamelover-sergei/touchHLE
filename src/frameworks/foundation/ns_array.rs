@@ -606,6 +606,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setShouldProcessNamespaces:{}", process);
 }
 
+- (())setShouldReportNamespacePrefixes:(bool)report {
+    log!("TODO: setShouldReportNamespacePrefixes:{}", report);
+}
+
 @end
 
 @implementation CADisplayLink: NSObject
