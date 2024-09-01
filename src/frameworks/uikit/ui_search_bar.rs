@@ -18,6 +18,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAutocapitalizationType:{}", _type);
 }
 
+- (())setKeyboardType:(bool)_type {
+    log!("TODO: setKeyboardType:{}", _type);
+}
+
 @end
 
 };
