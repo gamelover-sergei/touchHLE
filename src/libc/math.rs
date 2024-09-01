@@ -364,6 +364,9 @@ fn CGColorGetConstantColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 
 fn CGContextAddLineToPoint(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextAddPath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextAddRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1019,6 +1022,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGColorEqualToColor(_, _)),
     export_c_func!(CGColorGetConstantColor(_, _)),
     export_c_func!(CGContextAddLineToPoint(_, _)),
+    export_c_func!(CGContextAddPath(_, _)),
     export_c_func!(CGContextAddRect(_, _)),
     export_c_func!(CGContextBeginPath(_, _)),
     export_c_func!(CGContextClipToRect(_, _)),
