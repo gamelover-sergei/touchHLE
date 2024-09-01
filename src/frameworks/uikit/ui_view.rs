@@ -597,10 +597,21 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())addObserver:(NSInteger)observer forKeyPath:(bool)_path options:(bool)_options context:(bool)_context  {
+    // TODO
+}
+
 @end
 
 @implementation KDiceView: UIView
 - (())insertSubview:(NSInteger)subview atIndex:(bool)_index {
+    // TODO
+}
+
+@end
+
+@implementation SpinnerView: UIView
+- (())addObserver:(NSInteger)observer forKeyPath:(bool)_path options:(bool)_options context:(bool)_context  {
     // TODO
 }
 
