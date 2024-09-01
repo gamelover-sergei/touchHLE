@@ -24,7 +24,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 // NSCopying implementation
-- (NSZonePtr)copyWithZone {
+- (id)copyWithZone:(NSZonePtr)_zone {
     retain(env, this)
 }
 
@@ -56,9 +56,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
-@implementation PM_ReachabilityQuery: NSObject
+@implementation PM_ReachabilityQuery: MPMediaQuery
 // NSCopying implementation
-- (NSZonePtr)copyWithZone {
+- (id)copyWithZone:(NSZonePtr)_zone {
     retain(env, this)
 }
 
