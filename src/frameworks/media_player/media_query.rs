@@ -6,7 +6,7 @@
 //! `MPMediaQuery`.
 
 use crate::frameworks::foundation::NSUInteger;
-use crate::objc::{id, msg, nil, objc_classes, retain, ClassExports, NSZonePtr};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -23,9 +23,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-// NSCopying implementation
-- (id)copyWithZone:(NSZonePtr)_zone {
-    retain(env, this)
+- (id)copyWithZone:(NSUInteger)_zone {
+    msg![env; this init]
 }
 
 @end
@@ -57,9 +56,8 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation PM_ReachabilityQuery: MPMediaQuery
-// NSCopying implementation
-- (id)copyWithZone:(NSZonePtr)_zone {
-    retain(env, this)
+- (id)copyWithZone:(NSUInteger)_zone {
+    msg![env; this init]
 }
 
 @end
