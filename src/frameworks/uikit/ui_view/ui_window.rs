@@ -6,7 +6,7 @@
 //! `UIWindow`.
 
 use crate::frameworks::core_graphics::CGRect;
-use crate::frameworks::uikit::ui_view::CGFloat;
+use crate::frameworks::uikit::ui_view::{CGFloat, NSInteger};
 use crate::msg_class;
 use crate::objc::{id, msg, msg_super, objc_classes, ClassExports};
 
@@ -124,6 +124,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 -(())setWindowLevel:(CGFloat)_level {
 
 }
+
+- (())pathForResource:(NSInteger)resource ofType:(bool)_type { 
+    // TODO
+}
+
 
 @end
 
