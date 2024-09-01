@@ -14,6 +14,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setAutocorrectionType:{}", _type);
 }
 
+- (())setAutocapitalizationType:(bool)_type {
+    log!("TODO: setAutocapitalizationType:{}", _type);
+}
+
 @end
 
 };
