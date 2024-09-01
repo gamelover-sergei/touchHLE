@@ -602,6 +602,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: ShouldResolveExternalEntities:{}", entities);
 }
 
+- (())setShouldProcessNamespaces:(bool)process {
+    log!("TODO: setShouldProcessNamespaces:{}", process);
+}
+
 @end
 
 @implementation CADisplayLink: NSObject
