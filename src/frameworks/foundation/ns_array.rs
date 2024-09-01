@@ -528,6 +528,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())exchangeObjectAtIndex:(NSInteger)_index withObjectAtIndex:(bool)_index {
+    // TODO
+}
+
 @end
 
 // Special variant for use by CFArray with NULL callbacks: objects aren't
