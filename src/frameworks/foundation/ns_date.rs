@@ -169,6 +169,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setHour:{}", hour);
 }
 
+- (())setMinute:(bool)minute {
+    log!("TODO: setMinute:{}", minute);
+}
+
 @end
 
 @implementation ReachabilityQuery: NSDate
