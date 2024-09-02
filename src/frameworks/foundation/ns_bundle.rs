@@ -156,6 +156,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (id)length {
+    nil
+}
+
 - (id)loadNibNamed:(id)name // NSString*
              owner:(id)_owner
            options:(id)options { // NSDictionary<UINibOptionsKey, id> *
