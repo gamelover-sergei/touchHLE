@@ -165,6 +165,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSDateComponents: NSDate
+- (())setHour:(bool)hour {
+    log!("TODO: setHour:{}", hour);
+}
+
 @end
 
 @implementation ReachabilityQuery: NSDate
