@@ -1,3 +1,4 @@
+use crate::frameworks::foundation::NSInteger;
 use crate::objc::{id, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -12,6 +13,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setOn:(bool)on {
     log!("TODO: setOn:{}", on);
+}
+
+- (())setOn:(NSInteger)on animated:(bool)_animated {
+    // TODO
 }
 
 @end
