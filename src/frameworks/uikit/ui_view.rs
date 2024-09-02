@@ -646,6 +646,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UIPickerView: UIView
+
+- (id)selectedRowInComponent:(NSUInteger)_component {
+    msg![env; this init]
+}
+
 - (())setDataSource:(id)dataSource {
 }
 - (())setDelegate:(id)delegate {
