@@ -657,6 +657,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setShowsSelectionIndicator:{}", indicator);
 }
 
+- (())selectRow:(NSInteger)row inComponent:(bool)_component animated:(bool)_animated {
+    // TODO
+}
+
 @end
 
 @implementation UINavigationBar: UIView
