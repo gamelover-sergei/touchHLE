@@ -47,4 +47,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation UIActionSheet: NSObject
+@end
+
 };
