@@ -61,6 +61,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)navigationController {
+    nil
+}
+
 - (id)navigationItem {
     nil
 }
@@ -120,6 +124,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())viewDidAppear:(bool)animated {
     log!("TODO: [(UIViewController*){:?} viewDidAppear:{}]", this, animated); // TODO
+}
+
+@end
+
+@implementation BallFightSettingsViewController: UIViewController
+- (id)navigationController {
+    nil
 }
 
 @end
