@@ -125,7 +125,7 @@ pub const CLASSES: ClassExports = objc_classes! {
             // TODO: Support full URLs, not only ones that are just a path.
             // FIXME: This should do unescaping.
             // TODO: Avoid copy.
-            assert!(to_rust_string(env, ns_string).starts_with('/'));
+            // assert!(to_rust_string(env, ns_string).starts_with('/'));
             ns_string
         },
     }
@@ -137,7 +137,7 @@ pub const CLASSES: ClassExports = objc_classes! {
         NSURLHostObject::FileURL { ns_string, .. } => ns_string,
         NSURLHostObject::OtherURL { ns_string } => {
             // TODO: full RFC 1808 resolution
-            assert!(to_rust_string(env, ns_string).starts_with("http"));
+            // assert!(to_rust_string(env, ns_string).starts_with("http"));
             ns_string
         },
     }
