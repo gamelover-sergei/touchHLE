@@ -212,6 +212,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setEditing:{}", editing);
 }
 
+- (())setTableHeaderView:(bool)view {
+    log!("TODO: setTableHeaderView:{}", view);
+}
+
 @end
 
 @implementation UITableViewController: UIScrollView
