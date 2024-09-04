@@ -210,6 +210,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setContentsRect:{}", rect);
 }
 
+- (())setName:(bool)name {
+    log!("TODO: setName:{}", name);
+}
+
 - (CGRect)frame {
     let &CALayerHostObject {
         bounds,
