@@ -262,6 +262,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, subs)
 }
 
+- (id)sendSubviewToBack:(NSUInteger)_back {
+    msg![env; this init]
+}
+
 - (())addSubview:(id)view {
     log_dbg!("[(UIView*){:?} addSubview:{:?}] => ()", this, view);
 
