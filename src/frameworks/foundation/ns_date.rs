@@ -8,7 +8,7 @@
 use super::{ns_string, NSComparisonResult, NSTimeInterval};
 use crate::frameworks::core_foundation::time::apple_epoch;
 use crate::frameworks::foundation::{NSInteger, NSUInteger};
-use crate::objc::{autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr};
+use crate::objc::{autorelease, id, msg, msg_class, objc_classes, retain, ClassExports, HostObject, NSZonePtr};
 
 use std::ops::Add;
 use std::time::{Duration, SystemTime};
@@ -46,8 +46,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
-+ (id)dateWithTimeIntervalSinceNow {
-    nil
++ (id)dateWithTimeIntervalSinceNow:(NSUInteger)_now {
+    msg![env; this init]
 }
 
 + (id)dateWithTimeIntervalSince1970:(NSUInteger)_since1970 {
