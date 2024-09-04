@@ -341,6 +341,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setNumberStyle:{}", style);
 }
 
+- (())setFormatterBehavior:(bool)behavior {
+    log!("TODO: setFormatterBehavior:{}", behavior);
+}
+
 @end
 
 };
