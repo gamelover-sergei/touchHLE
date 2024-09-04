@@ -1507,6 +1507,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (())initWithFormat:(NSInteger)format arguments:(bool)_arguments {
+    // TODO
+}
+
 @end
 
 };
