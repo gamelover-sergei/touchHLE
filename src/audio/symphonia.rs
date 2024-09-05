@@ -12,6 +12,7 @@
 use std::io::Cursor;
 use symphonia::core::audio::{RawSampleBuffer, SignalSpec};
 use symphonia::core::codecs::{CODEC_TYPE_AAC, CODEC_TYPE_ADPCM_IMA_WAV, CODEC_TYPE_MP3};
+use symphonia::core::formats::FormatReader;
 use symphonia::core::io::MediaSourceStream;
 
 /// PCM data decoded from an AAC file.
@@ -23,6 +24,10 @@ pub struct SymphoniaDecodedToPcm {
     pub sample_rate: u32,
     /// Channel count.
     pub channels: u32,
+}
+
+pub struct SymphoniaNative {
+    pub decoder: Box<dyn FormatReader>,
 }
 
 pub fn decode_symphonia_to_pcm(file: Cursor<Vec<u8>>) -> Result<SymphoniaDecodedToPcm, ()> {

@@ -12,7 +12,7 @@
 //! Resources:
 //! - [Apple Core Audio Format Specification 1.0](https://developer.apple.com/library/archive/documentation/MusicAudio/Reference/CAFSpec/CAF_intro/CAF_intro.html)
 
-mod aac;
+mod symphonia;
 mod ima4;
 
 pub use ima4::decode_ima4;
@@ -53,7 +53,8 @@ pub struct AudioFile(AudioFileInner);
 enum AudioFileInner {
     Wave(hound::WavReader<Cursor<Vec<u8>>>),
     Caf(caf::CafPacketReader<Cursor<Vec<u8>>>),
-    Symphonia(aac::SymphoniaDecodedToPcm),
+    Symphonia(symphonia::SymphoniaDecodedToPcm),
+    SymphoniaNative(symphonia::SymphoniaNative),
 }
 
 impl AudioFile {
@@ -95,7 +96,7 @@ impl AudioFile {
         // are immediately decoding the entire file to PCM and acting as if
         // it's a PCM file, simply because because this is easier. Full MP3
         // support would require a lot of changes in Audio Toolbox.
-        } else if let Ok(pcm) = aac::decode_symphonia_to_pcm(Cursor::new(bytes)) {
+        } else if let Ok(pcm) = symphonia::decode_symphonia_to_pcm(Cursor::new(bytes)) {
             Ok(AudioFile(AudioFileInner::Symphonia(pcm)))
         } else {
             Err(AudioFileOpenError::FileDecodeError)
@@ -168,7 +169,7 @@ impl AudioFile {
                     bits_per_channel,
                 }
             }
-            AudioFileInner::Symphonia(aac::SymphoniaDecodedToPcm {
+            AudioFileInner::Symphonia(symphonia::SymphoniaDecodedToPcm {
                 sample_rate,
                 channels,
                 ..
@@ -210,7 +211,7 @@ impl AudioFile {
                 // variable size not implemented
                 u64::from(self.packet_size_fixed()) * self.packet_count()
             }
-            AudioFileInner::Symphonia(aac::SymphoniaDecodedToPcm { ref bytes, .. }) => {
+            AudioFileInner::Symphonia(symphonia::SymphoniaDecodedToPcm { ref bytes, .. }) => {
                 bytes.len() as u64
             }
         }
@@ -219,7 +220,7 @@ impl AudioFile {
     pub fn packet_count(&self) -> u64 {
         match self.0 {
             AudioFileInner::Wave(_)
-            | AudioFileInner::Symphonia(aac::SymphoniaDecodedToPcm { .. }) => {
+            | AudioFileInner::Symphonia(symphonia::SymphoniaDecodedToPcm { .. }) => {
                 // never variable-size
                 self.byte_count() / u64::from(self.packet_size_fixed())
             }
@@ -312,7 +313,7 @@ impl AudioFile {
                 }
                 Ok(byte_offset)
             }
-            AudioFileInner::Symphonia(aac::SymphoniaDecodedToPcm { ref bytes, .. }) => {
+            AudioFileInner::Symphonia(symphonia::SymphoniaDecodedToPcm { ref bytes, .. }) => {
                 let bytes = bytes.get(offset as usize..).ok_or(())?;
                 let bytes_to_read = buffer.len().min(bytes.len());
                 let bytes = &bytes[..bytes_to_read];
