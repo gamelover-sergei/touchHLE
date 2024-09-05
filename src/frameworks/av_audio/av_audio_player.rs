@@ -93,6 +93,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)volume {
+    nil
+}
+
 - (())initWithData:(NSInteger)data error:(bool)_error {
     // TODO
 }
