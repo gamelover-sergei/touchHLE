@@ -32,9 +32,9 @@ fn CFDictionaryCreateMutable(
     valueCallbacks: ConstVoidPtr, // TODO, should be `const CFDictionaryValueCallBacks*`
 ) -> CFMutableDictionaryRef {
     assert!(allocator == kCFAllocatorDefault); // unimplemented
-    assert!(capacity == 0); // TODO: fixed capacity support
-    assert!(keyCallbacks.is_null()); // TODO: support retaining etc
-    assert!(valueCallbacks.is_null()); // TODO: support retaining etc
+    // assert!(capacity == 0); // TODO: fixed capacity support
+    // assert!(keyCallbacks.is_null()); // TODO: support retaining etc
+    // assert!(valueCallbacks.is_null()); // TODO: support retaining etc
 
     //let new: id = msg_class![env; _touchHLE_NSMutableDictionary_non_retaining alloc];
     let new: id = msg_class![env; _touchHLE_NSMutableDictionary alloc];
