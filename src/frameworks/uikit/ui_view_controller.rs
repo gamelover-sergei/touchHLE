@@ -6,6 +6,7 @@
 //! `UIViewController`.
 
 use crate::frameworks::foundation::ns_string::{get_static_str, to_rust_string};
+use crate::frameworks::foundation::NSInteger;
 use crate::objc::{
     id, msg, msg_class, nil, objc_classes, release, retain, ClassExports, HostObject, NSZonePtr,
 };
@@ -126,11 +127,22 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(UIViewController*){:?} viewDidAppear:{}]", this, animated); // TODO
 }
 
+- (())performSelectorInBackground:(NSInteger)selector withObject:(bool)_object {
+    // TODO
+}
+
 @end
 
 @implementation BallFightSettingsViewController: UIViewController
 - (id)navigationController {
     nil
+}
+
+@end
+
+@implementation CCViewController:  UIViewController
+- (())performSelectorInBackground:(NSInteger)selector withObject:(bool)_object {
+    // TODO
 }
 
 @end
