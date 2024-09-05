@@ -158,6 +158,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     CGContextDrawImage(env, context, rect, image);
 }
 
+- (())pathForResource:(NSInteger)resource ofType:(bool)_type {
+    // TODO
+}
+
 @end
 
 };
