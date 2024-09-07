@@ -722,6 +722,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UITableViewCell: UIView
+- (())setText:(bool)text {
+    log!("TODO: setText:{}", text);
+}
+
 @end
 
 };
