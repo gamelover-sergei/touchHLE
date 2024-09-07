@@ -34,6 +34,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setShowsBookmarkButton:{}", button);
 }
 
+- (())setTintColor:(bool)color {
+    log!("TODO: setTintColor:{}", color);
+}
+
 @end
 
 };
