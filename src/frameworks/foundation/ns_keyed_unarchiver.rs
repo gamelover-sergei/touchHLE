@@ -208,6 +208,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation NSKeyedArchiver: NSCoder
 
++ (id)archivedDataWithRootObject:(NSUInteger)_object {
+    msg![env; this init]
+}
+
 + (bool)archiveRootObject:(id)object toFile:(id)path {
     false
 }
