@@ -216,6 +216,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     false
 }
 
+// NSCopying implementation
++ (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
+}
+
 - (id)finishEncoding {
     nil
 }
