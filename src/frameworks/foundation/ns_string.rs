@@ -1292,7 +1292,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
-- (())sizeWithFont:(NSInteger)font minFontSize:(bool)_size actualFontSize:(bool)_size forWidth:(bool)_width lineBreakMode:(bool)_mode  {
+- (())sizeWithFont:(NSInteger)font minFontSize:(bool)_size actualFontSize:(bool)_actual forWidth:(bool)_width lineBreakMode:(bool)_mode  {
     // TODO
 }
 
