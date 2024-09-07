@@ -15,7 +15,7 @@ use crate::frameworks::foundation::ns_string::{from_rust_string, get_static_str,
 use crate::frameworks::uikit::ui_nib::load_nib_file;
 use crate::fs::GuestPathBuf;
 use crate::objc::{
-    autorelease, id, msg, msg_class, nil, objc_classes, release, retain, ClassExports, HostObject,
+    autorelease, id, msg, msg_class, nil, objc_classes, release, retain, ClassExports, HostObject, NSZonePtr,
 };
 use crate::Environment;
 use std::collections::{HashMap, HashSet};
@@ -111,6 +111,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 + (id)preferredLocalizationsFromArray:(id)localizations_array { // NSArray<NSString *> *
     let preferredLocalizations = CFBundleCopyPreferredLocalizationsFromArray(env, localizations_array);
     autorelease(env, preferredLocalizations)
+}
+
+// NSCopying implementation
++ (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
 }
 
 + (())pathForResource:(NSInteger)resource ofType:(bool)_type {
