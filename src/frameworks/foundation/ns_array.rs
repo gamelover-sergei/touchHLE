@@ -561,6 +561,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)invoke {
+    nil
+}
+
 + (())setTarget:(bool)target {
     log!("TODO: setTarget:{}", target);
 }
