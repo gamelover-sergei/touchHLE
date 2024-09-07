@@ -561,6 +561,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (())setTarget:(bool)target {
+    log!("TODO: setTarget:{}", target);
+}
+
 @end
 
 @implementation NSInputStream: NSObject
