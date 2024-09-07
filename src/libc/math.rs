@@ -280,6 +280,9 @@ fn AudioConverterNew(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn AudioQueueAllocateBufferWithPacketDescriptions(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn AudioQueueSetProperty(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn AudioFileOpenWithCallbacks(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1036,6 +1039,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(ABAddressBookGetPersonCount(_, _)),
     export_c_func!(AudioConverterNew(_, _)),
     export_c_func!(AudioQueueAllocateBufferWithPacketDescriptions(_, _)),
+    export_c_func!(AudioQueueSetProperty(_, _)),
     export_c_func!(AudioFileOpenWithCallbacks(_, _)),
     export_c_func!(AudioServicesAddSystemSoundCompletion(_, _)),
     export_c_func!(AudioServicesDisposeSystemSoundID(_, _)),
