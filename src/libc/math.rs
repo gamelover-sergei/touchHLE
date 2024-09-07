@@ -499,6 +499,9 @@ fn ExtAudioFileRead(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn MFMailComposeErrorDomain(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn NSCopyObject(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn NSFullUserName(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1097,6 +1100,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGRectGetMidX(_, _)),
     export_c_func!(ExtAudioFileRead(_, _)),
     export_c_func!(MFMailComposeErrorDomain(_, _)),
+    export_c_func!(NSCopyObject(_, _)),
     export_c_func!(NSFullUserName(_, _)),
     export_c_func!(SCNetworkReachabilitySetCallback(_, _)),
     export_c_func!(SCNetworkReachabilityScheduleWithRunLoop(_, _)),
