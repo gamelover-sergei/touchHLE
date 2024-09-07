@@ -565,6 +565,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTarget:{}", target);
 }
 
++ (())setSelector:(bool)selector {
+    log!("TODO: setSelector:{}", selector);
+}
+
 @end
 
 @implementation NSInputStream: NSObject
