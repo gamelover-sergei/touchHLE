@@ -557,6 +557,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSInvocation: NSObject
++ (id)invocationWithMethodSignature:(NSUInteger)_signature {
+    msg![env; this init]
+}
+
 @end
 
 @implementation NSInputStream: NSObject
