@@ -114,7 +114,7 @@ fn AudioUnitSetProperty(
             result = 0;
             log_dbg!("AudioUnitSetProperty({:?}, kAudioUnitProperty_StreamFormat, {:?}, {:?}, {:?}, {:?}) -> {:?}", in_unit, in_scope, in_element, stream_format, in_data_size, result);
         }
-        _ => unimplemented!(),
+        _ => false!(),
     };
 
     result
