@@ -113,6 +113,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
++ (())preferredLocalizationsFromArray:(NSInteger)array forPreferences:(bool)_preferences {
+    // TODO
+}
+
 - (())dealloc {
     let &NSBundleHostObject {
         bundle: _,
