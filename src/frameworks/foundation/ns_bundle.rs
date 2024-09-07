@@ -99,6 +99,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)objectAtIndex:(NSUInteger)_index {
+    msg![env; this init]
+}
+
 + (id)preferredLocalizations:(id)localizations {
     let preferredLocalizations = CFBundleCopyBundleLocalizations(env, localizations);
     autorelease(env, preferredLocalizations)
