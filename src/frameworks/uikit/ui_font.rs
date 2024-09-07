@@ -116,6 +116,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)fontName {
+    nil
+}
+
 - (id)size {
     nil
 }
