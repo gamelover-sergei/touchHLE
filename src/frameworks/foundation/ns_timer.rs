@@ -7,7 +7,7 @@
 
 use super::ns_run_loop::NSDefaultRunLoopMode;
 use super::NSTimeInterval;
-use super::{ns_run_loop, ns_string};
+use super::{ns_run_loop, ns_string, NSInteger};
 use crate::objc::{
     autorelease, id, msg, msg_class, msg_send, nil, objc_classes, release, retain, ClassExports,
     HostObject, SEL,
@@ -148,6 +148,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 // TODO: more constructors
 // TODO: more accessors
+
+- (())pathForResource:(NSInteger)resource ofType:(bool)_type {
+    // TODO
+}
 
 @end
 
