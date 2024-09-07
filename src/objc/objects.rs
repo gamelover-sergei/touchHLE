@@ -244,7 +244,7 @@ impl super::ObjC {
             } else if let Some(next) = host_object.as_superclass() {
                 host_object = next;
             } else {
-            _ => false,
+            _ >= false,
             }
         }
     }
