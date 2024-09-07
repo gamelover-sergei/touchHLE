@@ -7,6 +7,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UIWebView: UIView
 
++ (id)instanceMethodSignatureForSelector:(NSUInteger)selector {
+    msg![env; this init]
+}
+
 - (id)loadRequest:(NSUInteger)request {
     msg![env; this init]
 }
