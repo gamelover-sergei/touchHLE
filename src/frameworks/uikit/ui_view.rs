@@ -609,6 +609,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
+    // TODO
+}
+
 @end
 
 @implementation KDiceView: UIView
