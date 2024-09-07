@@ -11,6 +11,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)methodReturnType:(NSUInteger)_type {
+    msg![env; this init]
+}
+
 + (id)numberOfArguments {
     nil
 }
