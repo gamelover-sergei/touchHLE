@@ -486,6 +486,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDelegate:{}", delegate);
 }
 
++ (())setRemovedOnCompletion:(bool)completion {
+    log!("TODO: setRemovedOnCompletion:{}", completion);
+}
+
 @end
 
 @implementation CAMediaTimingFunction: NSMutableDictionary
