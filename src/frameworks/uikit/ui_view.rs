@@ -605,6 +605,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())updateSpaceshipWithX:(NSInteger)x Y(bool)_y Z(bool)_z {
+    // TODO
+}
+
 @end
 
 @implementation KDiceView: UIView
