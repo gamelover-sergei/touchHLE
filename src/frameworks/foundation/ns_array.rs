@@ -556,7 +556,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
-@implementation NSIndexPath: NSObject
+@implementation NSInvocation: NSObject
 @end
 
 @implementation NSInputStream: NSObject
@@ -573,6 +573,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+@end
+
+@implementation NSIndexPath: NSObject
 @end
 
 @implementation NSNetService: NSObject
