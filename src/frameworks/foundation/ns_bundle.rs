@@ -367,6 +367,15 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation SoundEffect: NSBundle
+
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
+}
+
+@end
+
 };
 
 fn path_for_resource_helper(
