@@ -11,6 +11,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)numberOfArguments:(NSUInteger)arguments {
+    msg![env; this init]
+}
+
 - (id)loadRequest:(NSUInteger)request {
     msg![env; this init]
 }
