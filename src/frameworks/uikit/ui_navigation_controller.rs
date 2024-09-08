@@ -101,6 +101,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_super![env; this dealloc]
 }
 
+- (())pushViewController:(NSInteger)controller animated:(bool)_animated {
+    // TODO
+}
+
 @end
 
 };
