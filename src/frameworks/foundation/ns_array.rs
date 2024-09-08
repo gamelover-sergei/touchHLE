@@ -449,6 +449,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)sortedArrayUsingSelector:(NSUInteger)_selector {
+    msg![env; this init]
+}
+
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
