@@ -30,9 +30,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation MPMediaPickerController: NSObject
-+ (id)canSendMail {
-    nil
-}
 
 - (id)initWithMediaTypes:(NSUInteger)_types {
     msg![env; this init]
@@ -49,6 +46,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation MFMailComposeViewController: NSObject
++ (id)canSendMail {
+    nil
+}
+
 - (())setMailComposeDelegate:(bool)delegate {
     log!("TODO: setMailComposeDelegate:{}", delegate);
 }
