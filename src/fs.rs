@@ -852,7 +852,6 @@ impl Fs {
                 }
                 FsNode::Directory { .. } => {
                     return Err(());
-                    }
                 }
             }
         };
