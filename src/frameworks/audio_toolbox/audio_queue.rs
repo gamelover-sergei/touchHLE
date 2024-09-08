@@ -502,7 +502,7 @@ fn prime_audio_queue(
         .unwrap_or_else(|| env.framework_state.audio_toolbox.make_al_context_current());
 
     let state = State::get(&mut env.framework_state);
-    let host_object = state.audio_queues.get_mut(&in_aq).unwrap();
+    let host_object = state.audio_queues.get_mut();
 
     if !is_supported_audio_format(&host_object.format) {
         return context_manager;
