@@ -1296,6 +1296,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())stringByReplacingOccurrencesOfString:(NSInteger)replacing withString:(bool)_string options:(bool)_options range:(bool)_range  {
+    // TODO
+}
+
 - (id)propertyListFromStringsFileFormat {
     nil
 }
