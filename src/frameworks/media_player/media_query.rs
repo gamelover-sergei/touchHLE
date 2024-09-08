@@ -30,7 +30,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation MPMediaPickerController: NSObject
-- (id)canSendMail:(NSUInteger)_mail {
++ (id)canSendMail:(NSUInteger)_mail {
     msg![env; this init]
 }
 
