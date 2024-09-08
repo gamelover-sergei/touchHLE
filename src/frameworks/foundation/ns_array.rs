@@ -371,6 +371,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (())initWithArray:(NSInteger)array copyItems:(bool)_items {
+    // TODO
+}
+
 @end
 
 @implementation _touchHLE_NSArray_ObjectEnumerator: NSEnumerator
