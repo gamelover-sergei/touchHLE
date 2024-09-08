@@ -344,7 +344,6 @@ fn handle_open_err<T, E: std::fmt::Display, P: std::fmt::Debug>(
 /// Like [File] but for the guest filesystem.
 #[derive(Debug)]
 pub enum GuestFile {
-    Directory,
     File(File),
     IpaBundleFile(IpaFile),
     ResourceFile(paths::ResourceFile),
@@ -363,15 +362,10 @@ impl GuestFile {
         GuestFile::ResourceFile(file)
     }
 
-    fn from_directory() -> GuestFile {
-        GuestFile::Directory
-    }
-
     pub fn sync_all(&self) -> std::io::Result<()> {
         match self {
             GuestFile::File(file) => file.sync_all(),
             GuestFile::IpaBundleFile(_) | GuestFile::ResourceFile(_) => Ok(()),
-            GuestFile::Directory => panic!("Attempt to sync a directory as a guest file"),
         }
     }
     pub fn set_len(&self, len: u64) -> std::io::Result<()> {
@@ -383,7 +377,6 @@ impl GuestFile {
             GuestFile::ResourceFile(file) => {
                 panic!("Attempt to resize a read-only file: {:?}", file)
             }
-            GuestFile::Directory => panic!("Attempt to resize a directory as a guest file"),
         }
     }
 }
@@ -394,7 +387,6 @@ impl Read for GuestFile {
             GuestFile::File(file) => file.read(buf),
             GuestFile::IpaBundleFile(file) => file.read(buf),
             GuestFile::ResourceFile(file) => file.get().read(buf),
-            GuestFile::Directory => panic!("Attempt to read from a directory as a guest file"),
         }
     }
 }
@@ -409,7 +401,6 @@ impl Write for GuestFile {
             GuestFile::ResourceFile(file) => {
                 panic!("Attempt to write to a read-only file: {:?}", file)
             }
-            GuestFile::Directory => panic!("Attempt to write to a directory as a guest file"),
         }
     }
 
@@ -422,7 +413,6 @@ impl Write for GuestFile {
             GuestFile::ResourceFile(file) => {
                 panic!("Attempt to flush a read-only file: {:?}", file)
             }
-            GuestFile::Directory => panic!("Attempt to flush a directory as a guest file"),
         }
     }
 }
@@ -492,6 +482,33 @@ impl Fs {
         } else {
             None
         };
+        let tmp_host_path = if !read_only_mode {
+            let path = paths::user_data_base_path()
+                .join(paths::SANDBOX_DIR)
+                .join(bundle_id)
+                .join("tmp");
+            // We clean temporary directory for current app at startup.
+            // This is no-op if directory doesn't exist.
+            match std::fs::remove_dir_all(&path) {
+                Ok(_) => {}
+                Err(e) => {
+                    log_dbg!(
+                        "Unable to clean tmp host folder {:?} at startup: {}",
+                        path,
+                        e
+                    );
+                }
+            }
+            if let Err(e) = std::fs::create_dir_all(&path) {
+                panic!(
+                    "Could not create temporary directory for app at {:?}: {:?}",
+                    path, e
+                );
+            }
+            Some(path)
+        } else {
+            None
+        };
 
         // Some Free Software libraries are bundled with touchHLE.
         use paths::DYLIBS_DIR;
@@ -524,6 +541,12 @@ impl Fs {
             app_dir_children.insert(
                 "Documents".to_string(),
                 FsNode::from_host_dir(&documents_host_path, /* writeable: */ true),
+            );
+        }
+        if let Some(tmp_host_path) = tmp_host_path {
+            app_dir_children.insert(
+                "tmp".to_string(),
+                FsNode::from_host_dir(&tmp_host_path, /* writeable: */ true),
             );
         }
 
@@ -828,10 +851,7 @@ impl Fs {
                     }
                 }
                 FsNode::Directory { .. } => {
-                    if write {
-                        return Err(());
-                    } else {
-                        return Ok(GuestFile::from_directory());
+                    return Err(());
                     }
                 }
             }
