@@ -55,8 +55,10 @@ fn NSSearchPathForDirectoriesInDomains(
     autorelease(env, dir_list)
 }
 
-fn NSHomeDirectory(env: &mut Environment) -> id {
-    let dir = env.fs.home_directory();
+/// Check [crate::fs::Fs::new] for more info for
+/// how temporary folder is setup on startup
+fn NSTemporaryDirectory(env: &mut Environment) -> id {
+    let dir = env.fs.home_directory().join("tmp");
     let dir = ns_string::from_rust_string(env, String::from(dir.as_str()));
     autorelease(env, dir)
 }
