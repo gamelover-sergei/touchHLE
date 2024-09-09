@@ -166,7 +166,7 @@ fn AudioServicesPlaySystemSound(env: &mut Environment, sys_sound_id: SystemSound
             // assert!(al::alGetError() == 0);
         }
     } else {
-        panic!(
+        log!(
             "Incorrect/unsupported system sound {:x} played!",
             sys_sound_id
         );
