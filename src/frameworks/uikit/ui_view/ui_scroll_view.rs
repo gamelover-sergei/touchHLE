@@ -148,6 +148,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (id)scrollIndicatorInsets {
+    nil
+}
+
 @end
 
 @implementation UITableView: UIScrollView
