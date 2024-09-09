@@ -540,10 +540,6 @@ pub const CLASSES: ClassExports = objc_classes! {
         mask
     };
 
-    - (ConstPtr<u8>)cString {
-    msg![env; this cStringUsingEncoding:NSASCIIStringEncoding]
-}
-
     // TODO: OR'ing of compare options
     match mask {
         NSCaseInsensitiveSearch => {
@@ -857,20 +853,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)stringByAppendingString:(id)other { // NSString*
     assert!(other != nil); // TODO: raise exception
-
-    - (i32)intValue {
-    let st = to_rust_string(env, this);
-    let st = st.trim_start();
-    let mut cutoff = st.len();
-    for (i, c) in st.char_indices() {
-        if !c.is_ascii_digit() && c != '+' && c != '-' {
-            cutoff = i;
-            break;
-        }
-    }
-    // TODO: handle over/underflow properly
-    st[..cutoff].parse().unwrap_or(0)
-}
 
     // TODO: ideally, don't convert to UTF-16 here
     let this_len: NSUInteger = msg![env; this length];
