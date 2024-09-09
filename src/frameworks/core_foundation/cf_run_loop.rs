@@ -158,12 +158,17 @@ fn CFNumberCreate(
 
 pub const kCFRunLoopCommonModes: &str = "kCFRunLoopCommonModes";
 pub const kCFRunLoopDefaultMode: &str = "kCFRunLoopDefaultMode";
+pub const kCFPreferencesCurrentApplication: &str = "kCFPreferencesCurrentApplication";
 pub const kCFBundleVersionKey: &str = "CFBundleVersion";
 
 pub const CONSTANTS: ConstantExports = &[
     (
         "_kCFRunLoopCommonModes",
         HostConstant::NSString(kCFRunLoopCommonModes),
+    ),
+    (
+        "_kCFPreferencesCurrentApplication",
+        HostConstant::NSString(kCFPreferencesCurrentApplication),
     ),
     (
         "_kCFRunLoopDefaultMode",
