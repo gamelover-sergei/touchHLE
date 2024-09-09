@@ -90,6 +90,17 @@ macro_rules! export_c_func {
 }
 pub use crate::export_c_func; // #[macro_export] is weird...
 
+#[macro_export]
+macro_rules! export_c_func2 {
+    ($name_over:literal, $name:ident ($($_:ty),*)) => {
+        (
+            $name_over,
+            &($name as fn(&mut $crate::Environment, $($_),*) -> _)
+        )
+    };
+}
+pub use crate::export_c_func2; // #[macro_export] is weird...
+
 /// Other variant of [export_c_func] macro, allowing to define an alias
 /// for the exporting function. This is useful then alias may contain
 /// characters not normally allowed for Rust function's names. (e.g. `$`)
