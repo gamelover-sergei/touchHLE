@@ -18,20 +18,10 @@ use crate::frameworks::foundation::ns_run_loop::run_run_loop_single_iteration;
 use crate::frameworks::foundation::ns_string;
 use crate::mem::{ConstVoidPtr, MutVoidPtr, Ptr};
 use crate::objc::{id, msg, msg_class, nil, Class};
-use crate::{Environment, msg};
-use crate::frameworks::core_foundation::time::CFTimeInterval;
+use crate::Environment;
 
 pub type CFRunLoopRef = super::CFTypeRef;
 pub type CFRunLoopMode = super::cf_string::CFStringRef;
-
-fn CFRunLoopRunInMode(
-    env: &mut Environment, mode: CFRunLoopMode, seconds: CFTimeInterval, returnSomething: bool
-) -> i32 {
-    // let loop_ = CFRunLoopGetCurrent(env);
-    // () = msg![env; loop_ run];
-    // 0
-    1
-}
 
 pub type CFRunLoopTimerRef = super::CFTypeRef;
 pub type CFOptionFlags = u32;
@@ -158,17 +148,12 @@ fn CFNumberCreate(
 
 pub const kCFRunLoopCommonModes: &str = "kCFRunLoopCommonModes";
 pub const kCFRunLoopDefaultMode: &str = "kCFRunLoopDefaultMode";
-pub const kCFPreferencesCurrentApplication: &str = "kCFPreferencesCurrentApplication";
 pub const kCFBundleVersionKey: &str = "CFBundleVersion";
 
 pub const CONSTANTS: ConstantExports = &[
     (
         "_kCFRunLoopCommonModes",
         HostConstant::NSString(kCFRunLoopCommonModes),
-    ),
-    (
-        "_kCFPreferencesCurrentApplication",
-        HostConstant::NSString(kCFPreferencesCurrentApplication),
     ),
     (
         "_kCFRunLoopDefaultMode",
@@ -183,7 +168,6 @@ pub const CONSTANTS: ConstantExports = &[
 pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFRunLoopGetCurrent()),
     export_c_func!(CFRunLoopGetMain()),
-    export_c_func!(CFRunLoopRunInMode(_, _, _)),
     export_c_func!(CFRunLoopTimerCreate(_, _, _, _, _, _, _)),
     export_c_func!(CFRunLoopTimerInvalidate(_)),
     export_c_func!(CFRunLoopAddTimer(_, _, _)),
