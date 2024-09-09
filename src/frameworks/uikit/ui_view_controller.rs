@@ -6,7 +6,7 @@
 //! `UIViewController`.
 
 use crate::frameworks::foundation::ns_string::{get_static_str, to_rust_string};
-use crate::frameworks::foundation::NSInteger;
+use crate::frameworks::foundation::{NSInteger, NSUInteger};
 use crate::objc::{
     id, msg, msg_class, nil, objc_classes, release, retain, ClassExports, HostObject, NSZonePtr,
 };
@@ -60,6 +60,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     () = msg![env; this setView:view];
 
     this
+}
+
+- (id)initWithStyle:(NSUInteger)_style {
+    msg![env; this init]
 }
 
 - (id)navigationController {
@@ -148,6 +152,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation GKPeerPickerController: UIViewController
+@end
+
+@implementation ProjectListViewController: UIViewController
+- (id)initWithStyle:(NSUInteger)_style {
+    msg![env; this init]
+}
+
 @end
 
 @implementation Test3DViewController: UIViewController
