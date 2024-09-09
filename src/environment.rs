@@ -447,23 +447,6 @@ impl Environment {
             stack::prep_stack_for_start(&mut env.mem, &mut env.cpu, argv, envp, apple);
         }
 
-            pub fn stack_for_longjmp(&self, mut lr: u32, fp: u32) -> Vec<u32> {
-        let stack_range = self.threads[self.current_thread].stack.clone().unwrap();
-        let mut frames = Vec::new();
-        let mut fp: mem::ConstPtr<u8> = mem::Ptr::from_bits(fp);
-        let thread_exit_routine_addr = self.dyld.thread_exit_routine().addr_with_thumb_bit();
-        let return_to_host_routine_addr = self.dyld.return_to_host_routine().addr_with_thumb_bit();
-        while stack_range.contains(&fp.to_bits())
-            && lr != thread_exit_routine_addr
-            && lr != return_to_host_routine_addr
-        {
-            frames.push(lr);
-            lr = self.mem.read((fp + 4).cast());
-            fp = self.mem.read(fp.cast());
-        }
-        frames
-    }
-
         env.cpu.set_cpsr(cpu::Cpu::CPSR_USER_MODE);
 
         // GDB server setup would be done here, but there's no need for it.
