@@ -1,4 +1,4 @@
-use crate::frameworks::foundation::NSUInteger;
+use crate::frameworks::foundation::{NSUInteger, NSInteger};
 use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -25,6 +25,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)request {
     nil
+}
+
+- (())loadHTMLString:(NSInteger)string baseURL:(bool)_url {
+    // TODO
 }
 
 - (())setScalesPageToFit:(bool)fit {
