@@ -79,6 +79,10 @@ impl Bundle {
     }
 
     pub fn bundle_localizations(&self) -> &[Value] {
+        if !self.plist.contains_key("CFBundleLocalizations") {
+            return &[];
+        }
+        
         static EMPTY_VAL: Vec<Value> = Vec::new();
         self.plist
             .get("CFBundleLocalizations")
