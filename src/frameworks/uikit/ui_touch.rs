@@ -132,7 +132,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
         .visible_windows
         .last()
     else {
-        log_dbg!("No visible window, touch events ignored");
+        log!("No visible window, touch events ignored");
         return;
     };
 
@@ -314,7 +314,7 @@ fn handle_touches_move(env: &mut Environment, map: HashMap<FingerId, Coords>) {
             .current_touches
             .get(&finger_id)
         else {
-            log_dbg!(
+            log!(
                 "Warning: Finger {:?} touch move event received but no current touch, ignoring.",
                 finger_id
             );
@@ -380,7 +380,7 @@ fn handle_touches_up(env: &mut Environment, map: HashMap<FingerId, Coords>) {
             .current_touches
             .get(&finger_id)
         else {
-            log_dbg!(
+            log!(
                 "Warning: Finger {:?} touch up event received but no current touch, ignoring.",
                 finger_id
             );
