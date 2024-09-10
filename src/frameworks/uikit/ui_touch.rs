@@ -380,7 +380,7 @@ fn handle_touches_up(env: &mut Environment, map: HashMap<FingerId, Coords>) {
             .current_touches
             .get(&finger_id)
         else {
-            log!(
+            log_dbg!(
                 "Warning: Finger {:?} touch up event received but no current touch, ignoring.",
                 finger_id
             );
