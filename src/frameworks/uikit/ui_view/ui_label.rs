@@ -189,6 +189,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setHighlightedTextColor:{}", color);
 }
 
+- (())setNeedsLayout:(bool)needs {
+    log!("TODO: setNeedsLayout:{}", needs);
+}
+
 - (())setOpaque:(bool)_opaque {
     // Built-in views don't have user-controlled opaqueness.
 }
