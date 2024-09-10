@@ -189,8 +189,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setHighlightedTextColor:{}", color);
 }
 
-- (())setNeedsLayout:(bool)needs {
-    log!("TODO: setNeedsLayout:{}", needs);
+- (())setNeedsLayout:(bool)layout {
+    log!("TODO: setNeedsLayout:{}", layout);
 }
 
 - (())setOpaque:(bool)_opaque {
