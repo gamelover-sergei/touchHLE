@@ -11,6 +11,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("WARNING NSOperationQueue ignoring addOperation: {:?}", op);
 }
 
+- (())setSuspended:(bool)suspended {
+    log!("TODO: setSuspended:{}", suspended);
+}
+
 - (id)operations {
     nil
 }
