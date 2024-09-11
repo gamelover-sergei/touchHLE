@@ -357,6 +357,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation EAGLSharegroup: NSObject
+@end
+
 };
 
 /// Implement framerate limiting.
