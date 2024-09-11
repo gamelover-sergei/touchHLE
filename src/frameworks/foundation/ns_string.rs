@@ -852,7 +852,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)stringByAppendingString:(id)other { // NSString*
-    assert!(other != nil); // TODO: raise exception
+    // assert!(other != nil); // TODO: raise exception
 
     // TODO: ideally, don't convert to UTF-16 here
     let this_len: NSUInteger = msg![env; this length];
