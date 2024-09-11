@@ -1134,7 +1134,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
-    todo!(); // TODO: this should produce an immutable copy
+    retain(env, this)
 }
 
 - (())appendString:(id)a_string { // NSString*
