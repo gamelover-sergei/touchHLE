@@ -467,6 +467,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTag:{}", tag);
 }
 
+- (())setTabBarItem:(bool)item {
+    log!("TODO: setTabBarItem:{}", item);
+}
+
 - (())startAnimating {
     log!("TODO: [(UIView*){:?} startAnimating", this);
 }
@@ -611,6 +615,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
     // TODO
+}
+
+@end
+
+@implementation HomeViewController: UIView
+- (())setTabBarItem:(bool)item {
+    log!("TODO: setTabBarItem:{}", item);
 }
 
 @end
