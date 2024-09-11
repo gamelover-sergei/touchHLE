@@ -1519,6 +1519,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (id)lengthOfBytesUsingEncoding:(NSUInteger)_bytes {
+    msg![env; this init]
+}
+
 @end
 
 };
