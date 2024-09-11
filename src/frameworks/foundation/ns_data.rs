@@ -255,6 +255,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)length {
+    nil
+}
+
 + (id)dataWithCapacity:(NSUInteger)_capacity {
     msg![env; this init]
 }
