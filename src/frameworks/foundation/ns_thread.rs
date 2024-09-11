@@ -213,13 +213,6 @@ object:(id)object {
     log!("TODO: setStackSize:{}", stack);
 }
 
-- (())dealloc {
-    log_dbg!("[(NSThread*){:?} dealloc]", this);
-    State::get(env).ns_threads.remove(&this);
-    let _host_object = env.objc.borrow::<NSThreadHostObject>(this);
-    env.objc.dealloc_object(this, &mut env.mem)
-}
-
 @end
 
 };
