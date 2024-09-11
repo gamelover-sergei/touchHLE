@@ -559,6 +559,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)keyEnumerator {
+    nil
+}
+
 - (id)locationServicesEnabled {
     nil
 }
