@@ -57,8 +57,18 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)value {
     nil
 }
+
+- (id)isDragging {
+    nil
+}
 // TODO: all of it
 
+@end
+
+@implementation Slider: UISlider
+- (id)isDragging {
+    nil
+}
 @end
 
 };
