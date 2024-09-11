@@ -7,6 +7,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UITabBarItem: UIControl
 
+- (())initWithTitle:(NSInteger)title image:(bool)_image tag:(bool)_tag {
+  // TODO
+}
+
 - (())initWithTabBarSystemItem:(NSInteger)item tag:(bool)_tag {
   // TODO
 }
