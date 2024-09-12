@@ -152,6 +152,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation GKPeerPickerController: UIViewController
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 @end
 
 @implementation ProjectListViewController: UIViewController
