@@ -603,6 +603,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSNetService: NSObject
+- (())initWithDomain:(NSInteger)domain type:(bool)_type name:(bool)_name port:(bool)_port {
+    // TODO
+}
+
 @end
 
 @implementation NSXMLParser: NSObject
