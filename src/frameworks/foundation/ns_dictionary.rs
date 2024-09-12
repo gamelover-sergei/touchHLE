@@ -580,7 +580,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
-- (())searchForServicesOfType:(NSInteger)type inDomain:(bool)_domain {
+- (())searchForServicesOfType:(NSInteger)_type inDomain:(bool)_domain {
     // TODO
 }
 
