@@ -580,6 +580,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())searchForServicesOfType:(NSInteger)type inDomain:(bool)_domain {
+    // TODO
+}
+
 - (())synchronize {
 }
 
