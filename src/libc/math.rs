@@ -454,6 +454,9 @@ fn CGContextSetInterpolationQuality(_env: &mut Environment, arg1: f32, arg2: f32
 fn CGContextSetLineCap(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextSetLineJoin(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextSetLineWidth(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1127,6 +1130,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGContextSetFont(_, _)),
     export_c_func!(CGContextSetInterpolationQuality(_, _)),
     export_c_func!(CGContextSetLineCap(_, _)),
+    export_c_func!(CGContextSetLineJoin(_, _)),
     export_c_func!(CGContextSetLineWidth(_, _)),
     export_c_func!(CGContextSetRGBStrokeColor(_, _)),
     export_c_func!(CGContextSetShadow(_, _)),
