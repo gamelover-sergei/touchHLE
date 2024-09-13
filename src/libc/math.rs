@@ -424,6 +424,9 @@ fn CGContextClipToRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CGContextClosePath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextDrawLayerInRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextDrawPath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1120,6 +1123,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGContextClipToMask(_, _)),
     export_c_func!(CGContextClipToRect(_, _)),
     export_c_func!(CGContextClosePath(_, _)),
+    export_c_func!(CGContextDrawLayerInRect(_, _)),
     export_c_func!(CGContextDrawPath(_, _)),
     export_c_func!(CGContextFillEllipseInRect(_, _)),
     export_c_func!(CGContextFillPath(_, _)),
