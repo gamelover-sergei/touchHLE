@@ -86,6 +86,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setIndicatorStyle:{}", style);
 }
 
+- (())setMaximumZoomScale:(bool)maximum {
+    log!("TODO: setMaximumZoomScale:{}", maximum);
+}
+
 - (())scrollRectToVisible:(NSInteger)visible animated:(bool)_animated {
     // TODO
 }
@@ -218,10 +222,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setTableHeaderView:(bool)view {
     log!("TODO: setTableHeaderView:{}", view);
-}
-
-- (())setMaximumZoomScale:(bool)maximum {
-    log!("TODO: setMaximumZoomScale:{}", maximum);
 }
 
 @end
