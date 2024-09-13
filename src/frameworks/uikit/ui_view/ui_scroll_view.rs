@@ -220,8 +220,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTableHeaderView:{}", view);
 }
 
-- (())setMaximumZoomScale:(bool)scale {
-    log!("TODO: setMaximumZoomScale:{}", scale);
+- (())setMaximumZoomScale:(bool)maximum {
+    log!("TODO: setMaximumZoomScale:{}", maximum);
 }
 
 @end
