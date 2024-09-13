@@ -90,6 +90,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setMaximumZoomScale:{}", maximum);
 }
 
+- (())setMinimumZoomScale:(bool)minimum {
+    log!("TODO: setMinimumZoomScale:{}", minimum);
+}
+
 - (())scrollRectToVisible:(NSInteger)visible animated:(bool)_animated {
     // TODO
 }
