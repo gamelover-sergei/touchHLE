@@ -647,6 +647,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation CameraZoomAppDelegate: UIView
+- (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
+    // TODO
+}
+
+@end
+
 @implementation TargetView: UIView
 - (())setTag:(bool)tag {
     log!("TODO: setTag:{}", tag);
