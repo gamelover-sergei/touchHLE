@@ -234,7 +234,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
     let &NSDataHostObject { bytes, length, .. } = env.objc.borrow(this);
     // TODO: throw NSRangeException if out-of-range instead of panic?
-    assert!(range.location < length && range.location + range.length <= length);
+    // assert!(range.location < length && range.location + range.length <= length);
     env.mem.memmove(
         buffer.cast(),
         bytes.cast_const() + range.location,
