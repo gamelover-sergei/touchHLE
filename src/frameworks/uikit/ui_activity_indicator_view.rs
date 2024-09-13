@@ -48,6 +48,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UIActionSheet: NSObject
+- (id)showInView {
+    nil
+}
+
 - (())setActionSheetStyle:(bool)action {
     log!("TODO: setActionSheetStyle:{}", action);
 }
