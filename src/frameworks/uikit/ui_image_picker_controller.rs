@@ -32,6 +32,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())setSourceType:(bool)source {
     log!("TODO: setSourceType:{}", source);
 }
+
+- (id)sourceType {
+    nil
+}
+
 @end
 
 @implementation UIBarButtonItem: NSObject
