@@ -22,7 +22,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-- (())setHidesWhenStopped :(bool)hides {
+- (())setHidesWhenStopped:(bool)hides {
     log!("TODO: setHidesWhenStopped:{}", hides);
 }
 
@@ -48,6 +48,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UIActionSheet: NSObject
+- (())setActionSheetStyle:(bool)action {
+    log!("TODO: setActionSheetStyle:{}", action);
+}
+
 - (())initWithTitle:(NSInteger)title delegate:(bool)_delegate cancelButtonTitle:(bool)_button destructiveButtonTitle:(bool)_destructive otherButtonTitles:(bool)_titles {
     // TODO
 }
