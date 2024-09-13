@@ -347,6 +347,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)self {
+    nil
+}
+
 - (id)sendSubviewToBack {
     nil
 }
