@@ -259,6 +259,9 @@ fn pthread_mutexattr_setpshared(_env: &mut Environment, arg1: f32, arg2: f32) ->
 fn pthread_yield_np(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn sel_getName(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn task_info(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1050,6 +1053,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(pthread_condattr_init(_, _)),
     export_c_func!(pthread_mutexattr_setpshared(_, _)),
     export_c_func!(pthread_yield_np(_, _)),
+    export_c_func!(sel_getName(_, _)),
     export_c_func!(task_info(_, _)),
     export_c_func!(_dyld_image_count(_, _)),
     export_c_func!(ABAddressBookCopyArrayOfAllPeople(_, _)),
