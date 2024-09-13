@@ -103,7 +103,7 @@ fn objc_msgSend_inner(env: &mut Environment, receiver: id, selector: SEL, super2
             }
 
             if let Some(imp) = methods.get(&selector) {
-                // log!("Found method on: {}", name);
+                log_dbg!("Found method on: {}", name);
                 match imp {
                     IMP::Host(host_imp) => {
                         // TODO: do type checks when calling GuestIMPs too.
@@ -138,9 +138,9 @@ Type mismatch when sending message {} to {:?}!
                 let ivar_offset = env.mem.read(*ivar_offset_ptr);
                 // TODO: Use host_object's _instance_start property?
                 let ivar_ptr = MutVoidPtr::from_bits(receiver.to_bits() + ivar_offset);
-                let value = env.cpu.regs()[0];
-                env.mem.write(ivar_ptr.cast(), value);
-                env.cpu.regs_mut()[0..2].fill(0); // TODO: Verify if this is necessary
+                //let value = env.cpu.regs()[0];
+                //env.mem.write(ivar_ptr.cast(), ivar_ptr.to_bits());
+                objc_msgSend_inner(env, ivar_ptr.cast(), selector, None);
                 return;
             } else {
                 class = superclass;
