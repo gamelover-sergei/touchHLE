@@ -356,6 +356,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setUsesGroupingSeparator:{}", separator);
 }
 
+- (())setGroupingSeparator:(bool)separator {
+    log!("TODO: setGroupingSeparator:{}", separator);
+}
+
 @end
 
 };
