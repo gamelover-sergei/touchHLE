@@ -5,7 +5,7 @@
  */
 //! `UISegmentedControl`.
 
-use crate::frameworks::uikit::ui_view::NSUInteger;
+use crate::frameworks::uikit::ui_view::{NSUInteger NSInteger};
 use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -32,6 +32,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setTintColor:(bool)color {
     log!("TODO: setTintColor:{}", color);
+}
+
+- (())insertSegmentWithImage:(NSInteger)image atIndex:(bool)_index animated:(bool)_animated {
+    // TODO
 }
 
 // TODO: all of it
