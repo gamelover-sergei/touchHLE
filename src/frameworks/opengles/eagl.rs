@@ -343,11 +343,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation EAGLView: NSObject
-- (id)nextResponder {
++ (id)self {
     nil
 }
 
-- (id)self {
+- (id)nextResponder {
     nil
 }
 
