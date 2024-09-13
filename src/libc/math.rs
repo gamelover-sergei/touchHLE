@@ -712,6 +712,9 @@ fn strcasestr(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn task_get_exception_ports(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn umask(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn valloc(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1204,6 +1207,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(setsockopt(_, _)),
     export_c_func!(strcasestr(_, _)),
     export_c_func!(task_get_exception_ports(_, _)),
+    export_c_func!(umask(_, _)),
     export_c_func!(valloc(_, _)),
     export_c_func!(getsockname(_, _)),
     export_c_func!(socket(_, _)),
