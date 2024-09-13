@@ -11,7 +11,7 @@ use super::{
 use crate::frameworks::foundation::ns_string::from_rust_string;
 use crate::mem::ConstPtr;
 use crate::objc::{
-    autorelease, id, msg, msg_class, objc_classes, retain, Class, ClassExports, HostObject,
+    autorelease, id, msg, msg_class, nil, objc_classes, retain, Class, ClassExports, HostObject,
     NSZonePtr,
 };
 use std::cmp::Ordering;
@@ -31,6 +31,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 // NSValue is an abstract class. None of the things it should provide are
 // implemented here yet (TODO).
 @implementation NSValue: NSObject
++ (id)getValue {
+    nil
+}
 
 + (id)valueWithPointer:(u64)value {
     // TODO: for greater efficiency we could return a static-lifetime value
