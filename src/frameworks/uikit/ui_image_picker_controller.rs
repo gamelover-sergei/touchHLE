@@ -33,6 +33,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setSourceType:{}", source);
 }
 
+- (())setAllowsImageEditing:(bool)editing {
+    log!("TODO: setAllowsImageEditing:{}", editing);
+}
+
 - (id)sourceType {
     nil
 }
