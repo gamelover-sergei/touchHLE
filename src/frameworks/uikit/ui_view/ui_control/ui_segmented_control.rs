@@ -5,7 +5,7 @@
  */
 //! `UISegmentedControl`.
 
-use crate::frameworks::uikit::ui_view::{NSUInteger NSInteger};
+use crate::frameworks::uikit::ui_view::{NSUInteger, NSInteger};
 use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
