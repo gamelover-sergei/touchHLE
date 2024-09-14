@@ -49,7 +49,7 @@ fn sync_context<'a, F>(
     let host_obj = objc.borrow_mut::<eagl::EAGLContextHostObject>(current_ctx.unwrap());
     let gles_ctx_rc = host_obj.gles_ctx.clone().borrow_mut();
     let mut gles_ctx_refcell = gles_ctx_rc.borrow_mut();
-    let gles_ctx: &mut dyn crate::gles::GLES = &mut;
+    let gles_ctx: &mut dyn crate::gles::GLES = &mut
 
     if window.is_app_gl_ctx_no_longer_current() || state.current_ctx_thread != Some(current_thread) {
         log_dbg!(
