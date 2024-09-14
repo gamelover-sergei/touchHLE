@@ -169,6 +169,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
+- (id)renderInContext {
+    nil
+}
+
 - (id)sublayers {
     nil
 }
