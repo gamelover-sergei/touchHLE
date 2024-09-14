@@ -12,7 +12,6 @@
 pub mod eagl;
 mod gles_guest;
 
-use std::borrow::BorrowMut;
 use std::ops::DerefMut;
 use std::ffi::c_void;
 
@@ -47,9 +46,9 @@ fn sync_context<'a, F>(
 {
     let current_ctx = state.current_ctx_for_thread(current_thread);
     let host_obj = objc.borrow_mut::<eagl::EAGLContextHostObject>(current_ctx.unwrap());
-    let gles_ctx_rc = host_obj.gles_ctx.clone().borrow_mut();
+    let gles_ctx_rc = host_obj.gles_ctx.clone().unwrap();
     let mut gles_ctx_refcell = gles_ctx_rc.borrow_mut();
-    let gles_ctx: &mut dyn crate::gles::GLES = &mut
+    let gles_ctx: &mut dyn crate::gles::GLES = &mut **gles_ctx_refcell;
 
     if window.is_app_gl_ctx_no_longer_current() || state.current_ctx_thread != Some(current_thread) {
         log_dbg!(
@@ -57,7 +56,7 @@ fn sync_context<'a, F>(
                 current_thread
             );
         gles_ctx.make_current(window);
-    };
+    }
 
     action(gles_ctx, objc, window);
 }
