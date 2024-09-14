@@ -46,7 +46,7 @@ fn sync_context<'a, F>(
 {
     let current_ctx = state.current_ctx_for_thread(current_thread);
     let host_obj = objc.borrow_mut::<eagl::EAGLContextHostObject>(current_ctx.unwrap());
-    let gles_ctx_rc = host_obj.gles_ctx.clone()?;
+    let gles_ctx_rc = host_obj.gles_ctx.clone().borrow_mut();
     let mut gles_ctx_refcell = gles_ctx_rc.borrow_mut();
     let gles_ctx: &mut dyn crate::gles::GLES = &mut **gles_ctx_refcell;
 
