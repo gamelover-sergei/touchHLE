@@ -21,7 +21,7 @@ use crate::frameworks::core_graphics::cg_image::{
     kCGImageAlphaPremultipliedLast, kCGImageByteOrder32Big,
 };
 use crate::frameworks::core_graphics::{CGPoint, CGRect, CGSize};
-use crate::frameworks::foundation::{ns_string, NSInteger};
+use crate::frameworks::foundation::{ns_string, NSInteger, NSUInteger};
 use crate::mem::{GuestUSize, Ptr};
 use crate::objc::{id, msg, nil, objc_classes, release, retain, ClassExports, HostObject, ObjC};
 use std::collections::HashMap;
@@ -169,9 +169,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
-- (id)renderInContext {
-    nil
+- (id)renderInContext:(NSUInteger)_context {
+    msg![env; this init]
 }
+
 
 - (id)sublayers {
     nil
