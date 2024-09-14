@@ -57,7 +57,7 @@ fn sync_context<'a, F>(
                 current_thread
             );
         gles_ctx.make_current(window);
-    }
+    };
 
     action(gles_ctx, objc, window);
 }
