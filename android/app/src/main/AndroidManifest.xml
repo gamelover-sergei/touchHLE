@@ -13,7 +13,7 @@
     package="org.touchhle.android"
     android:installLocation="auto"
     android:versionCode="1"
-    android:versionName="android">
+    android:versionName="touchHLE">
 
     <!-- Touchscreen support -->
     <uses-feature
@@ -60,7 +60,9 @@
         android:name="org.touchhle.android.touchHLEApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
         <!-- Example of setting SDL hints from AndroidManifest.xml:
