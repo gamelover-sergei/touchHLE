@@ -12,6 +12,7 @@
 pub mod eagl;
 mod gles_guest;
 
+use std::borrow::BorrowMut;
 use std::ops::DerefMut;
 use std::ffi::c_void;
 
