@@ -8,7 +8,7 @@
 use super::ns_array;
 use super::ns_dictionary::DictionaryHostObject;
 use super::ns_enumerator::{fast_enumeration_helper, NSFastEnumerationState};
-use super::NSUInteger;
+use super::{NSInteger, NSUInteger};
 use crate::mem::MutPtr;
 use crate::objc::{
     autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr,
@@ -195,6 +195,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (())dealloc {
     std::mem::take(&mut env.objc.borrow_mut::<SetHostObject>(this).dict).release(env);
     env.objc.dealloc_object(this, &mut env.mem)
+}
+
+- (())drawInRect:(NSInteger)rect blendMode:(bool)_mode alpha:(bool)_alpha {
+    // TODO
 }
 
 // TODO: init methods etc
