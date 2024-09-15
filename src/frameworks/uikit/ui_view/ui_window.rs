@@ -55,7 +55,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_super![env; this initWithCoder:coder]
 }
 
-+ (id)viewWithTag:(NSUInteger)tag {
+- (id)viewWithTag:(NSUInteger)tag {
     msg![env; this init]
 }
 
