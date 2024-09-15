@@ -745,6 +745,9 @@ fn ioctl(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn inet_addr(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn inet_aton(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn inet_ntoa(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1242,6 +1245,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(socket(_, _)),
     export_c_func!(ioctl(_, _)),
     export_c_func!(inet_addr(_, _)),
+    export_c_func!(inet_aton(_, _)),
     export_c_func!(inet_ntoa(_, _)),
     export_c_func!(inet_pton(_, _)),
     export_c_func!(listen(_, _)),
