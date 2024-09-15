@@ -349,6 +349,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)count {
+    nil
+}
+
 + (())stringWithCharacters:(NSInteger)characters length:(bool)_length {
     // TODO
 }
