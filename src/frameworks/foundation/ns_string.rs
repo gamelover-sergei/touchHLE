@@ -282,6 +282,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)componentsSeparatedByString {
+    nil
+}
+
 + (id)defaultCStringEncoding {
     nil
 }
