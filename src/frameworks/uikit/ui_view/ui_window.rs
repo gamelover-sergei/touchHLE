@@ -6,7 +6,7 @@
 //! `UIWindow`.
 
 use crate::frameworks::core_graphics::CGRect;
-use crate::frameworks::uikit::ui_view::{CGFloat, NSInteger};
+use crate::frameworks::uikit::ui_view::{CGFloat, NSInteger, NSUInteger};
 use crate::msg_class;
 use crate::objc::{id, msg, msg_super, objc_classes, ClassExports};
 
@@ -53,6 +53,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     );
 
     msg_super![env; this initWithCoder:coder]
+}
+
++ (id)viewWithTag:(NSUInteger)tag {
+    msg![env; this init]
 }
 
 - (())dealloc {
