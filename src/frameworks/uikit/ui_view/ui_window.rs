@@ -59,6 +59,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)loadGameEffectSound:(NSUInteger)sound {
+    msg![env; this init]
+}
+
 - (())dealloc {
     if !msg![env; this isHidden] {
         let visible_list = &mut env.framework_state.uikit.ui_view.ui_window.visible_windows;
