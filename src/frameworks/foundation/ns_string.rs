@@ -282,8 +282,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-+ (id)componentsSeparatedByString {
-    nil
++ (id)componentsSeparatedByString:(NSUInteger)_string {
+    msg![env; this init]
 }
 
 + (id)defaultCStringEncoding {
