@@ -65,6 +65,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSMutableCharacterSet: NSCharacterSet
+@end
+
 // Our private subclass that is the single implementation of NSCharacterSet for
 // the time being.
 @implementation _touchHLE_NSCharacterSet: NSCharacterSet
