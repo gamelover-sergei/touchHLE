@@ -17,7 +17,6 @@ use crate::audio::openal::alc_types::*;
 use crate::dyld::{export_c_func, FunctionExports};
 use crate::libc::string::strcmp;
 use crate::mem::{ConstPtr, ConstVoidPtr, GuestUSize, MutPtr, MutVoidPtr, Ptr, SafeWrite};
-use crate::objc::nil;
 use crate::Environment;
 use std::collections::HashMap;
 use std::ffi::{CStr, CString};
@@ -633,8 +632,10 @@ fn alGetProcAddress(env: &mut Environment, funcName: ConstPtr<u8>) -> MutVoidPtr
     log!("alGetProcAddress {}", fname);
     Ptr::null()
 }
-fn alGetString(_env: &mut Environment, _param: ALenum) -> ConstPtr<u8> {
-    nil
+fn alGetString(env: &mut Environment, funcName: ConstPtr<u8>) -> MutVoidPtr {
+    let fname = env.mem.cstr_at_utf8(funcName).unwrap();
+    log!("alGetString {}", fname);
+    Ptr::null()
 }
 fn alIsExtensionPresent(_env: &mut Environment, _extName: ConstPtr<u8>) -> ALboolean {
     todo!();
