@@ -241,6 +241,9 @@ fn fminf(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn fork(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn getaddrinfo(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn getgid(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1080,6 +1083,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(fmin(_, _)),
     export_c_func!(fminf(_, _)),
     export_c_func!(fork(_, _)),
+    export_c_func!(getaddrinfo(_, _)),
     export_c_func!(getgid(_, _)),
     export_c_func!(gethostname(_, _)),
     export_c_func!(host_get_clock_service(_, _)),
