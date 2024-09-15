@@ -81,6 +81,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)unlock {
+    nil
+}
+
 @end
 
 };
