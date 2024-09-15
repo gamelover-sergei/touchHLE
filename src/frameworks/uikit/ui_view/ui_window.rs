@@ -8,7 +8,7 @@
 use crate::frameworks::core_graphics::CGRect;
 use crate::frameworks::uikit::ui_view::{CGFloat, NSInteger, NSUInteger};
 use crate::msg_class;
-use crate::objc::{id, msg, msg_super, objc_classes, ClassExports};
+use crate::objc::{id, msg, msg_super, nil, objc_classes, ClassExports};
 
 #[derive(Default)]
 pub struct State {
@@ -59,8 +59,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-- (id)loadGameEffectSound:(NSUInteger)sound {
-    msg![env; this init]
+- (id)loadGameEffectSound {
+    nil
 }
 
 - (())dealloc {
