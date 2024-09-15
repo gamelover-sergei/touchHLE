@@ -279,12 +279,8 @@ forUndefinedKey:(id)key { // NSString*
     msg_send(env, (this, sel, o1, o2))
 }
 
-- (ConstVoidPtr)methodForSelector:(SEL)selector {
-    let isa = ObjC::read_isa(this, &env.mem);
-    match ObjC::lookup_method_imp(env, isa, selector) {
-        IMP::Guest(g) => ConstVoidPtr::from_bits(g.addr_with_thumb_bit()),
-        IMP::Host(_) => todo!(),
-    }
+- (ConstVoidPtr)methodForSelector:(NSUInteger)_selector {
+    msg![env; this init]
 }
     
 - (bool)conformsToProtocol:(id)protocol {
