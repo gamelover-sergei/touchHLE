@@ -63,6 +63,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)createMusicPlayer {
+    nil
+}
+
 - (())dealloc {
     if !msg![env; this isHidden] {
         let visible_list = &mut env.framework_state.uikit.ui_view.ui_window.visible_windows;
