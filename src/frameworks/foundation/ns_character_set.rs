@@ -53,6 +53,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)whitespaceCharacterSet {
+    nil
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     // TODO: override this once we have NSMutableCharacterSet!
