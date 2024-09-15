@@ -17,7 +17,7 @@
 use super::ns_dictionary::dict_from_keys_and_objects;
 use super::ns_run_loop::NSDefaultRunLoopMode;
 use super::ns_string::{from_rust_string, get_static_str, to_rust_string};
-use super::NSUInteger;
+use super::{NSInteger, NSUInteger};
 use crate::frameworks::core_graphics::{CGFloat, CGSize, CGPoint};
 use crate::mem::{ConstVoidPtr, MutVoidPtr};
 use crate::objc::{
@@ -76,6 +76,10 @@ pub const CLASSES: ClassExports = objc_classes! {
             alpha:(CGFloat)alpha {
     log!("drawAtPoint p {} bm {} al {}", point, blend_mode, alpha);
     // assert_eq!(alpha, 0.0);
+}
+
++ (())drawInRect:(NSInteger)rect blendMode:(bool)_mode alpha:(bool)_alpha {
+    // TODO
 }
 
 +(())initialize {
