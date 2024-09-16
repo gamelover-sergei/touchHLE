@@ -655,6 +655,9 @@ fn abort(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn abs(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn arc4random_stir(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn asctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1224,6 +1227,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(glDeleteShader(_, _)),
     export_c_func!(abort(_, _)),
     export_c_func!(abs(_, _)),
+    export_c_func!(arc4random_stir(_, _)),
     export_c_func!(asctime(_, _)),
     export_c_func!(class_getInstanceSize(_, _)),
     export_c_func!(ctime(_, _)),
