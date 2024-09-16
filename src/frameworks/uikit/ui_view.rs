@@ -645,6 +645,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+@implementation RedButtonAppDelegate: UIView
+- (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
+    // TODO
+}
+
 @end
 
 @implementation CameraZoomAppDelegate: UIView
