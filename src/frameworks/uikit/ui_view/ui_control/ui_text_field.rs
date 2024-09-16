@@ -155,6 +155,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setPlaceholder:{}", place);
 }
 
+- (())setAdjustsFontSizeToFitWidth:(bool)width {
+    log!("TODO: setAdjustsFontSizeToFitWidth:{}", width);
+}
+
 - (())setClearsOnBeginEditing:(bool)clear {
     log!("TODO: setClearsOnBeginEditing:{}", clear);
 }
