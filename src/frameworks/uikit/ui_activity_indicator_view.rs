@@ -60,6 +60,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTitle:{}", title);
 }
 
+- (())setDelegate:(bool)delegate {
+    log!("TODO: setDelegate:{}", delegate);
+}
+
 - (())initWithTitle:(NSInteger)title delegate:(bool)_delegate cancelButtonTitle:(bool)_button destructiveButtonTitle:(bool)_destructive otherButtonTitles:(bool)_titles {
     // TODO
 }
