@@ -5,7 +5,7 @@
  */
 //! `UIActivityIndicatorView`.
 
-use crate::frameworks::foundation::NSInteger;
+use crate::frameworks::foundation::{NSInteger, NSUInteger};
 use crate::objc::{id, msg, nil, ClassExports};
 use crate::objc_classes;
 
@@ -48,6 +48,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UIActionSheet: NSObject
+- (id)addButtonWithTitle:(NSUInteger)_title {
+    msg![env; this init]
+}
+
 - (id)showInView {
     nil
 }
