@@ -510,6 +510,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: reverseObjectEnumerator:{}", enumerator);
 }
 
+- (())setArray:(bool)array {
+    log!("TODO: setArray:{}", array);
+}
+
 - (())sortUsingDescriptors:(id)descs {
     let mut v = mem::take(&mut env.objc.borrow_mut::<ArrayHostObject>(this).array);
     v.sort_by(|&a, &b| {
