@@ -242,6 +242,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTitleShadowOffset:{}", shadow);
 }
 
+- (())setTitleEdgeInsets:(bool)edge {
+    log!("TODO: setTitleEdgeInsets:{}", edge);
+}
+
 - (())setImage:(NSInteger)image forStates:(bool)_states {
     // TODO
 }
