@@ -223,6 +223,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setName:{}", name);
 }
 
+- (())setZPosition:(bool)position {
+    log!("TODO: setZPosition:{}", position);
+}
+
 - (CGRect)frame {
     let &CALayerHostObject {
         bounds,
