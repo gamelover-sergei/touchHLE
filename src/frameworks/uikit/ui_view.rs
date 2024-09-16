@@ -645,6 +645,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+@end
+
 @implementation RedButtonAppDelegate: UIView
 - (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
     // TODO
