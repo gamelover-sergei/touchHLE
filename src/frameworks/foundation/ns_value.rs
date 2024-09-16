@@ -67,6 +67,14 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)valueWithNonretainedObject:(u64)value {
+    // TODO: for greater efficiency we could return a static-lifetime value
+
+    let new: id = msg![env; this alloc];
+    let new: id = msg![env; new initWithUnsignedLongLong:value];
+    autorelease(env, new)
+}
+
 + (())value:(NSInteger)value withObjCType:(bool)_type {
     // TODO
 }
