@@ -28,7 +28,7 @@ const kAudioSessionProperty_PreferredHardwareIOBufferDuration: AudioSessionPrope
 const kAudioSessionProperty_PreferredHardwareSampleRate: AudioSessionPropertyID = fourcc(b"hwsr");
 const kAudioSessionProperty_CurrentHardwareSampleRate: AudioSessionPropertyID = fourcc(b"chsr");
 const kAudioSessionProperty_CurrentHardwareOutputNumberChannels: AudioSessionPropertyID = fourcc(b"choc");
-const kAudioSessionProperty_CurrentHardwareOutputNumberChannels: AudioSessionPropertyID = fourcc(b"ovrd");
+const kAudioSessionProperty_OverrideAudioRoute: AudioSessionPropertyID = fourcc(b"ovrd");
 
 const kAudioSessionCategory_SoloAmbientSound: u32 = fourcc(b"solo");
 
@@ -105,6 +105,10 @@ fn AudioSessionGetProperty(
             env.mem.write(out_data.cast(), value);
         }
         kAudioSessionProperty_CurrentHardwareOutputNumberChannels => {
+            let value: u32 = state.current_hardware_output_number_channels;
+            env.mem.write(out_data.cast(), value);
+        }
+        kAudioSessionProperty_OverrideAudioRoute => {
             let value: u32 = state.current_hardware_output_number_channels;
             env.mem.write(out_data.cast(), value);
         }
