@@ -56,6 +56,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setActionSheetStyle:{}", action);
 }
 
+- (())setTitle:(bool)title {
+    log!("TODO: setTitle:{}", title);
+}
+
 - (())initWithTitle:(NSInteger)title delegate:(bool)_delegate cancelButtonTitle:(bool)_button destructiveButtonTitle:(bool)_destructive otherButtonTitles:(bool)_titles {
     // TODO
 }
