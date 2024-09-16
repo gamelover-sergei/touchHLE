@@ -122,6 +122,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
++ (())pathForResource:(NSInteger)resource ofType:(bool)_type inDirectory:(bool)_directory {
+    // TODO
+}
+
 + (())preferredLocalizationsFromArray:(NSInteger)array forPreferences:(bool)_preferences {
     // TODO
 }
