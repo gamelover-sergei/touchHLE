@@ -78,6 +78,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setDateStyle:{}", style);
 }
 
+- (())setTimeStyle:(bool)style {
+    log!("TODO: setTimeStyle:{}", style);
+}
+
 @end
 
 };
