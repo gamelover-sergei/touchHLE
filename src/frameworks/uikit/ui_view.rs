@@ -211,8 +211,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWaterAndStart:(NSUInteger)_start {
-    msg![env; this init]
+- (id)initWaterAndStart {
+    nil
 }
 
 - (bool)isUserInteractionEnabled {
