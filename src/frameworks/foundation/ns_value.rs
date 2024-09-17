@@ -75,6 +75,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
+// NSCopying implementation
++ (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
+}
+
 + (())value:(NSInteger)value withObjCType:(bool)_type {
     // TODO
 }
