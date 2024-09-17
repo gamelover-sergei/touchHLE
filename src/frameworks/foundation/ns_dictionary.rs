@@ -303,6 +303,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)dictionaryWithDictionary:(NSUInteger)_dictionary {
+    msg![env; this init]
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     let entries: Vec<_> =
