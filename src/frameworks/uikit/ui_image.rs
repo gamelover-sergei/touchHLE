@@ -50,6 +50,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this imageWithContentsOfFile:path]
 }
 
++ (id)applicationImageNamed {
+    nil
+}
+
 + (id)imageWithContentsOfFile:(id)path { // NSString*
     let new: id = msg![env; this alloc];
     let new: id = msg![env; new initWithContentsOfFile:path];
