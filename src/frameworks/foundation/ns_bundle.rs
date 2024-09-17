@@ -113,6 +113,12 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, preferredLocalizations)
 }
 
++ (id)resourcePath {
+    // This seems to be the same as the bundle path. The iPhone OS bundle
+    // structure is a lot flatter than the macOS one.
+    msg![env; this bundlePath]
+}
+
 // NSCopying implementation
 + (id)copyWithZone:(NSZonePtr)_zone {
     retain(env, this)
