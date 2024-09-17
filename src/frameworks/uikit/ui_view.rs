@@ -266,6 +266,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)startAnimating:(NSUInteger)_animating {
+    msg![env; this init]
+}
+
 - (())addSubview:(id)view {
     log_dbg!("[(UIView*){:?} addSubview:{:?}] => ()", this, view);
 
@@ -469,10 +473,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setTabBarItem:(bool)item {
     log!("TODO: setTabBarItem:{}", item);
-}
-
-- (())startAnimating {
-    log!("TODO: [(UIView*){:?} startAnimating", this);
 }
 
 - (())stopAnimating {
