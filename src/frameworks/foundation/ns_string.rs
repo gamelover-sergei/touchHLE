@@ -1523,6 +1523,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)initWithUTF8String:(NSUInteger)_string {
+    msg![env; this init]
+}
+
 - (())initWithFormat:(NSInteger)format arguments:(bool)_arguments {
     // TODO
 }
