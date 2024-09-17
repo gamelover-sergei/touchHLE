@@ -74,6 +74,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     ns_string::from_rust_string(env, format)
 }
 
+- (())setDateStyle:(bool)style {
+    log!("TODO: setDateStyle:{}", style);
+}
+
 @end
 
 };
