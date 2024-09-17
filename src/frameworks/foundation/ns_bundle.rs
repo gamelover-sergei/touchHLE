@@ -99,6 +99,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)load {
+    nil
+}
+
 + (id)objectAtIndex:(NSUInteger)_index {
     msg![env; this init]
 }
