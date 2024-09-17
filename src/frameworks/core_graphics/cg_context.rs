@@ -7,10 +7,10 @@
 
 use super::cg_affine_transform::CGAffineTransform;
 use super::cg_image::CGImageRef;
-use super::{cg_bitmap_context, CGFloat, CGRect};
+use super::{cg_bitmap_context, CGFloat, CGPoint, CGRect};
 use crate::dyld::{export_c_func, FunctionExports};
 use crate::frameworks::core_foundation::{CFRelease, CFRetain, CFTypeRef};
-use crate::objc::{objc_classes, ClassExports, HostObject};
+use crate::objc::{msg, objc_classes, ClassExports, HostObject};
 use crate::Environment;
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -21,6 +21,17 @@ pub const CLASSES: ClassExports = objc_classes! {
 // are just Objective-C types, so we need a class for it, but its name is not
 // visible anywhere.
 @implementation _touchHLE_CGContext: NSObject
+
++ (())drawAtPoint:(CGPoint)point {
+    msg![env; this drawAtPoint:point blendMode:0 alpha:1.0f32]
+}
+
++ (())drawAtPoint:(CGPoint)point
+        blendMode:(i32)blend_mode // CGBlendMode
+            alpha:(CGFloat)alpha {
+    log!("drawAtPoint p {} bm {} al {}", point, blend_mode, alpha);
+    // assert_eq!(alpha, 0.0);
+}
 
 - (())dealloc {
     let host_obj = env.objc.borrow::<CGContextHostObject>(this);
