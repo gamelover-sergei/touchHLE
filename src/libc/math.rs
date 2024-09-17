@@ -403,6 +403,9 @@ fn CFURLCreateDataAndPropertiesFromResource(_env: &mut Environment, arg1: f32, a
 fn CFURLCreateWithString(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFUUIDCreate(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGColorEqualToColor(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1149,6 +1152,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFURLGetString(_, _)),
     export_c_func!(CFURLCreateDataAndPropertiesFromResource(_, _)),
     export_c_func!(CFURLCreateWithString(_, _)),
+    export_c_func!(CFUUIDCreate(_, _)),
     export_c_func!(CGColorEqualToColor(_, _)),
     export_c_func!(CGColorGetConstantColor(_, _)),
     export_c_func!(CGContextAddLineToPoint(_, _)),
