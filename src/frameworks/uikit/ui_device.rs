@@ -10,7 +10,7 @@ use crate::dyld::HostConstant;
 use crate::frameworks::foundation::ns_string;
 use crate::frameworks::foundation::{NSInteger, NSUInteger};
 use crate::mem::MutPtr;
-use crate::objc::{id, nil, objc_classes, ClassExports, TrivialHostObject};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports, TrivialHostObject};
 use crate::window::DeviceOrientation;
 
 pub const UIDeviceOrientationDidChangeNotification: &str =
@@ -78,6 +78,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (id)name {
     // TODO: Hardcoded to iPhone for now
     ns_string::get_static_str(env, "iPhone")
+}
+
+- (id)methodSignatureForSelector:(NSUInteger)selector {
+    msg![env; this init]
 }
 
 - (id)systemName {
