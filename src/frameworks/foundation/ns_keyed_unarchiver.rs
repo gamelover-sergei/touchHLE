@@ -237,6 +237,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())encodeBytes:(NSInteger)bytes length:(bool)_length forKey:(bool)_key {
+    // TODO
+}
+
 @end
 
 };
