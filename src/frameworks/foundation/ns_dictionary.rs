@@ -344,6 +344,13 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)objectForKey:(id)key {
+    let host_obj: DictionaryHostObject = std::mem::take(env.objc.borrow_mut(this));
+    let res = host_obj.lookup(env, key);
+    *env.objc.borrow_mut(this) = host_obj;
+    res
+}
+
 - (())setValue:(id)value
        forKey:(id)key {
     msg![env; this setObject: value forKey: key]
