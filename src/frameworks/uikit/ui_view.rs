@@ -475,6 +475,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTabBarItem:{}", item);
 }
 
+- (())setMyViewController:(bool)controller {
+    log!("TODO: setMyViewController:{}", controller);
+}
+
 - (())stopAnimating {
     log!("TODO: [(UIView*){:?} stopAnimating", this);
 }
