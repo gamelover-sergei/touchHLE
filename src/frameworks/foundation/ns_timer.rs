@@ -92,6 +92,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     timer
 }
 
++ (())scheduledTimerWithTimeInterval:(NSInteger)time invocation:(bool)_invocation repeats:(bool)_repeats {
+    // TODO
+}
+
 - (())dealloc {
     let &NSTimerHostObject {
         target,
