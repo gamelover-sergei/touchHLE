@@ -79,7 +79,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
-+ (())valueWithBytes:(NSInteger)bytes ObjCType:(bool)_type {
++ (())valueWithBytes:(NSInteger)bytes objCType:(bool)_type {
     // TODO
 }
 
