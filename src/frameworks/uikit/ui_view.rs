@@ -211,6 +211,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)initWaterAndStart:(NSUInteger)_start {
+    msg![env; this init]
+}
+
 - (bool)isUserInteractionEnabled {
     env.objc.borrow::<UIViewHostObject>(this).user_interaction_enabled
 }
