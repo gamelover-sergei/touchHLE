@@ -28,6 +28,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<CALayerHostObject>(this).drawable_properties = props;
 }
 
+- (())setContentsScale:(bool)scale {
+    log!("TODO: setContentsScale:{}", scale);
+}
+
 @end
 
 };
