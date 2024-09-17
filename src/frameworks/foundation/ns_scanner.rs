@@ -154,7 +154,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-- (())scanString:(NSInteger)string intoString:(bool)_string {
+- (())scanString:(NSInteger)string intoString:(bool)_into {
     // TODO
 }
 
