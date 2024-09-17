@@ -222,6 +222,9 @@ fn clock_get_time(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn connect(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn difftime(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn div(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1086,6 +1089,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(bind(_, _)),
     export_c_func!(clock_get_time(_, _)),
     export_c_func!(connect(_, _)),
+    export_c_func!(difftime(_, _)),
     export_c_func!(div(_, _)),
     export_c_func!(fmax(_, _)),
     export_c_func!(fmaxf(_, _)),
