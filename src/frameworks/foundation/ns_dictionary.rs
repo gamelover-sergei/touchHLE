@@ -462,6 +462,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
++ (id)animation {
+    nil
+}
+
 + (())setDuration:(bool)duration {
     log!("TODO: setDuration:{}", duration);
 }
