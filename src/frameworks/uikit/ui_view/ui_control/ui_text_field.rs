@@ -139,6 +139,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setSecureTextEntry:{}", secure);
 }
 
+- (())setContentVerticalAlignment:(bool)vertical {
+    log!("TODO: setContentVerticalAlignment:{}", vertical);
+}
+
 - (())setEnablesReturnKeyAutomatically:(bool)enables {
     log!("TODO: setEnablesReturnKeyAutomatically:{}", enables);
 }
