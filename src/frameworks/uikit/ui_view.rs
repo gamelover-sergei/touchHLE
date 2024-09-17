@@ -266,8 +266,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-- (id)startAnimating:(NSUInteger)_animating {
-    msg![env; this init]
+- (id)startAnimating {
+    nil
 }
 
 - (())addSubview:(id)view {
