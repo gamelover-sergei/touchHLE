@@ -1,3 +1,4 @@
+use crate::frameworks::foundation::NSInteger;
 use crate::objc::{objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
@@ -8,6 +9,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setDatePickerMode:(bool)mode {
     log!("TODO: setDatePickerMode:{}", mode);
+}
+
+- (())addTarget:(NSInteger)target action:(bool)_action forControlEvents:(bool)_events {
+    // TODO
 }
 
 @end
