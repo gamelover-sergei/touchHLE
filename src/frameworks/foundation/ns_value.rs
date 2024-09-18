@@ -374,6 +374,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setFormatWidth:{}", width);
 }
 
+- (())setPaddingCharacter:(bool)character {
+    log!("TODO: setPaddingCharacter:{}", character);
+}
+
 - (())setFormatterBehavior:(bool)behavior {
     log!("TODO: setFormatterBehavior:{}", behavior);
 }
