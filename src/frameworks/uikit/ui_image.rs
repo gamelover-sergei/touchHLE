@@ -8,7 +8,7 @@
 use crate::frameworks::core_graphics::cg_context::CGContextDrawImage;
 use crate::frameworks::core_graphics::cg_image::{self, CGImageRef, CGImageRelease, CGImageRetain};
 use crate::frameworks::core_graphics::{CGFloat, CGRect, CGSize, CGPoint};
-use crate::frameworks::foundation::{ns_data, ns_string, NSInteger};
+use crate::frameworks::foundation::{ns_data, ns_string, NSInteger, NSUInteger};
 use crate::frameworks::uikit::ui_graphics::UIGraphicsGetCurrentContext;
 use crate::fs::GuestPath;
 use crate::image::Image;
