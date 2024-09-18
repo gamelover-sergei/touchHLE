@@ -7,12 +7,12 @@
 
 use super::{close, off_t, open_direct, FileDescriptor};
 use crate::dyld::{export_c_func, FunctionExports};
-use crate::fs::{FsError, GuestFile, GuestPath};
+use crate::fs::{FsError, FileType, GuestPath};
 use crate::libc::errno::{set_errno, EEXIST};
 use crate::libc::time::timespec;
 use crate::mem::{ConstPtr, MutPtr, SafeRead};
 use crate::Environment;
-use std::io::{Seek, SeekFrom};
+
 
 #[allow(non_camel_case_types)]
 pub type dev_t = u32;
@@ -101,27 +101,25 @@ fn fstat_inner(env: &mut Environment, fd: FileDescriptor, buf: MutPtr<stat>) -> 
 
     let mut stat = stat::default();
 
-    match file.file {
-        GuestFile::File(_) | GuestFile::IpaBundleFile(_) | GuestFile::ResourceFile(_) => {
-            stat.st_mode |= S_IFREG;
-
-            // Obtain file size
-            // TODO: Use the stream_len() method if that ever gets stabilized.
-            let old_pos = file.file.stream_position().unwrap();
-            stat.st_size = file
-                .file
-                .seek(SeekFrom::End(0))
-                .unwrap()
-                .try_into()
-                .unwrap();
-            file.file.seek(SeekFrom::Start(old_pos)).unwrap();
-        }
-        GuestFile::Directory => {
-            stat.st_mode |= S_IFDIR;
-
-            // TODO: st_size
-        }
-    }
+    let metadata = file.file.metadata();
+    stat.st_mode = match metadata.filetype {
+        FileType::RegularFile => S_IFREG,
+        FileType::Directory => S_IFDIR,
+    } | match metadata.permissions {
+        // TODO: The current permission model doesn't have any model of groups
+        // or other users, so the other mode bits are made up.
+        // (the current model is that all bits other than write are the same
+        // for "other users")
+        (false, false, false) => 0o000,
+        (false, false, true) => 0o111,
+        (false, true, false) => 0o200,
+        (false, true, true) => 0o311,
+        (true, false, false) => 0o444,
+        (true, false, true) => 0o555,
+        (true, true, false) => 0o644,
+        (true, true, true) => 0o755,
+    };
+    stat.st_size = metadata.size as i64;
 
     env.mem.write(buf, stat);
 

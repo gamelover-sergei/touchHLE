@@ -302,6 +302,13 @@ pub fn AudioQueueEnqueueBuffer(
     _in_packet_descs: MutVoidPtr,
 ) -> OSStatus {
     return_if_null!(in_aq);
+    log!(
+        "{:?} {:?} {:?} {:?}",
+        in_aq,
+        in_buffer,
+        _in_num_packet_descs,
+        _in_packet_descs
+    );
 
     // Variable packet size unimplemented (no formats supported that need it).
     // We don't assert the count is 0 because we might get a useless one even
@@ -616,6 +623,7 @@ fn prime_audio_queue(
 
 fn unqueue_buffers<F: FnMut(ALuint)>(al_source: ALuint, mut callback: F) {
     loop {
+        log!("aa!");
         let mut al_buffers_processed = 0;
         unsafe {
             al::alGetSourcei(
