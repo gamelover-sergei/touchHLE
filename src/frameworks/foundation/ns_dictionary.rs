@@ -601,6 +601,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())initWithObjects:(NSInteger)_objects forKeys:(bool)_keys {
+    // TODO
+}
+
 - (())searchForServicesOfType:(NSInteger)_type inDomain:(bool)_domain {
     // TODO
 }
