@@ -299,6 +299,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)appendData {
+    nil
+}
+
 - (())setLength:(bool)length {
     log!("TODO: setLength:{}", length);
 }
