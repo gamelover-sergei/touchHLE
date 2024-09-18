@@ -207,6 +207,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSKeyedArchiver: NSCoder
++ (id)bytes {
+    nil
+}
 
 + (id)length {
     nil
