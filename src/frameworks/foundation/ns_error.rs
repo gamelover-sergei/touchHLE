@@ -32,6 +32,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_object(this, host_object, &mut env.mem)
 }
 
+- (id)code {
+    nil
+}
+
 - (id)initWithDomain:(id)domain
                 code:(NSInteger)code
             userInfo:(id)user_info {
