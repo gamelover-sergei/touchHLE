@@ -78,6 +78,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
++ (())dataWithContentsOfFile:(NSInteger)file options:(bool)_options error:(bool)_error {
+    // TODO
+}
+
 // Calling the standard `init` is also allowed, in which case we just get data
 // of size 0.
 
