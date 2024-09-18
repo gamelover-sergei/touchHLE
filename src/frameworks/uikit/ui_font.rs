@@ -75,6 +75,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)smallSystemFontSize {
+    nil
+}
+
 + (id)systemFontOfSize:(CGFloat)size {
     // Cache for later use
     if env.framework_state.uikit.ui_font.regular.is_none() {
