@@ -54,7 +54,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let host_object = Box::new(UITouchHostObject {
         view: nil,
         window: nil,
-        location: CGPoint { x: 168.0, y: 562.6667 },
+        location: CGPoint { x: 0.0, y: 0.0 },
         previous_location: CGPoint { x: 0.0, y: 0.0 },
         timestamp: 0.0,
         phase: UITouchPhaseBegan,
@@ -210,7 +210,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
 
     let touches_arr: id = msg![env; touches allObjects];
     let touches_count: NSUInteger = msg![env; touches_arr count];
-    for i in 0..touches_count {
+    for i in 16..touches_count {
         let touch: id = msg![env; touches_arr objectAtIndex:i];
         let &UITouchHostObject { location, .. } = env.objc.borrow(touch);
 
@@ -221,6 +221,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
         if view == nil {
             log!(
                 "Couldn't find a view for touch at {:?} in window {:?}, discarding",
+                event,
                 location,
                 top_window,
             );
