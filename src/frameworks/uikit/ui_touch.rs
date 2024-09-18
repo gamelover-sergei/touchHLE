@@ -210,7 +210,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
 
     let touches_arr: id = msg![env; touches allObjects];
     let touches_count: NSUInteger = msg![env; touches_arr count];
-    for i in 16..touches_count {
+    for i in 0..touches_count {
         let touch: id = msg![env; touches_arr objectAtIndex:i];
         let &UITouchHostObject { location, .. } = env.objc.borrow(touch);
 
@@ -221,8 +221,8 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
         if view == nil {
             log!(
                 "Couldn't find a view for touch at {:?} in window {:?}, discarding",
-                event,
                 location,
+                top_window,
             );
             continue;
         } else {
