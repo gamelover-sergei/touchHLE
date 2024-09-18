@@ -74,6 +74,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)length {
+    nil
+}
+
 + (())dataWithBytesNoCopy:(NSInteger)copy length:(bool)_length freeWhenDone:(bool)_done {
     // TODO
 }
