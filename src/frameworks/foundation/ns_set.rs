@@ -78,6 +78,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_class![env; _touchHLE_NSMutableSet allocWithZone:zone]
 }
 
++ (id)set {
+    nil
+}
+
 + (())setWithArray:(bool)array {
     log!("TODO: setWithArray:{}", array);
 }
