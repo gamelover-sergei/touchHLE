@@ -208,6 +208,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation NSKeyedArchiver: NSCoder
 
++ (id)length {
+    nil
+}
+
 + (id)archivedDataWithRootObject:(NSUInteger)_object {
     msg![env; this init]
 }
