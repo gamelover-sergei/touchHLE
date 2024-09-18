@@ -746,8 +746,19 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this objectForKey:defaultName]
 }
 
+- (id)valueForKey:(id)defaultName {
+    msg![env; this objectForKey:defaultName]
+}
+
 - (id)valueForKeyPath {
      nil
+}
+
+@end
+
+@implementation HomeLogo: _touchHLE_NSMutableDictionary
+- (id)valueForKey:(id)defaultName {
+    msg![env; this objectForKey:defaultName]
 }
 
 @end
