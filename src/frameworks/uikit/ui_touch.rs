@@ -54,7 +54,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     let host_object = Box::new(UITouchHostObject {
         view: nil,
         window: nil,
-        location: CGPoint { x: 0.0, y: 0.0 },
+        location: CGPoint { x: 168.0, y: 562.6667 },
         previous_location: CGPoint { x: 0.0, y: 0.0 },
         timestamp: 0.0,
         phase: UITouchPhaseBegan,
