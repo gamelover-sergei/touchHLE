@@ -688,6 +688,9 @@ fn asctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn class_getInstanceSize(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn creat(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn ctime(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1265,6 +1268,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(arc4random_stir(_, _)),
     export_c_func!(asctime(_, _)),
     export_c_func!(class_getInstanceSize(_, _)),
+    export_c_func!(creat(_, _)),
     export_c_func!(ctime(_, _)),
     export_c_func!(dladdr(_, _)),
     export_c_func!(freopen(_, _)),
