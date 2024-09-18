@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UIDatePicker: UIView
 
+- (())setDatePickerMode:(bool)mode {
+    log!("TODO: setDatePickerMode:{}", mode);
+}
+
 @end
 
 };
