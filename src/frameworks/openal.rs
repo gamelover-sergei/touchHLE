@@ -637,8 +637,10 @@ fn alGetString(env: &mut Environment, funcName: ConstPtr<u8>) -> MutVoidPtr {
     log!("alGetString {}", fname);
     Ptr::null()
 }
-fn alIsExtensionPresent(_env: &mut Environment, _extName: ConstPtr<u8>) -> ALboolean {
-    todo!();
+fn alIsExtensionPresent(env: &mut Environment, funcName: ConstPtr<u8>) -> MutVoidPtr {
+    let fname = env.mem.cstr_at_utf8(funcName).unwrap();
+    log!("alIsExtensionPresent {}", fname);
+    Ptr::null()
 }
 fn alIsEnabled(_env: &mut Environment, _capability: ALenum) -> ALboolean {
     todo!();
