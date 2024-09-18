@@ -76,6 +76,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     uikit::i_simulate::CLASSES,
     uikit::main_view_controller::CLASSES,
     uikit::mp_volume_view::CLASSES,
+    uikit::my_i_ad_view::CLASSES,
     uikit::tap_flies_view_controller::CLASSES,
     uikit::transition_view::CLASSES,
     uikit::ui_accelerometer::CLASSES,
