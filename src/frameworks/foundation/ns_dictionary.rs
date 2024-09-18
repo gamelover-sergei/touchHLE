@@ -185,6 +185,12 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
+// NSCopying implementation
++ (id)copyWithZone:(NSZonePtr)_zone {
+    // TODO: override this once we have NSMutableDictionary!
+    retain(env, this)
+}
+
 + (())dictionaryWithObjects:(NSInteger)objects forKeys:(bool)_keys {
     // TODO
 }
