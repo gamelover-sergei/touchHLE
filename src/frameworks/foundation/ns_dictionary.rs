@@ -592,6 +592,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)allKeysForObject:(NSUInteger)_object {
+    msg![env; this init]
+}
+
 - (())removeAllObjects {
     let mut objects = std::mem::take(env.objc.borrow_mut::<DictionaryHostObject>(this));
     objects.release(env);
