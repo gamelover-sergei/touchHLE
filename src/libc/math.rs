@@ -502,6 +502,9 @@ fn CGContextSetShouldSmoothFonts(_env: &mut Environment, arg1: f32, arg2: f32) -
 fn CGContextSetTextPosition(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGContextStrokePath(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGContextStrokeEllipseInRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1200,6 +1203,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGContextSetStrokeColorWithColor(_, _)),
     export_c_func!(CGContextSetShouldSmoothFonts(_, _)),
     export_c_func!(CGContextSetTextPosition(_, _)),
+    export_c_func!(CGContextStrokePath(_, _)),
     export_c_func!(CGContextStrokeEllipseInRect(_, _)),
     export_c_func!(CGDataProviderCreateDirect(_, _)),
     export_c_func!(CGDataProviderCreateSequential(_, _)),
