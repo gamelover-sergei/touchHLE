@@ -66,6 +66,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)CGImage {
+    nil
+}
+
 - (id)copyWithZone:(NSZonePtr)_zone {
     let host_object = Box::new(UIImageHostObject { cg_image: nil });
     env.objc.alloc_object(this, host_object, &mut env.mem)
