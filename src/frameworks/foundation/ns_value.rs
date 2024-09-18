@@ -370,6 +370,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setNumberStyle:{}", style);
 }
 
+- (())setFormatWidth:(bool)width {
+    log!("TODO: setFormatWidth:{}", width);
+}
+
 - (())setFormatterBehavior:(bool)behavior {
     log!("TODO: setFormatterBehavior:{}", behavior);
 }
