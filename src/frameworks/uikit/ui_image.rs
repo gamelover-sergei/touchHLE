@@ -50,8 +50,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this imageWithContentsOfFile:path]
 }
 
-+ (id)applicationImageNamed {
-    nil
++ (id)applicationImageNamed:(NSUInteger)_named {
+    msg![env; this init]
 }
 
 + (id)imageWithContentsOfFile:(id)path { // NSString*
