@@ -94,6 +94,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSCountedSet: NSSet
++ (id)set {
+    nil
+}
+
 @end
 
 @implementation Texture2D: NSSet
