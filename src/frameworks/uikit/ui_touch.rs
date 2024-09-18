@@ -223,7 +223,6 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
                 "Couldn't find a view for touch at {:?} in window {:?}, discarding",
                 event,
                 location,
-                top_window,
             );
             continue;
         } else {
