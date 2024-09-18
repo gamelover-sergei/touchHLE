@@ -1511,6 +1511,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_object(this, host_object, &mut env.mem)
 }
 
+- (id)dataUsingEncoding:(NSUInteger)_using {
+    msg![env; this init]
+}
+
 - (id)initWithCapacity:(NSUInteger)_capacity {
     msg![env; this init]
 }
