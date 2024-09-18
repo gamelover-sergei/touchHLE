@@ -290,6 +290,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)integerValue:(NSUInteger)_value {
+    msg![env; this init]
+}
+
 + (id)stringWithString:(id)string { // NSString*
     let new: id = msg![env; this alloc];
     let new: id = msg![env; new initWithString:string];
