@@ -64,7 +64,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     if !file_exists {
         return nil
     }
-    todo!()
+    nil
 }
 
 + (id)unarchiveObjectWithData:(id)data { // NSData *
