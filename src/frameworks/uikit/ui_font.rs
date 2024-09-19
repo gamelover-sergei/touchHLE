@@ -75,6 +75,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)labelFontSize {
+    nil
+}
+
 + (id)systemFontSize {
     nil
 }
