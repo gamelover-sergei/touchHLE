@@ -109,12 +109,12 @@ fn AudioUnitSetProperty(
             match in_scope {
                 kAudioUnitScope_Global => host_object.global_stream_format = stream_format,
                 kAudioUnitScope_Output => host_object.output_stream_format = Some(stream_format),
-                nil
+                _ => unimplemented!(),
             };
             result = 0;
             log_dbg!("AudioUnitSetProperty({:?}, kAudioUnitProperty_StreamFormat, {:?}, {:?}, {:?}, {:?}) -> {:?}", in_unit, in_scope, in_element, stream_format, in_data_size, result);
         }
-        _ => unimplemented!(),
+        nil
     };
 
     result
