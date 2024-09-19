@@ -51,4 +51,12 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation MPMediaLibrary: NSObject
+
++ (id)defaultMediaLibrary {
+    nil
+}
+
+@end
+
 };
