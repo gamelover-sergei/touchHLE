@@ -357,6 +357,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (())stringByReplacingOccurrencesOfString:(NSInteger)replacing withString:(bool)_string {
+    // TODO
+}
+
 + (())stringWithCharacters:(NSInteger)characters length:(bool)_length {
     // TODO
 }
