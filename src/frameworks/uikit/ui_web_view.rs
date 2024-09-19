@@ -27,6 +27,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)stringByEvaluatingJavaScriptFromString:(NSUInteger)string {
+    msg![env; this init]
+}
+
 - (())loadHTMLString:(NSInteger)string baseURL:(bool)_url {
     // TODO
 }
