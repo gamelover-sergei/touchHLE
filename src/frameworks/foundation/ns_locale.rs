@@ -5,9 +5,9 @@
  */
 //! `NSLocale`.
 
-use super::{ns_array, ns_string};
+use super::{ns_array, ns_string, NSUInteger};
 use crate::dyld::{ConstantExports, HostConstant};
-use crate::objc::{id, nil, objc_classes, ClassExports, HostObject};
+use crate::objc::{id, msg, nil, objc_classes, ClassExports, HostObject};
 use crate::options::Options;
 use crate::Environment;
 use std::ffi::CStr;
@@ -172,6 +172,10 @@ pub const CLASSES: ClassExports = objc_classes! {
         },
         _ => unimplemented!()
     }
+}
+
+- (id)initWithLocaleIdentifier:(NSUInteger)_locale {
+    msg![env; this init]
 }
 
 - (id)localeIdentifier {
