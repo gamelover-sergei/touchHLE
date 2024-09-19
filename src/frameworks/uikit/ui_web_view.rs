@@ -1,5 +1,5 @@
 use crate::frameworks::foundation::{NSUInteger, NSInteger};
-use crate::objc::{id, msg, nil, objc_classes, ClassExports};
+use crate::objc::{id, msg, nil, objc_classes, retain, ClassExports, NSZonePtr};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
@@ -17,6 +17,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (id)numberOfArguments {
     nil
+}
+
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
 }
 
 - (id)loadRequest:(NSUInteger)request {
