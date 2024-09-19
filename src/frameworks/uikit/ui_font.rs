@@ -71,6 +71,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg_class![env; UIFont systemFontOfSize:size]
 }
 
++ (id)buttonFontSize {
+    nil
+}
+
 + (id)systemFontSize {
     nil
 }
