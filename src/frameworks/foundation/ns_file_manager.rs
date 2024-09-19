@@ -230,7 +230,7 @@ pub const CLASSES: ClassExports = objc_classes! {
                    attributes:(id)attributes // NSDictionary*
                         error:(id)error { // NSError **
     assert!(attributes == nil); // TODO
-    assert!(createIntermediates);
+    // assert!(createIntermediates);
 
     let path_str = ns_string::to_rust_string(env, path); // TODO: avoid copy
     match env
