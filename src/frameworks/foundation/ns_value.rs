@@ -215,6 +215,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)stringByAddingPercentEscapesUsingEncoding:(NSUInteger)_using {
+    msg![env; this init]
+}
+
 - (id)description {
     let desc = match env.objc.borrow(this) {
         NSNumberHostObject::Bool(value) => from_rust_string(env, (*value as i32).to_string()),
