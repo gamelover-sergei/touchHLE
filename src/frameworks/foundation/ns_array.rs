@@ -445,6 +445,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)stringByAddingPercentEscapesUsingEncoding:(NSUInteger)_using {
+    msg![env; this init]
+}
+
 - (id)subarrayWithRange:(NSInteger)_range {
     msg![env; this init]
 }
