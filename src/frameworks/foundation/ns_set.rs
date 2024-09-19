@@ -204,6 +204,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)stringByEvaluatingJavaScriptFromString:(NSUInteger)string {
+    msg![env; this init]
+}
+
 - (())dealloc {
     std::mem::take(&mut env.objc.borrow_mut::<SetHostObject>(this).dict).release(env);
     env.objc.dealloc_object(this, &mut env.mem)
