@@ -375,6 +375,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())writeToFile:(NSInteger)file atomically:(bool)_atomically {
+    // TODO
+}
+
 @end
 
 @implementation _touchHLE_NSArray_ObjectEnumerator: NSEnumerator
