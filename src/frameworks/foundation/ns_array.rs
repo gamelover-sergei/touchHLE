@@ -432,8 +432,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 - (NSUInteger)count {
     env.objc.borrow::<ArrayHostObject>(this).array.len().try_into().unwrap()
 }
-- (id)objectAtIndex:(NSUInteger)_index {
-    msg![env; this init]
+- (id)objectAtIndex:(NSUInteger)index {
+    // TODO: throw real exception rather than panic if out-of-bounds?
+    env.objc.borrow::<ArrayHostObject>(this).array[index as usize]
 }
 
 - (id)ascender {
@@ -464,15 +465,16 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
-- (id)removeObjectAtIndex:(NSUInteger)_index {
-    msg![env; this init]
-}
-
 // TODO: more mutation methods
 
 - (())addObject:(id)object {
     retain(env, object);
     env.objc.borrow_mut::<ArrayHostObject>(this).array.push(object);
+}
+
+- (())removeObjectAtIndex:(NSUInteger)index {
+    let object = env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
+    release(env, object)
 }
 
 - (())removeLastObject {
