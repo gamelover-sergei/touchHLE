@@ -142,7 +142,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 selector:(SEL)selector
 object:(id)object {
     let host_object: &mut NSThreadHostObject = env.objc.borrow_mut(this);
-    let host_object; NSThreadHostObject = env.objc.borrow(this);
     host_object.target = target;
     host_object.selector = Some(selector);
     host_object.object = object;
@@ -239,7 +238,7 @@ pub fn _touchHLE_NSThreadInvocationHelper(env: &mut Environment, ns_thread_obj: 
 
     release(env, object);
     release(env, target);
-    env.objc.borrow_mut::<NSThreadHostObject>(this).thread_dictionary = thread_dictionary;
+    
     release(env, ns_thread_obj);
 
     // TODO: NSThread exit
