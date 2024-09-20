@@ -13,16 +13,12 @@
 mod class_lists;
 pub(super) use class_lists::CLASS_LISTS;
 
-use super::methods::ivar_list_t;
 use super::{
     id, method_list_t, nil, objc_object, AnyHostObject, HostIMP, HostObject, ObjC, IMP, SEL,
 };
-use crate::environment::Environment;
 use crate::mach_o::MachO;
 use crate::mem::{guest_size_of, ConstPtr, ConstVoidPtr, GuestUSize, Mem, Ptr, SafeRead};
-use crate::objc::protocols::{collect_protocols_from_bin, protocol_list_t, protocol_t};
-use std::collections::{HashMap, HashSet};
-use std::sync::atomic::AtomicBool;
+use std::collections::HashMap;
 
 /// Generic pointer to an Objective-C class or metaclass.
 ///
@@ -42,16 +38,13 @@ pub(super) struct ClassHostObject {
     pub(super) is_metaclass: bool,
     pub(super) superclass: Class,
     pub(super) methods: HashMap<SEL, IMP>,
-    pub(super) protocols: HashSet<ConstPtr<protocol_t>>,
-    pub(super) ivars: HashMap<String, ConstPtr<GuestUSize>>,
     /// Offset into the allocated memory for the object where the ivars of
     /// instances of this class or metaclass (respectively: normal objects or
     /// classes) should live. This is always >= the value in the superclass.
-    pub(super) instance_start: GuestUSize,
+    pub(super) _instance_start: GuestUSize,
     /// Size of the allocated memory for instances of this class or metaclass.
     /// This is always >= the value in the superclass.
     pub(super) instance_size: GuestUSize,
-    pub(super) initialized: AtomicBool,
 }
 impl HostObject for ClassHostObject {}
 
@@ -102,9 +95,8 @@ struct class_rw_t {
     _reserved: u32,
     name: ConstPtr<u8>,
     base_methods: ConstPtr<method_list_t>,
-    base_protocols: ConstPtr<protocol_list_t>, // protocol list
-    _ivars: ConstVoidPtr,                      // ivar list (TODO)
-    ivars: ConstPtr<ivar_list_t>,
+    _base_protocols: ConstVoidPtr, // protocol list (TODO)
+    _ivars: ConstVoidPtr,          // ivar list (TODO)
     _weak_ivar_layout: u32,
     _base_properties: ConstVoidPtr, // property list (TODO)
 }
@@ -367,12 +359,9 @@ impl ClassHostObject {
                     (objc.selectors[name], IMP::Host(host_imp))
                 }),
             ),
-            protocols: HashSet::new(),
             // maybe this should be 0 for NSObject? does it matter?
-            instance_start: size,
+            _instance_start: size,
             instance_size: size,
-            initialized: AtomicBool::new(false),
-            ivars: HashMap::default(),
         }
     }
 
@@ -385,8 +374,6 @@ impl ClassHostObject {
             instance_size,
             name,
             base_methods,
-            base_protocols,
-            ivars,
             ..
         } = mem.read(data);
 
@@ -397,24 +384,12 @@ impl ClassHostObject {
             is_metaclass,
             superclass,
             methods: HashMap::new(),
-            instance_start,
+            _instance_start: instance_start,
             instance_size,
-            protocols: HashSet::new(),
-            initialized: AtomicBool::new(false),
-            ivars: HashMap::new(),
         };
 
         if !base_methods.is_null() {
             host_object.add_methods_from_bin(base_methods, mem, objc);
-        }
-        if !base_protocols.is_null() {
-            host_object
-                .protocols
-                .extend(collect_protocols_from_bin(base_protocols, mem));
-        }
-        
-        if !ivars.is_null() {
-            host_object.add_ivars_from_bin(ivars, mem, objc);
         }
 
         host_object
@@ -444,12 +419,7 @@ fn substitute_classes(
     // makes a lot of use of UIKit in ways we don't support yet, so it's easier
     // to skip this. This isn't "ad blocking" because ads no longer work on real
     // devices anyway :)
-    if !(name.starts_with("AdMob")
-        || name.starts_with("AltAds")
-        || name.starts_with("Mobclix")
-        || name == "UserRegViewController"
-        || name == "GMGChocolateBarViewController")
-    {
+    if !(name.starts_with("AdMob") || name.starts_with("AltAds") || name.starts_with("Mobclix")) {
         return None;
     }
 
@@ -648,11 +618,28 @@ impl ObjC {
         }
     }
 
+    /// Dumps all classes available to the emulator in JSON to stdout.
+    ///
+    /// The JSON has the following form:
+    /// ```json
+    /// {
+    ///     "object": "classes",
+    ///     "classes": [
+    ///         {
+    ///             "name": ((name of class)),
+    ///             "super": ((name of superclass, if available)),
+    ///             "class_type": (("normal" | "unimplemented" | "fake"))
+    ///         },
+    ///         ...
+    ///     ]
+    /// }
+    /// ```
     pub fn dump_classes(&self) {
-        let mut normal_classes = Vec::new();
-        let mut unimpl_classes = Vec::new();
-        let mut fake_classes = Vec::new();
-        for (_, o) in self.classes.iter() {
+        echo!("{{\n    \"object\": \"classes\",\n    \"classes\": [");
+        for (i, (_, o)) in self.classes.iter().enumerate() {
+            // Why doesn't json allow trailing commas...
+            let comma = if i == self.classes.len() - 1 { "" } else { "," };
+
             let host_obj = self.get_host_object(*o).unwrap();
 
             if let Some(ClassHostObject {
@@ -661,36 +648,35 @@ impl ObjC {
                 ..
             }) = host_obj.as_any().downcast_ref()
             {
-                if name == "NSObject" {
-                    normal_classes.push(name.clone())
+                if *sup == nil {
+                    echo!(
+                        "        {{ \"name\": \"{}\", \"class_type\": \"normal\" }}{}",
+                        name,
+                        comma
+                    );
                 } else {
-                    normal_classes.push(format!("{} (super: {})", name, self.get_class_name(*sup)));
+                    echo!(
+                        "        {{ \"name\": \"{}\", \"super\": \"{}\", \"class_type\": \"normal\" }}{}",
+                        name, self.get_class_name(*sup), comma
+                    );
                 }
-            } else if let Some(UnimplementedClass { name, .. }) =
-                host_obj.as_any().downcast_ref()
-            {
-                unimpl_classes.push(format!("Unimplemented: {}", name));
+            } else if let Some(UnimplementedClass { name, .. }) = host_obj.as_any().downcast_ref() {
+                echo!(
+                    "        {{ \"name\": \"{}\", \"class_type\": \"unimplemented\" }}{}",
+                    name,
+                    comma
+                );
             } else if let Some(FakeClass { name, .. }) = host_obj.as_any().downcast_ref() {
-                fake_classes.push(format!("Faked: {}", name));
+                echo!(
+                    "        {{ name: \"{}\", \"class_type\": \"fake\" }}{}",
+                    name,
+                    comma
+                );
             } else {
-                log!("Unrecognized class type (maybe bad?)");
+                panic!("Unrecognized class type!");
             }
         }
-        normal_classes.sort();
-        unimpl_classes.sort();
-        fake_classes.sort();
-
-        for s in normal_classes {
-            log!("{}", s);
-        }
-
-        for s in unimpl_classes {
-            log!("{}", s);
-        }
-
-        for s in fake_classes {
-            log!("{}", s);
-        }
+        echo!("    ]\n}}")
     }
 
     /// For use by [crate::dyld]: register all the categories from the
@@ -732,11 +718,8 @@ impl ObjC {
                         is_metaclass: Default::default(),
                         superclass: nil,
                         methods: Default::default(),
-                        instance_start: Default::default(),
+                        _instance_start: Default::default(),
                         instance_size: Default::default(),
-                        protocols: Default::default(),
-                        initialized: Default::default(),
-                        ivars: Default::default(),
                     },
                 );
                 log_dbg!(
@@ -799,9 +782,4 @@ impl ObjC {
             None
         }
     }
-}
-
-pub fn class_conformsToProtocol(env: &mut Environment, cls: Class, proto: id) -> bool {
-    let host_object: &ClassHostObject = env.objc.borrow(cls);
-    host_object.protocols.contains(&proto.cast_const().cast())
 }
