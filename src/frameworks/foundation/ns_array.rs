@@ -445,6 +445,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)reverseObjectEnumerator:(NSUInteger)_object {
+    msg![env; this init]
+}
+
 - (id)stringByAddingPercentEscapesUsingEncoding:(NSUInteger)_using {
     msg![env; this init]
 }
@@ -508,10 +512,6 @@ pub const CLASSES: ClassExports = objc_classes! {
     for object in objects {
         release(env, object);
     }
-}
-
-- (())reverseObjectEnumerator:(bool)enumerator {
-    log!("TODO: reverseObjectEnumerator:{}", enumerator);
 }
 
 - (())setArray:(bool)array {
