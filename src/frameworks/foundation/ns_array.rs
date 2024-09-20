@@ -434,7 +434,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 - (id)objectAtIndex:(NSUInteger)index {
     // TODO: throw real exception rather than panic if out-of-bounds?
-    env.objc.borrow::<ArrayHostObject>(this).array[index as usize]
+    env.objc.borrow::<ArrayHostObject>(this).array
 }
 
 - (id)ascender {
