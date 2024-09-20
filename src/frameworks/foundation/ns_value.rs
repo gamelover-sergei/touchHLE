@@ -32,8 +32,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 // NSValue is an abstract class. None of the things it should provide are
 // implemented here yet (TODO).
 @implementation NSValue: NSObject
-+ (id)getValue {
-    nil
++ (i32)getValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
 }
 
 + (id)valueWithPointer:(u64)value {
@@ -188,9 +189,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWithFloat:(i32)value {
-    *env.objc.borrow_mut::<NSNumberHostObject>(this) = NSNumberHostObject::LongLong(value.into());
-    this
+- (id)initWithFloat:(f32)value {
+    msg![env; this initWithDouble: (value as f64)]
 }
 
 - (id)initWithDouble:(f64)value {
@@ -204,8 +204,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)initWithInt:(i32)value {
-    *env.objc.borrow_mut::<NSNumberHostObject>(this) = NSNumberHostObject::LongLong(value.into());
-    this
+    msg![env; this initWithLongLong: (value as i64)]
 }
 
 - (id)initWithLongLong:(i64)value {
@@ -269,13 +268,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
-- (f64)floatValue {
-    match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i32 as f64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
-        NSNumberHostObject::LongLong(l) => *l as f64,
-        NSNumberHostObject::Double(d) => *d,
-    }
+- (f32)floatValue {
+    let d: f64 = msg![env; this doubleValue];
+    d as f32
 }
 
 - (i64)longLongValue {
@@ -287,49 +282,29 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
-- (i64)stringValue {
-    match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
-        NSNumberHostObject::LongLong(l) => *l,
-        NSNumberHostObject::Double(d) => *d as i64,
-    }
+- (i32)stringValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
 }
 
-- (i64)intValue {
-    match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
-        NSNumberHostObject::LongLong(l) => *l,
-        NSNumberHostObject::Double(d) => *d as i64,
-    }
+- (i32)intValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
 }
 
-- (i64)integerValue {
-    match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
-        NSNumberHostObject::LongLong(l) => *l,
-        NSNumberHostObject::Double(d) => *d as i64,
-    }
+- (i32)integerValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
 }
 
-- (i64)unsignedIntegerValue {
-    match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
-        NSNumberHostObject::LongLong(l) => *l,
-        NSNumberHostObject::Double(d) => *d as i64,
-    }
+- (i32)unsignedIntegerValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
 }
 
-- (i64)unsignedIntValue {
-    match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
-        NSNumberHostObject::LongLong(l) => *l,
-        NSNumberHostObject::Double(d) => *d as i64,
-    }
+- (i32)unsignedIntValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
 }
 
 -(ConstPtr<u8>)objCType {
