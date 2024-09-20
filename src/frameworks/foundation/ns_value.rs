@@ -16,6 +16,7 @@ use crate::objc::{
 };
 use std::cmp::Ordering;
 
+#[derive(Debug)]
 pub enum NSNumberHostObject {
     Bool(bool),
     UnsignedLongLong(u64),
