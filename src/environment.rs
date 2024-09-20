@@ -348,6 +348,14 @@ impl Environment {
             log_dbg!("Static initialization done");
         }
 
+        if env.options.dump_linking_info {
+            echo!("\x1e");
+            env.objc.dump_classes();
+            env.dyld.dump_lazy_symbols(&env.bins);
+            env.objc.dump_selectors(&env.bins[0], &env.mem);
+            echo!("\x1e");
+        }
+        
         if env.options.dump_classes {
             env.objc.dump_classes();
         }
