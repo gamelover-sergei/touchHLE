@@ -142,7 +142,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 selector:(SEL)selector
 object:(id)object {
     let host_object: &mut NSThreadHostObject = env.objc.borrow_mut(this);
-    let host_object: &mut NSThreadHostObject = env.objc.borrow(this);
+    let host_object: &_ NSThreadHostObject = env.objc.borrow(this);
     host_object.target = target;
     host_object.selector = Some(selector);
     host_object.object = object;
