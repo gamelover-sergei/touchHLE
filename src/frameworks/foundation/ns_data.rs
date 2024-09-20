@@ -267,16 +267,16 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation NSMutableData: NSData
 
-+ (id)bytes {
-    nil
++ (ConstVoidPtr)bytes {
+    env.objc.borrow::<NSDataHostObject>(this).bytes.cast_const()
 }
 
 + (id)mutableBytes {
     nil
 }
 
-+ (id)length {
-    nil
++ (NSUInteger)length {
+    env.objc.borrow::<NSDataHostObject>(this).length
 }
 
 + (id)dataWithCapacity:(NSUInteger)_capacity {
