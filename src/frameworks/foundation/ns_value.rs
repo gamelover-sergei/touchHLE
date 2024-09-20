@@ -188,8 +188,9 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWithFloat:(f32)value {
-    msg![env; this initWithDouble: (value as f64)]
+- (id)initWithFloat:(i32)value {
+    *env.objc.borrow_mut::<NSNumberHostObject>(this) = NSNumberHostObject::LongLong(value.into());
+    this
 }
 
 - (id)initWithDouble:(f64)value {
@@ -203,7 +204,8 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)initWithInt:(i32)value {
-    msg![env; this initWithLongLong: (value as i64)]
+    *env.objc.borrow_mut::<NSNumberHostObject>(this) = NSNumberHostObject::LongLong(value.into());
+    this
 }
 
 - (id)initWithLongLong:(i64)value {
