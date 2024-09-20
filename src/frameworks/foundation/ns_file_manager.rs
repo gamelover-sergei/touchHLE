@@ -317,6 +317,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     true
 }
 
+- (id)displayNameAtPath:(NSUInteger)_path {
+    msg![env; this init]
+}
+
 - (())fileAttributesAtPath:(NSInteger)path traverseLink:(bool)_link {
     // TODO
 }
