@@ -49,6 +49,7 @@ pub struct Options {
     pub headless: bool,
     pub print_fps: bool,
     pub fps_limit: Option<f64>,
+    pub dump_linking_info: bool,
     pub dump_classes: bool,
     pub dump_lazy_syms: bool,
 }
@@ -73,6 +74,8 @@ impl Default for Options {
             headless: false,
             print_fps: false,
             fps_limit: Some(60.0), // Original iPhone is 60Hz and uses v-sync
+
+            dump_linking_info: false,
             dump_classes: false,
             dump_lazy_syms: false,
         }
@@ -190,6 +193,8 @@ impl Options {
                     .ok_or_else(|| "Invalid value for --fps-limit=".to_string())?;
                 self.fps_limit = Some(limit);
             }
+            } else if arg == "--dump-linking-info" {
+            self.dump_linking_info = true;
         } else if arg == "--dump-classes" {
             self.dump_classes = true;
         } else if arg == "--dump-lazy-symbols" {
