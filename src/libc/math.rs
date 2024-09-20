@@ -676,6 +676,9 @@ fn glDrawTexfOES(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn glDeleteShader(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn glGetFixedv(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn abort(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1267,6 +1270,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(glRenderbufferStorageMultisampleAPPLE(_, _)),
     export_c_func!(glDrawTexfOES(_, _)),
     export_c_func!(glDeleteShader(_, _)),
+    export_c_func!(glGetFixedv(_, _)),
     export_c_func!(abort(_, _)),
     export_c_func!(abs(_, _)),
     export_c_func!(arc4random_stir(_, _)),
