@@ -74,8 +74,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
-+ (id)length {
-    nil
++ (NSUInteger)length {
+    env.objc.borrow::<NSDataHostObject>(this).length
 }
 
 + (())dataWithBytesNoCopy:(NSInteger)copy length:(bool)_length freeWhenDone:(bool)_done {
