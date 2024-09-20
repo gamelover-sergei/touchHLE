@@ -548,6 +548,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())pathForResource:(NSInteger)resource ofType:(bool)_type {
+    // TODO
+}
+
 @end
 
 // Special variant for use by CFArray with NULL callbacks: objects aren't
