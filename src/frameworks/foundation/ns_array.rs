@@ -466,7 +466,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)removeObjectAtIndex:(NSUInteger)_index {
     msg![env; this init]
-    release(env, object)
 }
 
 // TODO: more mutation methods
