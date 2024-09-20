@@ -239,7 +239,7 @@ pub fn _touchHLE_NSThreadInvocationHelper(env: &mut Environment, ns_thread_obj: 
 
     release(env, object);
     release(env, target);
-
+    env.objc.borrow_mut::<NSThreadHostObject>(this).thread_dictionary = thread_dictionary;
     release(env, ns_thread_obj);
 
     // TODO: NSThread exit
