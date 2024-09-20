@@ -48,6 +48,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (id)cancelPreviousPerformRequestsWithTarget:(NSUInteger)_target {
+    msg![env; this init]
+}
+
+
 + (Class)class {
     this
 }
