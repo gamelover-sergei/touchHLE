@@ -74,8 +74,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
-+ (NSUInteger)length {
-    env.objc.borrow::<NSDataHostObject>(this).length
++ (id)length {
+    nil
 }
 
 + (())dataWithBytesNoCopy:(NSInteger)copy length:(bool)_length freeWhenDone:(bool)_done {
@@ -267,16 +267,16 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation NSMutableData: NSData
 
-+ (ConstVoidPtr)bytes {
-    env.objc.borrow::<NSDataHostObject>(this).bytes.cast_const()
++ (id)bytes {
+    nil
 }
 
 + (id)mutableBytes {
     nil
 }
 
-+ (NSUInteger)length {
-    env.objc.borrow::<NSDataHostObject>(this).length
++ (id)length {
+    nil
 }
 
 + (id)dataWithCapacity:(NSUInteger)_capacity {
