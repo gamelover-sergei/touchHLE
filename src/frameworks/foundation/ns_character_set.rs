@@ -7,13 +7,13 @@
 
 use super::{ns_string, unichar};
 use crate::objc::{
-    autorelease, id, msg, msg_class, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr,
+    autorelease, id, msg, msg_class, objc_classes, retain, ClassExports, HostObject, NSZonePtr,
 };
 use std::collections::HashSet;
 
 /// Belongs to _touchHLE_NSCharacterSet
-pub(super) struct CharacterSetHostObject {
-    pub(super) set: HashSet<unichar>,
+struct CharacterSetHostObject {
+    set: HashSet<unichar>,
     inverted: bool,
 }
 impl HostObject for CharacterSetHostObject {}
@@ -49,18 +49,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     new
 }
 
-+ (id)newlineCharacterSet {
-    nil
-}
-
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     // TODO: override this once we have NSMutableCharacterSet!
     retain(env, this)
-}
-
-- (id)invertedSet {
-    todo!("Implement set inversion for NSCharacterSet subclasses");
 }
 
 @end
@@ -80,7 +72,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 // TODO: initWithCoder:
 
 - (bool)characterIsMember:(unichar)code_unit {
-    let host_object = env.objc.borrow::<CharacterSetHostObject>(this); 
+    let host_object = env.objc.borrow::<CharacterSetHostObject>(this);
     host_object.set.contains(&code_unit) ^ host_object.inverted
 }
 
