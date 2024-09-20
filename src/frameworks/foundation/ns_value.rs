@@ -203,8 +203,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (id)initWithInt:(i32)value {
-    *env.objc.borrow_mut::<NSNumberHostObject>(this) = NSNumberHostObject::LongLong(value.into());
-    this
+    msg![env; this initWithLongLong: (value as i64)]
 }
 
 - (id)initWithLongLong:(i64)value {
@@ -268,7 +267,7 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
-- (f32)floatValue {
+- (f64)floatValue {
     match env.objc.borrow::<NSNumberHostObject>(this) {
         NSNumberHostObject::Bool(b) => *b as i32 as f64,
         NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
@@ -286,48 +285,48 @@ pub const CLASSES: ClassExports = objc_classes! {
     }
 }
 
-- (i32)stringValue {
+- (i64)stringValue {
     match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i32 as f64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
-        NSNumberHostObject::LongLong(l) => *l as f64,
-        NSNumberHostObject::Double(d) => *d,
+        NSNumberHostObject::Bool(b) => *b as i64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
+        NSNumberHostObject::LongLong(l) => *l,
+        NSNumberHostObject::Double(d) => *d as i64,
     }
 }
 
-- (i32)intValue {
+- (i64)intValue {
     match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i32 as f64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
-        NSNumberHostObject::LongLong(l) => *l as f64,
-        NSNumberHostObject::Double(d) => *d,
+        NSNumberHostObject::Bool(b) => *b as i64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
+        NSNumberHostObject::LongLong(l) => *l,
+        NSNumberHostObject::Double(d) => *d as i64,
     }
 }
 
-- (i32)integerValue {
+- (i64)integerValue {
     match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i32 as f64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
-        NSNumberHostObject::LongLong(l) => *l as f64,
-        NSNumberHostObject::Double(d) => *d,
+        NSNumberHostObject::Bool(b) => *b as i64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
+        NSNumberHostObject::LongLong(l) => *l,
+        NSNumberHostObject::Double(d) => *d as i64,
     }
 }
 
-- (i32)unsignedIntegerValue {
+- (i64)unsignedIntegerValue {
     match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i32 as f64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
-        NSNumberHostObject::LongLong(l) => *l as f64,
-        NSNumberHostObject::Double(d) => *d,
+        NSNumberHostObject::Bool(b) => *b as i64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
+        NSNumberHostObject::LongLong(l) => *l,
+        NSNumberHostObject::Double(d) => *d as i64,
     }
 }
 
-- (i32)unsignedIntValue {
+- (i64)unsignedIntValue {
     match env.objc.borrow::<NSNumberHostObject>(this) {
-        NSNumberHostObject::Bool(b) => *b as i32 as f64,
-        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
-        NSNumberHostObject::LongLong(l) => *l as f64,
-        NSNumberHostObject::Double(d) => *d,
+        NSNumberHostObject::Bool(b) => *b as i64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
+        NSNumberHostObject::LongLong(l) => *l,
+        NSNumberHostObject::Double(d) => *d as i64,
     }
 }
 
