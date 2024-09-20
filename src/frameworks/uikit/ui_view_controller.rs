@@ -135,6 +135,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
+    // TODO
+}
+
 @end
 
 @implementation BallFightSettingsViewController: UIViewController
@@ -158,6 +162,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (())setDelegate:(bool)delegate {
     log!("TODO: setDelegate:{}", delegate);
+}
+
+@end
+
+@implementation GunFighterViewController: UIViewController
+- (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
+    // TODO
 }
 
 @end
