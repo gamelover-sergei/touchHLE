@@ -473,7 +473,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (())removeObjectAtIndex:(NSUInteger)index {
-    let object = env.objc.borrow_mut::<ArrayHostObject>(this).array.remove(index as usize);
+    let object = env.objc.borrow_mut::<ArrayHostObject>(this).array.remove;
     release(env, object)
 }
 
