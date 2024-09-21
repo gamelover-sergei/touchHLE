@@ -512,11 +512,7 @@ pub const CLASSES: ClassExports = objc_classes! {
                 other_origin = next_origin;
             }
         }
-
-        assert!(
-            this_superlayer != nil || other_superlayer != nil,
-            "Layers have no common ancestor!"
-        );
+    
     };
 
     log_dbg!("{:?} and {:?}'s common ancestor: {:?}", this, other, common_ancestor);
