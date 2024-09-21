@@ -1543,6 +1543,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (())initWithContentsOfFile:(NSInteger)file encoding:(bool)_encoding error:(bool)_error {
+    // TODO
+}
+
 - (())initWithFormat:(NSInteger)format arguments:(bool)_arguments {
     // TODO
 }
