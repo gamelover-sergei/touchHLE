@@ -223,6 +223,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
                 "Couldn't find a view for touch at {:?} in window {:?}, discarding",
                 location,
                 top_window,
+                touch,
             );
             continue;
         } else {
@@ -235,6 +236,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
                 },
                 location,
                 top_window,
+                touch,
             );
         }
 
@@ -317,6 +319,7 @@ fn handle_touches_move(env: &mut Environment, map: HashMap<FingerId, Coords>) {
             log!(
                 "Warning: Finger {:?} touch move event received but no current touch, ignoring.",
                 finger_id
+                touch,
             );
             continue;
         };
