@@ -123,6 +123,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this bundlePath]
 }
 
++ (id)UTF8String {
+    nil
+}
+
 // NSCopying implementation
 + (id)copyWithZone:(NSZonePtr)_zone {
     retain(env, this)
