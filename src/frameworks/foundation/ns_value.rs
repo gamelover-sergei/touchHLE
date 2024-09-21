@@ -230,6 +230,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     };
     autorelease(env, desc)
 }
+
+- (id)UTF8String {
+    nil
+}
+
 - (NSUInteger)hash {
     let value: i64 = msg![env; this longLongValue];
     super::hash_helper(&value)
