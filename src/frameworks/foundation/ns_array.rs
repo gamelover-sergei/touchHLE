@@ -548,6 +548,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<ArrayHostObject>(this).array = v;
 }
 
+- (())writeToFile:(NSInteger)file atomically:(bool)_atomically encoding:(bool)_encoding error:(bool)_error {
+    // TODO
+}
+
 - (())writeToFile:(NSInteger)file atomically:(bool)_atomically {
     // TODO
 }
