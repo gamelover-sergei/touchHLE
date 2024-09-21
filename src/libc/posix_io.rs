@@ -289,6 +289,7 @@ pub fn read(
                     bytes_read,
                 );
             }
+            bytes_read.try_into().unwrap()
         }
         Err(e) => {
             // TODO: set errno
