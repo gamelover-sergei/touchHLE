@@ -262,7 +262,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
         // We're presenting to the opaque CAEAGLLayer that covers the screen.
         // We can use the fast path where we skip composition and present directly.
-        if fullscreen_layer != nil {
+        if drawable == fullscreen_layer {
             log_dbg!(
                 "Layer {:?} is the fullscreen layer, presenting renderbuffer {:?} directly (fast path).",
                 drawable,
