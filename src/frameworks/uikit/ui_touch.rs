@@ -218,7 +218,7 @@ fn handle_touches_down(env: &mut Environment, map: HashMap<FingerId, Coords>) {
         // FIXME: handle non-fullscreen windows in hit testing and
         //        co-ordinate space translation.
 
-        let view: id = msg![env; top_window hitTest:location touchesBegan:touches withEvent:event];
+        let view: id = msg![env; top_window hitTest:location withEvent:event];
         if view == nil {
             log!(
                 "Couldn't find a view for touch at {:?} in window {:?}, discarding",
