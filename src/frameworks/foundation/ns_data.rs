@@ -8,11 +8,11 @@
 use super::ns_string::to_rust_string;
 use super::{NSRange, NSUInteger};
 use crate::fs::GuestPath;
-use crate::mem::{ConstPtr, ConstVoidPtr, MutPtr, MutVoidPtr, Ptr};
+use crate::mem::{ConstVoidPtr, MutPtr, MutVoidPtr, Ptr};
 use crate::objc::{
     autorelease, id, msg, nil, objc_classes, release, retain, ClassExports, HostObject, NSZonePtr,
 };
-use crate::{msg_class, Environment};
+use crate::Environment;
 
 struct NSDataHostObject {
     bytes: MutVoidPtr,
@@ -42,29 +42,16 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
-+ (id)dataWithBytes:(ConstVoidPtr)bytes
++ (id)dataWithBytes:(MutVoidPtr)bytes
              length:(NSUInteger)length {
     let new: id = msg![env; this alloc];
     let new: id = msg![env; new initWithBytes:bytes length:length];
     autorelease(env, new)
 }
 
-+ (id)dataWithContentsOfFile:(id)path {
++ (id)dataWithContentsOfFile:(id)path{
     let new: id = msg![env; this alloc];
-    let new: id = msg![env; new initWithContentsOfFile:path];
-    autorelease(env, new)
-}
-
-+ (id)dataWithContentsOfMappedFile:(id)path {
-    log!("TODO [NSData dataWithContentsOfMappedFile:{:?}] uses [NSData dataWithContentsOfFile:] implementation instead of its own", path);
-    let new: id = msg![env; this alloc];
-    let new: id = msg![env; new initWithContentsOfFile:path];
-    autorelease(env, new)
-}
-
-+ (id)dataWithContentsOfURL:(id)url {
-    let new: id = msg![env; this alloc];
-    let new: id = msg![env; new initWithContentsOfURL:url];
+    let new: id = msg![env; new initWithContentsOfFile: path];
     autorelease(env, new)
 }
 
@@ -80,31 +67,18 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
-- (id)initWithBytes:(ConstVoidPtr)bytes
+- (id)initWithBytes:(MutVoidPtr)bytes
               length:(NSUInteger)length {
     let host_object = env.objc.borrow_mut::<NSDataHostObject>(this);
     assert!(host_object.bytes.is_null() && host_object.length == 0);
     let alloc = env.mem.alloc(length);
-    env.mem.memmove(alloc, bytes, length);
+    env.mem.memmove(alloc, bytes.cast_const(), length);
     host_object.bytes = alloc;
     host_object.length = length;
     this
 }
 
-- (id)initWithContentsOfURL:(id)url { // NSURL *
-    let path: id = msg![env; url absoluteString];
-    let path = to_rust_string(env, path);
-    // TODO: file URL case
-    assert!(path.starts_with("http"));
-    log!("TODO: ignoring [(NSData*){:?} initWithContentsOfURL:{:?}]", this, path);
-    // TODO: actually load data once we have proper network support
-    nil
-}
-
 - (id)initWithContentsOfFile:(id)path {
-    if path == nil {
-        return nil;
-    }
     let path = to_rust_string(env, path);
     log_dbg!("[(NSData*){:?} initWithContentsOfFile:{:?}]", this, path);
     let Ok(bytes) = env.fs.read(GuestPath::new(&path)) else {
@@ -151,25 +125,11 @@ pub const CLASSES: ClassExports = objc_classes! {
     retain(env, this)
 }
 
-- (id)mutableCopyWithZone:(NSZonePtr)_zone {
-    let bytes: ConstVoidPtr = msg![env; this bytes];
-    let length: NSUInteger = msg![env; this length];
-    let new = msg_class![env; NSMutableData alloc];
-    msg![env; new initWithBytes:(bytes.cast_mut()) length:length]
-}
-
 - (ConstVoidPtr)bytes {
     env.objc.borrow::<NSDataHostObject>(this).bytes.cast_const()
 }
 - (NSUInteger)length {
     env.objc.borrow::<NSDataHostObject>(this).length
-}
-
-- (bool)isEqualToData:(id)other {
-    // FIXME: Avoid allocation
-    let a = to_rust_slice(env, this).to_owned();
-    let b = to_rust_slice(env, other);
-    a == b
 }
 
 - (())getBytes:(MutPtr<u8>)buffer range:(NSRange)range {
@@ -186,48 +146,17 @@ pub const CLASSES: ClassExports = objc_classes! {
     );
 }
 
-- (())getBytes:(MutPtr<u8>)buffer {
-    let &NSDataHostObject { bytes, length, .. } = env.objc.borrow(this);
+-(()) getBytes:(MutPtr<u8>)buffer {
+    let host_object = env.objc.borrow::<NSDataHostObject>(this);
+
+    let size = host_object.length;
+    let bytes = host_object.bytes;
+
     env.mem.memmove(
         buffer.cast(),
         bytes.cast_const(),
-        length,
+        size
     );
-}
-
-@end
-
-@implementation NSMutableData: NSData
-
-- (id)initWithCapacity:(NSUInteger)_capacity {
-    msg![env; this init]
-}
-
-- (id)copyWithZone:(NSZonePtr)_zone {
-    let bytes: ConstVoidPtr = msg![env; this bytes];
-    let length: NSUInteger = msg![env; this length];
-    let new = msg_class![env; NSData alloc];
-    msg![env; new initWithBytes:bytes length:length]
-}
-
-- (())increaseLengthBy:(NSUInteger)add_len {
-    let &NSDataHostObject { bytes, length, .. } = env.objc.borrow(this);
-    let new_len = length + add_len;
-    let new_bytes = env.mem.realloc(bytes, new_len);
-    let host = env.objc.borrow_mut::<NSDataHostObject>(this);
-    host.length = new_len;
-    host.bytes = new_bytes;
-    log_dbg!("increaseLengthBy bytes {:?}, new_bytes {:?}; length {}, new_len {}", bytes, new_bytes, length, new_len);
-}
-
-- (())appendBytes:(ConstPtr<u8>)append_bytes length:(NSUInteger)append_length {
-    let old_len = env.objc.borrow::<NSDataHostObject>(this).length;
-    let old_bytes = env.objc.borrow::<NSDataHostObject>(this).bytes;
-    () = msg![env; this increaseLengthBy:append_length];
-    let &NSDataHostObject { bytes, length, .. } = env.objc.borrow(this);
-    log_dbg!("appendBytes old_len {}, append_length {}, length {}", old_len, append_length, length);
-    log_dbg!("appendBytes old_bytes {:?}, append_bytes {:?}, bytes {:?}", old_bytes, append_bytes, bytes);
-    env.mem.memmove(bytes + old_len, append_bytes.cast(), append_length);
 }
 
 @end
