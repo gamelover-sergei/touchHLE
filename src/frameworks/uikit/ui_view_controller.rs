@@ -28,6 +28,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.alloc_object(this, host_object, &mut env.mem)
 }
 
+- (id)copyWithZone:(NSUInteger)_zone {
+    msg![env; this init]
+}
+
 // TODO: this should be the designated initializer
 - (id)initWithNibName:(id)nibNameOrNil // NSString *
                bundle:(id)nibBundleOrNil { // NSBundle *
@@ -186,6 +190,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation ProjectListViewController: UIViewController
 - (id)initWithStyle:(NSUInteger)_style {
+    msg![env; this init]
+}
+
+@end
+
+@implementation ReachabilityQuery: UIViewController
+- (id)copyWithZone:(NSUInteger)_zone {
     msg![env; this init]
 }
 
