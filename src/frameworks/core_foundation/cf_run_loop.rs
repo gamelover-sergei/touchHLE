@@ -15,9 +15,14 @@ use crate::frameworks::foundation::ns_run_loop::run_run_loop_single_iteration;
 use crate::frameworks::foundation::ns_string;
 use crate::objc::{msg, msg_class};
 use crate::Environment;
+use crate::frameworks::core_foundation::cf_allocator::CFAllocatorRef;
+use crate::frameworks::core_foundation::CFIndex;
+use crate::frameworks::core_foundation::time::CFTimeInterval;
 
 pub type CFRunLoopRef = super::CFTypeRef;
 pub type CFRunLoopMode = super::cf_string::CFStringRef;
+pub type CFAbsoluteTime = CFTimeInterval;
+pub type CFOptionFlags = u_long;
 
 fn CFRunLoopGetCurrent(env: &mut Environment) -> CFRunLoopRef {
     msg_class![env; NSRunLoop currentRunLoop]
