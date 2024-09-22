@@ -9,7 +9,7 @@ use super::ui_graphics::UIGraphicsGetCurrentContext;
 use crate::frameworks::core_graphics::cg_color::{CGColorRef, CGColorRelease, CGColorRetain};
 use crate::frameworks::core_graphics::cg_context::CGContextSetRGBFillColor;
 use crate::frameworks::core_graphics::{cg_color, CGFloat};
-use crate::frameworks::foundation::NSUInteger;
+use crate::frameworks::foundation::{NSInteger, NSUInteger};
 use crate::mem::MutPtr;
 use crate::objc::{
     autorelease, id, msg, msg_class, nil, objc_classes, ClassExports, HostObject, NSZonePtr, ObjC,
@@ -114,6 +114,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (id)darkTextColor {
     nil
+}
+
++ (())colorWithHue:(NSInteger)hue saturation:(bool)_saturation brightness:(bool)_brightness alpha:(bool)_alpha  {
+    // TODO
 }
 
 + (id)blueColor     { get_standard_color(env, _cmd, 0.0, 0.0, 1.0, 1.0) }
