@@ -19,8 +19,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-+ (id)songsQuery {
-    nil
++ (id)songsQuery:(NSUInteger)_songs {
+    msg![env; this init]
 }
 
 - (id)copyWithZone:(NSUInteger)_zone {
