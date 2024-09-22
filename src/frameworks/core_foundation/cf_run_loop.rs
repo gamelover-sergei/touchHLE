@@ -10,19 +10,30 @@
 
 use sdl2_sys::u_long;
 use crate::dyld::{export_c_func, ConstantExports, FunctionExports, HostConstant};
-use crate::frameworks::core_foundation::time::CFTimeInterval;
-use crate::frameworks::foundation::ns_run_loop::run_run_loop_single_iteration;
-use crate::frameworks::foundation::ns_string;
-use crate::objc::{msg, msg_class};
+use crate::objc::msg_class;
 use crate::Environment;
 use crate::frameworks::core_foundation::cf_allocator::CFAllocatorRef;
 use crate::frameworks::core_foundation::CFIndex;
 use crate::frameworks::core_foundation::time::CFTimeInterval;
+use crate::mem::{ConstVoidPtr, MutPtr};
 
 pub type CFRunLoopRef = super::CFTypeRef;
 pub type CFRunLoopMode = super::cf_string::CFStringRef;
 pub type CFAbsoluteTime = CFTimeInterval;
 pub type CFOptionFlags = u_long;
+
+// typedef struct __CFRunLoopTimer CFRunLoopTimerRef;
+pub type CFRunLoopTimerRef = super::CFTypeRef;
+
+// typedef void (*CFRunLoopTimerCallBack)(CFRunLoopTimerRef timer, void *info);
+pub type CFRunLoopTimerCallBack = super::CFTypeRef;
+
+// typedef struct CFRunLoopTimerContext {
+//     ...
+// } CFRunLoopTimerContext;
+
+// copyDescription, info, release, retain, version
+pub type CFRunLoopTimerContext = super::CFTypeRef;
 
 fn CFRunLoopGetCurrent(env: &mut Environment) -> CFRunLoopRef {
     msg_class![env; NSRunLoop currentRunLoop]
@@ -32,28 +43,21 @@ pub fn CFRunLoopGetMain(env: &mut Environment) -> CFRunLoopRef {
     msg_class![env; NSRunLoop mainRunLoop]
 }
 
-fn CFRunLoopRunInMode(
-    env: &mut Environment,
-    mode: CFRunLoopMode,
-    seconds: CFTimeInterval,
-    _return_something: bool,
-) -> i32 {
-    let default_mode = ns_string::get_static_str(env, kCFRunLoopDefaultMode);
-    let common_modes = ns_string::get_static_str(env, kCFRunLoopCommonModes);
-    // TODO: handle other modes
-    assert!(
-        msg![env; mode isEqualToString:default_mode]
-            || msg![env; mode isEqualToString:common_modes]
-    );
-    assert!(seconds <= 0.001);
-    // TODO: we're currently supporting only the main run loop
-    log_dbg!(
-        "TODO: properly implement CFRunLoopRunInMode [current thread {}], running a single iteration of the main run loop",
-        env.current_thread
-    );
-    let main_run_loop = CFRunLoopGetMain(env);
-    run_run_loop_single_iteration(env, main_run_loop);
-    1 // kCFRunLoopRunFinished
+// TODO: Not sure what void (^block)(CFRunLoopTimerRef timer) is.
+// CFRunLoopTimerRef CFRunLoopTimerCreateWithHandler(CFAllocatorRef allocator, CFAbsoluteTime fireDate, CFTimeInterval interval, CFOptionFlags flags, CFIndex order, void (^block)(CFRunLoopTimerRef timer));
+pub fn CFRunLoopTimerCreateWithHandler(env: &mut Environment, allocator: CFAllocatorRef, fireDate: CFAbsoluteTime, interval: CFTimeInterval, flags: CFOptionFlags, order: CFIndex, timer: CFRunLoopTimerRef ) -> CFRunLoopRef {
+    // TODO: Create a new CFRunLoopTimer
+    msg_class![env; NSRunLoop currentRunLoop]
+}
+
+// CFRunLoopTimerRef CFRunLoopTimerCreate(CFAllocatorRef allocator, CFAbsoluteTime fireDate, CFTimeInterval interval, CFOptionFlags flags, CFIndex order, CFRunLoopTimerCallBack callout, CFRunLoopTimerContext *context);
+pub fn CFRunLoopTimerCreate(env: &mut Environment, allocator: CFAllocatorRef, fireDate: CFAbsoluteTime, interval: CFTimeInterval, flags: CFOptionFlags, order: CFIndex,  callout: CFRunLoopTimerCallBack, context: MutPtr<CFRunLoopTimerContext>) -> CFRunLoopTimerRef {
+    msg_class![env; NSRunLoop currentRunLoop]
+}
+
+// void CFRunLoopAddTimer(CFRunLoopRef rl, CFRunLoopTimerRef timer, CFRunLoopMode mode);
+pub fn CFRunLoopAddTimer(env: &mut Environment, rl: CFRunLoopRef, timer: CFRunLoopTimerRef, mode: CFRunLoopMode) {
+
 }
 
 pub const kCFRunLoopCommonModes: &str = "kCFRunLoopCommonModes";
@@ -73,5 +77,7 @@ pub const CONSTANTS: ConstantExports = &[
 pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFRunLoopGetCurrent()),
     export_c_func!(CFRunLoopGetMain()),
-    export_c_func!(CFRunLoopRunInMode(_, _, _)),
+    export_c_func!(CFRunLoopTimerCreateWithHandler(_, _, _, _, _, _)),
+    export_c_func!(CFRunLoopTimerCreate(_, _, _, _, _, _, _)),
+    export_c_func!(CFRunLoopAddTimer(_, _, _))
 ];
