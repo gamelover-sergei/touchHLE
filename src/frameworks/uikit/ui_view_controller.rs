@@ -74,6 +74,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
+- (id)tabBarItem {
+    nil
+}
+
 - (())dealloc {
     let &UIViewControllerHostObject { view } = env.objc.borrow(this);
 
@@ -169,6 +173,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation GunFighterViewController: UIViewController
 - (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
     // TODO
+}
+
+@end
+
+@implementation MyViewController: UIViewController
+- (id)tabBarItem {
+    nil
 }
 
 @end
