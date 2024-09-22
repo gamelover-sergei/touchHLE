@@ -246,6 +246,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTitleEdgeInsets:{}", edge);
 }
 
+- (())setOrigin:(bool)origin {
+    log!("TODO: setOrigin:{}", origin);
+}
+
 - (())setImage:(NSInteger)image forStates:(bool)_states {
     // TODO
 }
