@@ -82,6 +82,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setTimeStyle:{}", style);
 }
 
+- (())setFormatterBehavior:(bool)behavior {
+    log!("TODO: setFormatterBehavior:{}", behavior);
+}
+
 @end
 
 };
