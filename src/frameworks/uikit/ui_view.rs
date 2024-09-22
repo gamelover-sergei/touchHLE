@@ -139,6 +139,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [UIView commitAnimations]");
 }
 
++ (())setAnimationTransition:(NSInteger)transition forView:(bool)_view cache:(bool)_cache {
+    // TODO
+}
+
 // TODO: accessors etc
 
 // initWithCoder: and initWithFrame: are basically UIView's designated
