@@ -69,9 +69,55 @@ fn AudioUnitUninitialize(env: &mut Environment, in_unit: AudioUnit) -> OSStatus 
     0 // success
 }
 
-fn AudioUnitSetProperty(_env: &mut Environment, inUnit: MutVoidPtr, inID: u32, inScope: u32, inElement: u32, inData: ConstVoidPtr, inDataSize: u32) -> OSStatus {
-    log!("TODO: AudioUnitSetProperty({:?}, {:?}, {:?}, {:?}, {:?}, {:?})", inUnit, inID, inScope, inElement, inData, inDataSize);
-    0 // success
+fn AudioUnitSetProperty(
+    env: &mut Environment,
+    in_unit: AudioUnit,
+    in_id: AudioUnitPropertyID,
+    in_scope: AudioUnitScope,
+    in_element: AudioUnitElement,
+    in_data: ConstVoidPtr,
+    in_data_size: u32,
+) -> OSStatus {
+    // assert!(in_element == 0);
+
+    let host_object = audio_components::State::get(&mut env.framework_state)
+        .audio_component_instances
+        .get_mut(&in_unit)
+        .unwrap();
+
+    let result;
+    match in_id {
+        kAudioUnitProperty_SetRenderCallback => {
+            // assert!(in_scope == kAudioUnitScope_Global);
+            assert!(in_data_size == size_of::<AURenderCallbackStruct>().try_into().unwrap());
+            let render_callback = env.mem.read(in_data.cast::<AURenderCallbackStruct>());
+            host_object.render_callback = Some(render_callback);
+            result = 0;
+            log_dbg!("AudioUnitSetProperty({:?}, kAudioUnitProperty_SetRenderCallback, {:?}, {:?}, {:?}, {:?}) -> {:?}", in_unit, in_scope, in_element, render_callback, in_data_size, result);
+        }
+        kAudioUnitProperty_StreamFormat => {
+            assert!(in_data_size == size_of::<AudioStreamBasicDescription>().try_into().unwrap());
+            let stream_format = env.mem.read(in_data.cast::<AudioStreamBasicDescription>());
+            let bytes_per_channel = stream_format.bits_per_channel / 8;
+            let actual_bytes_per_frame = stream_format.channels_per_frame * bytes_per_channel;
+            if actual_bytes_per_frame != stream_format.bytes_per_packet {
+                log!(
+                    "Warning: Stream format has non-sensical values: {:?}",
+                    stream_format
+                );
+            }
+            match in_scope {
+                kAudioUnitScope_Global => host_object.global_stream_format = stream_format,
+                kAudioUnitScope_Output => host_object.output_stream_format = Some(stream_format),
+                _ => unimplemented!(),
+            };
+            result = 0;
+            log_dbg!("AudioUnitSetProperty({:?}, kAudioUnitProperty_StreamFormat, {:?}, {:?}, {:?}, {:?}) -> {:?}", in_unit, in_scope, in_element, stream_format, in_data_size, result);
+        }
+        _ => unimplemented!(),
+    };
+
+    result
 }
 
 fn AudioUnitGetProperty(
