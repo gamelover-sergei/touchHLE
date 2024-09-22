@@ -19,6 +19,11 @@ use crate::objc::{id, msg, msg_class};
 use crate::Environment;
 
 pub type CFURLRef = super::CFTypeRef;
+pub type CFURLPathStyle = CFIndex;
+
+pub const kCFURLPOSIXPathStyle: CFURLPathStyle = 0;
+pub const kCFURLHFSPathStyle: CFURLPathStyle = 1;
+pub const kCFURLWindowsPathStyle: CFURLPathStyle = 2;
 
 type CFURLPathStyle = CFIndex;
 const kCFURLPOSIXPathStyle: CFURLPathStyle = 0;
@@ -60,6 +65,28 @@ pub fn CFURLCreateFromFileSystemRepresentation(
 
     let buffer_size: NSUInteger = buffer_size.try_into().unwrap();
 
+    pub fn CFURLCopyFileSystemPath(
+    env: &mut Environment,
+    _anURL: CFURLRef,
+    _pathStyle : CFURLPathStyle
+) -> CFURLRef {
+
+    /*
+        The URL's path in the format specified by pathStyle. Ownership follows the create rule. See The Create Rule.
+        ------------------------------------------------------------------------------------------------------------------------------------------------------
+        The Create Rule
+        Core Foundation functions have names that indicate when you own a returned object:
+        Object-creation functions that have “Create” embedded in the name;
+        Object-duplication functions that have “Copy” embedded in the name.
+        If you own an object, it is your responsibility to relinquish ownership (using CFRelease) when you have finished with it.
+        Consider the following examples. The first example shows two create functions associated with CFTimeZone and one associated with CFBundle.
+    */
+
+    let url: id = msg_class![env; NSURL alloc];
+
+    msg![env; url init]
+}
+    
     let string: id = msg_class![env; NSString alloc];
     let string: id = msg![env; string initWithBytes:buffer
                                              length:buffer_size
@@ -88,6 +115,7 @@ fn CFURLCopyFileSystemPath(
 pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFURLGetFileSystemRepresentation(_, _, _, _)),
     export_c_func!(CFURLCreateFromFileSystemRepresentation(_, _, _, _)),
+    export_c_func!(CFURLCopyFileSystemPath(_, _))
     export_c_func!(CFURLCopyPathExtension(_)),
     export_c_func!(CFURLCopyFileSystemPath(_, _)),
 ];
