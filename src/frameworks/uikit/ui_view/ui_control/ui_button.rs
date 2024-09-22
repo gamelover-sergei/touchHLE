@@ -250,6 +250,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setOrigin:{}", origin);
 }
 
+- (())setShowPressFeedback:(bool)press {
+    log!("TODO: setShowPressFeedback:{}", press);
+}
+
 - (())setImage:(NSInteger)image forStates:(bool)_states {
     // TODO
 }
