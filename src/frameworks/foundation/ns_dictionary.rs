@@ -641,6 +641,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)initWithDictionary:(NSUInteger)_dictionary {
+    msg![env; this init]
+}
+
 - (id)initWithObjectsAndKeys:(id)first_object, ...dots {
     init_with_objects_and_keys(env, this, first_object, dots.start())
 }
