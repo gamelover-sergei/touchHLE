@@ -164,6 +164,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setKeyboardType:{}", type_);
 }
 
+- (())setEnablesReturnKeyAutomatically:(bool)automatically {
+    log!("TODO: setEnablesReturnKeyAutomatically:{}", automatically);
+}
+
 - (())drawRect:(CGRect)_rect {
     let bounds: CGRect = msg![env; this bounds];
     let context = UIGraphicsGetCurrentContext(env);
