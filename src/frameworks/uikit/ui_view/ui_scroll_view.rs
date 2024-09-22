@@ -94,6 +94,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setMinimumZoomScale:{}", minimum);
 }
 
+- (())setCanCancelContentTouches:(bool)touches {
+    log!("TODO: setCanCancelContentTouches:{}", touches);
+}
+
 - (())scrollRectToVisible:(NSInteger)visible animated:(bool)_animated {
     // TODO
 }
@@ -231,6 +235,14 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation UITableViewController: UIScrollView
+@end
+
+@implementation PaintingScrollView: UIScrollView
+
+- (())setCanCancelContentTouches:(bool)touches {
+    log!("TODO: setCanCancelContentTouches:{}", touches);
+}
+
 @end
 
 @implementation MainScrollView: UIScrollView
