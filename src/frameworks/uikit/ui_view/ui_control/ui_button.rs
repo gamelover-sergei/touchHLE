@@ -284,6 +284,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     update(env, this);
 }
 
+- (id)sizeToFit {
+    nil
+}
+
 - (id)tag {
     nil
 }
