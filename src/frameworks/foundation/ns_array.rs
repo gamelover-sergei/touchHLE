@@ -560,6 +560,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())initWithArray:(NSInteger)array copyItems:(bool)_items {
+    // TODO
+}
+
 - (())pathForResource:(NSInteger)resource ofType:(bool)_type {
     // TODO
 }
