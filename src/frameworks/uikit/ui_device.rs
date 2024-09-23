@@ -101,6 +101,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     ns_string::get_static_str(env, "2.0")
 }
 
+- (id)batteryLevel {
+    nil
+}
+
 - (id)userInterfaceIdiom {
     nil
 }
