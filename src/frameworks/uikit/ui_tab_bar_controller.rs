@@ -6,6 +6,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @implementation UITabBarController: UIControl
 
+- (())setViewControllers:(bool)controllers {
+    log!("TODO: setViewControllers:{}", controllers);
+}
+
 @end
 
 };
