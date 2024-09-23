@@ -51,6 +51,7 @@ pub mod ns_url_connection;
 pub mod ns_url_request;
 pub mod ns_user_defaults;
 pub mod ns_value;
+pub mod ns_xml_parser;
 
 #[derive(Default)]
 pub struct State {
@@ -63,6 +64,7 @@ pub struct State {
     ns_run_loop: ns_run_loop::State,
     ns_string: ns_string::State,
     ns_user_defaults: ns_user_defaults::State,
+    ns_threads: ns_thread::State,
 }
 
 pub type NSInteger = i32;

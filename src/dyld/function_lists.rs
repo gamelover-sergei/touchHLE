@@ -7,7 +7,8 @@
 //! very long and frequently-updated list.
 
 use crate::frameworks::{
-    audio_toolbox, core_foundation, core_graphics, dnssd, foundation, openal, opengles, uikit,
+    audio_toolbox, core_foundation, core_graphics, dnssd, foundation, openal, opengles,
+    system_configuration, uikit,
 };
 use crate::libc;
 
@@ -16,6 +17,7 @@ pub const FUNCTION_LISTS: &[super::FunctionExports] = &[
     libc::clocale::FUNCTIONS,
     libc::ctype::FUNCTIONS,
     libc::cxxabi::FUNCTIONS,
+    libc::crypto::FUNCTIONS,
     libc::dirent::FUNCTIONS,
     libc::dlfcn::FUNCTIONS,
     libc::errno::FUNCTIONS,
@@ -23,11 +25,13 @@ pub const FUNCTION_LISTS: &[super::FunctionExports] = &[
     libc::keymgr::FUNCTIONS,
     libc::netdb::FUNCTIONS,
     libc::mach_host::FUNCTIONS,
+    libc::mach_semaphore::FUNCTIONS,
     libc::mach_thread_info::FUNCTIONS,
     libc::mach_time::FUNCTIONS,
     libc::math::FUNCTIONS,
     libc::mmap::FUNCTIONS,
     libc::net::if_::FUNCTIONS,
+    libc::netdb::FUNCTIONS,
     libc::posix_io::FUNCTIONS,
     libc::posix_io::stat::FUNCTIONS,
     libc::pthread::cond::FUNCTIONS,
@@ -83,6 +87,7 @@ pub const FUNCTION_LISTS: &[super::FunctionExports] = &[
     foundation::ns_objc_runtime::FUNCTIONS,
     openal::FUNCTIONS,
     opengles::FUNCTIONS,
+    system_configuration::sc_network_reachability::FUNCTIONS,
     uikit::ui_application::FUNCTIONS,
     uikit::ui_geometry::FUNCTIONS,
     uikit::ui_graphics::FUNCTIONS,
