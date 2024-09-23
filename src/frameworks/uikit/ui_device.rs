@@ -70,6 +70,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setOrientation:{}", orientation);
 }
 
+- (())setBatteryMonitoringEnabled:(bool)enabled {
+    log!("TODO: setBatteryMonitoringEnabled:{}", enabled);
+}
+
 - (id)model {
     // TODO: Hardcoded to iPhone for now
     ns_string::get_static_str(env, "iPhone")
