@@ -73,6 +73,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow::<UIImageViewHostObject>(this).image
 }
 
+- (id)animationImages {
+    nil
+}
+
 - (id)sizeToFit {
     nil
 }
