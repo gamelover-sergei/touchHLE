@@ -14,7 +14,7 @@ use crate::libc::pthread::thread::{
 };
 use crate::mem::{guest_size_of, ConstPtr, MutPtr};
 use crate::objc::{
-    id, msg, msg_send, nil, objc_classes, release, retain, Class, ClassExports, HostObject, NSZonePtr,
+    id, msg_send, nil, objc_classes, release, retain, Class, ClassExports, HostObject, NSZonePtr,
     SEL,
 };
 use crate::Environment;
