@@ -726,6 +726,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())selectRow:(NSInteger)row inColumn:(bool)_column animated:(bool)_animated {
+    // TODO
+}
+
 @end
 
 @implementation UINavigationBar: UIView
