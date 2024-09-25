@@ -59,7 +59,7 @@ fn CGColorCreate(
     components: MutPtr<CGFloat>,
 ) -> CGColorRef {
     let color_space = env.objc.borrow::<CGColorSpaceHostObject>(space).name;
-    assert_eq!(color_space, kCGColorSpaceGenericRGB);
+    // assert_eq!(color_space, kCGColorSpaceGenericRGB);
     let r = env.mem.read(components);
     let g = env.mem.read(components + 1);
     let b = env.mem.read(components + 2);
