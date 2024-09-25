@@ -22,7 +22,7 @@ use crate::frameworks::uikit::ui_font::{
 };
 use crate::fs::GuestPath;
 use crate::mach_o::MachO;
-use crate::mem::{guest_size_of, ConstPtr, GuestUSize, Mem, MutPtr, Ptr, SafeRead};
+use crate::mem::{guest_size_of, ConstPtr, ConstVoidPtr, GuestUSize, Mem, MutPtr, Ptr, SafeRead};
 use crate::objc::{
     autorelease, id, msg, msg_class, nil, objc_classes, retain, Class, ClassExports, HostObject,
     NSZonePtr, ObjC,
@@ -339,6 +339,49 @@ pub const CLASSES: ClassExports = objc_classes! {
     utf16[index as usize]
 }
 
+- (NSRange)lineRangeForRange:(NSRange)range {
+    let string = to_rust_string(env, this);
+    let characters: Vec<char> = string.chars().collect();
+
+    let mut first_line_start_loc = 0;
+    for char_idx in (0..=range.location as usize).rev() {
+        let character = characters[char_idx];
+        if character == '\n' {
+            first_line_start_loc = char_idx+1;
+            break;
+        }
+    }
+
+    let mut last_line_end_loc = string.len();
+    for char_idx in (range.location+range.length) as usize..string.len() {
+        let character = characters[char_idx];
+        if character == '\n' {
+            // The range end is the first char past the terminator
+            if char_idx == string.len() {
+                last_line_end_loc = char_idx;
+            } else {
+                last_line_end_loc = char_idx + 1;
+            }
+            break;
+        }
+    }
+
+    let line_range = NSRange {
+        location: first_line_start_loc as NSUInteger,
+        length: (last_line_end_loc-first_line_start_loc) as NSUInteger
+    };
+    log_dbg!("[(NSString*) {:?} ({}) lineRangeForRange:{:?}] -> {:?}", this, string, range, line_range);
+    line_range
+}
+
+- (id)substringWithRange:(NSRange)range {
+    let string = to_rust_string(env, this);
+    let substring = string[range.location as usize..(range.location+range.length) as usize].to_owned();
+    let substring_id = from_rust_string(env, substring.clone());
+    log_dbg!("[(NSString*) {:?} ({}) substringWithRange:{:?}] -> {:?} ({})", this, string, range, substring_id, substring);
+    substring_id
+}
+
 - (NSRange)rangeOfString:(id)search_string {
     msg![env; this rangeOfString:search_string options:0u32]
 }
@@ -422,6 +465,12 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO: avoid copying
     let str = to_rust_string(env, str).to_string();
     to_rust_string(env, this).starts_with(&str)
+}
+
+- (bool)hasSuffix:(id)str { // NSString*
+    // TODO: avoid copying
+    let str = to_rust_string(env, str).to_string();
+    to_rust_string(env, this).ends_with(&str)
 }
 
 - (NSComparisonResult)localizedCompare:(id)other { // NSString*
@@ -1041,7 +1090,8 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
-    todo!(); // TODO: this should produce an immutable copy
+    let new: id = msg_class![env; NSString alloc];
+    msg![env; new initWithString:this]
 }
 
 - (())appendString:(id)a_string { // NSString*
@@ -1077,6 +1127,16 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 // TODO: more init methods
+
+- (id)initWithData:(id)data // NSData *
+          encoding:(NSStringEncoding)encoding {
+    let bytes: ConstVoidPtr = msg![env; data bytes];
+    let bytes: ConstPtr<u8> = bytes.cast();
+    let length: NSUInteger = msg![env; data length];
+    let new = msg![env; this initWithBytes:bytes length:length encoding:encoding];
+    log_dbg!("initWithData:encoding: {}", to_rust_string(env, new));
+    new
+}
 
 - (id)initWithFormat:(id)format, // NSString*
                      ...args {

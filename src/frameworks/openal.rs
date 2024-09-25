@@ -512,16 +512,13 @@ fn alBufferData(
     samplerate: ALsizei,
 ) {
     let size_usize: GuestUSize = size.try_into().unwrap();
-    let data_slice = env.mem.bytes_at(data.cast(), size_usize);
-    unsafe {
-        al::alBufferData(
-            buffer,
-            format,
-            data_slice.as_ptr() as *const _,
-            size,
-            samplerate,
-        )
+    let data_ptr: *const ALvoid = if data.is_null() {
+        std::ptr::null()
+    } else {
+        let data_slice = env.mem.bytes_at(data.cast(), size_usize);
+        data_slice.as_ptr() as *const _
     };
+    unsafe { al::alBufferData(buffer, format, data_ptr, size, samplerate) };
 }
 
 /// This is an Apple extension that treats the data passed as a static buffer
@@ -540,6 +537,9 @@ fn alBufferDataStatic(
 }
 
 // Apple-specific extension to OpenAL
+fn alcMacOSMixerOutputRate(_env: &mut Environment, value: ALdouble) {
+    log!("App wants to set mixer output sample rate to {} Hz", value);
+}
 fn alcMacOSXMixerOutputRate(_env: &mut Environment, value: ALdouble) {
     log!("App wants to set mixer output sample rate to {} Hz", value);
 }
@@ -709,6 +709,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(alDeleteBuffers(_, _)),
     export_c_func!(alBufferData(_, _, _, _, _)),
     export_c_func!(alBufferDataStatic(_, _, _, _, _)),
+    export_c_func!(alcMacOSMixerOutputRate(_)),
     export_c_func!(alcMacOSXMixerOutputRate(_)),
     export_c_func!(alcMacOSXGetMixerOutputRate()),
     export_c_func!(alcGetContextsDevice(_)),

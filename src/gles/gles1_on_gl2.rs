@@ -618,11 +618,25 @@ impl GLES for GLES1OnGL2 {
         gl21::ClientActiveTexture(texture);
     }
     unsafe fn EnableClientState(&mut self, array: GLenum) {
-        assert!(ARRAYS.iter().any(|&ArrayInfo { name, .. }| name == array));
+        if CAPABILITIES.contains(&array) {
+            log_dbg!(
+                "Tolerating glEnableClientState({:#x}) of a capability",
+                array
+            );
+        } else {
+            assert!(ARRAYS.iter().any(|&ArrayInfo { name, .. }| name == array));
+        }
         gl21::EnableClientState(array);
     }
     unsafe fn DisableClientState(&mut self, array: GLenum) {
-        assert!(ARRAYS.iter().any(|&ArrayInfo { name, .. }| name == array));
+        if CAPABILITIES.contains(&array) {
+            log_dbg!(
+                "Tolerating glDisableClientState({:#x}) of a capability",
+                array
+            );
+        } else {
+            assert!(ARRAYS.iter().any(|&ArrayInfo { name, .. }| name == array));
+        }
         gl21::DisableClientState(array);
     }
     unsafe fn GetBooleanv(&mut self, pname: GLenum, params: *mut GLboolean) {
@@ -1847,5 +1861,14 @@ impl GLES for GLES1OnGL2 {
     }
     unsafe fn GenerateMipmapOES(&mut self, target: GLenum) {
         gl21::GenerateMipmapEXT(target)
+    }
+    unsafe fn GetBufferParameteriv(&mut self, target: GLenum, pname: GLenum, params: *mut GLint) {
+        gl21::GetBufferParameteriv(target, pname, params)
+    }
+    unsafe fn MapBufferOES(&mut self, target: GLenum, access: GLenum) -> *mut GLvoid {
+        gl21::MapBuffer(target, access)
+    }
+    unsafe fn UnmapBufferOES(&mut self, target: GLenum) -> GLboolean {
+        gl21::UnmapBuffer(target)
     }
 }

@@ -12,6 +12,7 @@ pub mod ui_alert_view;
 pub mod ui_control;
 pub mod ui_image_view;
 pub mod ui_label;
+pub mod ui_picker_view;
 pub mod ui_scroll_view;
 pub mod ui_window;
 
@@ -21,9 +22,10 @@ use crate::frameworks::core_graphics::cg_affine_transform::{
 };
 use crate::frameworks::core_graphics::cg_color::CGColorRef;
 use crate::frameworks::core_graphics::cg_context::{CGContextClearRect, CGContextRef};
-use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect};
-use crate::frameworks::foundation::ns_string::get_static_str;
+use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect, CGSize};
+use crate::frameworks::foundation::ns_string::{get_static_str, to_rust_string};
 use crate::frameworks::foundation::{ns_array, NSInteger, NSUInteger};
+use crate::mem::ConstVoidPtr;
 use crate::objc::{
     autorelease, id, msg, msg_class, nil, objc_classes, release, retain, Class, ClassExports,
     HostObject, NSZonePtr,
@@ -44,9 +46,13 @@ pub(super) struct UIViewHostObject {
     subviews: Vec<id>,
     /// The superview. This is a weak reference.
     superview: id,
+    /// The view controller that controls this view. This is a weak reference
+    view_controller: id,
     clears_context_before_drawing: bool,
     user_interaction_enabled: bool,
     multiple_touch_enabled: bool,
+    clips_to_bounds: bool,        // TODO: Handle this property
+    transform: CGAffineTransform, // TODO: Handle this property
 }
 impl HostObject for UIViewHostObject {}
 impl Default for UIViewHostObject {
@@ -57,11 +63,19 @@ impl Default for UIViewHostObject {
             layer: nil,
             subviews: Vec::new(),
             superview: nil,
+            view_controller: nil,
             clears_context_before_drawing: true,
             user_interaction_enabled: true,
             multiple_touch_enabled: false,
+            clips_to_bounds: false,
+            transform: CGAffineTransformIdentity,
         }
     }
+}
+
+pub fn set_view_controller(env: &mut Environment, view: id, controller: id) {
+    let host_obj = env.objc.borrow_mut::<UIViewHostObject>(view);
+    host_obj.view_controller = controller;
 }
 
 /// Shared parts of `initWithCoder:` and `initWithFrame:`. These can't call
@@ -98,6 +112,15 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 + (Class)layerClass {
     env.objc.get_known_class("CALayer", &mut env.mem)
+}
+
++ (())beginAnimations:(id)animationID // NSString*
+              context:(ConstVoidPtr)context {
+    log!("TODO: [UIView beginAnimations:{:?} {:?} context:{:?}]", to_rust_string(env, animationID), animationID, context);
+}
+
++ (())commitAnimations {
+    log!("TODO: [UIView commitAnimations]");
 }
 
 // TODO: accessors etc
@@ -177,6 +200,12 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 - (())setUserInteractionEnabled:(bool)enabled {
     env.objc.borrow_mut::<UIViewHostObject>(this).user_interaction_enabled = enabled;
+}
+- (bool)isClipsToBounds {
+    env.objc.borrow::<UIViewHostObject>(this).clips_to_bounds
+}
+- (())setClipsToBounds:(bool)clips_to_bounds {
+    env.objc.borrow_mut::<UIViewHostObject>(this).clips_to_bounds = clips_to_bounds;
 }
 
 - (bool)isMultipleTouchEnabled {
@@ -299,12 +328,16 @@ pub const CLASSES: ClassExports = objc_classes! {
         layer,
         superview,
         subviews,
+        view_controller,
         clears_context_before_drawing: _,
         user_interaction_enabled: _,
         multiple_touch_enabled: _,
+        clips_to_bounds: _,
+        transform: _,
     } = std::mem::take(env.objc.borrow_mut(this));
 
     release(env, layer);
+    assert!(view_controller == nil);
     assert!(superview == nil);
     for subview in subviews {
         env.objc.borrow_mut::<UIViewHostObject>(subview).superview = nil;
@@ -414,6 +447,13 @@ pub const CLASSES: ClassExports = objc_classes! {
     env.objc.borrow_mut::<UIViewHostObject>(this).clears_context_before_drawing = v;
 }
 
+- (CGAffineTransform)transform {
+    env.objc.borrow::<UIViewHostObject>(this).transform
+}
+- (())setTransform:(CGAffineTransform)transform {
+    env.objc.borrow_mut::<UIViewHostObject>(this).transform = transform;
+}
+
 // Drawing stuff that views should override
 - (())drawRect:(CGRect)_rect {
     // default implementation does nothing
@@ -521,6 +561,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 - (())setAutoresizesSubviews:(bool)enabled {
     log!("TODO: [(UIView*){:?} setAutoresizesSubviews:{}]", this, enabled);
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    // default implementation, subclasses can override
+    size
 }
 
 @end

@@ -7,8 +7,8 @@
 //! very long and frequently-updated list.
 
 use crate::frameworks::{
-    av_audio, core_animation, core_foundation, core_graphics, foundation, media_player, opengles,
-    store_kit, uikit,
+    av_audio, core_animation, core_foundation, core_graphics, foundation, game_kit, media_player,
+    opengles, store_kit, uikit,
 };
 
 /// All the lists of classes that the runtime should search through.
@@ -22,6 +22,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     core_graphics::cg_context::CLASSES,
     core_graphics::cg_image::CLASSES,
     core_foundation::cf_run_loop_timer::CLASSES, // Special internal classes.
+    game_kit::gk_local_player::CLASSES,
     foundation::ns_array::CLASSES,
     foundation::ns_autorelease_pool::CLASSES,
     foundation::ns_bundle::CLASSES,
@@ -54,11 +55,13 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     foundation::ns_url_request::CLASSES,
     foundation::ns_user_defaults::CLASSES,
     foundation::ns_value::CLASSES,
+    foundation::ns_xml_parser::CLASSES,
     av_audio::av_audio_player::CLASSES,
     media_player::movie_player::CLASSES,
     media_player::music_player::CLASSES,
     media_player::media_query::CLASSES,
     opengles::eagl::CLASSES,
+    store_kit::sk_payment_queue::CLASSES,
     store_kit::sk_product::CLASSES,
     uikit::ui_accelerometer::CLASSES,
     uikit::ui_activity_indicator_view::CLASSES,
@@ -77,9 +80,14 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     uikit::ui_view::ui_alert_view::CLASSES,
     uikit::ui_view::ui_control::CLASSES,
     uikit::ui_view::ui_control::ui_button::CLASSES,
+    uikit::ui_view::ui_control::ui_rounded_rect_button::CLASSES,
+    uikit::ui_view::ui_control::ui_segment::CLASSES,
+    uikit::ui_view::ui_control::ui_segmented_control::CLASSES,
+    uikit::ui_view::ui_control::ui_slider::CLASSES,
     uikit::ui_view::ui_control::ui_text_field::CLASSES,
     uikit::ui_view::ui_image_view::CLASSES,
     uikit::ui_view::ui_label::CLASSES,
+    uikit::ui_view::ui_picker_view::CLASSES,
     uikit::ui_view::ui_scroll_view::CLASSES,
     uikit::ui_view::ui_scroll_view::ui_text_view::CLASSES,
     uikit::ui_view::ui_window::CLASSES,
