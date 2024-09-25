@@ -403,4 +403,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSDecimalNumber: NSValue
++ (id)decimalNumberWithString:(NSUInteger)_string {
+    msg![env; this init]
+}
+
+@end
+
 };
