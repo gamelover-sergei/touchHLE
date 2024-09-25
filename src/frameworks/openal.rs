@@ -594,8 +594,10 @@ fn alcIsExtensionPresent(
 fn alGetBufferf(_env: &mut Environment, _buffer: ALuint, _param: ALenum, _value: MutPtr<ALfloat>) {
     todo!();
 }
-fn alGetBufferi(_env: &mut Environment, _buffer: ALuint, _param: ALenum, _value: MutPtr<ALint>) {
-    todo!();
+fn alGetBufferi(env: &mut Environment, funcName: ConstPtr<u8>) -> MutVoidPtr {
+    let fname = env.mem.cstr_at_utf8(funcName).unwrap();
+    log!("alGetBufferi {}", fname);
+    Ptr::null()
 }
 fn alEnable(_env: &mut Environment, _capability: ALenum) {
     todo!();
