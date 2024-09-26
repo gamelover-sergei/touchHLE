@@ -6,7 +6,7 @@
 //! `NSURL`.
 
 use super::ns_string::{from_rust_string, to_rust_string, NSUTF8StringEncoding};
-use super::{NSUInteger, NSTimeInterval};
+use super::{NSInteger, NSUInteger, NSTimeInterval};
 use crate::fs::{GuestPath, GuestPathBuf};
 use crate::mem::MutPtr;
 use crate::objc::{
@@ -202,6 +202,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation NSURLCache: NSObject
 + (id)sharedURLCache {
     nil
+}
+
+- (())initWithMemoryCapacity:(NSInteger)_capacity diskCapacity:(bool)_disk diskPath:(bool)_path {
+    // TODO
 }
 
 @end
