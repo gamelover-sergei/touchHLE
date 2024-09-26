@@ -621,6 +621,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())insertSubview:(NSInteger)subview aboveSubview:(bool)_above {
+    // TODO
+}
+
 - (())addObserver:(NSInteger)observer forKeyPath:(bool)_path options:(bool)_options context:(bool)_context  {
     // TODO
 }
