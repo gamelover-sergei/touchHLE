@@ -216,7 +216,7 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                 }
             }
             b'X' => {
-                assert!(precision.is_none());
+                // assert!(precision.is_none());
                 // Note: on 32-bit system unsigned int and unsigned long
                 // are u32, so length_modifier is ignored
                 let uint: u32 = args.next(env);
