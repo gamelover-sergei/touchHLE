@@ -440,6 +440,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(CALayer*){:?} setMinificationFilter: {}]", this, ns_string::to_rust_string(env, filter)); // TODO
 }
 
+- (())setValue:(NSInteger)value forKeyPath:(bool)_path {
+    // TODO
+}
+
 - (())addAnimation:(NSInteger)animation forKey:(bool)_key {
     // TODO
 }
