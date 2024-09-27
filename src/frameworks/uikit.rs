@@ -35,6 +35,7 @@ pub mod ui_image;
 pub mod ui_image_picker_controller;
 pub mod ui_keyboard;
 pub mod ui_load_save_table_view;
+pub mod ui_local_notification;
 pub mod ui_navigation_controller;
 pub mod ui_nib;
 pub mod ui_page_control;
