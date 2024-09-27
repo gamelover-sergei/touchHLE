@@ -116,8 +116,8 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
-+ (id)viewFlipsideBackgroundColor:(NSUInteger)_color {
-    msg![env; this init]
++ (id)viewFlipsideBackgroundColor {
+    nil
 }
 
 + (())colorWithHue:(NSInteger)hue saturation:(bool)_saturation brightness:(bool)_brightness alpha:(bool)_alpha  {
