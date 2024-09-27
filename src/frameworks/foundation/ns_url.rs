@@ -204,6 +204,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     nil
 }
 
++ (())setSharedURLCache:(bool)cache {
+    log!("TODO: setSharedURLCache:{}", cache);
+}
+
 - (())initWithMemoryCapacity:(NSInteger)_capacity diskCapacity:(bool)_disk diskPath:(bool)_path {
     // TODO
 }
