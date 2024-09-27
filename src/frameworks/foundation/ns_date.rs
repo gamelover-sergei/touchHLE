@@ -119,6 +119,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)initWithTimeIntervalSinceReferenceDate:(NSUInteger)_date {
+    msg![env; this init]
+}
+
 - (NSComparisonResult)compare:(id)other { // NSDate *
     let a = env.objc.borrow::<NSDateHostObject>(this).time_interval;
     let b = env.objc.borrow::<NSDateHostObject>(other).time_interval;
