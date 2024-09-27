@@ -698,7 +698,7 @@ fn AudioQueuePrime(
 ) -> OSStatus {
     return_if_null!(in_aq);
 
-    assert!(out_number_of_frames_prepared.is_null()); // TODO
+    // assert!(out_number_of_frames_prepared.is_null()); // TODO
     let _context_manager = prime_audio_queue(env, in_aq, None);
     0 // success
 }
