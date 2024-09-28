@@ -1213,6 +1213,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, res)
 }
 
+- (())getCString:(NSInteger)string maxLength:(bool)_lenght {
+    // TODO
+}
+
 - (())getCharacters:(NSInteger)characters range:(bool)_range {
     // TODO
 }
