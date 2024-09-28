@@ -92,6 +92,7 @@ pub const CLASS_LISTS: &[super::ClassExports] = &[
     uikit::ui_keyboard::CLASSES,
     uikit::ui_load_save_table_view::CLASSES,
     uikit::ui_local_notification::CLASSES,
+    uikit::ui_menu_view::CLASSES,
     uikit::ui_navigation_controller::CLASSES,
     uikit::ui_nib::CLASSES,
     uikit::ui_page_control::CLASSES,
