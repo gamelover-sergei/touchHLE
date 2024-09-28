@@ -257,6 +257,11 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                 let ptr: MutVoidPtr = args.next(env);
                 res.extend_from_slice(format!("{:?}", ptr).as_bytes());
             }
+            b'^' => {
+                // assert!(length_modifier.is_none());
+                let ptr: MutVoidPtr = args.next(env);
+                res.extend_from_slice(format!("{:?}", ptr).as_bytes());
+            }
             b' ' => {
                 // assert!(length_modifier.is_none());
                 let ptr: MutVoidPtr = args.next(env);
