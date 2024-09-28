@@ -382,6 +382,9 @@ fn CFSetCreateMutable(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn CFSocketCreate(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CFStringCreateWithBytes(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFStringCreateWithFileSystemRepresentation(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1187,6 +1190,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFRunLoopStop(_, _)),
     export_c_func!(CFSetCreateMutable(_, _)),
     export_c_func!(CFSocketCreate(_, _)),
+    export_c_func!(CFStringCreateWithBytes(_, _)),
     export_c_func!(CFStringCreateWithFileSystemRepresentation(_, _)),
     export_c_func!(CFStringGetBytes(_, _)),
     export_c_func!(CFStringGetCharacterAtIndex(_, _)),
