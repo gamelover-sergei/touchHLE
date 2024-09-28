@@ -274,6 +274,9 @@ fn sel_getUid(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn task_info(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn thread_policy_get(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn _dyld_image_count(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1148,6 +1151,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sel_getName(_, _)),
     export_c_func!(sel_getUid(_, _)),
     export_c_func!(task_info(_, _)),
+    export_c_func!(thread_policy_get(_, _)),
     export_c_func!(_dyld_image_count(_, _)),
     export_c_func!(ABAddressBookCopyArrayOfAllPeople(_, _)),
     export_c_func!(ABAddressBookCreate(_, _)),
