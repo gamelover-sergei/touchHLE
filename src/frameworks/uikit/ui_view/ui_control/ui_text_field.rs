@@ -151,6 +151,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setPosition:{}", position);
 }
 
+- (())setContentHorizontalAlignment:(bool)alignment {
+    log!("TODO: setContentHorizontalAlignment:{}", alignment);
+}
+
 - (())setTextAlignment:(bool)text {
     log!("TODO: setTextAlignment:{}", text);
 }
