@@ -400,6 +400,9 @@ fn CFStringGetSystemEncoding(_env: &mut Environment, arg1: f32, arg2: f32) -> f3
 fn CFStringHasSuffix(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn __CFStringMakeConstantString(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1199,6 +1202,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CFStringGetCharacterAtIndex(_, _)),
     export_c_func!(CFStringGetSystemEncoding(_, _)),
     export_c_func!(CFStringHasSuffix(_, _)),
+    export_c_func!(__CFStringMakeConstantString(_, _)),
     export_c_func!(CFURLCreateStringByReplacingPercentEscapesUsingEncoding(_, _)),
     export_c_func!(CFURLGetString(_, _)),
     export_c_func!(CFURLCreateDataAndPropertiesFromResource(_, _)),
