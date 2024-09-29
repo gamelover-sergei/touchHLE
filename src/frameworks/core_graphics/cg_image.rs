@@ -13,7 +13,7 @@ use crate::frameworks::core_foundation::{CFRelease, CFRetain, CFTypeRef};
 use crate::frameworks::foundation::ns_string;
 use crate::image::Image;
 use crate::mem::{ConstPtr, GuestUSize};
-use crate::objc::{autorelease, nil, objc_classes, ClassExports, HostObject, ObjC};
+use crate::objc::{autorelease, id, nil, objc_classes, retain, ClassExports, HostObject, NSZonePtr, ObjC};
 use crate::Environment;
 
 pub type CGImageAlphaInfo = u32;
@@ -50,6 +50,11 @@ pub const CLASSES: ClassExports = objc_classes! {
 // are just Objective-C types, so we need a class for it, but its name is not
 // visible anywhere.
 @implementation _touchHLE_CGImage: NSObject
+// NSCopying implementation
+- (id)copyWithZone:(NSZonePtr)_zone {
+    retain(env, this)
+}
+
 @end
 
 };
