@@ -1221,6 +1221,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())stringByPaddingToLength:(NSInteger)length withString:(bool)_string startingAtIndex:(bool)_index {
+    // TODO
+}
+
 - (id)initWithFormat:(id)format, // NSString*
                      ...args {
     let res = with_format(env, format, args.start());
