@@ -913,6 +913,9 @@ fn sqlite3_bind_text(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn sqlite3_column_text(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn sqlite3_last_insert_rowid(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn sranddev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1367,6 +1370,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sqlite3_column_int(_, _)),
     export_c_func!(sqlite3_bind_text(_, _)),
     export_c_func!(sqlite3_column_text(_, _)),
+    export_c_func!(sqlite3_last_insert_rowid(_, _)),
     export_c_func!(sranddev(_, _)),
     export_c_func!(srandomdev(_, _)),
     export_c_func!(strpbrk(_, _)),
