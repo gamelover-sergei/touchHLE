@@ -231,7 +231,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 - (id)pathsForResourcesOfType:(id)extension // NSString*
     inDirectory:(id)directory { // NSString*
-    assert!(directory.is_null());
+    // assert!(directory.is_null());
     let ext = ns_string::to_rust_string(env, extension);
     // let dir = ns_string::to_rust_string(env, directory);
     //log!("ext {}", ext);
