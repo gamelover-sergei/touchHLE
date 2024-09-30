@@ -628,6 +628,10 @@ pub const CLASSES: ClassExports = objc_classes! {
 @end
 
 @implementation NSException: NSObject
++ (())raise:(NSInteger)_raise format:(bool)_format {
+    // TODO
+}
+
 @end
 
 @implementation NSIndexPath: NSObject
