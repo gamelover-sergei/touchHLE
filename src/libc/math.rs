@@ -535,6 +535,9 @@ fn CGDataProviderCreateSequential(_env: &mut Environment, arg1: f32, arg2: f32) 
 fn CGDataProviderCreateWithCFData(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGGradientRelease(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGImageCreate(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1253,6 +1256,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGDataProviderCreateDirect(_, _)),
     export_c_func!(CGDataProviderCreateSequential(_, _)),
     export_c_func!(CGDataProviderCreateWithCFData(_, _)),
+    export_c_func!(CGGradientRelease(_, _)),
     export_c_func!(CGImageCreate(_, _)),
     export_c_func!(CGImageCreateCopy(_, _)),
     export_c_func!(CGImageCreateWithJPEGDataProvider(_, _)),
