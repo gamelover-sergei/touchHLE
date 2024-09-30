@@ -5,13 +5,18 @@
  */
 //! `NSCalendar`.
 
-use crate::objc::{id, nil, objc_classes, ClassExports};
+use crate::frameworks::foundation::NSUInteger;
+use crate::objc::{id, msg, nil, objc_classes, ClassExports};
 
 pub const CLASSES: ClassExports = objc_classes! {
 
 (env, this, _cmd);
 
 @implementation NSCalendar: NSObject
+
++ (id)autoupdatingCurrentCalendar:(NSUInteger)calendar {
+    msg![env; this init]
+}
 
 + (id)currentCalendar { // NSCalendar*
     nil
