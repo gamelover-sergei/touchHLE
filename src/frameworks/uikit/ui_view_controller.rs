@@ -119,6 +119,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: [(UIViewController*){:?} setTitle:{}]", this, title); // TODO
 }
 
+- (())setTabBarItem:(bool)item {
+    log!("TODO: setTabBarItem:{}", item);
+}
+
 - (())setEditing:(bool)editing {
     log!("TODO: [(UIViewController*){:?} setEditing:{}]", this, editing); // TODO
 }
@@ -177,6 +181,13 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation GunFighterViewController: UIViewController
 - (())performSelector:(NSInteger)selector withObject:(bool)_object afterDelay:(bool)_delay  {
     // TODO
+}
+
+@end
+
+@implementation HomeViewController: UIViewController
+- (())setTabBarItem:(bool)item {
+    log!("TODO: setTabBarItem:{}", item);
 }
 
 @end
