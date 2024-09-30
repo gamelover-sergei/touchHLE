@@ -627,6 +627,9 @@ pub const CLASSES: ClassExports = objc_classes! {
 
 @end
 
+@implementation NSException: NSObject
+@end
+
 @implementation NSIndexPath: NSObject
 @end
 
