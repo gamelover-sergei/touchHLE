@@ -9,30 +9,23 @@ use super::ui_graphics::UIGraphicsGetCurrentContext;
 use crate::font::{Font, TextAlignment, WrapMode};
 use crate::frameworks::core_graphics::cg_bitmap_context::CGBitmapContextDrawer;
 use crate::frameworks::core_graphics::{CGFloat, CGPoint, CGRect, CGSize};
+use crate::frameworks::foundation::ns_string::to_rust_string;
 use crate::frameworks::foundation::NSInteger;
 use crate::objc::{autorelease, id, objc_classes, ClassExports, HostObject};
 use crate::Environment;
+use std::collections::HashMap;
 use std::ops::Range;
 
 #[derive(Default)]
 pub(super) struct State {
-    regular: Option<Font>,
-    bold: Option<Font>,
-    italic: Option<Font>,
+    fonts: HashMap<String, Font>,
     regular_ja: Option<Font>,
     bold_ja: Option<Font>,
 }
 
-#[derive(Copy, Clone)]
-enum FontKind {
-    Regular,
-    Bold,
-    Italic,
-}
-
 struct UIFontHostObject {
+    font_name: String,
     size: CGFloat,
-    kind: FontKind,
 }
 impl HostObject for UIFontHostObject {}
 
@@ -67,37 +60,52 @@ pub const CLASSES: ClassExports = objc_classes! {
 @implementation UIFont: NSObject
 
 + (id)systemFontOfSize:(CGFloat)size {
+    let font_name = String::from("ArialMT");
     // Cache for later use
-    if env.framework_state.uikit.ui_font.regular.is_none() {
-        env.framework_state.uikit.ui_font.regular = Some(Font::sans_regular());
-    }
+    env.framework_state.uikit.ui_font.fonts.entry(font_name.to_owned()).or_insert_with(|| Font::from_resource_file(get_equivalent_font(&font_name).unwrap()));
     let host_object = UIFontHostObject {
+        font_name,
         size,
-        kind: FontKind::Regular,
     };
     let new = env.objc.alloc_object(this, Box::new(host_object), &mut env.mem);
     autorelease(env, new)
 }
 + (id)boldSystemFontOfSize:(CGFloat)size {
+    let font_name = String::from("Arial-BoldMT");
     // Cache for later use
-    if env.framework_state.uikit.ui_font.bold.is_none() {
-        env.framework_state.uikit.ui_font.bold = Some(Font::sans_bold());
-    }
+    env.framework_state.uikit.ui_font.fonts.entry(font_name.to_owned()).or_insert_with(|| Font::from_resource_file(get_equivalent_font(&font_name).unwrap()));
     let host_object = UIFontHostObject {
+        font_name,
         size,
-        kind: FontKind::Bold,
     };
     let new = env.objc.alloc_object(this, Box::new(host_object), &mut env.mem);
     autorelease(env, new)
 }
 + (id)italicSystemFontOfSize:(CGFloat)size {
+    let font_name = String::from("Arial-ItalicMT");
     // Cache for later use
-    if env.framework_state.uikit.ui_font.italic.is_none() {
-        env.framework_state.uikit.ui_font.italic = Some(Font::sans_italic());
-    }
+    env.framework_state.uikit.ui_font.fonts.entry(font_name.to_owned()).or_insert_with(|| Font::from_resource_file(get_equivalent_font(&font_name).unwrap()));
     let host_object = UIFontHostObject {
+        font_name,
         size,
-        kind: FontKind::Italic,
+    };
+    let new = env.objc.alloc_object(this, Box::new(host_object), &mut env.mem);
+    autorelease(env, new)
+}
++ (id)fontWithName:(id)fontName // NSString*
+            size:(CGFloat)fontSize {
+    let font_name = to_rust_string(env, fontName).to_string();
+    // Cache for later use
+    env.framework_state.uikit.ui_font.fonts.entry(font_name.to_owned()).or_insert_with(|| {
+        let font_file = get_equivalent_font(&font_name).unwrap_or_else(|| {
+            log!("No replacement found for font {}. Falling back to LiberationSans-Regular.ttf", font_name);
+            "LiberationSans-Regular.ttf"
+        });
+        Font::from_resource_file(font_file)
+    });
+    let host_object = UIFontHostObject {
+        font_name,
+        size: fontSize,
     };
     let new = env.objc.alloc_object(this, Box::new(host_object), &mut env.mem);
     autorelease(env, new)
@@ -119,7 +127,7 @@ fn convert_line_break_mode(ui_mode: UILineBreakMode) -> WrapMode {
 }
 
 #[rustfmt::skip]
-fn get_font<'a>(state: &'a mut State, kind: FontKind, text: &str) -> &'a Font {
+fn get_font<'a>(state: &'a mut State, font_name: &str, text: &str) -> &'a Font {
     // The default fonts (see font.rs) are the Liberation family, which are a
     // good substitute for Helvetica, the iPhone OS system font. Unfortunately,
     // there is no CJK support in these fonts. To support Super Monkey Ball in
@@ -132,29 +140,21 @@ fn get_font<'a>(state: &'a mut State, kind: FontKind, text: &str) -> &'a Font {
            (0xFF00..=0xFFEF).contains(&c) || // full-width/half-width chars
            (0x4e00..=0x9FA0).contains(&c) || // various kanji
            (0x3400..=0x4DBF).contains(&c) { // more kanji
-            match kind {
-                // CJK has no italic equivalent
-                FontKind::Regular | FontKind::Italic => {
-                    if state.regular_ja.is_none() {
-                        state.regular_ja = Some(Font::sans_regular_ja());
-                    }
-                    return state.regular_ja.as_ref().unwrap();
-                },
-                FontKind::Bold => {
-                    if state.bold_ja.is_none() {
-                        state.bold_ja = Some(Font::sans_bold_ja());
-                    }
-                    return state.bold_ja.as_ref().unwrap();
-                },
+            if font_name.contains("Bold") {
+                if state.bold_ja.is_none() {
+                    state.bold_ja = Some(Font::sans_bold_ja());
+                }
+                return state.bold_ja.as_ref().unwrap();
+            } else {
+                if state.regular_ja.is_none() {
+                    state.regular_ja = Some(Font::sans_regular_ja());
+                }
+                return state.regular_ja.as_ref().unwrap();
             }
         }
     }
 
-    match kind {
-        FontKind::Regular => state.regular.as_ref().unwrap(),
-        FontKind::Bold => state.bold.as_ref().unwrap(),
-        FontKind::Italic => state.italic.as_ref().unwrap(),
-    }
+    state.fonts.get(font_name).unwrap()
 }
 
 /// Called by the `sizeWithFont:` method family on `NSString`.
@@ -168,7 +168,7 @@ pub fn size_with_font(
 
     let font = get_font(
         &mut env.framework_state.uikit.ui_font,
-        host_object.kind,
+        &host_object.font_name,
         text,
     );
 
@@ -247,7 +247,7 @@ pub fn draw_at_point(
 
     let font = get_font(
         &mut env.framework_state.uikit.ui_font,
-        host_object.kind,
+        &host_object.font_name,
         text,
     );
 
@@ -297,7 +297,7 @@ pub fn draw_in_rect(
 
     let font = get_font(
         &mut env.framework_state.uikit.ui_font,
-        host_object.kind,
+        &host_object.font_name,
         text,
     );
 
@@ -329,4 +329,71 @@ pub fn draw_in_rect(
     );
 
     text_size
+}
+
+fn get_equivalent_font(system_font: &str) -> Option<&str> {
+    // Maps every font found in every font family in an iOS 2 Simulator
+    match system_font {
+        // Font Family: Courier
+        "Courier" => None,
+        "Courier-BoldOblique" => None,
+        "Courier-Oblique" => None,
+        "Courier-Bold" => None,
+        // Font Family: AppleGothic
+        "AppleGothic" => None,
+        // Font Family: Arial
+        "ArialMT" => Some("LiberationSans-Regular.ttf"),
+        "Arial-BoldMT" => Some("LiberationSans-Bold.ttf"),
+        "Arial-BoldItalicMT" => Some("LiberationSans-BoldItalic.ttf"),
+        "Arial-ItalicMT" => Some("LiberationSans-Italic.ttf"),
+        // Font Family: STHeiti TC
+        "STHeitiTC-Light" => None,
+        "STHeitiTC-Medium" => None,
+        // Font Family: Hiragino Kaku Gothic ProN
+        "HiraKakuProN-W6" => None,
+        "HiraKakuProN-W3" => None,
+        // Font Family: Courier New
+        "CourierNewPS-BoldMT" => Some("LiberationMono-Bold.ttf"),
+        "CourierNewPS-ItalicMT" => Some("LiberationMono-Italic.ttf"),
+        "CourierNewPS-BoldItalicMT" => Some("LiberationMono-BoldItalic.ttf"),
+        "CourierNewPSMT" => Some("LiberationMono-Regular.ttf"),
+        // Font Family: Zapfino
+        "Zapfino" => None,
+        // Font Family: Arial Unicode MS
+        "ArialUnicodeMS" => None,
+        // Font Family: STHeiti SC
+        "STHeitiSC-Medium" => None,
+        "STHeitiSC-Light" => None,
+        // Font Family: American Typewriter
+        "AmericanTypewriter" => None,
+        "AmericanTypewriter-Bold" => None,
+        // Font Family: Helvetica
+        "Helvetica-Oblique" => None,
+        "Helvetica-BoldOblique" => None,
+        "Helvetica" => None,
+        "Helvetica-Bold" => None,
+        // Font Family: Marker Felt
+        "MarkerFelt-Thin" => None,
+        // Font Family: Helvetica Neue
+        "HelveticaNeue" => None,
+        "HelveticaNeue-Bold" => None,
+        // Font Family: DB LCD Temp
+        "DBLCDTempBlack" => None,
+        // Font Family: Verdana
+        "Verdana-Bold" => None,
+        "Verdana-BoldItalic" => None,
+        "Verdana" => None,
+        "Verdana-Italic" => None,
+        // Font Family: Times New Roman
+        "TimesNewRomanPSMT" => Some("LiberationSerif-Regular.ttf"),
+        "TimesNewRomanPS-BoldMT" => Some("LiberationSerif-BoldMT.ttf"),
+        "TimesNewRomanPS-BoldItalicMT" => Some("LiberationSerif-BoldItalicMT.ttf"),
+        "TimesNewRomanPS-ItalicMT" => Some("LiberationSerif-ItalicMT.ttf"),
+        // Font Family: Georgia
+        "Georgia-Bold" => None,
+        "Georgia" => None,
+        "Georgia-BoldItalic" => None,
+        "Georgia-Italic" => None,
+        _ => None,
+    }
 }
