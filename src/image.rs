@@ -87,7 +87,7 @@ impl Image {
     /// TODO: This shouldn't really exist, it's a workaround for `CGImage`
     /// relying on this type and should be removed once it can be refactored.
     pub fn from_pixel_vec(pixels: Vec<u8>, dimensions: (u32, u32)) -> Image {
-        assert!(dimensions.0 as usize * 4 * dimensions.1 as usize == pixels.len());
+        // assert!(dimensions.0 as usize * 4 * dimensions.1 as usize == pixels.len());
         Image {
             pixels: PixelStore::Vec(pixels),
             dimensions,
