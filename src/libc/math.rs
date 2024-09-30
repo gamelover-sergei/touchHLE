@@ -550,6 +550,9 @@ fn CGImageCreateWithJPEGDataProvider(_env: &mut Environment, arg1: f32, arg2: f3
 fn CGImageCreateWithImageInRect(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn CGImageCreateWithMask(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn CGLayerCreateWithContext(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -931,6 +934,9 @@ fn sqlite3_prepare(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn sqlite3_column_count(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn sqlite3_column_name(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn sranddev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1264,6 +1270,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(CGImageCreateCopy(_, _)),
     export_c_func!(CGImageCreateWithJPEGDataProvider(_, _)),
     export_c_func!(CGImageCreateWithImageInRect(_, _)),
+    export_c_func!(CGImageCreateWithMask(_, _)),
     export_c_func!(CGLayerCreateWithContext(_, _)),
     export_c_func!(CGLayerGetContext(_, _)),
     export_c_func!(CGPathAddLines(_, _)),
@@ -1391,6 +1398,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sqlite3_last_insert_rowid(_, _)),
     export_c_func!(sqlite3_prepare(_, _)),
     export_c_func!(sqlite3_column_count(_, _)),
+    export_c_func!(sqlite3_column_name(_, _)),
     export_c_func!(sranddev(_, _)),
     export_c_func!(srandomdev(_, _)),
     export_c_func!(strpbrk(_, _)),
