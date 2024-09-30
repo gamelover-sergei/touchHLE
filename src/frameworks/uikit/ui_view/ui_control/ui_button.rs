@@ -305,6 +305,13 @@ pub const CLASSES: ClassExports = objc_classes! {
     update(env, this);
 }
 
+    - (())setAdjustsImageWhenHighlighted:(bool)value {
+    log!("TODO: [(UIBUtton*) {:?} setAdjustsImageWhenHighlighted:{}]", this, value);
+}
+- (())setAdjustsImageWhenDisabled:(bool)value {
+    log!("TODO: [(UIBUtton*) {:?} setAdjustsImageWhenDisabled:{}]", this, value);
+}
+    
 - (id)currentImage {
     let state: UIControlState = msg![env; this state];
     msg![env; this imageForState:state]
