@@ -61,6 +61,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     // TODO
 }
 
+- (())setEnabled:(bool)enabled {
+    log!("TODO: setEnabled:{}", enabled);
+}
+
 - (())setTitle:(bool)title {
     log!("TODO: setTitle:{}", title);
 }
