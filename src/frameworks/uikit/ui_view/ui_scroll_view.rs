@@ -98,6 +98,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     log!("TODO: setCanCancelContentTouches:{}", touches);
 }
 
+- (())setDirectionalLockEnabled:(bool)enabled {
+    log!("TODO: setDirectionalLockEnabled:{}", enabled);
+}
+
 - (())scrollRectToVisible:(NSInteger)visible animated:(bool)_animated {
     // TODO
 }
