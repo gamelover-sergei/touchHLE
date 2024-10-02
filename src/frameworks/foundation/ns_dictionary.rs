@@ -324,6 +324,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     res
 }
 
++ (())setObject:(NSInteger)object forKey:(bool)_key {
+    // TODO
+}
+
 // NSCopying implementation
 - (id)copyWithZone:(NSZonePtr)_zone {
     let entries: Vec<_> =
