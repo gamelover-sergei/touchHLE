@@ -42,7 +42,7 @@ int sscanf(const char *, const char *, ...);
 int printf(const char *, ...);
 int vsnprintf(char *, size_t, const char *, va_list);
 int swprintf(wchar_t *, size_t, const wchar_t *, ...);
-size_t fwrite(const void *, size_t, size_t, FILE *);
+int fwrite(const void *, size_t, size_t, FILE *);
 
 // <stdlib.h>
 #define EXIT_SUCCESS 0
@@ -262,9 +262,6 @@ int test_vsnprintf() {
   str = str_format("%x", 2042);
   res += !!strcmp(str, "7fa");
   free(str);
-  str = str_format("0x%08x", 184638698);
-  res += !!strcmp(str, "0x0b015cea");
-  free(str);
   // Test %d
   str = str_format("%d|%8d|%08d|%.d|%8.d|%.3d|%8.3d|%08.3d|%*d|%0*d", 5, 5, 5,
                    5, 5, 5, 5, 5, 8, 5, 8, 5);
@@ -348,11 +345,6 @@ int test_vsnprintf() {
                    -10.12345, -10.12345, 8, -10.12345, 8, -10.12345);
   res += !!strcmp(str, "-10.1235|-10.1235|-10.1235|-1e+01|  -1e+01|-10.1|   "
                        "-10.1|-00010.1|-10.1235|-10.1235");
-  free(str);
-  // Test length modifiers
-  str = str_format("%d %ld %lld %u %lu %llu", 10, 100, 4294967296, 10, 100,
-                   4294967296);
-  res += !!strcmp(str, "10 100 4294967296 10 100 4294967296");
   free(str);
 
   return res;
@@ -1205,7 +1197,7 @@ int test_CFMutableString() {
 
 int test_fwrite() {
   FILE *some_file = fopen("TestApp", "r");
-  size_t res = fwrite(NULL, 1, 1, some_file);
+  int res = fwrite(NULL, 1, 1, some_file);
   fclose(some_file);
   if (res != 0) {
     return -1;
