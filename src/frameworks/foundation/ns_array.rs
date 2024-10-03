@@ -457,6 +457,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     msg![env; this init]
 }
 
+- (id)sortUsingSelector:(NSUInteger)_using {
+    msg![env; this init]
+}
+
 - (id)stringByAddingPercentEscapesUsingEncoding:(NSUInteger)_using {
     msg![env; this init]
 }
