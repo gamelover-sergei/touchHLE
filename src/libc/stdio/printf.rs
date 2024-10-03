@@ -96,7 +96,12 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             if get_format_char(&env.mem, format_char_idx) == b'l' {
                 format_char_idx += 1;
             }
-            Some(b'l')
+            if get_format_char(&env.mem, format_char_idx) == b'l' {
+                format_char_idx += 1;
+                Some("ll")
+            } else {
+                Some("l")
+            }
         } else {
             None
         };
@@ -147,10 +152,17 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
             }
             b'd' | b'i' | b'u' => {
                 // Note: on 32-bit system int and long are i32,
-                // so length_modifier is ignored
+                // so single length_modifier is ignored (but not double one!)
                 let int: i64 = if specifier == b'u' {
-                    let uint: u32 = args.next(env);
-                    uint.into()
+                    if length_modifier == Some("ll") {
+                        let uint: u64 = args.next(env);
+                        uint.try_into().unwrap()
+                    } else {
+                        let uint: u32 = args.next(env);
+                        uint.into()
+                    }
+                } else if length_modifier == Some("ll") {
+                    args.next(env)
                 } else {
                     let int: i32 = args.next(env);
                     int.into()
@@ -188,36 +200,18 @@ pub fn printf_inner<const NS_LOG: bool, F: Fn(&Mem, GuestUSize) -> u8>(
                 }
             }
             b'x' => {
-                assert!(precision.is_none());
+                // assert!(precision.is_none());
                 // Note: on 32-bit system unsigned int and unsigned long
                 // are u32, so length_modifier is ignored
                 let uint: u32 = args.next(env);
-                if pad_width > 0 {
-                    let pad_width = pad_width as usize;
-                    if pad_char == '0' && precision.is_none() {
-                        write!(&mut res, "{:0>1$X}", uint, pad_width).unwrap();
-                    } else {
-                        write!(&mut res, "{:>1$X}", uint, pad_width).unwrap();
-                    }
-                } else {
-                    res.extend_from_slice(format!("{:X}", uint).as_bytes());
-                }
+                res.extend_from_slice(format!("{:x}", uint).as_bytes());
             }
             b'X' => {
                 // assert!(precision.is_none());
                 // Note: on 32-bit system unsigned int and unsigned long
                 // are u32, so length_modifier is ignored
                 let uint: u32 = args.next(env);
-                if pad_width > 0 {
-                    let pad_width = pad_width as usize;
-                    if pad_char == '0' && precision.is_none() {
-                        write!(&mut res, "{:0>1$x}", uint, pad_width).unwrap();
-                    } else {
-                        write!(&mut res, "{:>1$x}", uint, pad_width).unwrap();
-                    }
-                } else {
-                    res.extend_from_slice(format!("{:x}", uint).as_bytes());
-                }
+                res.extend_from_slice(format!("{:X}", uint).as_bytes());
             }
             b'p' => {
                 assert!(length_modifier.is_none());
