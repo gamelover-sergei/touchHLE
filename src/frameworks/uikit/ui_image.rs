@@ -6,7 +6,9 @@
 //! `UIImage`.
 
 use crate::frameworks::core_graphics::cg_context::CGContextDrawImage;
-use crate::frameworks::core_graphics::cg_image::{self, CGImageRef, CGImageRelease, CGImageRetain};
+use crate::frameworks::core_graphics::cg_image::{
+    self, CGImageGetHeight, CGImageGetWidth, CGImageRef, CGImageRelease, CGImageRetain,
+};
 use crate::frameworks::core_graphics::{CGFloat, CGRect, CGSize, CGPoint};
 use crate::frameworks::foundation::{ns_data, ns_string, NSInteger, NSUInteger};
 use crate::frameworks::uikit::ui_graphics::UIGraphicsGetCurrentContext;
@@ -144,7 +146,16 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (())drawAtPoint:(CGPoint)point {
-    msg![env; this drawAtPoint:point blendMode:0 alpha:1.0f32]
+    let context = UIGraphicsGetCurrentContext(env);
+    let image = env.objc.borrow::<UIImageHostObject>(this).cg_image;
+    let rect = CGRect {
+        origin: point,
+        size: CGSize {
+            width: CGImageGetWidth(env, image) as CGFloat,
+            height: CGImageGetHeight(env, image) as CGFloat,
+        }
+    };
+    CGContextDrawImage(env, context, rect, image);
 }
 
 - (())drawAtPoint:(CGPoint)point
