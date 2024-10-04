@@ -961,6 +961,9 @@ fn sranddev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn srandomdev(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn strerror_r(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn strpbrk(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1425,6 +1428,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(sqlite3_column_name(_, _)),
     export_c_func!(sranddev(_, _)),
     export_c_func!(srandomdev(_, _)),
+    export_c_func!(strerror_r(_, _)),
     export_c_func!(strpbrk(_, _)),
     export_c_func!(syscall(_, _)),
     export_c_func!(__strncpy_chk(_, _)),
