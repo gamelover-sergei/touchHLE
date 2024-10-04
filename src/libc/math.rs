@@ -256,6 +256,9 @@ fn gethostname(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
 fn host_get_clock_service(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
+fn poll(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
+    arg1.min(arg2)
+}
 fn pthread_condattr_init(_env: &mut Environment, arg1: f32, arg2: f32) -> f32 {
     arg1.min(arg2)
 }
@@ -1202,6 +1205,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(getgid(_, _)),
     export_c_func!(gethostname(_, _)),
     export_c_func!(host_get_clock_service(_, _)),
+    export_c_func!(poll(_, _)),
     export_c_func!(pthread_condattr_init(_, _)),
     export_c_func!(pthread_mutexattr_setpshared(_, _)),
     export_c_func!(pthread_yield_np(_, _)),
