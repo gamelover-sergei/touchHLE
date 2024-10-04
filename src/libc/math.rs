@@ -781,6 +781,9 @@ fn inflateInit2_(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
 fn inflateEnd(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
+fn initstate(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
+    arg1.min(arg2)
+}
 fn mbsrtowcs(_env: &mut Environment, arg1: f64, arg2: f64) -> f64 {
     arg1.min(arg2)
 }
@@ -1368,6 +1371,7 @@ pub const FUNCTIONS: FunctionExports = &[
     export_c_func!(inflateInit_(_, _)),
     export_c_func!(inflateInit2_(_, _)),
     export_c_func!(inflateEnd(_, _)),
+    export_c_func!(initstate(_, _)),
     export_c_func!(mbsrtowcs(_, _)),
     export_c_func!(mprotect(_, _)),
     export_c_func!(objc_getClass(_, _)),
