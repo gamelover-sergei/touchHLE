@@ -70,7 +70,7 @@ pub const CLASSES: ClassExports = objc_classes! {
              name:(NSNotificationName)name
            object:(id)object {
 if name == nil &&
-        env.bundle.bundle_identifier().starts_with("com.chillingo.cuttherope") &&
+        env.bundle.bundle_identifier().starts_with("com.chillingo.cuttheropexmas") &&
         selector == env.objc.lookup_selector("fetchUpdateNotification:").unwrap() {
         // As we nullified Flurry SDK, we also need to no-op
         // related notifications
