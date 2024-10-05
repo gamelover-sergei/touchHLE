@@ -144,23 +144,6 @@ pub const CLASSES: ClassExports = objc_classes! {
 -(())endIgnoringInteractionEvents {
     log!("TODO: ignoring endIgnoringInteractionEvents");
 }
-
-    - (id)keyWindow {
-    // TODO: handle nil
-    let key_window = env
-        .framework_state
-        .uikit
-        .ui_view
-        .ui_window
-    assert!(env
-        .framework_state
-        .uikit
-        .ui_view
-        .ui_window
-        .visible_windows
-        .contains(&key_window));
-    key_window
-}
     
 - (id)windows {
     log!("TODO: UIApplication's windows getter is returning only visible windows");
