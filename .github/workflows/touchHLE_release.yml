@@ -35,7 +35,7 @@ jobs:
       run: 7z -ovendor x boost_1_81_0.7z && ren vendor\boost_1_81_0 boost
     # This is the earliest point at which we can do linting: clippy will end up
     # building dynarmic, which needs Boost, but we don't need LLVM until
-    # building tests.
+    # building tests.e
     - name: Try to get cached copy of LLVM
       id: cache-llvm
       uses: actions/cache@v3
