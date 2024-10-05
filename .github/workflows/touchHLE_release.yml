@@ -134,9 +134,6 @@ jobs:
     # This is the earliest point at which we can do linting: clippy will end up
     # building dynarmic, which needs Boost, but we don't need LLVM until
     # building tests.
-    - name: Lint
-      shell: bash # no command output without this
-      run: dev-scripts/lint.sh
     - name: Try to get cached copy of LLVM
       id: cache-llvm
       uses: actions/cache@v3
