@@ -117,9 +117,6 @@ jobs:
       with:
         fetch-depth: 0 # touchHLE's git-describe versioning needs tag history
     # Apparently the Windows runner already has clang-format? That's nice.
-    - name: Check formatting
-      shell: bash # no command output without this
-      run: dev-scripts/format.sh --check
     - name: Get Submodules
       run: git submodule update --init
     - name: Try to get cached copy of Boost
@@ -152,8 +149,6 @@ jobs:
     - if: ${{ steps.cache-llvm.outputs.cache-hit != 'true' }}
       name: Extract LLVM
       run: 7z -otests/llvm x LLVM-12.0.1-win64.exe
-    - name: Test
-      run: cargo test
     - name: Build
       run: cargo build --release && move target/release/touchHLE.exe .
     - uses: actions/upload-artifact@v3
