@@ -152,7 +152,6 @@ pub const CLASSES: ClassExports = objc_classes! {
         .uikit
         .ui_view
         .ui_window
-        .key_window
         .unwrap();
     assert!(env
         .framework_state
