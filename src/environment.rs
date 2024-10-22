@@ -434,6 +434,23 @@ impl Environment {
             stack: Some(mem::Mem::MAIN_THREAD_STACK_LOW_END..=0u32.wrapping_sub(1)),
         };
 
+pub fn stack_for_longjmp(&self, mut lr: u32, fp: u32) -> Vec<u32> {
+        let stack_range = self.threads[self.current_thread].stack.clone().unwrap();
+        let mut frames = Vec::new();
+        let mut fp: mem::ConstPtr<u8> = mem::Ptr::from_bits(fp);
+        let thread_exit_routine_addr = self.dyld.thread_exit_routine().addr_with_thumb_bit();
+        let return_to_host_routine_addr = self.dyld.return_to_host_routine().addr_with_thumb_bit();
+        while stack_range.contains(&fp.to_bits())
+            && lr != thread_exit_routine_addr
+            && lr != return_to_host_routine_addr
+        {
+            frames.push(lr);
+            lr = self.mem.read((fp + 4).cast());
+            fp = self.mem.read(fp.cast());
+        }
+        frames
+    }
+        
         let mut env = Environment {
             startup_time,
             bundle,
