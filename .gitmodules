@@ -4,10 +4,13 @@
 	branch = dev
 [submodule "dynarmic"]
 	path = vendor/dynarmic
-	url = https://github.com/touchHLE/dynarmic.git
+	url = https://github.com/touchhle/dynarmic.git
 [submodule "openal-soft"]
 	path = vendor/openal-soft
 	url = https://github.com/kcat/openal-soft
+[submodule "vendor/dr_libs"]
+	path = vendor/dr_libs
+	url = https://github.com/mackron/dr_libs.git
 [submodule "vendor/SDL"]
 	path = vendor/SDL
 	url = https://github.com/libsdl-org/SDL.git
