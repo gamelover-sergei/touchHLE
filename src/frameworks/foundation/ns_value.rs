@@ -5,15 +5,18 @@
  */
 //! The `NSValue` class cluster, including `NSNumber`.
 
-use super::{NSInteger, NSUInteger};
+use super::{
+    NSComparisonResult, NSOrderedAscending, NSOrderedDescending, NSOrderedSame, NSUInteger,
+}
+use crate::mem::ConstPtr;
 use crate::mem::ConstVoidPtr;
 use crate::objc::{autorelease, id, msg, msg_class, objc_classes, retain, Class, ClassExports, HostObject, NSZonePtr, nil};
+use std::cmp::Ordering;
 
 enum NSNumberHostObject {
     Bool(bool),
     UnsignedLongLong(u64),
     LongLong(i64),
-    Float(f32),
     Double(f64),
     Int(i32),
 }
@@ -68,6 +71,13 @@ pub const CLASSES: ClassExports = objc_classes! {
     autorelease(env, new)
 }
 
++ (id)numberWithInt:(i32)value {
+    // TODO: for greater efficiency we could return a static-lifetime value
+    let new: id = msg![env; this alloc];
+    let new: id = msg![env; new initWithInt:value];
+    autorelease(env, new)
+}
+
 + (id)numberWithDouble:(f64)value {
     // TODO: for greater efficiency we could return a static-lifetime value
 
@@ -95,8 +105,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 // TODO: types other than booleans and long longs
 
 - (id)initWithBool:(bool)value {
-    *env.objc.borrow_mut(this) = NSNumberHostObject::Bool(value);
-    this
+msg![env; this initWithDouble: (value as f64)]
 }
 
 - (id)initWithInteger:(NSInteger)value {
@@ -104,6 +113,10 @@ pub const CLASSES: ClassExports = objc_classes! {
     this
 }
 
+- (id)initWithInt:(i32)value {
+    msg![env; this initWithLongLong: (value as i64)]
+}
+    
 - (id)initWithFloat:(f32)value {
     *env.objc.borrow_mut(this) = NSNumberHostObject::Float(value);
     this
@@ -125,9 +138,7 @@ pub const CLASSES: ClassExports = objc_classes! {
 }
 
 - (NSUInteger)hash {
-    let &NSNumberHostObject::Bool(value) = env.objc.borrow(this) else {
-        todo!();
-    };
+    let value: i64 = msg![env; this longLongValue];
     super::hash_helper(&value)
 }
 - (bool)isEqualTo:(id)other {
