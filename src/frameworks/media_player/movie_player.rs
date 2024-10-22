@@ -7,7 +7,25 @@
 
 use crate::dyld::{ConstantExports, HostConstant};
 use crate::frameworks::foundation::{ns_string, ns_url, NSInteger};
-use crate::objc::{id, msg, msg_class, objc_classes, release, retain, ClassExports};
+use crate::{
+    dyld::{ConstantExports, HostConstant},
+    objc::{id, nil, objc_classes, ClassExports},
+};
+pub const MPMusicPlayerControllerNowPlayingItemDidChangeNotification: &str =
+    "MPMusicPlayerControllerNowPlayingItemDidChangeNotification";
+pub const MPMusicPlayerControllerPlaybackStateDidChangeNotification: &str =
+    "MPMusicPlayerControllerPlaybackStateDidChangeNotification";
+/// `NSNotificationName` values.
+pub const CONSTANTS: ConstantExports = &[
+    (
+        "_MPMusicPlayerControllerNowPlayingItemDidChangeNotification",
+        HostConstant::NSString(MPMusicPlayerControllerNowPlayingItemDidChangeNotification),
+    ),
+    (
+        "_MPMusicPlayerControllerPlaybackStateDidChangeNotification",
+        HostConstant::NSString(MPMusicPlayerControllerPlaybackStateDidChangeNotification),
+    ),
+];
 use crate::Environment;
 use std::collections::VecDeque;
 
