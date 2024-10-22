@@ -147,6 +147,93 @@ pub const CLASSES: ClassExports = objc_classes! {
     a == b
 }
 
+- (bool)boolValue {
+    match env.objc.borrow::<NSNumberHostObject>(this) {
+        NSNumberHostObject::Bool(b) => *b,
+        NSNumberHostObject::UnsignedLongLong(u) => *u != 0,
+        NSNumberHostObject::LongLong(l) => *l != 0,
+        NSNumberHostObject::Double(d) => *d != 0.0,
+    }
+}
+- (f64)doubleValue {
+    match env.objc.borrow::<NSNumberHostObject>(this) {
+        NSNumberHostObject::Bool(b) => *b as i32 as f64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as f64,
+        NSNumberHostObject::LongLong(l) => *l as f64,
+        NSNumberHostObject::Double(d) => *d,
+    }
+}
+- (f32)floatValue {
+    let d: f64 = msg![env; this doubleValue];
+    d as f32
+}
+- (i64)longLongValue {
+    match env.objc.borrow::<NSNumberHostObject>(this) {
+        NSNumberHostObject::Bool(b) => *b as i64,
+        NSNumberHostObject::UnsignedLongLong(u) => *u as i64,
+        NSNumberHostObject::LongLong(l) => *l,
+        NSNumberHostObject::Double(d) => *d as i64,
+    }
+}
+- (i32)intValue {
+    let d: i64 = msg![env; this longLongValue];
+    d as i32
+}
+-(ConstPtr<u8>)objCType {
+    let ty = match env.objc.borrow::<NSNumberHostObject>(this) {
+        NSNumberHostObject::Bool(_) => "B",
+        NSNumberHostObject::UnsignedLongLong(_) => "Q",
+        NSNumberHostObject::LongLong(_) => "q",
+        NSNumberHostObject::Double(_) => "d",
+    };
+    let c_string = env.mem.alloc_and_write_cstr(ty.as_bytes());
+    let length: NSUInteger = (ty.len() + 1).try_into().unwrap();
+    // NSData will handle releasing the string (it is autoreleased)
+    let _: id = msg_class![env; NSData dataWithBytesNoCopy:(c_string.cast_void())
+                                                    length:length];
+    c_string.cast_const()
+}
+- (NSComparisonResult)compare:(id)other {
+    match *env.objc.borrow::<NSNumberHostObject>(this) {
+        NSNumberHostObject::Bool(v) => {
+            let other_v: bool = msg![env; other boolValue];
+            if !v && other_v {
+                NSOrderedAscending
+            } else if v == other_v {
+                NSOrderedSame
+            } else {
+                NSOrderedDescending
+            }
+        }
+        NSNumberHostObject::UnsignedLongLong(v) => {
+            let other_v: u64 = msg![env; other unsignedLongLongValue];
+            match v.cmp(&other_v) {
+                Ordering::Less => NSOrderedAscending,
+                Ordering::Equal => NSOrderedSame,
+                Ordering::Greater => NSOrderedDescending
+            }
+        },
+        NSNumberHostObject::LongLong(v) => {
+            let other_v: i64 = msg![env; other longLongValue];
+            match v.cmp(&other_v) {
+                Ordering::Less => NSOrderedAscending,
+                Ordering::Equal => NSOrderedSame,
+                Ordering::Greater => NSOrderedDescending
+            }
+        },
+        NSNumberHostObject::Double(v) => {
+            let other_v: f64 = msg![env; other doubleValue];
+            if v < other_v {
+                NSOrderedAscending
+            } else if v == other_v {
+                NSOrderedSame
+            } else {
+                NSOrderedDescending
+            }
+        },
+    }
+}
+    
 // TODO: accessors etc
 
 @end
