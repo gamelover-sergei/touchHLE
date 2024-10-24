@@ -28,6 +28,7 @@ pub mod pthread;
 pub mod semaphore;
 pub mod setjmp;
 pub mod stdio;
+pub mod signal;
 pub mod stdlib;
 pub mod string;
 pub mod sysctl;
