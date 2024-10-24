@@ -11,6 +11,7 @@
 //! Being aware of this concept will make common types like `NSArray` and
 //! `NSString` easier to understand.
 
+pub(crate) mod fake_cftimer_target;
 pub mod ns_array;
 pub mod ns_autorelease_pool;
 pub mod ns_bundle;
@@ -21,7 +22,6 @@ pub mod ns_date;
 pub mod ns_date_formatter;
 pub mod ns_dictionary;
 pub mod ns_enumerator;
-pub mod ns_file_handle;
 pub mod ns_exception;
 pub mod ns_file_manager;
 pub mod ns_keyed_unarchiver;
